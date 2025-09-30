@@ -1,0 +1,93 @@
+---
+# Only front matter so Jekyll processes it
+---
+
+@import url("https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap");
+
+.zhi-mang-xing {
+  font-family: 'Zhi Mang Xing', cursive;
+}
+
+/* Hide any footer link that mentions sitemap */
+.site-footer a[href$="/sitemap/"],
+.site-footer a[href$="/sitemap"],
+.site-footer a[href$="sitemap.xml"],
+.site-footer a[href*="sitemap"] {
+  display: none !important;
+}
+
+/* Also hide the container blocks if present */
+.site-footer .page__footer-links,
+.site-footer .page__footer-follow {
+  display: none !important;  /* hides "Sitemap" and "Follow: Feed" blocks entirely */
+}
+
+.page__title {
+  display: inline-flex;
+  align-items: center; /* vertical centering */
+  gap: 9px;           /* space between text and button */
+}
+
+.page__title .btn-scholar {
+  margin-left: 0; /* no need since we’re using gap now */
+}
+
+/* Publications title button */
+.page__title .btn-scholar {
+  /* use rem so it's independent of the H1 size */
+  font-size: 0.90rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+
+  /* 3D look */
+  background: linear-gradient(#6db5eb, #4b9ddf);
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #3c8ccc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-decoration: none;
+}
+
+.page__title .btn-scholar:hover {
+  background: linear-gradient(#5aa7e6, #3d8ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+}
+
+/* icon a touch smaller than the button text */
+.page__title .btn-scholar .ai {
+  font-size: 0.85em;      /* now relative to the button, not the H1 */
+  margin-right: 6px;
+  color: #fff;
+}
+/* academicons draw via :before — this keeps alignment tidy */
+.page__title .btn-scholar .ai:before {
+  vertical-align: -0.1em;
+}
+
+/* your button CSS */
+.page__content .btn-link{display:inline-flex;align-items:center;margin-left:6px;padding:3px 8px;border-radius:4px;font-size:0.85rem;font-weight:500;text-decoration:none;color:#fff;line-height:1.2;}
+.page__content .btn-icon{height:14px;margin-right:5px;}
+
+.page__content .btn-arxiv {
+  background: rgba(179, 27, 27, 0.8);  /* #b31b1b at 60% opacity */
+}
+.page__content .btn-arxiv:hover {
+  background: rgba(142, 21, 21, 0.5);  /* #8e1515 at 30% opacity */
+}
+
+.page__content .btn-journal {
+  background: rgba(53, 126, 221, 0.8); /* #357edd at 60% opacity */
+}
+.page__content .btn-journal:hover {
+  background: rgba(40, 93, 176, 0.5);  /* #285db0 at 30% opacity */
+}
+
+.page__content .btn-conference {
+  background: rgba(44, 160, 44, 0.8);  /* #2ca02c at 60% opacity */
+}
+.page__content .btn-conference:hover {
+  background: rgba(30, 112, 30, 0.5);  /* #1e701e at 30% opacity */
+}
