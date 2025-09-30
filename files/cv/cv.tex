@@ -1,0 +1,211 @@
+%------------------------------------
+% Dario Taraborelli
+% Typesetting your academic CV in LaTeX
+%
+% URL: http://nitens.org/taraborelli/cvtex
+% DISCLAIMER: This template is provided for free and without any guarantee 
+% that it will correctly compile on your system if you have a non-standard  
+% configuration.
+% Some rights reserved: http://creativecommons.org/licenses/by-sa/3.0/
+%------------------------------------
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[10pt, a4paper]{article}
+\usepackage{fontspec, marvosym, wasysym, bm} 
+
+% DOCUMENT LAYOUT
+\usepackage{geometry} 
+ \usepackage{cmap} 
+\geometry{a4paper, textwidth=7in, textheight=9.5in, marginparsep=5pt, marginparwidth=.4in}
+\setlength\parindent{0in}
+
+% FONTS
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
+\setromanfont [Ligatures={Common}, BoldFont={Fontin Bold}, ItalicFont={Fontin Italic}]{Fontin}
+\setsansfont [Ligatures={Common}, BoldFont={Fontin Sans Bold}, ItalicFont={Fontin Sans Italic}]{Fontin Sans}
+\setmonofont[Scale=0.8]{Monaco} 
+% ---- CUSTOM AMPERSAND
+\newcommand{\amper}{{\fontspec[Scale=.95]{Fontin}\selectfont\itshape\&}}
+% ---- MARGIN YEARS
+\usepackage{marginnote}
+\newcommand{\years}[1]{\marginnote{\scriptsize #1}}
+\renewcommand*{\raggedleftmarginnote}{}
+\setlength{\marginparsep}{7pt}
+\reversemarginpar
+
+% HEADINGS
+\usepackage{sectsty} 
+\usepackage[normalem]{ulem} 
+\sectionfont{\rmfamily\mdseries\upshape\Large}
+\subsectionfont{\rmfamily\bfseries\upshape\normalsize} 
+\subsubsectionfont{\rmfamily\mdseries\upshape\normalsize} 
+\makeatletter
+\def\namedlabel#1#2{\begingroup
+	#2%
+	\def\@currentlabel{#2}%
+	\phantomsection\label{#1}\endgroup
+}
+
+% PDF SETUP
+% ---- FILL IN HERE THE DOC TITLE AND AUTHOR
+\usepackage{url}
+\usepackage[xetex, bookmarks, colorlinks, breaklinks, pdftitle={Chen Cheng - CV},pdfauthor={Chen Cheng}]{hyperref}  
+\hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=black} 
+
+% DOCUMENT
+\begin{document}
+\centerline{\LARGE Chen Cheng}
+\centerline{}
+\centerline{\Letter: \href{mailto:chencheng@uchicago.edu}{chencheng@uchicago.edu}}
+\centerline{Homepage: \href{https://moriartycc.github.io/}{moriartycc.github.io}}
+
+\section*{\textbf{Employment}}
+\begin{itemize}
+	\item[] \textbf{University of Illinois Urbana-Champaign}, IL, USA
+	\begin{itemize}
+		\item [--] \textbf{Assistant Professor in Statistics}, Department of Statistics. \hfill 8/2026 \textit{(To start)}
+	\end{itemize}
+	\item[] \textbf{University of Chicago}, IL, USA
+	\begin{itemize}
+		\item [--] \textbf{Postdoctoral Scholar in Statistics}, Department of Statistics. \hfill 8/2025 -- 8/2026 \\
+		Advised by: Rina Foygel Barber.
+	\end{itemize}
+\end{itemize}
+
+\section*{\textbf{Education}}
+\begin{itemize}
+	\item[] \textbf{Stanford University}, CA, USA
+	\begin{itemize}
+		\item [--] \textbf{Ph.D. in Statistics}, Department of Statistics. \\
+		Jointly advised by: John Duchi and Andrea Montanari\hfill 9/2019 -- 6/2025
+		\item [--] GPA: $\bm{4.20/4.30}$.
+	\end{itemize}
+	\item[] \textbf{Peking University}, Beijing, China
+	\begin{itemize}
+		\item [--] \textbf{B.S. in Computational Mathematics}, School of Mathematical Sciences. \hfill 9/2015 -- 7/2019
+		\item [--] GPA: $\bm{3.90/4.00}$, Rank: $\bm{1/18}$. (with distinction)
+	\end{itemize}
+\end{itemize}
+
+\section*{\textbf{Visiting and Working Experiences}}
+\begin{itemize}
+	\item[] \textbf{LinkedIn Corporation}, WA, USA
+	\begin{itemize}
+		\item [--] \textbf{Research Intern}. \\
+		Supervised by: Ryan Rogers and Saikrishna Badrinarayanan  \hfill 6/2023 -- 9/2023
+	\end{itemize}
+	\item[] \textbf{New York University, Courant Institute of Mathematical Sciences}, NY, USA
+	\begin{itemize}
+		\item [--] \textbf{Research Assistant}. \\
+		Supervised by: Miranda Holmes-Cerfon \hfill 9/2018 -- 12/2018
+	\end{itemize}
+	\item[] \textbf{Princeton University}, NJ, USA
+	\begin{itemize}
+		\item [--] \textbf{Research Assistant}. \\
+		Supervised by: Yuxin Chen\hfill 7/2018 -- 9/2018
+	\end{itemize}
+\end{itemize}
+
+\section*{\textbf{Research Interests}}
+Machine learning theory, Random matrix theory, High dimensional statistics, Differential Privacy, Reinforcement learning.
+
+\section*{\textbf{Publications}}
+\begin{enumerate}
+	\item[\namedlabel{pub:SomeRobustness}{P12}] \textbf{C. Cheng}, J. Duchi. ``Some Robustness Properties of Label Cleaning'', 2025. \href{https://arxiv.org/abs/2509.11379}{\textcolor{blue}{arXiv}}.
+	\item[\namedlabel{pub:SEBeyondI}{P11}] M. Celentano, \textbf{C. Cheng}, A. Pananjady, KA. Verchand. ``State evolution beyond first-order methods I: Rigorous predictions and finite-sample guarantees'', 2025. \href{https://arxiv.org/abs/2507.19611}{\textcolor{blue}{arXiv}}.
+	\item[\namedlabel{pub:GeometryComputation}{P10}] \textbf{C. Cheng}, J. Duchi, D. Levy. ``Geometry, Computation, and Optimality in Stochastic Optimization'', 2024. \href{https://arxiv.org/abs/1909.10455}{\textcolor{blue}{arXiv}}.
+	\item[\namedlabel{pub:TwoFundamental}{P9}] F. Areces, \textbf{C. Cheng}, J. Duchi, R. Kuditipudi. ``Two Fundamental Limits for Uncertainty Quantification in Predictive Inference'', 2024. Conference on Learning Theory (COLT), 2024.
+	\item[\namedlabel{pub:CollaborativelyLearning}{P8}] \textbf{C. Cheng}, G. Cheng, J. Duchi. ``Collaboratively Learning Linear Models with Structured Missing Data'', 2023. Conference on Neural Information Processing Systems (NeurIPS), 2023. \href{https://arxiv.org/abs/2307.11947}{\textcolor{blue}{arXiv}}. Presented in [\ref{talk:NeurIPS-23-1}].
+	\item[\namedlabel{pub:DimensionFree}{P7}] \textbf{C. Cheng}, A. Montanari. ``Dimension Free Ridge Regression'', 2023. Annals of Statistics, vol. 52, no. 6, pp. 2879-2912, 2024. \href{https://arxiv.org/abs/2210.08571}{\textcolor{blue}{arXiv}}. Presented in [\ref{talk:StanfordIAC-23-1}, \ref{talk:NUS-24-1}, \ref{talk:CUHK-24-1}, \ref{talk:THU-24-1}, \ref{talk:PKU-24-1}, \ref{talk:PKU-24-1}, \ref{talk:Cambridge-25-1}, \ref{talk:NYU-25-1}, \ref{talk:Rutgers-25-1}, \ref{talk:UIUC-25-1}].
+	\item[\namedlabel{pub:HowMany}{P6}] \textbf{C. Cheng}, H. Asi, J. Duchi. ``How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels'', 2022. \href{https://arxiv.org/abs/2206.12041}{\textcolor{blue}{arXiv}}. Presented in [\ref{talk:COLT-22-1}, \ref{talk:StanfordIAC-23-1}, \ref{talk:NUS-24-1}, \ref{talk:CUHK-24-1}, \ref{talk:THU-24-1}, \ref{talk:PKU-24-1}, \ref{talk:Cambridge-25-1}, \ref{talk:NYU-25-1}, \ref{talk:Rutgers-25-1}, \ref{talk:UIUC-25-1}].
+	\item[\namedlabel{pub:MemorizeGeneralize}{P5}] \textbf{C. Cheng}, J. Duchi, R. Kuditipudi. ``Memorize to Generalize: on the Necessity of Interpolation in High Dimensional Linear Regression'', 2022. Conference on Learning Theory (COLT), 2022. \href{https://arxiv.org/abs/2202.09889}{\textcolor{blue}{arXiv}}. Presented in [\ref{talk:StanfordDAWN-22-1}].
+	\item[\namedlabel{pub:HighdimensionalFlow}{P4}] M. Celentano, \textbf{C. Cheng}, A. Montanari. ``The High-dimensional Asymptotics of First Order Methods with Random Data'', 2021. \href{https://arxiv.org/abs/2112.07572}{\textcolor{blue}{arXiv}}. Presented in [\ref{talk:Berkeley-24-1}].
+	\item[\namedlabel{pub:FastGlobal}{P3}] S. Cen, \textbf{C. Cheng}, Y. Chen, Y. Wei, Y. Chi, ``Fast Global Convergence of Natural Policy Gradient Methods with Entropy Regularization'', 2020. Operations Research, 2021. \href{https://arxiv.org/abs/2007.06558}{\textcolor{blue}{arXiv}}.
+	\item[\namedlabel{pub:TacklingSmall}{P2}] \textbf{C. Cheng}, Y. Wei, Y. Chen, ``Tackling Small Eigen-gaps: Fine-Grained Eigenvector Estimation and Inference under Heteroscedastic Noise'', 2020. IEEE Transactions on Information Theory, 2021. \href{https://arxiv.org/abs/2001.04620}{\textcolor{blue}{arXiv}}.
+	\item[\namedlabel{pub:AsymmetryHelps}{P1}] Y. Chen, \textbf{C. Cheng}, J. Fan, ``Asymmetry Helps: Eigenvalue and Eigenvector Analyses of Asymmetrically Perturbed Low-Rank Matrices'', 2019. Annals of Statistics, vol. 49, no. 1, pp. 435-458, 2021. \href{https://arxiv.org/abs/1811.12804}{\textcolor{blue}{arXiv}}. Presented in  [\ref{talk:NYU-18-1}].
+\end{enumerate}
+
+\section*{\textbf{Dissertation}}
+``High dimensionality in modern machine learning: a random matrix theory perspective''. \href{https://www.proquest.com/openview/f1efb29df77ad5600efbc00d0aa8b1dd}{\textcolor{blue}{Stanford University ProQuest Dissertations \& Theses}}. 2025. 
+
+%\section*{\textbf{Working projects}}
+%\begin{enumerate}
+%	\item[P5'] \textbf{C. Cheng}, A. Montanari, Z. Wang. ``Hessian of Two Layer Neural Networks''.
+%	\item[P4'] \textbf{C. Cheng}, R. Rogers. ``Laplace Noise Reduction Mechanism''.
+%	\item[P3'] \textbf{C. Cheng}, J. Duchi. ``Revisiting Risk and Prediction Consistency for Modern Data Collection''.
+%	\item[P2'] \textbf{C. Cheng}, J. Duchi, S. Haque, D. Drusvyatskiy. ``Optimization with Many Distributions''.
+%	\item[P1'] \textbf{C. Cheng}, J. Duchi, R. Kuditipudi, D. Drusvyatskiy. ``Tilting Stability of Optimization Problems''.
+%\end{enumerate}
+
+%%\hrule
+\section*{\textbf{Academic Honors \& Awards}}
+\subsection*{\textbf{Fellowship \& Scholarship}}
+	\begin{itemize}
+		\item[--] William R. Hewlett Stanford Graduate Fellowship. \hfill 9/2019
+		\item[--] Yizheng Special Scholarship and Merit Student. \hfill 9/2018
+		\item[--] Leo-KoGuan Scholarship and Merit Student. \hfill 9/2017
+		\item[--] National Scholarship and Merit Student Pacesetter (Highest Honor) . \hfill 9/2016
+	\end{itemize}
+\subsection*{\textbf{Awards}}
+	\begin{itemize}
+		\item[--] George E. Nicholson Student Paper Competition. Finalist. \hfill 10/2021
+		\item[--] Excellent Graduate of Beijing. \hfill 6/2019
+		\item[--] Excellent Graduate of Elite Training Program of Applied Mathematics. \hfill 6/2019
+		\item[--] S.T. Yau College Student Mathematics Contests -- Group (Probability). Silver Medalist. \hfill 8/2017
+		\item[--] Elite Training Program of Applied Mathematics \& Pure Mathematics. \hfill 2016-2019
+		\item[--] Chinese Mathematical Olympiad (CMO). Gold Medalist. \hfill 2014
+		\item[--] National Olympiad in Informatics (NOI), China. Silver Medalist. \hfill 2012
+	\end{itemize}
+
+\section*{\textbf{Talks and Presentations}}
+\begin{enumerate}
+	\item[\namedlabel{talk:UIUC-25-1}{T16}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, University of Illinois Urbana-Champaign. \hfill 1/2025
+	\item[\namedlabel{talk:Rutgers-25-1}{T15}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Rutgers University New Brunswick. \hfill 1/2025
+	\item[\namedlabel{talk:NYU-25-1}{T14}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, New York University Stern. \hfill 1/2025
+	\item[\namedlabel{talk:Cambridge-25-1}{T13}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, University of Cambridge DPMMS. \hfill 1/2025
+	\item[\namedlabel{talk:PKU-24-1}{T12}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Symposium on Statistics and Biostatistics, Peking University. \hfill 12/2024
+	\item[\namedlabel{talk:THU-24-1}{T11}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Tsinghua University YMSC. \hfill 12/2024
+	\item[\namedlabel{talk:CUHK-24-1}{T10}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Chinese University of Hong Kong. \hfill 12/2024
+	\item[\namedlabel{talk:NUS-24-1}{T9}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, National University of Singapore. \hfill 12/2024
+	\item[\namedlabel{talk:Berkeley-24-1}{T8}] [\ref{pub:HighdimensionalFlow}], Simons Seminar, University of California Berkeley. \hfill 11/2024
+	\item[\namedlabel{talk:NeurIPS-23-1}{T7}] [\ref{pub:CollaborativelyLearning}], Conference on Neural Information Processing Systems (NeurIPS), New Orleans. \hfill 12/2023
+	\item[\namedlabel{talk:StanfordIAC-23-1}{T6}] Stanford Stats Department Industrial Affiliated Conference, Stanford University. \hfill 11/2023
+	\item[\namedlabel{talk:StanfordIAC-22-1}{T5}] [\ref{pub:HowMany}], Stanford Stats Department Industrial Affiliated Conference, Stanford University. \hfill 11/2022
+	\item[\namedlabel{talk:COLT-22-1}{T4}] [\ref{pub:MemorizeGeneralize}], Conference on Learning Theory (COLT), London. \hfill 07/2022
+	\item[\namedlabel{talk:StanfordDAWN-22-1}{T3}] [\ref{pub:HowMany}], Stanford Data Analytics for What’s Next (DAWN) workshop, Aptos. \hfill 05/2022
+	\item[\namedlabel{talk:NYU-18-1}{T2}] [\ref{pub:AsymmetryHelps}], Seminar for Modeling \& Simulation, New York University Courant. \hfill 10/2018
+	\item[\namedlabel{talk:PKU-17-1}{T1}] Seminar for Elite Ph.D Training Program of Applied Mathematics, Peking University. \hfill 11/2017
+\end{enumerate}
+
+\section*{\textbf{Teaching Experiences}}
+
+\subsection*{\textbf{As Teaching Assistant}}
+
+\begin{itemize}
+	\item[--] STATS 141. Biostatistics. \hfill Autumn 2019
+	\item[--] STATS 214/CS 229M. Machine Learning Theory. (Head TA) \hfill Winter 2021
+	\item[--] STATS 205. Introduction to Nonparametric Statistics. \hfill Spring 2021
+	\item[--] STATS 369. Methods from Statistical Physics. \hfill Autumn 2021
+	\item[--] MATH 230A/STATS 310A. Theory of Probability. \hfill Autumn 2022
+	\item[--] STATS 208. Bootstrap, Cross-Validation, and Sample Re-use. \hfill Winter 2023
+	\item[--] STATS 311/EE 377. Information Theory and Statistics. \hfill Autumn 2023
+	\item[--] STATS 315A. Modern Statistical Learning. \hfill Winter 2024
+	\item[--] STATS 118. Theory of Probability II. \hfill Summer 2024
+\end{itemize}
+
+\section*{\textbf{Professional Services}}
+
+\subsection*{\textbf{Reviewing}}
+
+\subsubsection*{Journal} Annals of Statistics (AOS),  Foundations of Computational Mathematics (FOCM), IEEE Transactions on Information Theory (TIT), Information and Inference: A Journal of the IMA, Journal of Machine Learning Research (JMLR), Journal of the American Statistical Association (JASA), Mathematical Statistics and Learning, SIAM Journal on Mathematics of Data Science (SIMODS)
+
+\subsubsection*{Conference} Conference on Neural Information Processing Systems (NeurIPS), International Conference on Learning Representations (ICLR), International Conference on Machine Learning (ICML), IEEE International Symposium on Information Theory (ISIT), Symposium on Theory of Computing (STOC)
+
+
+
+
+\end{document}
