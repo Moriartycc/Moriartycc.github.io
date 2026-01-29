@@ -11,6 +11,12 @@ author_profile: true
 
 ## Publications and Preprints (By Year)
 
+### 2026
+- **C. Cheng**, R.F. Barber. "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data", 2026.
+  <a href="https://arxiv.org/abs/2601.20152" class="btn-link btn-arxiv" target="_blank" rel="noopener">
+    <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
+  </a>
+
 ### 2025
 - **C. Cheng**, J. Duchi. "Some Robustness Properties of Label Cleaning", 2025.  
   <a href="https://arxiv.org/abs/2509.11379" class="btn-link btn-arxiv" target="_blank" rel="noopener">
