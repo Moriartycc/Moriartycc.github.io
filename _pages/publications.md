@@ -12,7 +12,7 @@ author_profile: true
 ## Publications and Preprints (By Year)
 
 ### 2026
-- **C. Cheng**, R.F. Barber. "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold", 2026.  
+- **C. Cheng**, R.F. Barber. "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold", 2026. *Proceedings of the Thirty-Eighth Conference on Learning Theory* (COLT 2026). 
   <a href="https://arxiv.org/abs/2602.09405" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
@@ -23,7 +23,7 @@ author_profile: true
   </a>
 
 ### 2025
-- **C. Cheng**, J. Duchi. "Some Robustness Properties of Label Cleaning", 2025.  
+- **C. Cheng**, J. Duchi. "Some Robustness Properties of Label Cleaning", 2025. *Transactions on Machine Learning Research* (TMLR 2026).  
   <a href="https://arxiv.org/abs/2509.11379" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
