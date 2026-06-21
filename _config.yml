@@ -23,7 +23,7 @@ repository               : "Moriartycc/moriartycc.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "Headshot - Chicago.jpg"
+  avatar           : "Headshot - SkAI.png"
   name             : "Chen Cheng  <span class='zhi-mang-xing'>程 晨</span>"
   pronouns         : # example: "she/her"  
   bio              : "Statistics<br>Postdoc at University of Chicago<br>Incoming Assistant Professor at University of Illinois Urbana-Champaign"
