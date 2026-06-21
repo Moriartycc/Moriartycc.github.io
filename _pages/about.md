@@ -6,6 +6,11 @@ redirect_from:
   - /about/
   - /about.html
 ---
+It is always about:
+$$
+y \in \mathbb{R}^n, \qquad X \in \mathbb{R}^{n \times d}, \qquad \theta \in \Theta. 
+$$
+
 
 ## Contact
 chencheng (at) uchicago (dot) edu
