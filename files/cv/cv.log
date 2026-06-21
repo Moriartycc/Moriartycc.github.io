@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2026.1.28)  29 MAY 2026 08:03
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2026.1.28)  21 JUN 2026 06:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -526,7 +526,7 @@ LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
 ]
 Missing character: There is no   in font [lmroman10-regular]:mapping=tex-text;!
 
-Overfull \hbox (4.74504pt too wide) in paragraph at lines 137--138
+Overfull \hbox (4.74504pt too wide) in paragraph at lines 119--120
 \TU/lmr/m/n/10 “High dimensionality in modern machine learning: a random matrix
  theory perspective”. [][][]Stanford University ProQuest
  []
@@ -540,12 +540,12 @@ Package rerunfilecheck Info: File `cv.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 15792 strings out of 402987
- 290529 string characters out of 5448524
- 732737 words of memory out of 5000000
- 44349 multiletter control sequences out of 15000+600000
- 632363 words of font info for 71 fonts, out of 8000000 for 9000
+ 15787 strings out of 402987
+ 290359 string characters out of 5448524
+ 735842 words of memory out of 5000000
+ 44348 multiletter control sequences out of 15000+600000
+ 632339 words of font info for 68 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,6n,80p,527b,406s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,5n,80p,527b,438s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on cv.pdf (4 pages).

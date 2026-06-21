@@ -16,6 +16,7 @@ author_profile: true
   <a href="https://arxiv.org/abs/2602.09405" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
+  <a href="https://github.com/Moriartycc/is-memorization-helpful-or-harmful" class="btn-link btn-github" target="_blank" rel="noopener"><img src="/assets/icons/gitbub.svg" alt="GitHub" class="btn-icon">code</a>
 
 - **C. Cheng**, R.F. Barber. "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data", 2026.  
   <a href="https://arxiv.org/abs/2601.20152" class="btn-link btn-arxiv" target="_blank" rel="noopener">
@@ -34,7 +35,7 @@ author_profile: true
   </a>
 
 ### 2024
-- **C. Cheng**, J. Duchi, D. Levy. "Geometry, Computation, and Optimality in Stochastic Optimization", 2024.  
+- **C. Cheng**, J. Duchi, D. Levy. "Geometry, Computation, and Optimality in Stochastic Optimization", 2024. Accepted to *Mathematics of Operations Research*, 2026. 
   <a href="https://arxiv.org/abs/1909.10455" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
