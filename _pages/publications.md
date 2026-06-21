@@ -16,12 +16,13 @@ author_profile: true
   <a href="https://arxiv.org/abs/2602.09405" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
-  <a href="https://github.com/Moriartycc/is-memorization-helpful-or-harmful" class="btn-link btn-github" target="_blank" rel="noopener"><img src="/assets/icons/gitbub.svg" alt="GitHub" class="btn-icon">code</a>
+  <a href="https://github.com/Moriartycc/is-memorization-helpful-or-harmful" class="btn-link btn-github" target="_blank" rel="noopener"><img src="/assets/icons/github-white.svg" alt="GitHub" class="btn-icon">code</a>
 
 - **C. Cheng**, R.F. Barber. "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data", 2026.  
   <a href="https://arxiv.org/abs/2601.20152" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
+<a href="https://github.com/Moriartycc/exchangeable-tensors-matrix-valued-data" class="btn-link btn-github" target="_blank" rel="noopener"><img src="/assets/icons/github-white.svg" alt="GitHub" class="btn-icon">code</a>
 
 ### 2025
 - **C. Cheng**, J. Duchi. "Some Robustness Properties of Label Cleaning", 2025. *Transactions on Machine Learning Research* (TMLR 2026).  
@@ -62,6 +63,7 @@ author_profile: true
   <a href="https://arxiv.org/abs/2206.12041" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
+<a href="https://github.com/Moriartycc/how-many-labelers-do-you-need" class="btn-link btn-github" target="_blank" rel="noopener"><img src="/assets/icons/github-white.svg" alt="GitHub" class="btn-icon">code</a>
 
 - **C. Cheng**, J. Duchi, R. Kuditipudi. "Memorize to Generalize: on the Necessity of Interpolation in High Dimensional Linear Regression", 2022. *Proceedings of the Thirty-Fifth Conference on Learning Theory* (COLT 2022).  
   <a href="https://arxiv.org/abs/2202.09889" class="btn-link btn-arxiv" target="_blank" rel="noopener">
