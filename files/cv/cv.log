@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2026.1.28)  21 JUN 2026 06:15
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2026.7.25)  25 JUL 2026 20:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./cv.tex
 (cv.tex
-LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-06>
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
@@ -27,22 +27,22 @@ File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
 e.sty
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2025-11-06 L3 programming layer (loader) 
+Package: expl3 2025-09-02 L3 programming layer (loader) 
 
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
 ex.def
-File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
+File: l3backend-xetex.def 2025-06-09 L3 backend support: XeTeX
 \g__graphics_track_int=\count279
 \g__pdfannot_backend_int=\count280
 \g__pdfannot_backend_link_int=\count281
 ))
-Package: xparse 2025-10-09 L3 Experimental document command parser
+Package: xparse 2024-08-16 L3 Experimental document command parser
 )
-Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
 
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xetex
 .sty
-Package: fontspec-xetex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTe
+Package: fontspec-xetex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTe
 X
 \l__fontspec_script_int=\count282
 \l__fontspec_language_int=\count283
@@ -59,7 +59,7 @@ X
 \l__fontspec_tmpb_dim=\dimen150
 \l__fontspec_tmpc_dim=\dimen151
  (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
-Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
 )
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg))
 ) (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/marvosym\marvosym.sty
@@ -71,7 +71,7 @@ LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
 )
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/tools\bm.sty
-Package: bm 2025/10/21 v1.2g Bold Symbol Support (DPC/FMi)
+Package: bm 2023/12/19 v1.2f Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup5
 \symboldletters=\mathgroup6
 \symboldsymbols=\mathgroup7
@@ -151,7 +151,7 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 Package graphics Info: Driver file: xetex.def on input line 106.
 
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def
-File: xetex.def 2025/11/01 v5.0p Graphics/color driver for xetex
+File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen160
 \Gin@req@width=\dimen161
@@ -191,7 +191,7 @@ LaTeX Info: Redefining \LaTeXe on input line 219.
 )
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/marginnote\marginnote.s
 ty
-Package: marginnote 2018/08/09 1.4b non floating margin notes for LaTeX
+Package: marginnote 2026-06-15 1.5 non floating margin notes for LaTeX 
 \c@mn@abspage=\count297
 ) (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/sectsty\sectsty.sty
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
@@ -269,7 +269,7 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 \c@section@level=\count299
 )
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
-Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count300
 )
 (C:\Users\cheng\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
@@ -521,6 +521,8 @@ LaTeX Font Warning: Font shape `U/wasy/b/n' in size <7> not available
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
 (Font)              Font shape `U/wasy/m/n' tried instead on input line 85.
 
+
+
 [1
 
 ]
@@ -531,21 +533,27 @@ Overfull \hbox (4.74504pt too wide) in paragraph at lines 119--120
  theory perspective”. [][][]Stanford University ProQuest
  []
 
-[2] [3] [4] (cv.aux)
+
+
+[2]
+
+[3]
+
+[4] (cv.aux)
  ***********
-LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-06>
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `cv.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 15787 strings out of 402987
- 290359 string characters out of 5448524
- 735842 words of memory out of 5000000
- 44348 multiletter control sequences out of 15000+600000
- 632339 words of font info for 68 fonts, out of 8000000 for 9000
+ 15780 strings out of 403246
+ 290080 string characters out of 5460781
+ 730560 words of memory out of 5000000
+ 44082 multiletter control sequences out of 15000+600000
+ 631443 words of font info for 68 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,5n,80p,527b,438s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,5n,79p,620b,436s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on cv.pdf (4 pages).
