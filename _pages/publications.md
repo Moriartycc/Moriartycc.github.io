@@ -12,13 +12,15 @@ author_profile: true
 ## Publications and Preprints (By Year)
 
 ### 2026
-- **C. Cheng**, R.F. Barber. "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold", 2026. *Proceedings of the Thirty-Eighth Conference on Learning Theory* (COLT 2026). 
+- **C. Cheng**, R.F. Barber. "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold", 2026. *Proceedings of the Thirty-Eighth Conference on Learning Theory* (COLT 2026).
+
 <a href="https://arxiv.org/abs/2602.09405" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a><a href="https://proceedings.mlr.press/v336/cheng26a.html" class="btn-link btn-conference" target="_blank" rel="noopener"><img src="/assets/icons/pmlr.svg" alt="PMLR" class="btn-icon">conference</a>
   <a href="https://github.com/Moriartycc/is-memorization-helpful-or-harmful" class="btn-link btn-github" target="_blank" rel="noopener"><img src="/assets/icons/github-white.svg" alt="GitHub" class="btn-icon">code</a>
 
 - **C. Cheng**, R.F. Barber. "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data", 2026.
+
 <a href="https://arxiv.org/abs/2601.20152" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
@@ -37,6 +39,7 @@ author_profile: true
 
 ### 2024
 - **C. Cheng**, J. Duchi, D. Levy. "Geometry, Computation, and Optimality in Stochastic Optimization", 2024. Accepted to *Mathematics of Operations Research*, 2026. 
+
 <a href="https://arxiv.org/abs/1909.10455" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
