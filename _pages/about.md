@@ -11,9 +11,11 @@ Welcome! I am an Assistant Professor in Statistics at University of Illinois Urb
 I spanned over many topics. My main focus is on studying problems motivated by, and building theoretical tools for modern machine learning theory, including overparameterized models, neural networks, complex structured data (e.g. matrices and data from heterogenous sources) and iterative algorithms. I build theoretical tools for random matrix theory, high-dimensional statistics and information theory inspired by, and applying to machine learning, deep learning, conformal prediction, reinforcement learning, etc.
 
 In a nutshell, it is always about:
+
 $$
 y = f_\theta(X; \epsilon) \in \mathbb{R}^n, \qquad X \in \mathbb{R}^{n \times d}, \qquad \theta \in \Theta. 
 $$
+
 But at least one of the above is unusual!
 
 ## Contact
