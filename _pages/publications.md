@@ -15,7 +15,7 @@ author_profile: true
 - **C. Cheng**, R.F. Barber. "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold", 2026. *Proceedings of the Thirty-Eighth Conference on Learning Theory* (COLT 2026). 
   <a href="https://arxiv.org/abs/2602.09405" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
-  </a>
+  </a><a href="https://proceedings.mlr.press/v336/cheng26a.html" class="btn-link btn-conference" target="_blank" rel="noopener"><img src="/assets/icons/pmlr.svg" alt="PMLR" class="btn-icon">conference</a>
   <a href="https://github.com/Moriartycc/is-memorization-helpful-or-harmful" class="btn-link btn-github" target="_blank" rel="noopener"><img src="/assets/icons/github-white.svg" alt="GitHub" class="btn-icon">code</a>
 
 - **C. Cheng**, R.F. Barber. "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data", 2026.  
@@ -27,7 +27,7 @@ author_profile: true
 ### 2025
 - **C. Cheng**, J. Duchi. "Some Robustness Properties of Label Cleaning", 2025. *Transactions on Machine Learning Research* (TMLR 2026).  
   <a href="https://arxiv.org/abs/2509.11379" class="btn-link btn-arxiv" target="_blank" rel="noopener">
-    <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
+    <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv<a href="https://openreview.net/forum?id=O2ORErbcBy" class="btn-link btn-conference" target="_blank" rel="noopener"><img src="/assets/icons/tmlr.jpeg" alt="TMLR" class="btn-icon">conference</a>
   </a>
 
 - M. Celentano, **C. Cheng**, A. Pananjady, K.A. Verchand. "State evolution beyond first-order methods I: Rigorous predictions and finite-sample guarantees", 2025.  
