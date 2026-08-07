@@ -72,7 +72,7 @@ author_profile: true
   <a href="https://proceedings.mlr.press/v178/cheng22a.html" class="btn-link btn-conference" target="_blank" rel="noopener"><img src="/assets/icons/pmlr.svg" alt="PMLR" class="btn-icon">conference</a>
 
 ### 2021
-- M. Celentano, **C. Cheng**, A. Montanari. "The High-dimensional Asymptotics of First Order Methods with Random Data", 2021.  
+- M. Celentano, **C. Cheng**, A. Montanari. "The High-dimensional Asymptotics of First Order Methods with Random Data", 2021. Accepted to *Annals of Applied Probability*, 2026.  
   <a href="https://arxiv.org/abs/2112.07572" class="btn-link btn-arxiv" target="_blank" rel="noopener">
     <img src="/assets/icons/arxiv.svg" alt="arXiv" class="btn-icon">arXiv
   </a>
