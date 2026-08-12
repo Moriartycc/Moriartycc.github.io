@@ -19,7 +19,7 @@ $$
 But at least one of the above is unusual!
 
 ## Contact
-chencheng (at) uchicago (dot) edu
+chcheng (at) illinois (dot) edu
 
 ## Bio
 
