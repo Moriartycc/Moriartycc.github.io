@@ -8,7 +8,7 @@ redirect_from:
 ---
 Welcome! I am an Assistant Professor in Statistics at University of Illinois Urbana-Champaign. 
 
-I spanned over many topics. My main focus is on studying problems motivated by, and building theoretical tools for modern machine learning theory, including overparameterized models, neural networks, complex structured data (e.g. matrices and data from heterogenous sources) and iterative algorithms. I build theoretical tools for random matrix theory, high-dimensional statistics and information theory inspired by, and applying to machine learning, deep learning, conformal prediction, reinforcement learning, etc.
+My research develops theoretical tools for modern machine learning, with an emphasis on random matrices, high-dimensional statistics, information theory, and iterative algorithms. I study applications including overparameterized models, neural networks, structured data, conformal prediction, and reinforcement learning.
 
 In a nutshell, it is always about:
 
@@ -25,7 +25,7 @@ chcheng (at) illinois (dot) edu
 
 ## Bio
 
-I am an Assistant Professor in Statistics at University of Illinois Urbana-Champaign. Prior to that, I was fortunate to work as a postdoctoral scholar mentored by Professor [Rina Foygel Barber](https://rinafb.github.io/) at Department of Statistics, University of Chicago, and completed my PhD in Statistics at Stanford University, jointly advised by Professor [John Duchi](https://web.stanford.edu/~jduchi/) and [Andrea Montanari](https://web.stanford.edu/~montanar/). I was a recipient of the William R. Hewlett Stanford Graduate Fellowship. I received my Bachelor's degree in Computational Mathematics from Peking University. 
+I am an Assistant Professor in Statistics at University of Illinois Urbana-Champaign. Prior to that, I was fortunate to work as a postdoctoral scholar mentored by Professor <a class="advisor-link" href="https://rinafb.github.io/">Rina Foygel Barber</a> at Department of Statistics, University of Chicago, and completed my PhD in Statistics at Stanford University, jointly advised by Professor <a class="advisor-link" href="https://web.stanford.edu/~jduchi/">John Duchi</a> and <a class="advisor-link" href="https://web.stanford.edu/~montanar/">Andrea Montanari</a>. I was a recipient of the William R. Hewlett Stanford Graduate Fellowship. I received my Bachelor's degree in Computational Mathematics from Peking University.
 
 ## Employment
 - **Assistant Professor in Statistics**, *University of Illinois at Urbana-Champaign*, 2026.8 -- Current

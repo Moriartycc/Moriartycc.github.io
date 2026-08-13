@@ -38,20 +38,6 @@ html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
   font-family: 'Zhi Mang Xing', cursive;
 }
 
-/* Hide any footer link that mentions sitemap */
-.site-footer a[href$="/sitemap/"],
-.site-footer a[href$="/sitemap"],
-.site-footer a[href$="sitemap.xml"],
-.site-footer a[href*="sitemap"] {
-  display: none !important;
-}
-
-/* Also hide the container blocks if present */
-.site-footer .page__footer-links,
-.site-footer .page__footer-follow {
-  display: none !important;  /* hides "Sitemap" and "Follow: Feed" blocks entirely */
-}
-
 .page__title {
   display: inline-flex;
   align-items: center; /* vertical centering */
@@ -253,6 +239,24 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 1px;
   background-position: left bottom;
+}
+
+.page__content .advisor-link {
+  color: color-mix(in srgb, var(--tech-accent-bright) 72%, var(--global-text-color));
+  font-weight: 500;
+  text-decoration: none;
+  text-decoration-thickness: 0;
+  transition: color 160ms ease;
+}
+
+.page__content .advisor-link:visited {
+  color: color-mix(in srgb, var(--tech-accent) 66%, var(--global-text-color));
+}
+
+.page__content .advisor-link:hover,
+.page__content .advisor-link:focus-visible {
+  color: var(--tech-accent-bright);
+  text-decoration: none;
 }
 
 .page__content mjx-container[display="true"] {

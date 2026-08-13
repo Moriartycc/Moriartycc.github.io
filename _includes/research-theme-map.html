@@ -45,7 +45,8 @@
     #research-keyword-previews .tooltip { display: none; position: absolute; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--popover); color: var(--popover-foreground); pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; }
     #research-keyword-previews .tooltip.is-visible { display: block; pointer-events: auto; opacity: 1; visibility: visible; }
     #research-keyword-previews .tooltip-family { color: var(--muted-foreground); margin: 2px 0 6px; }
-    #research-keyword-previews .tooltip-paper { margin-top: 5px; }
+    #research-keyword-previews .tooltip-paper { margin-top: 6px; font-size: 12px; line-height: 1.35; }
+    #research-keyword-previews .paper-title { font-family: Georgia, Cambria, "Times New Roman", serif; font-size: 0.94em; font-weight: 400; letter-spacing: 0.005em; }
     #research-keyword-previews .tooltip-more { color: var(--muted-foreground); margin-top: 6px; }
     #research-keyword-previews .map-shell { position: relative; }
     #research-keyword-previews .network-motion { transform-box: fill-box; transform-origin: center; animation: research-network-drift 16s ease-in-out infinite alternate; }
@@ -56,7 +57,7 @@
     #research-keyword-previews .node-depth { pointer-events: none; opacity: .3; }
     #research-keyword-previews .node-highlight { fill: none; stroke: var(--background); stroke-width: 1.2px; stroke-linejoin: round; opacity: .42; pointer-events: none; }
     #research-keyword-previews .vos-label { fill: var(--foreground); font-size: 12px; font-weight: 400; paint-order: stroke; stroke: var(--background); stroke-width: 3px; stroke-linejoin: round; cursor: pointer; }
-    #research-keyword-previews .vos-label.is-hovered { font-size: 16px; font-weight: 500; stroke-width: 4px; }
+    #research-keyword-previews .vos-label.is-hovered { font-size: 14px; font-weight: 500; stroke-width: 3.5px; }
     #research-keyword-previews .vos-link { stroke: var(--border); }
     #research-keyword-previews .vos-node-wrap.is-muted, #research-keyword-previews .vos-link.is-muted { opacity: 0.12; }
     #research-keyword-previews .vos-label.is-muted { opacity: 0.2; }
@@ -73,7 +74,7 @@
     @media (max-width: 520px) {
       #research-keyword-previews .preview-section { margin-bottom: 28px; }
       #research-keyword-previews .map-host { min-height: 500px; }
-      #research-keyword-previews .vos-label.is-hovered { font-size: 14px; }
+      #research-keyword-previews .vos-label.is-hovered { font-size: 13px; }
     }
   </style>
 <div id="research-keyword-previews">
@@ -296,7 +297,7 @@
         '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
       })[char]);
       const paperLink = paper => `<a class="paper-link" href="${paper.url}" target="_blank" rel="noopener">${paper.linkLabel} ↗</a>`;
-      const paperLine = paper => `${escapeHtml(paper.title)} <span class="text-muted">(${paper.year})</span> ${paperLink(paper)}`;
+      const paperLine = paper => `<span class="paper-title">${escapeHtml(paper.title)}</span> <span class="text-muted">(${paper.year})</span> ${paperLink(paper)}`;
 
       function positionTooltip(event) {
         const tip=tooltip.node();
