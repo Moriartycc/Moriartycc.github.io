@@ -297,7 +297,7 @@
         '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
       })[char]);
       const paperLink = paper => `<a class="paper-link" href="${paper.url}" target="_blank" rel="noopener">${paper.linkLabel} ↗</a>`;
-      const paperLine = paper => `<span class="paper-title">${escapeHtml(paper.title)}</span> <span class="text-muted">(${paper.year})</span> ${paperLink(paper)}`;
+      const paperLine = paper => `<span class="paper-title">${escapeHtml(paper.title)} (${paper.year})</span> ${paperLink(paper)}`;
 
       function positionTooltip(event) {
         const tip=tooltip.node();
