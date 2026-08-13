@@ -1,0 +1,738 @@
+<!-- Interactive research-theme map, derived from the approved homepage preview. -->
+<style>
+    #research-keyword-previews {
+      --background: var(--global-bg-color, #fff);
+      --foreground: var(--global-text-color, #343434);
+      --muted-foreground: var(--global-text-color-light, #6f777d);
+      --border: var(--global-border-color, #e5e7eb);
+      --popover: var(--global-bg-color, #fff);
+      --popover-foreground: var(--global-text-color, #343434);
+      --viz-series-1: #339cff;
+      --viz-series-2: #f3883b;
+      --viz-series-3: #5dc977;
+      --viz-series-4: #eb77b1;
+      --viz-series-5: #9b79ec;
+      --viz-series-6: #3ab9b1;
+      color: var(--foreground);
+      width: 100%;
+      margin-top: 3rem;
+    }
+    html[data-theme="dark"] #research-keyword-previews {
+      --viz-series-1: #83c3ff;
+      --viz-series-2: #f59a56;
+      --viz-series-3: #74d58b;
+      --viz-series-4: #f08fc0;
+      --viz-series-5: #aa91ef;
+      --viz-series-6: #5acbc2;
+    }
+    #research-keyword-previews .preview-section { margin: 0 0 36px; }
+    #research-keyword-previews .preview-heading { margin-bottom: 4px; }
+    #research-keyword-previews .preview-subtitle { color: var(--muted-foreground); margin: 0 0 12px; }
+    #research-keyword-previews .map-host { width: 100%; min-height: 560px; }
+    #research-keyword-previews .map-controls { margin-bottom: 8px; }
+    #research-keyword-previews .map-controls .form-label { min-width: min(100%, 320px); }
+    #research-keyword-previews .map-controls .form-select { width: min(100%, 360px); }
+    #research-keyword-previews .selected-line { color: var(--muted-foreground); min-height: 28px; margin-top: 6px; }
+    #research-keyword-previews .selected-line strong { color: var(--foreground); font-weight: 500; }
+    #research-keyword-previews .more-papers { margin-top: 6px; }
+    #research-keyword-previews .more-papers-heading { color: var(--foreground); font-weight: 500; margin-bottom: 4px; }
+    #research-keyword-previews .paper-list { margin: 0; padding-left: 20px; }
+    #research-keyword-previews .paper-list li { margin: 3px 0; }
+    #research-keyword-previews .paper-link, #research-keyword-previews .tooltip a { white-space: nowrap; font-size: 11px; }
+    #research-keyword-previews .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 8px; color: var(--muted-foreground); }
+    #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    #research-keyword-previews .legend-swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--swatch); }
+    #research-keyword-previews .tooltip { display: none; position: absolute; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--popover); color: var(--popover-foreground); pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; }
+    #research-keyword-previews .tooltip.is-visible { display: block; pointer-events: auto; opacity: 1; visibility: visible; }
+    #research-keyword-previews .tooltip-family { color: var(--muted-foreground); margin: 2px 0 6px; }
+    #research-keyword-previews .tooltip-paper { margin-top: 5px; }
+    #research-keyword-previews .tooltip-more { color: var(--muted-foreground); margin-top: 6px; }
+    #research-keyword-previews .map-shell { position: relative; }
+    #research-keyword-previews .network-motion { transform-box: fill-box; transform-origin: center; animation: research-network-drift 16s ease-in-out infinite alternate; }
+    #research-keyword-previews .orbit-track { fill: none; stroke: var(--border); stroke-width: .7px; stroke-dasharray: 3 7; opacity: .32; }
+    #research-keyword-previews .star-dust { fill: var(--foreground); pointer-events: none; }
+    #research-keyword-previews .family-polytope { stroke-width: 1.2px; stroke-linejoin: round; }
+    #research-keyword-previews .vos-node { cursor: pointer; stroke: var(--background); stroke-width: 1px; stroke-linejoin: round; }
+    #research-keyword-previews .node-depth { pointer-events: none; opacity: .3; }
+    #research-keyword-previews .node-highlight { fill: none; stroke: var(--background); stroke-width: 1.2px; stroke-linejoin: round; opacity: .42; pointer-events: none; }
+    #research-keyword-previews .vos-label { fill: var(--foreground); font-size: 12px; font-weight: 400; paint-order: stroke; stroke: var(--background); stroke-width: 3px; stroke-linejoin: round; cursor: pointer; }
+    #research-keyword-previews .vos-label.is-hovered { font-size: 16px; font-weight: 500; stroke-width: 4px; }
+    #research-keyword-previews .vos-link { stroke: var(--border); }
+    #research-keyword-previews .vos-node-wrap.is-muted, #research-keyword-previews .vos-link.is-muted { opacity: 0.12; }
+    #research-keyword-previews .vos-label.is-muted { opacity: 0.2; }
+    #research-keyword-previews .vos-node-wrap.is-selected .vos-node { stroke: var(--foreground); stroke-width: 2px; }
+    #research-keyword-previews svg { display: block; max-width: 100%; }
+    @keyframes research-network-drift {
+      0% { transform: translate(-2px, 1px) rotate(-0.2deg); }
+      48% { transform: translate(2px, -2px) rotate(0.15deg); }
+      100% { transform: translate(-1px, 2px) rotate(0.25deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #research-keyword-previews .network-motion { animation: none; }
+    }
+    @media (max-width: 520px) {
+      #research-keyword-previews .preview-section { margin-bottom: 28px; }
+      #research-keyword-previews .map-host { min-height: 500px; }
+      #research-keyword-previews .vos-label.is-hovered { font-size: 14px; }
+    }
+  </style>
+<div id="research-keyword-previews">
+  <section class="preview-section" aria-labelledby="vos-preview-title">
+    <h2 id="vos-preview-title" class="preview-heading">Research themes</h2>
+    <p class="preview-subtitle">Explore fourteen major themes across my research papers. Hover or select a topic to refocus the system and see its most relevant papers.</p>
+    <div class="viz-controls map-controls">
+      <label class="form-label" for="vos-term-select">Highlight a research theme
+        <select id="vos-term-select" class="form-select"></select>
+      </label>
+    </div>
+    <div class="map-shell">
+      <div id="vos-keyword-map" class="map-host" role="img" aria-label="Network map of fourteen major research themes across fourteen papers"></div>
+      <div id="vos-tooltip" class="tooltip" role="tooltip"></div>
+    </div>
+    <div id="vos-selection" class="selected-line" aria-live="polite"></div>
+    <div id="vos-more-papers" class="more-papers" aria-live="polite"></div>
+    <div id="vos-legend" class="legend" aria-label="Research theme families"></div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script>
+    (() => {
+      const root = document.getElementById('research-keyword-previews');
+      const css = name => {
+        const probe = document.createElement('span');
+        probe.style.cssText = `display:none;color:var(${name})`;
+        root.appendChild(probe);
+        const value = getComputedStyle(probe).color;
+        probe.remove();
+        return value;
+      };
+      const entropy = new Uint32Array(1);
+      if (globalThis.crypto?.getRandomValues) crypto.getRandomValues(entropy);
+      else entropy[0] = Math.floor(Math.random()*4294967296);
+      const loadSeed = entropy[0] / 4294967296;
+      root.dataset.systemSeed = entropy[0].toString(16).padStart(8,'0');
+      const seededRandom = salt => d3.randomLcg((loadSeed + salt*.61803398875) % 1);
+
+      const papers = [
+        {id:'P1', year:2019, title:'Asymmetry Helps: Eigenvalue and Eigenvector Analyses of Asymmetrically Perturbed Low-Rank Matrices', url:'https://arxiv.org/abs/1811.12804', linkLabel:'arXiv'},
+        {id:'P2', year:2020, title:'Tackling Small Eigen-gaps: Fine-Grained Eigenvector Estimation and Inference under Heteroscedastic Noise', url:'https://arxiv.org/abs/2001.04620', linkLabel:'arXiv'},
+        {id:'P3', year:2020, title:'Fast Global Convergence of Natural Policy Gradient Methods with Entropy Regularization', url:'https://arxiv.org/abs/2007.06558', linkLabel:'arXiv'},
+        {id:'P4', year:2021, title:'The High-dimensional Asymptotics of First Order Methods with Random Data', url:'https://arxiv.org/abs/2112.07572', linkLabel:'arXiv'},
+        {id:'P5', year:2022, title:'Memorize to Generalize: On the Necessity of Interpolation in High Dimensional Linear Regression', url:'https://arxiv.org/abs/2202.09889', linkLabel:'arXiv'},
+        {id:'P6', year:2022, title:'How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels', url:'https://arxiv.org/abs/2206.12041', linkLabel:'arXiv'},
+        {id:'P7', year:2023, title:'Dimension Free Ridge Regression', url:'https://arxiv.org/abs/2210.08571', linkLabel:'arXiv'},
+        {id:'P8', year:2023, title:'Collaboratively Learning Linear Models with Structured Missing Data', url:'https://arxiv.org/abs/2307.11947', linkLabel:'arXiv'},
+        {id:'P9', year:2024, title:'Two Fundamental Limits for Uncertainty Quantification in Predictive Inference', url:'https://proceedings.mlr.press/v247/areces24a.html', linkLabel:'PMLR'},
+        {id:'P10',year:2024, title:'Geometry, Computation, and Optimality in Stochastic Optimization', url:'https://arxiv.org/abs/1909.10455', linkLabel:'arXiv'},
+        {id:'P11',year:2025, title:'State Evolution Beyond First-order Methods I: Rigorous Predictions and Finite-sample Guarantees', url:'https://arxiv.org/abs/2507.19611', linkLabel:'arXiv'},
+        {id:'P12',year:2025, title:'Some Robustness Properties of Label Cleaning', url:'https://arxiv.org/abs/2509.11379', linkLabel:'arXiv'},
+        {id:'P13',year:2026, title:'Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data', url:'https://arxiv.org/abs/2601.20152', linkLabel:'arXiv'},
+        {id:'P14',year:2026, title:'Is Memorization Helpful or Harmful? Prior Information Sets the Threshold', url:'https://arxiv.org/abs/2602.09405', linkLabel:'arXiv'}
+      ];
+
+      const themeFamily = {
+        'Spectral inference':'Random matrices & spectral methods', 'Matrix perturbation':'Random matrices & spectral methods', 'Low-rank structure':'Random matrices & spectral methods', 'Heteroscedastic noise':'Random matrices & spectral methods', 'Random matrix theory':'Random matrices & spectral methods',
+        'State evolution':'High dimensional statistics', 'Dynamical mean field theory':'High dimensional statistics', 'High-dimensional asymptotics':'High dimensional statistics', 'Calibration':'High dimensional statistics', 'Uncertainty quantification':'High dimensional statistics',
+        'Iterative algorithms':'Linear regression & linear methods', 'Ridge regression':'Linear regression & linear methods', 'Missing & distributed data':'Linear regression & linear methods',
+        'Linear and nonlinear algorithms':'Linear regression & linear methods',
+        'Neural networks':'Machine learning theory', 'Interpolation & memorization':'Machine learning theory', 'Label aggregation & cleaning':'Machine learning theory', 'Robust learning':'Machine learning theory', 'Benign overfitting':'Machine learning theory', 'Model and data aggregation':'Machine learning theory', 'Conformal prediction':'Machine learning theory',
+        'Reinforcement learning':'Machine learning theory', 'Reinforcement learning & policy optimization':'Machine learning theory',
+        'Policy optimization':'Information theory & optimality', 'Stochastic optimization':'Information theory & optimality',
+        'Optimality and lower bounds':'Information theory & optimality',
+        'Exchangeability & tensors':'Probability & its applications', 'Concentration inequalities':'Probability & its applications'
+      };
+
+      const themeOrder = [
+        'Spectral inference','Matrix perturbation','Low-rank structure','Heteroscedastic noise',
+        'State evolution','Dynamical mean field theory','Iterative algorithms','High-dimensional asymptotics','Random matrix theory',
+        'Neural networks','Ridge regression','Interpolation & memorization',
+        'Label aggregation & cleaning','Robust learning','Missing & distributed data','Conformal prediction','Calibration','Uncertainty quantification',
+        'Reinforcement learning','Policy optimization','Stochastic optimization',
+        'Exchangeability & tensors','Concentration inequalities'
+      ];
+
+      const relevance = {
+        P1:{'Spectral inference':.90,'Matrix perturbation':1,'Low-rank structure':.80,'Heteroscedastic noise':.75,'Random matrix theory':.45,'High-dimensional asymptotics':.30,'Concentration inequalities':.20},
+        P2:{'Spectral inference':1,'Matrix perturbation':.90,'Low-rank structure':.65,'Heteroscedastic noise':1,'Uncertainty quantification':.35,'Concentration inequalities':.30,'High-dimensional asymptotics':.25},
+        P3:{'Reinforcement learning':1,'Policy optimization':1,'Stochastic optimization':.55,'Iterative algorithms':.25},
+        P4:{'State evolution':.70,'Dynamical mean field theory':1,'Iterative algorithms':.90,'Neural networks':.55,'High-dimensional asymptotics':.75,'Random matrix theory':.50,'Stochastic optimization':.35},
+        P5:{'Random matrix theory':.65,'Ridge regression':.50,'Interpolation & memorization':1,'High-dimensional asymptotics':.75,'Low-rank structure':.20,'Neural networks':.30},
+        P6:{'Label aggregation & cleaning':1,'Robust learning':.65,'Calibration':.55,'High-dimensional asymptotics':.30},
+        P7:{'Ridge regression':1,'Interpolation & memorization':.65,'Spectral inference':.40,'High-dimensional asymptotics':.60,'Random matrix theory':.50},
+        P8:{'Missing & distributed data':1,'Uncertainty quantification':.20,'High-dimensional asymptotics':.40,'Stochastic optimization':.20},
+        P9:{'Conformal prediction':1,'Calibration':1,'Uncertainty quantification':1,'Concentration inequalities':.20},
+        P10:{'Stochastic optimization':1,'Iterative algorithms':.40,'High-dimensional asymptotics':.20},
+        P11:{'State evolution':1,'Iterative algorithms':.90,'Random matrix theory':.45,'Dynamical mean field theory':.40,'Stochastic optimization':.35,'High-dimensional asymptotics':.50,'Concentration inequalities':.25},
+        P12:{'Label aggregation & cleaning':1,'Robust learning':1,'High-dimensional asymptotics':.20,'Uncertainty quantification':.15},
+        P13:{'Exchangeability & tensors':1,'Concentration inequalities':1,'Missing & distributed data':.40,'Matrix perturbation':.20,'Random matrix theory':.20},
+        P14:{'Interpolation & memorization':1,'Low-rank structure':.55,'High-dimensional asymptotics':.55,'Neural networks':.25,'Random matrix theory':.25,'Ridge regression':.20}
+      };
+
+      const omittedFromMap = new Set([
+        'Low-rank structure','Neural networks','Robust learning','Uncertainty quantification',
+        'Reinforcement learning','Policy optimization','Heteroscedastic noise','Exchangeability & tensors',
+        'Label aggregation & cleaning','Missing & distributed data'
+      ]);
+      const mapThemeOrder = themeOrder.filter(theme => !omittedFromMap.has(theme));
+      mapThemeOrder.splice(mapThemeOrder.indexOf('Stochastic optimization'), 0, 'Reinforcement learning & policy optimization');
+      mapThemeOrder.splice(mapThemeOrder.indexOf('Iterative algorithms')+1, 0, 'Linear and nonlinear algorithms');
+      mapThemeOrder.splice(mapThemeOrder.indexOf('Interpolation & memorization')+1, 0, 'Benign overfitting');
+      mapThemeOrder.splice(mapThemeOrder.indexOf('Benign overfitting')+1, 0, 'Model and data aggregation');
+      mapThemeOrder.splice(mapThemeOrder.indexOf('Stochastic optimization')+1, 0, 'Optimality and lower bounds');
+      const mapLabelOverrides = {
+        'Interpolation & memorization':'Memorization',
+        'Reinforcement learning & policy optimization':'Reinforcement learning',
+        'Exchangeability & tensors':'Exchangeability'
+      };
+      papers.forEach(p => {
+        relevance[p.id]['Reinforcement learning & policy optimization'] = Math.max(
+          relevance[p.id]['Reinforcement learning'] || 0,
+          relevance[p.id]['Policy optimization'] || 0
+        );
+      });
+      const addedThemeScores = {
+        P3:{'Linear and nonlinear algorithms':.45,'Optimality and lower bounds':.35},
+        P4:{'Linear and nonlinear algorithms':.75},
+        P5:{'Benign overfitting':.90,'Optimality and lower bounds':.35},
+        P6:{'Optimality and lower bounds':.30,'Model and data aggregation':.90},
+        P7:{'Benign overfitting':.85},
+        P8:{'Optimality and lower bounds':.45,'Model and data aggregation':1},
+        P9:{'Optimality and lower bounds':1},
+        P10:{'Linear and nonlinear algorithms':.85,'Optimality and lower bounds':1},
+        P11:{'Linear and nonlinear algorithms':.90},
+        P12:{'Model and data aggregation':.85},
+        P14:{'Benign overfitting':.75}
+      };
+      papers.forEach(p => Object.assign(relevance[p.id],addedThemeScores[p.id] || {}));
+
+      const families = [...new Set(Object.values(themeFamily))];
+      const familyColor = {};
+      families.forEach((family, i) => familyColor[family] = `var(--viz-series-${i + 1})`);
+
+      const allNodes = mapThemeOrder.map(theme => {
+        const values = papers.map(p => relevance[p.id][theme] || 0);
+        const paperMatches = papers.map((p,i) => ({...p, score:values[i]}))
+          .filter(p => p.score >= .15)
+          .sort((a,b) => b.score-a.score || b.year-a.year || a.id.localeCompare(b.id));
+        return {
+          theme,
+          id:mapLabelOverrides[theme] || theme,
+          family:themeFamily[theme],
+          weight:d3.sum(values),
+          paperIds:paperMatches.map(p=>p.id),
+          paperMatches
+        };
+      }).filter(d => d.weight >= .5);
+      const rankedNodes = allNodes.slice().sort((a,b)=>b.weight-a.weight || a.id.localeCompare(b.id));
+      const requiredThemes = new Set(['Conformal prediction','State evolution']);
+      const selectedThemeIds = new Set([
+        ...rankedNodes.filter(d=>!requiredThemes.has(d.id)).slice(0,12).map(d=>d.id),
+        ...requiredThemes
+      ]);
+      const nodes = rankedNodes.filter(d=>selectedThemeIds.has(d.id));
+
+      const linkCandidates = [];
+      for (let i=0; i<nodes.length; i++) {
+        for (let j=i+1; j<nodes.length; j++) {
+          let minSum = 0, maxSum = 0, shared = 0, countA = 0, countB = 0;
+          papers.forEach(p => {
+            const a = relevance[p.id][nodes[i].theme] || 0;
+            const b = relevance[p.id][nodes[j].theme] || 0;
+            minSum += Math.min(a,b);
+            maxSum += Math.max(a,b);
+            if (a >= .15) countA++;
+            if (b >= .15) countB++;
+            if (a >= .15 && b >= .15) shared++;
+          });
+          if (!shared || !maxSum) continue;
+          const jaccard = minSum/maxSum;
+          const overlap = shared/Math.max(1,Math.min(countA,countB));
+          const weight = .72*jaccard + .28*overlap;
+          linkCandidates.push({source:nodes[i].id,target:nodes[j].id,weight,shared});
+        }
+      }
+      linkCandidates.sort((a,b) => b.weight-a.weight || b.shared-a.shared);
+      const keptLinkKeys = new Set();
+      const nodeDegree = new Map(nodes.map(node=>[node.id,0]));
+      const addLink = link => {
+        const key=`${link.source}|${link.target}`;
+        if (keptLinkKeys.has(key)) return false;
+        keptLinkKeys.add(key);
+        nodeDegree.set(link.source,nodeDegree.get(link.source)+1);
+        nodeDegree.set(link.target,nodeDegree.get(link.target)+1);
+        return true;
+      };
+      linkCandidates.forEach(link => {
+        if (keptLinkKeys.size>=34 || link.weight<.15) return;
+        if (nodeDegree.get(link.source)<5 && nodeDegree.get(link.target)<5) addLink(link);
+      });
+      nodes.forEach(node => {
+        while (nodeDegree.get(node.id)<2) {
+          const next=linkCandidates.find(link => {
+            const touches=link.source===node.id||link.target===node.id;
+            const other=link.source===node.id?link.target:link.source;
+            return touches&&!keptLinkKeys.has(`${link.source}|${link.target}`)&&nodeDegree.get(other)<7;
+          });
+          if (!next) break;
+          addLink(next);
+        }
+      });
+      const keptLinks = linkCandidates.filter(l=>keptLinkKeys.has(`${l.source}|${l.target}`));
+
+      const select = document.getElementById('vos-term-select');
+      select.innerHTML = '<option value="">Show all themes</option>' + nodes
+        .slice().sort((a,b)=>a.id.localeCompare(b.id))
+        .map(d=>`<option value="${d.id}">${d.id}</option>`).join('');
+
+      const legend = document.getElementById('vos-legend');
+      legend.innerHTML = families.map(f => `<span class="legend-item"><span class="legend-swatch" style="--swatch:${familyColor[f]}"></span>${f}</span>`).join('');
+
+      const tooltip = d3.select('#vos-tooltip');
+      const selectionText = document.getElementById('vos-selection');
+      const morePapers = document.getElementById('vos-more-papers');
+      let currentSelection = '';
+      let activeHoverTheme = '';
+      let tooltipHideTimer = null;
+      let shapeAnimationFrame = 0;
+
+      const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+      })[char]);
+      const paperLink = paper => `<a class="paper-link" href="${paper.url}" target="_blank" rel="noopener">${paper.linkLabel} ↗</a>`;
+      const paperLine = paper => `${escapeHtml(paper.title)} <span class="text-muted">(${paper.year})</span> ${paperLink(paper)}`;
+
+      function positionTooltip(event) {
+        const tip=tooltip.node();
+        const box=tip.parentElement.getBoundingClientRect();
+        const left=Math.max(4,Math.min(event.clientX-box.left+12,box.width-tip.offsetWidth-4));
+        const top=Math.max(4,Math.min(event.clientY-box.top+12,box.height-tip.offsetHeight-4));
+        tooltip.style('left',`${left}px`).style('top',`${top}px`);
+      }
+
+      function showPaperTooltip(event,node) {
+        clearTimeout(tooltipHideTimer);
+        const firstThree=node.paperMatches.slice(0,3);
+        const remaining=node.paperMatches.length-firstThree.length;
+        tooltip.html(
+          `<strong>${escapeHtml(node.id)}</strong>`+
+          `<div class="tooltip-family">${escapeHtml(node.family)}</div>`+
+          firstThree.map(p=>`<div class="tooltip-paper">${paperLine(p)}</div>`).join('')+
+          (remaining>0?`<div class="tooltip-more">${remaining} more ${remaining===1?'paper':'papers'} below</div>`:'')
+        ).classed('is-visible',true);
+        positionTooltip(event);
+      }
+
+      function updatePaperDetails(theme) {
+        if (!theme) {
+          selectionText.innerHTML='<strong>All themes.</strong> Hover over a topic to see its three most relevant papers.';
+          morePapers.innerHTML='';
+          return;
+        }
+        const node=nodes.find(d=>d.id===theme);
+        const extra=node.paperMatches.slice(3);
+        selectionText.innerHTML=`<strong>${escapeHtml(theme)}.</strong> ${node.paperMatches.length} related ${node.paperMatches.length===1?'paper':'papers'}, ranked by full-text relevance.`;
+        morePapers.innerHTML=extra.length
+          ? `<div class="more-papers-heading">More papers</div><ol class="paper-list">${extra.map(p=>`<li>${paperLine(p)}</li>`).join('')}</ol>`
+          : '';
+      }
+
+      function applyHighlight(theme) {
+        const connected = new Set([theme]);
+        keptLinks.forEach(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          if (s === theme) connected.add(t);
+          if (t === theme) connected.add(s);
+        });
+        d3.selectAll('#vos-keyword-map .vos-node-wrap').classed('is-muted', d => theme && !connected.has(d.id)).classed('is-selected', d=>d.id===theme);
+        d3.selectAll('#vos-keyword-map .vos-label').classed('is-muted', d => theme && !connected.has(d.id));
+        d3.selectAll('#vos-keyword-map .vos-link').classed('is-muted', d => {
+          if (!theme) return false;
+          const s = typeof d.source === 'object' ? d.source.id : d.source;
+          const t = typeof d.target === 'object' ? d.target.id : d.target;
+          return s !== theme && t !== theme;
+        });
+        updatePaperDetails(theme);
+      }
+
+      function showSelection(theme) {
+        currentSelection = theme;
+        select.value = theme;
+        applyHighlight(theme);
+      }
+
+      function renderMap() {
+        cancelAnimationFrame(shapeAnimationFrame);
+        const host = document.getElementById('vos-keyword-map');
+        host.innerHTML = '';
+        const width = Math.max(320, host.getBoundingClientRect().width || 736);
+        const height = width < 520 ? 500 : 560;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const random = seededRandom(width<520 ? 2.25 : 1.25);
+        const systemRotation = (random()-.5)*Math.PI*.9;
+        const svg = d3.select(host).append('svg')
+          .attr('viewBox', `0 0 ${width} ${height}`)
+          .attr('width', width).attr('height', height)
+          .attr('aria-labelledby','vos-svg-title vos-svg-desc');
+        svg.append('title').attr('id','vos-svg-title').text('Research theme co-occurrence map');
+        svg.append('desc').attr('id','vos-svg-desc').text('Themes are closer and connected when they recur in the same papers. Node size represents prominence across the full text corpus.');
+        const motionLayer = svg.append('g').attr('class','network-motion');
+        const spaceLayer = motionLayer.append('g').attr('aria-hidden','true');
+        spaceLayer.selectAll('ellipse').data([
+          {rx:width*.18,ry:height*.12,rotation:-18+systemRotation*180/Math.PI},
+          {rx:width*.29,ry:height*.20,rotation:12+systemRotation*180/Math.PI},
+          {rx:width*.39,ry:height*.29,rotation:-8+systemRotation*180/Math.PI}
+        ]).join('ellipse')
+          .attr('class','orbit-track')
+          .attr('cx',width/2).attr('cy',height/2)
+          .attr('rx',d=>d.rx).attr('ry',d=>d.ry)
+          .attr('transform',d=>`rotate(${d.rotation} ${width/2} ${height/2})`);
+        const starData=Array.from({length:44},()=>({
+          x:14+random()*Math.max(30,width-28),
+          y:12+random()*Math.max(30,height-24),
+          r:.4+random()*1.05,
+          opacity:.07+random()*.18,
+          phase:random()*Math.PI*2
+        }));
+        const stars=spaceLayer.selectAll('circle').data(starData).join('circle')
+          .attr('class','star-dust').attr('cx',d=>d.x).attr('cy',d=>d.y)
+          .attr('r',d=>d.r).attr('opacity',d=>d.opacity);
+
+        const centers = {};
+        families.forEach((f,i) => {
+          const angle = -Math.PI/2 + systemRotation + i * 2*Math.PI/families.length;
+          const radial=.23+random()*.07;
+          centers[f] = [width/2 + Math.cos(angle)*width*radial, height/2 + Math.sin(angle)*height*(radial-.02)];
+        });
+
+        const simNodes = nodes.map(d => ({
+          ...d,
+          x:centers[d.family][0] + (random()-.5)*42,
+          y:centers[d.family][1] + (random()-.5)*42
+        }));
+        const simLinks = keptLinks.map(d=>({...d}));
+        const radius = d3.scaleSqrt().domain(d3.extent(simNodes,d=>d.weight)).range(width < 520 ? [6,15] : [7,19]);
+        d3.forceSimulation(simNodes)
+          .randomSource(random)
+          .force('link',d3.forceLink(simLinks).id(d=>d.id).distance(d=>(width<520?68:92)-18*Math.min(1,d.weight)).strength(d=>.18+.12*d.weight))
+          .force('charge',d3.forceManyBody().strength(width<520?-110:-175))
+          .force('x',d3.forceX(d=>centers[d.family][0]).strength(.12))
+          .force('y',d3.forceY(d=>centers[d.family][1]).strength(.12))
+          .force('collide',d3.forceCollide(d=>radius(d.weight)+(width<520?16:24)))
+          .stop().tick(320);
+        simNodes.forEach(d => { d.x=Math.max(28,Math.min(width-28,d.x)); d.y=Math.max(28,Math.min(height-28,d.y)); });
+        simNodes.forEach((d,i) => {
+          d.originX=d.x;
+          d.originY=d.y;
+          d.polySides=4+Math.floor(random()*3);
+          d.polyPhase=random()*Math.PI*2;
+          d.orbitSpeed=.62+random()*.38;
+          d.orbitAmpX=.82+random()*.46;
+          d.orbitAmpY=.82+random()*.46;
+          d.orbitSecondary=.32+random()*.26;
+          d.polyFactors=Array.from({length:d.polySides},()=>.84+random()*.18);
+        });
+
+        const familyData=families.map((family,i)=>({family,index:i,phase:random()*Math.PI*2,members:simNodes.filter(d=>d.family===family)})).filter(d=>d.members.length);
+        function familyPolygon(group,positions) {
+          const points=group.members.map(d=>[positions.get(d.id).x,positions.get(d.id).y]);
+          let polygon;
+          if (points.length===1) {
+            const [x,y]=points[0],phase=group.phase;
+            polygon=Array.from({length:5},(_,i)=>[x+Math.cos(phase+i*2*Math.PI/5)*(42+(i%2)*7),y+Math.sin(phase+i*2*Math.PI/5)*(38+((i+1)%2)*6)]);
+          } else if (points.length===2) {
+            const [a,b]=points,dx=b[0]-a[0],dy=b[1]-a[1],length=Math.hypot(dx,dy)||1,ux=dx/length,uy=dy/length,px=-uy,py=ux;
+            polygon=[
+              [a[0]-ux*25+px*30,a[1]-uy*25+py*30],
+              [b[0]+ux*25+px*24,b[1]+uy*25+py*24],
+              [b[0]+ux*31-px*29,b[1]+uy*31-py*29],
+              [a[0]-ux*22-px*25,a[1]-uy*22-py*25]
+            ];
+          } else {
+            const base=d3.polygonHull(points)||points;
+            const center=d3.polygonCentroid(base);
+            polygon=base.map((point,i)=>{
+              const dx=point[0]-center[0],dy=point[1]-center[1],length=Math.hypot(dx,dy)||1,pad=24+(i%2)*5;
+              return [point[0]+dx/length*pad,point[1]+dy/length*pad];
+            });
+          }
+          return polygon.map(point=>`${Math.max(4,Math.min(width-4,point[0]))},${Math.max(4,Math.min(height-4,point[1]))}`).join(' ');
+        }
+        const initialPositions=new Map(simNodes.map(d=>[d.id,{x:d.x,y:d.y}]));
+        const hull=motionLayer.append('g').attr('aria-hidden','true').selectAll('polygon').data(familyData).join('polygon')
+          .attr('class','family-polytope')
+          .attr('points',d=>familyPolygon(d,initialPositions))
+          .attr('fill',d=>familyColor[d.family]).attr('fill-opacity',.075)
+          .attr('stroke',d=>familyColor[d.family]).attr('stroke-opacity',.42);
+
+        const link = motionLayer.append('g').selectAll('line').data(simLinks).join('line')
+          .attr('class','vos-link')
+          .attr('data-source',d=>d.source.id).attr('data-target',d=>d.target.id)
+          .attr('aria-label',d=>`${d.source.id} connected to ${d.target.id}`)
+          .attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y)
+          .attr('stroke-width',d=>.5+Math.min(2.5,d.weight));
+
+        let activeHoverId=activeHoverTheme;
+        let hoverLockUntil=0;
+        function beginHover(event,d) {
+          const now=performance.now();
+          if (now<hoverLockUntil&&activeHoverId!==d.id) return;
+          activeHoverId=d.id;
+          activeHoverTheme=d.id;
+          hoverLockUntil=now+520;
+          focusNode(d);
+          applyHighlight(d.id);
+          showPaperTooltip(event,d);
+        }
+
+        const ranked = simNodes.slice().sort((a,b)=>b.weight-a.weight);
+        ranked.forEach((d,i)=>d.rank=i);
+        const polygonLine=d3.line().curve(d3.curveLinearClosed);
+        function nodePolygonPath(d,time=0) {
+          const base=radius(d.weight);
+          const points=Array.from({length:d.polySides},(_,i)=>{
+            const angle=-Math.PI/2+i*2*Math.PI/d.polySides+d.polyPhase*.08+.025*Math.sin(time*.55+d.polyPhase+i*1.4);
+            const pulse=1+.055*Math.sin(time*.9+d.polyPhase+i*1.73);
+            const r=base*d.polyFactors[i]*pulse;
+            return [Math.cos(angle)*r,Math.sin(angle)*r];
+          });
+          return polygonLine(points);
+        }
+        const nodeWrap = motionLayer.append('g').selectAll('g').data(simNodes).join('g')
+          .attr('class','vos-node-wrap')
+          .attr('transform',d=>`translate(${d.x},${d.y})`);
+        const nodeFloat = nodeWrap.append('g').attr('class','node-float');
+        const nodeDepth = nodeFloat.append('path')
+          .attr('class','node-depth').attr('d',d=>nodePolygonPath(d))
+          .attr('transform','translate(4,5)')
+          .attr('fill',d=>familyColor[d.family]);
+        const node = nodeFloat.append('path')
+          .attr('class','vos-node').attr('d',d=>nodePolygonPath(d))
+          .attr('data-polytope-sides',d=>d.polySides)
+          .attr('fill',d=>familyColor[d.family]).attr('fill-opacity',.72)
+          .attr('aria-label',d=>`${d.id}, connected to ${d.paperIds.length} papers`)
+          .on('pointerenter',beginHover)
+          .on('pointermove',positionTooltip);
+        const nodeHighlight = nodeFloat.append('path')
+          .attr('class','node-highlight').attr('d',d=>nodePolygonPath(d))
+          .attr('transform','translate(-1.5,-1.5) scale(.76)');
+        if (!reduceMotion) {
+          let lastShapeFrame=0;
+          const animateShapes=time=>{
+            if (time-lastShapeFrame>34) {
+              const seconds=time/1000;
+              node.attr('d',d=>nodePolygonPath(d,seconds));
+              nodeDepth.attr('d',d=>nodePolygonPath(d,seconds+.18));
+              nodeHighlight.attr('d',d=>nodePolygonPath(d,seconds-.12));
+              const displayedPositions=new Map();
+              nodeWrap.each(function(d){
+                const transform=this.getAttribute('transform')||'';
+                const translate=/translate\(([-+\d.eE]+)[ ,]+([-+\d.eE]+)/.exec(transform);
+                const scaleMatch=/scale\(([-+\d.eE]+)/.exec(transform);
+                d.currentBaseX=translate?Number(translate[1]):d.originX;
+                d.currentBaseY=translate?Number(translate[2]):d.originY;
+                d.currentScale=scaleMatch?Number(scaleMatch[1]):1;
+              });
+              nodeFloat.attr('transform',d=>{
+                const speed=d.orbitSpeed*.35;
+                const ampX=3*((width<520?8:12)+(d.rank%3)*(width<520?2.2:3.2))*d.orbitAmpX;
+                const ampY=3*((width<520?7:10)+((d.rank+2)%3)*(width<520?2:3))*d.orbitAmpY;
+                const orbitStrength=d.id===activeHoverId ? .22 : 1;
+                const secondary=d.orbitSecondary;
+                const rawX=orbitStrength*ampX*((1-secondary)*Math.sin(seconds*speed+d.polyPhase)+secondary*Math.sin(seconds*speed*.41+d.polyPhase*2.1));
+                const rawY=orbitStrength*ampY*((1-secondary)*Math.cos(seconds*speed*.81+d.polyPhase*1.31)+secondary*Math.sin(seconds*speed*.37+d.polyPhase*.63));
+                const margin=radius(d.weight)*(d.id===activeHoverId?1.5:1)+8;
+                const minX=(margin-d.currentBaseX)/d.currentScale;
+                const maxX=(width-margin-d.currentBaseX)/d.currentScale;
+                const minY=(margin-d.currentBaseY)/d.currentScale;
+                const maxY=(height-margin-d.currentBaseY)/d.currentScale;
+                const dx=Math.max(minX,Math.min(maxX,rawX));
+                const dy=Math.max(minY,Math.min(maxY,rawY));
+                const tilt=8*Math.sin(seconds*(speed*.78)+d.polyPhase*.7);
+                const squash=.94+.08*(.5+.5*Math.sin(seconds*(speed*.91)+d.polyPhase));
+                d.orbitX=dx;
+                d.orbitY=dy;
+                return `translate(${dx},${dy}) rotate(${tilt}) skewX(${tilt*.55}) scale(${squash},1)`;
+              });
+              nodeWrap.each(function(d){
+                displayedPositions.set(d.id,{
+                  x:d.currentBaseX+(d.orbitX||0)*d.currentScale,
+                  y:d.currentBaseY+(d.orbitY||0)*d.currentScale
+                });
+              });
+              link
+                .attr('x1',d=>displayedPositions.get(d.source.id).x)
+                .attr('y1',d=>displayedPositions.get(d.source.id).y)
+                .attr('x2',d=>displayedPositions.get(d.target.id).x)
+                .attr('y2',d=>displayedPositions.get(d.target.id).y);
+              hull.attr('points',d=>familyPolygon(d,displayedPositions));
+              labels.classed('is-hovered',d=>d.id===activeHoverId)
+                .attr('transform',d=>`translate(${(d.orbitX||0)*(d.currentScale||1)},${(d.orbitY||0)*(d.currentScale||1)})`);
+              nodeWrap.classed('is-selected',d=>d.id===activeHoverId||d.id===currentSelection);
+              const animatedLabelItems=[];
+              labels.each(function(d){
+                if (getComputedStyle(this).display==='none') return;
+                animatedLabelItems.push({d,el:this});
+              });
+              animatedLabelItems.sort((a,b)=>a.d.id===activeHoverId?-1:b.d.id===activeHoverId?1:a.d.rank-b.d.rank);
+              const animatedOccupied=[];
+              animatedLabelItems.forEach(({d,el})=>{
+                const anchor=el.getAttribute('text-anchor')||'start';
+                const x=Number(el.getAttribute('x'))+(d.orbitX||0)*(d.currentScale||1);
+                const y=Number(el.getAttribute('y'))+(d.orbitY||0)*(d.currentScale||1);
+                const textWidth=el.getComputedTextLength();
+                const textHeight=d.id===activeHoverId?(width<520?18:22):16;
+                const left=anchor==='middle'?x-textWidth/2:anchor==='end'?x-textWidth:x;
+                const box={left:left-4,right:left+textWidth+4,top:y-textHeight,bottom:y+4};
+                const clear=animatedOccupied.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
+                const keep=d.id===activeHoverId||clear;
+                el.style.visibility=keep?'visible':'hidden';
+                if (keep) animatedOccupied.push(box);
+              });
+              stars.attr('opacity',(d,i)=>d.opacity*(.72+.28*Math.sin(seconds*(.7+(i%7)*.05)+d.phase)));
+              lastShapeFrame=time;
+            }
+            shapeAnimationFrame=requestAnimationFrame(animateShapes);
+          };
+          shapeAnimationFrame=requestAnimationFrame(animateShapes);
+        }
+
+        const labelData = simNodes.filter(d=>width>=520 || d.rank<12 || requiredThemes.has(d.id)).sort((a,b)=>a.rank-b.rank);
+        const labels = motionLayer.append('g').selectAll('text').data(labelData).join('text')
+          .attr('class','vos-label').text(d=>d.id);
+        const occupied = [];
+        labels.each(function(d) {
+          const r = radius(d.weight), el = d3.select(this);
+          const candidates = [
+            [d.x,d.y-r-5,'middle'], [d.x,d.y+r+14,'middle'],
+            [d.x+r+6,d.y+4,'start'], [d.x-r-6,d.y+4,'end'],
+            [d.x+r+5,d.y-r-3,'start'], [d.x-r-5,d.y-r-3,'end'],
+            [d.x+r+5,d.y+r+12,'start'], [d.x-r-5,d.y+r+12,'end']
+          ];
+          let placed = false;
+          for (const [x,y,anchor] of candidates) {
+            el.attr('x',x).attr('y',y).attr('text-anchor',anchor).style('display',null);
+            const b = this.getBBox();
+            const box = {left:b.x-2,right:b.x+b.width+2,top:b.y-2,bottom:b.y+b.height+2};
+            const inside = box.left>=3 && box.right<=width-3 && box.top>=3 && box.bottom<=height-3;
+            const clear = occupied.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
+            if (inside && clear) {
+              occupied.push(box);
+              d.labelDx=x-d.x;
+              d.labelDy=y-d.y;
+              d.labelAnchor=anchor;
+              placed=true;
+              break;
+            }
+          }
+          d.labelVisible=placed;
+          if (!placed) {
+            d.labelDx=0;
+            d.labelDy=-r-5;
+            d.labelAnchor='middle';
+            el.style('display','none');
+          }
+        });
+        labels
+          .on('pointerenter',beginHover)
+          .on('pointermove',positionTooltip);
+
+        function focusNode(focus) {
+          const cx=width/2, cy=height/2;
+          let positions=new Map(simNodes.map(d=>[d.id,{x:d.originX,y:d.originY}]));
+          if (focus) {
+            const angle=Math.atan2(focus.originY-cy,focus.originX-cx);
+            let rotation=-Math.PI/2-angle;
+            while (rotation>Math.PI) rotation-=2*Math.PI;
+            while (rotation<-Math.PI) rotation+=2*Math.PI;
+            rotation=Math.max(-0.30,Math.min(0.30,rotation));
+            const cos=Math.cos(rotation), sin=Math.sin(rotation);
+            positions=new Map(simNodes.map(d=>{
+              const ox=d.originX-cx, oy=d.originY-cy;
+              return [d.id,{x:cx+cos*ox-sin*oy,y:cy+sin*ox+cos*oy}];
+            }));
+            const focused=positions.get(focus.id);
+            let tx=(cx-focused.x)*0.68, ty=(cy-focused.y)*0.68;
+            const px=[...positions.values()].map(p=>p.x), py=[...positions.values()].map(p=>p.y);
+            tx=Math.max(28-d3.min(px),Math.min(width-28-d3.max(px),tx));
+            ty=Math.max(28-d3.min(py),Math.min(height-28-d3.max(py),ty));
+            positions.forEach(p=>{p.x+=tx;p.y+=ty;});
+          }
+          const duration=reduceMotion?0:460;
+          nodeWrap.interrupt().transition().duration(duration).ease(d3.easeCubicOut)
+            .attr('transform',d=>{
+              const p=positions.get(d.id),scale=d===focus?1.45:1;
+              return `translate(${p.x},${p.y}) scale(${scale})`;
+            });
+          if (reduceMotion) {
+            hull.attr('points',d=>familyPolygon(d,positions));
+            link.attr('x1',d=>positions.get(d.source.id).x)
+              .attr('y1',d=>positions.get(d.source.id).y)
+              .attr('x2',d=>positions.get(d.target.id).x)
+              .attr('y2',d=>positions.get(d.target.id).y);
+          }
+          labels.interrupt().classed('is-hovered',d=>d===focus).style('display',null);
+          const labelTargets=new Map();
+          const visibleLabels=new Set();
+          const occupiedLabels=[];
+          const labelElements=new Map();
+          labels.each(function(d){labelElements.set(d.id,this);});
+          labelData.slice().sort((a,b)=>a===focus?-1:b===focus?1:a.rank-b.rank).forEach(d=>{
+            if (d!==focus&&!d.labelVisible) return;
+            const p=positions.get(d.id), el=labelElements.get(d.id);
+            let x=p.x+d.labelDx, y=p.y+d.labelDy, anchor=d.labelAnchor;
+            const textWidth=el.getComputedTextLength();
+            const textHeight=d===focus?(width<520?18:22):16;
+            if (d===focus) {
+              x=Math.max(textWidth/2+4,Math.min(width-textWidth/2-4,p.x));
+              y=Math.max(textHeight+4,p.y-radius(d.weight)*1.45-8);
+              anchor='middle';
+            }
+            const left=anchor==='middle'?x-textWidth/2:anchor==='end'?x-textWidth:x;
+            const box={left:left-3,right:left+textWidth+3,top:y-textHeight,bottom:y+3};
+            const inside=box.left>=2&&box.right<=width-2&&box.top>=2&&box.bottom<=height-2;
+            const clear=occupiedLabels.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
+            if (d===focus||(inside&&clear)) {
+              visibleLabels.add(d.id);
+              occupiedLabels.push(box);
+              labelTargets.set(d.id,{x,y,anchor});
+            }
+          });
+          labels.style('display',d=>visibleLabels.has(d.id)?null:'none')
+            .transition().duration(duration).ease(d3.easeCubicOut)
+            .attr('x',d=>(labelTargets.get(d.id)||{x:positions.get(d.id).x}).x)
+            .attr('y',d=>(labelTargets.get(d.id)||{y:positions.get(d.id).y}).y)
+            .attr('text-anchor',d=>(labelTargets.get(d.id)||{anchor:d.labelAnchor}).anchor);
+        }
+
+        function restoreMap() {
+          activeHoverId='';
+          activeHoverTheme='';
+          hoverLockUntil=0;
+          focusNode(null);
+          applyHighlight(currentSelection);
+          tooltip.classed('is-visible',false);
+        }
+        d3.select(host.parentElement).on('pointerleave.map',()=>{
+          clearTimeout(tooltipHideTimer);
+          tooltipHideTimer=setTimeout(restoreMap,180);
+        });
+        tooltip.on('pointerenter',()=>clearTimeout(tooltipHideTimer));
+        showSelection(currentSelection);
+        if (activeHoverTheme) {
+          const activeNode=simNodes.find(d=>d.id===activeHoverTheme);
+          if (activeNode) {
+            activeHoverId=activeNode.id;
+            focusNode(activeNode);
+            applyHighlight(activeNode.id);
+          }
+        }
+      }
+
+      select.addEventListener('change', event => showSelection(event.target.value));
+      renderMap();
+      showSelection('');
+      new ResizeObserver(() => renderMap()).observe(document.getElementById('vos-keyword-map'));
+    })();
+  </script>
+</div>
+

@@ -33,3 +33,5 @@ I am an Assistant Professor in Statistics at University of Illinois Urbana-Champ
 ## Education
 - **Ph.D. in Statistics**, *Stanford University*, 2019.9 -- 2025.6  
 - **B.S. in Mathematics**, *Peking University*, 2015.9 -- 2019.6
+
+{% include research-theme-map.html %}
