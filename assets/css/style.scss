@@ -156,6 +156,7 @@ body {
     radial-gradient(circle at 18% 5%, color-mix(in srgb, var(--tech-accent) 10%, transparent), transparent 30rem),
     radial-gradient(circle at 88% 24%, color-mix(in srgb, var(--tech-accent-bright) 7%, transparent), transparent 34rem);
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 .masthead {
@@ -254,6 +255,13 @@ body {
   background-position: left bottom;
 }
 
+.page__content mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+}
+
 #research-keyword-previews .map-shell {
   padding: 8px;
   background: color-mix(in srgb, var(--tech-surface-raised) 76%, transparent);
@@ -269,5 +277,16 @@ body {
 
   .page__quick-links {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .masthead__menu-item--lg {
+    padding-right: 0.55em;
+  }
+
+  .masthead__menu-item--lg a {
+    white-space: nowrap;
+    font-size: 0.9rem;
   }
 }
