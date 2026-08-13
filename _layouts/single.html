@@ -28,6 +28,19 @@ layout: default
         <header>
           {% if page.title %}<h1 class="page__title">
   {{ page.title }}
+  {% if page.url == "/" %}
+    <span class="page__quick-links" aria-label="Academic profile links">
+      <a href="https://scholar.google.com/citations?user=UqiD090AAAAJ" target="_blank" rel="noopener noreferrer" class="page__quick-link">
+        <i class="ai ai-google-scholar" aria-hidden="true"></i><span>Google Scholar</span>
+      </a>
+      <a href="{{ base_path }}/files/cv/cv.pdf" class="page__quick-link">
+        <i class="fas fa-file-pdf" aria-hidden="true"></i><span>CV</span>
+      </a>
+      <a href="{{ base_path }}/publications/" class="page__quick-link">
+        <i class="fas fa-book-open" aria-hidden="true"></i><span>Publications</span>
+      </a>
+    </span>
+  {% endif %}
   {% if page.key == "publications" %}
     <a href="https://scholar.google.com/citations?user=UqiD090AAAAJ" target="_blank" class="btn-scholar" aria-label="Google Scholar">
       <i class="ai ai-google-scholar"></i> Google Scholar
