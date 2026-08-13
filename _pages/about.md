@@ -16,7 +16,9 @@ $$
 y = f_\theta(X; \epsilon) \in \mathbb{R}^n, \qquad X \in \mathbb{R}^{n \times d}, \qquad \theta \in \Theta. 
 $$
 
-But at least one of the above is unusual!
+But at least one of the above is unusual --- Explore my research themes below!
+
+{% include research-theme-map.html %}
 
 ## Contact
 chcheng (at) illinois (dot) edu
@@ -33,5 +35,3 @@ I am an Assistant Professor in Statistics at University of Illinois Urbana-Champ
 ## Education
 - **Ph.D. in Statistics**, *Stanford University*, 2019.9 -- 2025.6  
 - **B.S. in Mathematics**, *Peking University*, 2015.9 -- 2019.6
-
-{% include research-theme-map.html %}

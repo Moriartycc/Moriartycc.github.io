@@ -4,6 +4,36 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap");
 
+/* Keep native scrolling controls consistent with the site's default night mode. */
+html[data-theme="dark"],
+html[data-theme="dark"] * {
+  scrollbar-color: #777 #3b3b3b;
+  scrollbar-width: thin;
+}
+
+html[data-theme="dark"]::-webkit-scrollbar,
+html[data-theme="dark"] *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html[data-theme="dark"]::-webkit-scrollbar-track,
+html[data-theme="dark"] *::-webkit-scrollbar-track {
+  background: #3b3b3b;
+}
+
+html[data-theme="dark"]::-webkit-scrollbar-thumb,
+html[data-theme="dark"] *::-webkit-scrollbar-thumb {
+  background: #777;
+  border: 2px solid #3b3b3b;
+  border-radius: 999px;
+}
+
+html[data-theme="dark"]::-webkit-scrollbar-thumb:hover,
+html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
+  background: #929292;
+}
+
 .zhi-mang-xing {
   font-family: 'Zhi Mang Xing', cursive;
 }

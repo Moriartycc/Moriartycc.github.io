@@ -15,7 +15,7 @@
       --viz-series-6: #3ab9b1;
       color: var(--foreground);
       width: 100%;
-      margin-top: 3rem;
+      margin-top: 1rem;
     }
     html[data-theme="dark"] #research-keyword-previews {
       --viz-series-1: #83c3ff;
@@ -26,12 +26,12 @@
       --viz-series-6: #5acbc2;
     }
     #research-keyword-previews .preview-section { margin: 0 0 36px; }
-    #research-keyword-previews .preview-heading { margin-bottom: 4px; }
-    #research-keyword-previews .preview-subtitle { color: var(--muted-foreground); margin: 0 0 12px; }
     #research-keyword-previews .map-host { width: 100%; min-height: 560px; }
     #research-keyword-previews .map-controls { margin-bottom: 8px; }
     #research-keyword-previews .map-controls .form-label { min-width: min(100%, 320px); }
-    #research-keyword-previews .map-controls .form-select { width: min(100%, 360px); }
+    #research-keyword-previews .map-controls .form-select { width: min(100%, 360px); color: var(--foreground); background-color: var(--background); border: 1px solid var(--border); box-shadow: none; color-scheme: light dark; }
+    html[data-theme="dark"] #research-keyword-previews .map-controls .form-select,
+    html[data-theme="dark"] #research-keyword-previews .map-controls .form-select option { color: #f3f3f3; background-color: #3b3b3b; border-color: #747474; }
     #research-keyword-previews .selected-line { color: var(--muted-foreground); min-height: 28px; margin-top: 6px; }
     #research-keyword-previews .selected-line strong { color: var(--foreground); font-weight: 500; }
     #research-keyword-previews .more-papers { margin-top: 6px; }
@@ -77,9 +77,7 @@
     }
   </style>
 <div id="research-keyword-previews">
-  <section class="preview-section" aria-labelledby="vos-preview-title">
-    <h2 id="vos-preview-title" class="preview-heading">Research themes</h2>
-    <p class="preview-subtitle">Explore fourteen major themes across my research papers. Hover or select a topic to refocus the system and see its most relevant papers.</p>
+  <section class="preview-section" aria-label="Interactive research themes">
     <div class="viz-controls map-controls">
       <label class="form-label" for="vos-term-select">Highlight a research theme
         <select id="vos-term-select" class="form-select"></select>
@@ -735,4 +733,3 @@
     })();
   </script>
 </div>
-
