@@ -73,7 +73,7 @@
     const mobileQuery = window.matchMedia('(max-width: 700px)');
     let dragging = false;
     let frameRequested = false;
-    let lastActiveIndex = -1;
+    let yearProgressPositions = [];
 
     const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
     const headerOffset = () => mobileQuery.matches ? 118 : 96;
@@ -95,11 +95,17 @@
       track.setAttribute('aria-valuenow', String(Math.round(value * 100)));
     };
 
-    const updateActiveYear = () => {
-      const probe = window.scrollY + headerOffset() + 92;
+    const updateYearMechanism = progress => {
+      const positions = yearProgressPositions.length === markers.length
+        ? yearProgressPositions
+        : markers.map((_, index) => index / Math.max(1, markers.length - 1));
       let activeIndex = 0;
-      sections.forEach((section, index) => {
-        if (section && section.getBoundingClientRect().top + window.scrollY <= probe) activeIndex = index;
+      markers.forEach((marker, index) => {
+        const rangeStart = index === 0 ? 0 : (positions[index - 1] + positions[index]) / 2;
+        const rangeEnd = index === markers.length - 1 ? 1 : (positions[index] + positions[index + 1]) / 2;
+        const localProgress = clamp((progress - rangeStart) / Math.max(0.0001, rangeEnd - rangeStart));
+        marker.style.setProperty('--publication-year-rotation', `${localProgress * 360}deg`);
+        if (progress >= rangeStart) activeIndex = index;
       });
       markers.forEach((marker, index) => {
         const active = index === activeIndex;
@@ -107,19 +113,13 @@
         if (active) marker.setAttribute('aria-current', 'true');
         else marker.removeAttribute('aria-current');
       });
-      if (activeIndex !== lastActiveIndex) {
-        const activeMarker = markers[activeIndex];
-        activeMarker?.classList.remove('is-turning');
-        if (activeMarker) void activeMarker.offsetWidth;
-        activeMarker?.classList.add('is-turning');
-        lastActiveIndex = activeIndex;
-      }
       track.setAttribute('aria-valuetext', markers[activeIndex]?.dataset.publicationYear || '');
     };
 
     const update = () => {
-      setProgress(currentProgress());
-      updateActiveYear();
+      const progress = currentProgress();
+      setProgress(progress);
+      updateYearMechanism(progress);
       frameRequested = false;
     };
 
@@ -133,9 +133,11 @@
       track.setAttribute('aria-orientation', mobileQuery.matches ? 'horizontal' : 'vertical');
       const firstOffset = sections[0]?.offsetTop || 0;
       const markerRange = scrollRange();
+      yearProgressPositions = [];
       sections.forEach((section, index) => {
         const relativeOffset = Math.max(0, (section?.offsetTop || firstOffset) - firstOffset);
         const position = clamp(relativeOffset / markerRange, 0.035, 0.965);
+        yearProgressPositions[index] = clamp((position - 0.035) / 0.93);
         markers[index].style.setProperty('--publication-year-position', `${position * 100}%`);
       });
       rail.classList.add('is-ready');
@@ -150,6 +152,7 @@
         behavior
       });
       setProgress(value);
+      updateYearMechanism(value);
     };
 
     const pointerProgress = event => {
@@ -160,9 +163,6 @@
     };
 
     markers.forEach((marker, index) => {
-      marker.addEventListener('animationend', event => {
-        if (event.animationName === 'publication-cog-turn') marker.classList.remove('is-turning');
-      });
       marker.addEventListener('click', () => {
         const section = sections[index];
         if (!section) return;

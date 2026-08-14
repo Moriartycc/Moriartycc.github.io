@@ -655,8 +655,8 @@ body {
   background: color-mix(in srgb, var(--tech-surface-raised) 72%, var(--tech-accent));
   clip-path: polygon(41% 0, 59% 0, 63% 13%, 73% 17%, 84% 10%, 90% 16%, 83% 27%, 87% 37%, 100% 41%, 100% 59%, 87% 63%, 83% 73%, 90% 84%, 84% 90%, 73% 83%, 63% 87%, 59% 100%, 41% 100%, 37% 87%, 27% 83%, 16% 90%, 10% 84%, 17% 73%, 13% 63%, 0 59%, 0 41%, 13% 37%, 17% 27%, 10% 16%, 16% 10%, 27% 17%, 37% 13%);
   content: "";
-  transform: translateY(-50%);
-  transition: background-color 160ms ease, filter 160ms ease, transform 160ms ease;
+  transform: var(--publication-cog-anchor) rotate(var(--publication-year-rotation, 0deg));
+  transition: background-color 160ms ease, filter 160ms ease;
 }
 
 .publication-year-jump::after {
@@ -689,16 +689,7 @@ body {
 .publication-year-jump.is-active::before {
   background: linear-gradient(145deg, #d8fbff, var(--tech-accent-bright));
   filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tech-accent-bright) 74%, transparent));
-  transform: translateY(-50%);
-}
-
-.publication-year-jump.is-turning::before {
-  animation: publication-cog-turn 620ms cubic-bezier(0.32, 0.72, 0.24, 1) both;
-}
-
-@keyframes publication-cog-turn {
-  from { transform: var(--publication-cog-anchor) rotate(0deg); }
-  to { transform: var(--publication-cog-anchor) rotate(360deg); }
+  transform: var(--publication-cog-anchor) rotate(var(--publication-year-rotation, 0deg));
 }
 
 .publication-rail-ready .publication-year {
@@ -823,17 +814,11 @@ body {
   }
 
   .publication-year-jump.is-active::before {
-    transform: translate(-50%, -50%);
+    transform: var(--publication-cog-anchor) rotate(var(--publication-year-rotation, 0deg));
   }
 
   .publications-shell .publication-year-group {
     margin-bottom: 1.35rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .publication-year-jump.is-turning::before {
-    animation: none;
   }
 }
 
