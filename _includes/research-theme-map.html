@@ -615,6 +615,7 @@
         let activeHoverId=activeHoverTheme;
         let hoverLockUntil=0;
         let lastTouchPin=0;
+        let touchStartPoint=null;
         function beginHover(event,d) {
           if (event?.pointerType==='touch'||event?.pointerType==='pen') return;
           const now=performance.now();
@@ -627,9 +628,27 @@
           showPaperTooltip(event,d);
         }
 
+        function rememberTouchStart(event) {
+          const touch=event.changedTouches?.[0];
+          touchStartPoint=touch?{x:touch.clientX,y:touch.clientY,moved:false}:null;
+        }
+
+        function rememberTouchMove(event) {
+          const touch=event.changedTouches?.[0];
+          if (!touchStartPoint||!touch) return;
+          if (Math.hypot(touch.clientX-touchStartPoint.x,touch.clientY-touchStartPoint.y)>12) touchStartPoint.moved=true;
+        }
+
         function pinFromTouch(event,d) {
+          const moved=event.type==='touchend'&&touchStartPoint?.moved;
+          touchStartPoint=null;
+          if (moved) return;
           const now=performance.now();
-          if (now-lastTouchPin<240&&currentSelection===d.id) return;
+          if (now-lastTouchPin<240&&currentSelection===d.id) {
+            event.preventDefault?.();
+            event.stopPropagation?.();
+            return;
+          }
           lastTouchPin=now;
           event.preventDefault?.();
           event.stopPropagation?.();
@@ -701,6 +720,8 @@
           .on('pointerenter',beginHover)
           .on('pointermove',positionTooltip)
           .on('pointerup.touch-pin',pinFromPointer)
+          .on('touchstart.touch-pin',rememberTouchStart)
+          .on('touchmove.touch-pin',rememberTouchMove)
           .on('touchend.touch-pin',pinFromTouch)
           .on('click',pinFromClick);
         const nodeDepth = nodeFloat.append('path')
@@ -718,6 +739,8 @@
           .on('pointermove',positionTooltip)
           .on('focus',beginHover)
           .on('pointerup.touch-pin',pinFromPointer)
+          .on('touchstart.touch-pin',rememberTouchStart)
+          .on('touchmove.touch-pin',rememberTouchMove)
           .on('touchend.touch-pin',pinFromTouch)
           .on('click',pinFromClick)
           .on('keydown',(event,d)=>{
@@ -897,6 +920,8 @@
           .on('pointerenter',beginHover)
           .on('pointermove',positionTooltip)
           .on('pointerup.touch-pin',pinFromPointer)
+          .on('touchstart.touch-pin',rememberTouchStart)
+          .on('touchmove.touch-pin',rememberTouchMove)
           .on('touchend.touch-pin',pinFromTouch)
           .on('click',pinFromClick);
 
