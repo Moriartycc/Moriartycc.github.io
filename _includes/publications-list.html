@@ -88,7 +88,6 @@
     const setProgress = progress => {
       const value = clamp(progress);
       shell.style.setProperty('--publication-scroll-progress', `${value * 100}%`);
-      shell.style.setProperty('--publication-gear-rotation', `${value * 720}deg`);
       track.setAttribute('aria-valuenow', String(Math.round(value * 100)));
     };
 

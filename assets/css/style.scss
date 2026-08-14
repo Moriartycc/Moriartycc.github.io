@@ -515,7 +515,6 @@ body {
 /* Sticky publication timeline and scroll meter. */
 .publications-shell {
   --publication-scroll-progress: 0%;
-  --publication-gear-rotation: 0deg;
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
   gap: 0 0.85rem;
@@ -553,6 +552,7 @@ body {
 }
 
 .publication-scroll-rail__markers {
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -566,6 +566,7 @@ body {
   cursor: ns-resize;
   outline: none;
   touch-action: none;
+  z-index: 1;
 }
 
 .publication-scroll-rail__track::before {
@@ -610,23 +611,14 @@ body {
   position: absolute;
   top: var(--publication-scroll-progress);
   left: 10px;
-  width: 22px;
-  height: 22px;
-  background: linear-gradient(145deg, #d8fbff, color-mix(in srgb, var(--tech-accent-bright) 72%, var(--tech-accent)));
-  clip-path: polygon(41% 0, 59% 0, 63% 11%, 72% 15%, 82% 9%, 91% 18%, 85% 28%, 89% 37%, 100% 41%, 100% 59%, 89% 63%, 85% 72%, 91% 82%, 82% 91%, 72% 85%, 63% 89%, 59% 100%, 41% 100%, 37% 89%, 28% 85%, 18% 91%, 9% 82%, 15% 72%, 11% 63%, 0 59%, 0 41%, 11% 37%, 15% 28%, 9% 18%, 18% 9%, 28% 15%, 37% 11%);
-  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--tech-accent-bright) 62%, transparent));
+  width: 6px;
+  height: 12px;
+  background: #d8fbff;
+  border: 1px solid color-mix(in srgb, var(--tech-accent-bright) 72%, white);
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--tech-accent-bright) 12%, transparent), 0 0 8px color-mix(in srgb, var(--tech-accent-bright) 52%, transparent);
   pointer-events: none;
-  transform: translate(-50%, -50%) rotate(var(--publication-gear-rotation));
-  transition: filter 160ms ease;
-}
-
-.publication-scroll-rail__thumb::after {
-  position: absolute;
-  inset: 7px;
-  background: color-mix(in srgb, var(--tech-surface-raised) 88%, #071426);
-  border: 1px solid color-mix(in srgb, var(--tech-accent-bright) 64%, white);
-  border-radius: 50%;
-  content: "";
+  transform: translate(-50%, -50%);
 }
 
 .publication-year-jump {
@@ -654,7 +646,7 @@ body {
 .publication-year-jump::before {
   position: absolute;
   top: 50%;
-  left: -23px;
+  left: -20px;
   width: 14px;
   height: 14px;
   background: color-mix(in srgb, var(--tech-surface-raised) 72%, var(--tech-accent));
@@ -667,7 +659,7 @@ body {
 .publication-year-jump::after {
   position: absolute;
   top: 50%;
-  left: -18px;
+  left: -13px;
   width: 4px;
   height: 4px;
   background: var(--tech-surface-raised);
@@ -694,7 +686,7 @@ body {
 .publication-year-jump.is-active::before {
   background: linear-gradient(145deg, #d8fbff, var(--tech-accent-bright));
   filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tech-accent-bright) 74%, transparent));
-  transform: translateY(-50%) rotate(var(--publication-gear-rotation)) scale(1.18);
+  transform: translateY(-50%);
 }
 
 .publication-rail-ready .publication-year {
@@ -767,6 +759,8 @@ body {
   .publication-scroll-rail__thumb {
     top: 9.5px;
     left: var(--publication-scroll-progress);
+    width: 12px;
+    height: 6px;
   }
 
   .publication-scroll-rail__markers {
@@ -814,17 +808,11 @@ body {
   }
 
   .publication-year-jump.is-active::before {
-    transform: translate(-50%, -50%) rotate(var(--publication-gear-rotation)) scale(1.18);
+    transform: translate(-50%, -50%);
   }
 
   .publications-shell .publication-year-group {
     margin-bottom: 1.35rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .publications-shell {
-    --publication-gear-rotation: 0deg !important;
   }
 }
 
