@@ -112,12 +112,12 @@
       <div id="vos-legend" class="legend" role="list" aria-label="Research theme family blend"></div>
       <div id="vos-tooltip" class="tooltip" role="tooltip" tabindex="-1"></div>
     </div>
-    <div id="vos-selection" class="selected-line" aria-live="polite"></div>
+    <div id="vos-selection" class="selected-line" aria-live="polite"><strong>Loading research themes…</strong></div>
   </section>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script>
     (() => {
       const root = document.getElementById('research-keyword-previews');
+      const initializeResearchThemeMap = () => {
       const css = name => {
         const probe = document.createElement('span');
         probe.style.cssText = `display:none;color:var(${name})`;
@@ -1198,6 +1198,37 @@
         }).observe(mapHost);
       } else {
         window.addEventListener('resize',()=>scheduleResizeRender(Math.round(mapHost.getBoundingClientRect().width)),{passive:true});
+      }
+      };
+
+      let mapStarted=false;
+      const startResearchThemeMap=()=>{
+        if (mapStarted) return;
+        mapStarted=true;
+        if (window.d3) {
+          initializeResearchThemeMap();
+          return;
+        }
+        const d3Script=document.createElement('script');
+        d3Script.src='https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js';
+        d3Script.async=true;
+        d3Script.onload=initializeResearchThemeMap;
+        d3Script.onerror=()=>{
+          const status=document.getElementById('vos-selection');
+          if (status) status.innerHTML='<strong>The research map could not load.</strong> Please refresh to try again.';
+        };
+        document.head.appendChild(d3Script);
+      };
+
+      if ('IntersectionObserver' in window) {
+        const startupObserver=new IntersectionObserver(entries=>{
+          if (!entries.some(entry=>entry.isIntersecting)) return;
+          startupObserver.disconnect();
+          startResearchThemeMap();
+        },{rootMargin:'420px 0px'});
+        startupObserver.observe(root);
+      } else {
+        startResearchThemeMap();
       }
     })();
   </script>
