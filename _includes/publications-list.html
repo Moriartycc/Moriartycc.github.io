@@ -1,4 +1,21 @@
-<div class="publications-list" aria-label="Publications grouped by first preprint year">
+<div class="publications-shell" data-publications-shell>
+  <nav class="publication-scroll-rail" aria-label="Jump between publication years">
+    <div class="publication-scroll-rail__meter">
+      <div class="publication-scroll-rail__track" role="slider" tabindex="0" aria-label="Publication timeline position" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="publication-scroll-rail__fill" aria-hidden="true"></span>
+        <span class="publication-scroll-rail__thumb" aria-hidden="true"></span>
+      </div>
+      <div class="publication-scroll-rail__markers">
+        {% for year_group in site.data.publications.years %}
+          <button class="publication-year-jump" type="button" data-publication-year="{{ year_group.year }}" aria-controls="publications-{{ year_group.year }}">
+            <span>{{ year_group.year }}</span>
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+
+  <div class="publications-list" aria-label="Publications grouped by first preprint year">
   {% for year_group in site.data.publications.years %}
     <section class="publication-year-group" aria-labelledby="publications-{{ year_group.year }}">
       <h2 class="publication-year" id="publications-{{ year_group.year }}">{{ year_group.year }}</h2>
@@ -25,6 +42,7 @@
       </div>
     </section>
   {% endfor %}
+  </div>
 </div>
 
 <section class="thesis-section" aria-labelledby="thesis-heading">
@@ -41,3 +59,138 @@
     </div>
   </article>
 </section>
+
+<script>
+  (() => {
+    const shell = document.querySelector('[data-publications-shell]');
+    if (!shell) return;
+
+    const list = shell.querySelector('.publications-list');
+    const rail = shell.querySelector('.publication-scroll-rail');
+    const track = shell.querySelector('.publication-scroll-rail__track');
+    const markers = [...shell.querySelectorAll('.publication-year-jump')];
+    const sections = markers.map(marker => document.getElementById(`publications-${marker.dataset.publicationYear}`));
+    const mobileQuery = window.matchMedia('(max-width: 700px)');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let dragging = false;
+    let frameRequested = false;
+
+    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+    const headerOffset = () => mobileQuery.matches ? 118 : 96;
+    const listTop = () => list.getBoundingClientRect().top + window.scrollY;
+    const scrollRange = () => Math.max(1, list.offsetHeight - window.innerHeight * 0.36);
+    const currentProgress = () => clamp((window.scrollY - (listTop() - headerOffset())) / scrollRange());
+
+    const setProgress = progress => {
+      const value = clamp(progress);
+      shell.style.setProperty('--publication-scroll-progress', `${value * 100}%`);
+      track.setAttribute('aria-valuenow', String(Math.round(value * 100)));
+    };
+
+    const updateActiveYear = () => {
+      const probe = window.scrollY + headerOffset() + 28;
+      let activeIndex = 0;
+      sections.forEach((section, index) => {
+        if (section && section.getBoundingClientRect().top + window.scrollY <= probe) activeIndex = index;
+      });
+      markers.forEach((marker, index) => {
+        const active = index === activeIndex;
+        marker.classList.toggle('is-active', active);
+        if (active) marker.setAttribute('aria-current', 'true');
+        else marker.removeAttribute('aria-current');
+      });
+    };
+
+    const update = () => {
+      setProgress(currentProgress());
+      updateActiveYear();
+      frameRequested = false;
+    };
+
+    const requestUpdate = () => {
+      if (frameRequested) return;
+      frameRequested = true;
+      window.requestAnimationFrame(update);
+    };
+
+    const positionMarkers = () => {
+      track.setAttribute('aria-orientation', mobileQuery.matches ? 'horizontal' : 'vertical');
+      const lastOffset = Math.max(1, sections.at(-1)?.offsetTop || list.offsetHeight);
+      sections.forEach((section, index) => {
+        const position = clamp((section?.offsetTop || 0) / lastOffset, 0.035, 0.965);
+        markers[index].style.setProperty('--publication-year-position', `${position * 100}%`);
+      });
+      rail.classList.add('is-ready');
+      shell.classList.add('publication-rail-ready');
+      requestUpdate();
+    };
+
+    const scrollToProgress = (progress, behavior = 'auto') => {
+      const value = clamp(progress);
+      window.scrollTo({
+        top: listTop() - headerOffset() + value * scrollRange(),
+        behavior
+      });
+      setProgress(value);
+    };
+
+    const pointerProgress = event => {
+      const rect = track.getBoundingClientRect();
+      return mobileQuery.matches
+        ? clamp((event.clientX - rect.left) / rect.width)
+        : clamp((event.clientY - rect.top) / rect.height);
+    };
+
+    markers.forEach((marker, index) => {
+      marker.addEventListener('click', () => {
+        const section = sections[index];
+        if (!section) return;
+        window.scrollTo({
+          top: section.getBoundingClientRect().top + window.scrollY - headerOffset(),
+          behavior: reduceMotion ? 'auto' : 'smooth'
+        });
+      });
+    });
+
+    track.addEventListener('pointerdown', event => {
+      dragging = true;
+      track.setPointerCapture?.(event.pointerId);
+      scrollToProgress(pointerProgress(event));
+      event.preventDefault();
+    });
+
+    track.addEventListener('pointermove', event => {
+      if (!dragging) return;
+      scrollToProgress(pointerProgress(event));
+    });
+
+    const stopDragging = event => {
+      if (!dragging) return;
+      dragging = false;
+      track.releasePointerCapture?.(event.pointerId);
+    };
+    track.addEventListener('pointerup', stopDragging);
+    track.addEventListener('pointercancel', stopDragging);
+
+    track.addEventListener('keydown', event => {
+      const steps = {
+        ArrowDown: 0.075, ArrowRight: 0.075,
+        ArrowUp: -0.075, ArrowLeft: -0.075,
+        PageDown: 0.2, PageUp: -0.2
+      };
+      if (event.key === 'Home' || event.key === 'End') {
+        scrollToProgress(event.key === 'Home' ? 0 : 1, reduceMotion ? 'auto' : 'smooth');
+        event.preventDefault();
+      } else if (steps[event.key]) {
+        scrollToProgress(currentProgress() + steps[event.key], reduceMotion ? 'auto' : 'smooth');
+        event.preventDefault();
+      }
+    });
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', positionMarkers, { passive: true });
+    mobileQuery.addEventListener?.('change', positionMarkers);
+    if ('ResizeObserver' in window) new ResizeObserver(positionMarkers).observe(list);
+    positionMarkers();
+  })();
+</script>
