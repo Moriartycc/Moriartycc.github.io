@@ -426,6 +426,55 @@ body {
   transform: none;
 }
 
+.teaching-year-jump::before,
+.teaching-year-jump::after {
+  display: none;
+}
+
+.teaching-book-marker {
+  position: absolute;
+  top: 50%;
+  left: -13px;
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  color: color-mix(in srgb, var(--tech-accent-bright) 76%, var(--global-text-color-light));
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--tech-accent-bright) 18%, transparent));
+  perspective: 36px;
+  transform: translate(-50%, -50%);
+}
+
+.teaching-book-marker i {
+  position: absolute;
+  font-size: 14px;
+  line-height: 1;
+  transform-origin: center;
+  transition: opacity 240ms ease, transform 360ms cubic-bezier(0.22, 1, 0.36, 1), color 240ms ease, filter 240ms ease;
+}
+
+.teaching-book-marker__closed {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+}
+
+.teaching-book-marker__open {
+  opacity: 0;
+  transform: scaleX(0.45) scaleY(0.82) rotateY(-28deg);
+}
+
+.teaching-year-jump.is-active .teaching-book-marker__closed {
+  opacity: 0;
+  transform: scale(0.72) rotateY(28deg);
+}
+
+.teaching-year-jump.is-active .teaching-book-marker__open {
+  color: #d8fbff;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tech-accent-bright) 72%, transparent));
+  opacity: 1;
+  transform: scale(1.08) rotateY(0deg);
+}
+
 .publication-card__links {
   display: flex;
   flex-wrap: wrap;
@@ -923,6 +972,22 @@ body {
 
   .publication-year-jump.is-active::before {
     transform: var(--publication-cog-anchor) rotate(var(--publication-year-rotation, 0deg));
+  }
+
+  .teaching-year-jump::before,
+  .teaching-year-jump::after {
+    display: none;
+  }
+
+  .teaching-book-marker {
+    top: 36.17px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+  }
+
+  .teaching-book-marker i {
+    font-size: 12px;
   }
 
   .publications-shell .publication-year-group {
