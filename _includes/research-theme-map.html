@@ -225,7 +225,7 @@
         {label:'generalization',prevalence:.82,themes:{'Benign overfitting':1,'Memorization':.92,'Model and data aggregation':.52}},
         {label:'interpolation',prevalence:.78,themes:{'Memorization':1,'Benign overfitting':1,'High-dimensional asymptotics':.52}},
         {label:'concentration',prevalence:.76,themes:{'Concentration inequalities':1,'State evolution':.56,'Random matrix theory':.48,'Optimality and lower bounds':.32}},
-        {label:'state evolution',prevalence:.72,themes:{'State evolution':1,'Iterative algorithms':.88,'High-dimensional asymptotics':.78}},
+        {label:'Onsager corrections',prevalence:.72,themes:{'State evolution':1,'Iterative algorithms':.88,'High-dimensional asymptotics':.78}},
         {label:'uncertainty',prevalence:.69,themes:{'Conformal prediction':.94,'Optimality and lower bounds':.76,'Model and data aggregation':.42}},
         {label:'eigenvectors',prevalence:.68,themes:{'Spectral inference':1,'Matrix perturbation':1,'Random matrix theory':.66}},
         {label:'finite-sample guarantees',prevalence:.65,themes:{'State evolution':.76,'Concentration inequalities':.92,'Optimality and lower bounds':.58}},
@@ -503,7 +503,8 @@
         const cloudData=keywordData.map((d,i)=>({
           ...d,
           angle:i*2*Math.PI/keywordData.length+systemRotation+(random()-.5)*.08,
-          speed:(i%2?-1:1)*(.030+random()*.018),
+          speed:.026,
+          angularWobble:.018+random()*.018,
           radialBand:.78+(i%3)*.075,
           floatPhase:random()*Math.PI*2
         }));
@@ -517,7 +518,7 @@
         const positionKeywordCloud=seconds=>{
           const cx=width/2,cy=height/2;
           keywordLabels.each(function(d){
-            const angle=d.angle+seconds*d.speed;
+            const angle=d.angle+seconds*d.speed+d.angularWobble*Math.sin(seconds*.11+d.floatPhase);
             const horizontalRoom=Math.max(42,width/2-(d.textWidth||50)/2-10);
             const rx=horizontalRoom*d.radialBand;
             const ry=(height/2-(width<520?17:22))*d.radialBand;
