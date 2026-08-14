@@ -289,6 +289,7 @@
       let tooltipHideTimer = null;
       let shapeAnimationFrame = 0;
       let tooltipMoveFrame = 0;
+      let tooltipViewportFrame = 0;
       let pendingTooltipPoint = null;
       let animationVisibilityObserver = null;
       let animationVisibilityHandler = null;
@@ -297,6 +298,7 @@
       let pinnedTooltipPosition = null;
       let pinnedTooltipAnchorPosition = null;
       let expandTooltipAfterPin = '';
+      let pinTooltipTheme = null;
       let keywordCloudSelection = null;
       let keywordCloudWidth = 0;
       const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
@@ -307,12 +309,25 @@
       const paperLink = paper => `<a class="paper-link" href="${paper.url}" target="_blank" rel="noopener">${paper.linkLabel} ↗</a>`;
       const paperLine = paper => `<span class="paper-title">${escapeHtml(paper.title)} (${paper.year})</span> ${paperLink(paper)}`;
 
+      const clampRange = (value,min,max) => max<min?min:Math.max(min,Math.min(value,max));
+
+      function boundedTooltipPoint(left,top,targetHeight) {
+        const tip=tooltip.node();
+        const parent=tip.parentElement;
+        const box=parent.getBoundingClientRect();
+        const edge=12;
+        const minLeft=Math.max(4,edge-box.left);
+        const maxLeft=Math.min(parent.clientWidth-tip.offsetWidth-4,window.innerWidth-edge-box.left-tip.offsetWidth);
+        const minTop=edge-box.top;
+        const maxTop=window.innerHeight-edge-box.top-targetHeight;
+        return {left:clampRange(left,minLeft,maxLeft),top:clampRange(top,minTop,maxTop)};
+      }
+
       function placeTooltip(clientX,clientY) {
         const tip=tooltip.node();
         const box=tip.parentElement.getBoundingClientRect();
-        const left=Math.max(4,Math.min(clientX-box.left+12,box.width-tip.offsetWidth-4));
-        const top=Math.max(4,Math.min(clientY-box.top+12,box.height-tip.offsetHeight-4));
-        tooltip.style('transform',`translate3d(${left}px,${top}px,0)`);
+        const point=boundedTooltipPoint(clientX-box.left+12,clientY-box.top+12,tip.offsetHeight);
+        tooltip.style('transform',`translate3d(${point.left}px,${point.top}px,0)`);
       }
 
       function positionTooltip(event,immediate=false) {
@@ -346,33 +361,52 @@
 
       function fitPinnedTooltip(expanded=false,extraNode=null) {
         const tip=tooltip.node();
-        const parent=tip.parentElement;
         const current=tooltipPoint(tooltip.style('transform'));
         const anchor=tooltipPoint(pinnedTooltipAnchorPosition)||current;
         if (!anchor) {
-          positionTooltip(null,true);
+          const box=tip.parentElement.getBoundingClientRect();
+          placeTooltip(box.left+box.width/2,box.top+box.height/2);
+          pinnedTooltipPosition=tooltip.style('transform');
           return;
         }
-        const parentBox=parent.getBoundingClientRect();
         const edge=12;
-        const left=Math.max(4,Math.min(anchor.left,parent.clientWidth-tip.offsetWidth-4));
         let targetHeight=tip.offsetHeight;
         if (expanded&&extraNode) {
           const baseHeight=Math.max(0,tip.offsetHeight-extraNode.offsetHeight);
-          const viewportAllowance=Math.max(96,window.innerHeight-edge*2-baseHeight);
+          const viewportAllowance=Math.max(0,window.innerHeight-edge*2-baseHeight);
           const extraLimit=Math.min(extraNode.scrollHeight,460,viewportAllowance);
           extraNode.style.setProperty('--tooltip-extra-height',`${extraLimit}px`);
           targetHeight=baseHeight+extraLimit;
         } else if (extraNode) {
           targetHeight-=extraNode.offsetHeight;
         }
-        const viewportTop=Math.max(4,edge-parentBox.top);
-        const highestVisibleTop=window.innerHeight-edge-parentBox.top-targetHeight;
-        const top=expanded
-          ? Math.max(viewportTop,Math.min(anchor.top,highestVisibleTop))
-          : Math.max(4,anchor.top);
-        tooltip.style('transform',`translate3d(${left}px,${top}px,0)`);
+        const point=boundedTooltipPoint(anchor.left,anchor.top,targetHeight);
+        tooltip.style('transform',`translate3d(${point.left}px,${point.top}px,0)`);
         pinnedTooltipPosition=tooltip.style('transform');
+      }
+
+      function keepTooltipInViewport() {
+        tooltipViewportFrame=0;
+        const tip=tooltip.node();
+        if (!tooltip.classed('is-visible')) return;
+        const parentBox=tip.parentElement.getBoundingClientRect();
+        if (parentBox.bottom<=0||parentBox.top>=window.innerHeight) return;
+        const group=tooltip.select('.tooltip-more-group');
+        const extraNode=group.empty()?null:group.select('.tooltip-extra-papers').node();
+        const expanded=!group.empty()&&group.classed('is-expanded');
+        if (tooltip.classed('is-pinned')) {
+          fitPinnedTooltip(expanded,extraNode);
+          return;
+        }
+        const current=tooltipPoint(tooltip.style('transform'));
+        if (!current) return;
+        const point=boundedTooltipPoint(current.left,current.top,tip.offsetHeight);
+        tooltip.style('transform',`translate3d(${point.left}px,${point.top}px,0)`);
+      }
+
+      function scheduleTooltipViewportFit() {
+        if (tooltipViewportFrame) return;
+        tooltipViewportFrame=requestAnimationFrame(keepTooltipInViewport);
       }
 
       function setTooltipDisclosure(group,toggle,expanded) {
@@ -402,7 +436,12 @@
           group
             .on('pointerenter.expand',event=>{
               if (event.pointerType==='touch'||event.pointerType==='pen') return;
-              if (currentSelection===node.id) setTooltipDisclosure(group,toggle,true);
+              if (currentSelection!==node.id) {
+                expandTooltipAfterPin=node.id;
+                pinTooltipTheme?.(event,node);
+                return;
+              }
+              setTooltipDisclosure(group,toggle,true);
             });
           toggle
             .on('click.expand',event=>{
@@ -735,6 +774,7 @@
           pinnedTooltipPosition=tooltip.style('transform');
           pinnedTooltipAnchorPosition=pinnedTooltipPosition;
         }
+        pinTooltipTheme=pinTheme;
 
         function clearPinnedTheme() {
           clearTimeout(tooltipHideTimer);
@@ -1131,6 +1171,9 @@
       }
 
       select.addEventListener('change', event => showSelection(event.target.value));
+      window.addEventListener('scroll',scheduleTooltipViewportFit,{passive:true});
+      window.visualViewport?.addEventListener('resize',scheduleTooltipViewportFit,{passive:true});
+      window.visualViewport?.addEventListener('scroll',scheduleTooltipViewportFit,{passive:true});
       renderMap();
       showSelection('');
       const mapHost=document.getElementById('vos-keyword-map');
