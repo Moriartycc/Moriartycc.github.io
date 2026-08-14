@@ -316,6 +316,7 @@
       }
 
       function positionTooltip(event,immediate=false) {
+        if (currentSelection&&tooltip.classed('is-pinned')&&tooltip.attr('data-theme')===currentSelection) return;
         let clientX=event?.clientX;
         let clientY=event?.clientY;
         if (!Number.isFinite(clientX)||!Number.isFinite(clientY)) {
@@ -402,8 +403,7 @@
             .on('pointerenter.expand',event=>{
               if (event.pointerType==='touch'||event.pointerType==='pen') return;
               if (currentSelection===node.id) setTooltipDisclosure(group,toggle,true);
-            })
-            .on('pointerleave.expand',()=>{if (!coarsePointer) setTooltipDisclosure(group,toggle,false);});
+            });
           toggle
             .on('click.expand',event=>{
               if (currentSelection!==node.id) {
@@ -412,7 +412,7 @@
               }
               event.preventDefault();
               event.stopPropagation();
-              setTooltipDisclosure(group,toggle,coarsePointer?!group.classed('is-expanded'):true);
+              setTooltipDisclosure(group,toggle,!group.classed('is-expanded'));
             });
         }
         if (preservePinnedPosition&&pinnedTooltipPosition) {
