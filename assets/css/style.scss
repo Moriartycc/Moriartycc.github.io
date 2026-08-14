@@ -520,6 +520,7 @@ body {
 }
 
 .masthead__menu-item a {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 15.5px;
   font-weight: 600;
   line-height: 1.35;
@@ -539,6 +540,7 @@ body {
 
 .page__content > h2,
 .thesis-section > h2 {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 22px;
   font-weight: 650;
   line-height: 1.3;
@@ -546,14 +548,24 @@ body {
 }
 
 .author__name {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 17px;
   font-weight: 650;
 }
 
 .author__bio,
 .author__urls {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 14px;
   line-height: 1.5;
+}
+
+.btn,
+.page__quick-link,
+.publication-card__authors,
+.publication-card__venue,
+.publication-link {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .page__content .publication-card__title {
