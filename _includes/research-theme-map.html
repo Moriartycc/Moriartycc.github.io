@@ -64,8 +64,8 @@
     #research-keyword-previews .vos-node { cursor: pointer; stroke: var(--background); stroke-width: 1px; stroke-linejoin: round; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
     #research-keyword-previews .node-depth { pointer-events: none; opacity: .3; }
     #research-keyword-previews .node-highlight { fill: none; stroke: var(--background); stroke-width: 1.2px; stroke-linejoin: round; opacity: .42; pointer-events: none; }
-    #research-keyword-previews .vos-label { fill: var(--foreground); font-size: 12px; font-weight: 400; paint-order: stroke; stroke: var(--background); stroke-width: 3px; stroke-linejoin: round; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
-    #research-keyword-previews .vos-label.is-hovered { font-size: 14px; font-weight: 500; stroke-width: 3.5px; }
+    #research-keyword-previews .vos-label { fill: var(--foreground); font-size: var(--label-size, 12px); font-weight: 470; letter-spacing: .008em; paint-order: stroke; stroke: var(--background); stroke-width: 3px; stroke-linejoin: round; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: fill .22s ease; }
+    #research-keyword-previews .vos-label.is-hovered { font-size: calc(var(--label-size, 12px) * 1.16); font-weight: 560; stroke-width: 3.5px; }
     #research-keyword-previews .vos-link { stroke: var(--border); }
     #research-keyword-previews .vos-node-wrap.is-muted, #research-keyword-previews .vos-link.is-muted { opacity: 0.12; }
     #research-keyword-previews .vos-label.is-muted { opacity: 0.2; }
@@ -84,7 +84,7 @@
     @media (max-width: 520px) {
       #research-keyword-previews .preview-section { margin-bottom: 28px; }
       #research-keyword-previews .map-host { min-height: 500px; }
-      #research-keyword-previews .vos-label.is-hovered { font-size: 13px; }
+      #research-keyword-previews .vos-label.is-hovered { font-size: calc(var(--label-size, 11px) * 1.14); }
     }
   </style>
 <div id="research-keyword-previews">
@@ -216,40 +216,51 @@
       /* Secondary full-text concepts. Prevalence controls word size; per-theme
          scores control visibility when a theme is previewed or pinned. */
       const keywordData = [
-        {label:'high-dimensional limits',prevalence:1.00,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.76,'State evolution':.72,'Benign overfitting':.48}},
-        {label:'random data',prevalence:.92,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.88,'State evolution':.72,'Iterative algorithms':.58}},
-        {label:'asymptotic theory',prevalence:.90,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.74,'State evolution':.76}},
-        {label:'eigenvalues',prevalence:.88,themes:{'Spectral inference':1,'Matrix perturbation':.92,'Random matrix theory':.84,'Concentration inequalities':.24}},
-        {label:'linear regression',prevalence:.86,themes:{'Linear and nonlinear algorithms':1,'Memorization':.86,'Benign overfitting':.86,'Model and data aggregation':.64}},
-        {label:'iterative methods',prevalence:.84,themes:{'Iterative algorithms':1,'Linear and nonlinear algorithms':.94,'State evolution':.84,'Stochastic optimization':.62}},
-        {label:'generalization',prevalence:.82,themes:{'Benign overfitting':1,'Memorization':.92,'Model and data aggregation':.52}},
-        {label:'interpolation',prevalence:.78,themes:{'Memorization':1,'Benign overfitting':1,'High-dimensional asymptotics':.52}},
-        {label:'concentration',prevalence:.76,themes:{'Concentration inequalities':1,'State evolution':.56,'Random matrix theory':.48,'Optimality and lower bounds':.32}},
-        {label:'Onsager corrections',prevalence:.72,themes:{'State evolution':1,'Iterative algorithms':.88,'High-dimensional asymptotics':.78}},
-        {label:'uncertainty',prevalence:.69,themes:{'Conformal prediction':.94,'Optimality and lower bounds':.76,'Model and data aggregation':.42}},
-        {label:'eigenvectors',prevalence:.68,themes:{'Spectral inference':1,'Matrix perturbation':1,'Random matrix theory':.66}},
-        {label:'finite-sample guarantees',prevalence:.65,themes:{'State evolution':.76,'Concentration inequalities':.92,'Optimality and lower bounds':.58}},
-        {label:'low-rank matrices',prevalence:.63,themes:{'Spectral inference':.84,'Matrix perturbation':.94,'Random matrix theory':.68}},
-        {label:'ridge regularization',prevalence:.61,themes:{'Benign overfitting':.72,'Memorization':.62,'Linear and nonlinear algorithms':.72,'Optimality and lower bounds':.42}},
-        {label:'lower bounds',prevalence:.59,themes:{'Optimality and lower bounds':1,'Conformal prediction':.66,'Stochastic optimization':.58}},
-        {label:'predictive inference',prevalence:.57,themes:{'Conformal prediction':1,'Optimality and lower bounds':.72,'Concentration inequalities':.42}},
-        {label:'perturbation bounds',prevalence:.56,themes:{'Matrix perturbation':1,'Spectral inference':.74,'Optimality and lower bounds':.34}},
-        {label:'aggregation',prevalence:.55,themes:{'Model and data aggregation':1,'Concentration inequalities':.32,'Linear and nonlinear algorithms':.42}},
-        {label:'calibration',prevalence:.54,themes:{'Conformal prediction':1,'Model and data aggregation':.42}},
-        {label:'robustness',prevalence:.52,themes:{'Model and data aggregation':.68,'Conformal prediction':.46,'Benign overfitting':.34}},
-        {label:'coverage guarantees',prevalence:.51,themes:{'Conformal prediction':1,'Concentration inequalities':.72,'Optimality and lower bounds':.72}},
-        {label:'stochastic geometry',prevalence:.50,themes:{'Stochastic optimization':1,'Optimality and lower bounds':.74}},
-        {label:'label noise',prevalence:.49,themes:{'Model and data aggregation':.84,'Conformal prediction':.38,'Concentration inequalities':.30}},
-        {label:'exchangeability',prevalence:.48,themes:{'Concentration inequalities':1,'Conformal prediction':.38}},
-        {label:'policy gradients',prevalence:.47,themes:{'Reinforcement learning':1,'Stochastic optimization':.78,'Iterative algorithms':.52}},
-        {label:'distributed learning',prevalence:.44,themes:{'Model and data aggregation':.88,'Linear and nonlinear algorithms':.54}},
-        {label:'matrix-valued data',prevalence:.43,themes:{'Concentration inequalities':.94,'Random matrix theory':.58}},
-        {label:'entropy regularization',prevalence:.40,themes:{'Reinforcement learning':1,'Stochastic optimization':.62}}
+        {label:'low-rank signals',prevalence:.92,themes:{'Spectral inference':.90,'Matrix perturbation':.95,'Random matrix theory':.76,'Memorization':.30}},
+        {label:'small eigengaps',prevalence:.72,themes:{'Spectral inference':1,'Matrix perturbation':.92,'Random matrix theory':.48}},
+        {label:'asymmetric perturbations',prevalence:.67,themes:{'Matrix perturbation':1,'Spectral inference':.82,'Random matrix theory':.42}},
+        {label:'heteroscedastic noise',prevalence:.74,themes:{'Spectral inference':.88,'Matrix perturbation':.88,'Concentration inequalities':.28}},
+        {label:'random designs',prevalence:1,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.88,'State evolution':.76,'Iterative algorithms':.58}},
+        {label:'structured missingness',prevalence:.62,themes:{'Model and data aggregation':1,'Linear and nonlinear algorithms':.46,'Optimality and lower bounds':.28}},
+        {label:'distributed datasets',prevalence:.56,themes:{'Model and data aggregation':.92,'Linear and nonlinear algorithms':.52}},
+        {label:'exchangeable data',prevalence:.69,themes:{'Concentration inequalities':1,'Conformal prediction':.42,'Model and data aggregation':.30}},
+        {label:'hierarchical sampling',prevalence:.53,themes:{'Concentration inequalities':.88,'Model and data aggregation':.52,'Conformal prediction':.24}},
+        {label:'tensor-valued data',prevalence:.52,themes:{'Concentration inequalities':.96,'Random matrix theory':.58,'Matrix perturbation':.26}},
+        {label:'ridge regularization',prevalence:.82,themes:{'Linear and nonlinear algorithms':.78,'Benign overfitting':.74,'Memorization':.64,'Optimality and lower bounds':.38}},
+        {label:'interpolation threshold',prevalence:.86,themes:{'Memorization':1,'Benign overfitting':1,'High-dimensional asymptotics':.50}},
+        {label:'prior information',prevalence:.71,themes:{'Benign overfitting':1,'Memorization':.78,'Optimality and lower bounds':.48}},
+        {label:'gold-standard labels',prevalence:.58,themes:{'Model and data aggregation':1,'Conformal prediction':.20}},
+        {label:'label cleaning',prevalence:.64,themes:{'Model and data aggregation':1,'Concentration inequalities':.28}},
+        {label:'entropy regularization',prevalence:.48,themes:{'Reinforcement learning':1,'Stochastic optimization':.68,'Iterative algorithms':.30}},
+        {label:'natural policy gradients',prevalence:.51,themes:{'Reinforcement learning':1,'Stochastic optimization':.78,'Iterative algorithms':.46}},
+        {label:'dimension-free rates',prevalence:.77,themes:{'Linear and nonlinear algorithms':.82,'Benign overfitting':.68,'Memorization':.58,'Optimality and lower bounds':.62}},
+        {label:'finite-sample guarantees',prevalence:.88,themes:{'State evolution':.84,'Concentration inequalities':.88,'Optimality and lower bounds':.58}},
+        {label:'predictive coverage',prevalence:.73,themes:{'Conformal prediction':1,'Optimality and lower bounds':.72,'Concentration inequalities':.48}},
+        {label:'label-noise robustness',prevalence:.60,themes:{'Model and data aggregation':1,'Conformal prediction':.36,'Concentration inequalities':.38}},
+        {label:'computational complexity',prevalence:.66,themes:{'Stochastic optimization':1,'Optimality and lower bounds':1,'Iterative algorithms':.44,'Linear and nonlinear algorithms':.44}}
       ];
 
       const families = [...new Set(Object.values(themeFamily))];
       const familyColor = {};
       families.forEach((family, i) => familyColor[family] = `var(--viz-series-${i + 1})`);
+      const colorChannels = value => {
+        const channels=(String(value).match(/[\d.]+/g)||[]).slice(0,3).map(Number);
+        if (channels.length<3) return [232,246,255];
+        return Math.max(...channels)<=1.01?channels.map(channel=>channel*255):channels;
+      };
+      const familyRgb = {};
+      families.forEach((family,i)=>familyRgb[family]=colorChannels(css(`--viz-series-${i+1}`)));
+      const constellationTextRgb=colorChannels(css('--constellation-text'));
+      const blendFamilyWeights = weights => {
+        const entries=Object.entries(weights).filter(([family,weight])=>familyRgb[family]&&weight>0);
+        if (!entries.length) return `rgb(${constellationTextRgb.map(Math.round).join(',')})`;
+        const dominant=entries.reduce((best,item)=>item[1]>best[1]?item:best,entries[0]);
+        const dominantBoost=dominant[1]*.28;
+        const total=entries.reduce((sum,[,weight])=>sum+weight,0)+dominantBoost;
+        const mixed=[0,1,2].map(channel=>(entries.reduce((sum,[family,weight])=>sum+familyRgb[family][channel]*weight,0)+familyRgb[dominant[0]][channel]*dominantBoost)/total);
+        const lifted=mixed.map((channel,index)=>channel*.86+constellationTextRgb[index]*.14);
+        return `rgb(${lifted.map(Math.round).join(',')})`;
+      };
 
       const allNodes = mapThemeOrder.map(theme => {
         const values = papers.map(p => relevance[p.id][theme] || 0);
@@ -320,6 +331,28 @@
         }
       });
       const keptLinks = linkCandidates.filter(l=>keptLinkKeys.has(`${l.source}|${l.target}`));
+      const allNodeById=new Map(allNodes.map(node=>[node.id,node]));
+      nodes.forEach(node=>{
+        const weights=Object.fromEntries(families.map(family=>[family,0]));
+        weights[node.family]+=node.weight*1.1;
+        papers.forEach(paper=>{
+          const base=relevance[paper.id][node.theme]||0;
+          if (base<.15) return;
+          nodes.forEach(other=>{
+            const overlap=relevance[paper.id][other.theme]||0;
+            if (overlap>=.15) weights[other.family]+=Math.min(base,overlap)*.22;
+          });
+        });
+        node.blendColor=blendFamilyWeights(weights);
+      });
+      keywordData.forEach(keyword=>{
+        const weights=Object.fromEntries(families.map(family=>[family,0]));
+        Object.entries(keyword.themes).forEach(([theme,score])=>{
+          const family=allNodeById.get(theme)?.family||themeFamily[theme];
+          if (family) weights[family]+=score;
+        });
+        keyword.blendColor=blendFamilyWeights(weights);
+      });
 
       const select = document.getElementById('vos-term-select');
       select.innerHTML = '<option value="">Show all themes</option>' + nodes
@@ -440,15 +473,13 @@
           return s !== theme && t !== theme;
         });
         if (keywordCloudSelection) {
-          const activeNode=nodes.find(d=>d.id===theme);
-          const activeColor=activeNode?familyColor[activeNode.family]:'var(--constellation-text)';
           keywordCloudSelection
             .style('opacity',d=>{
               if (!theme) return keywordCloudWidth<520 ? .035+.10*d.prevalence : .075+.17*d.prevalence;
               const score=d.themes[theme]||0;
               return .025+.87*Math.pow(score,.78);
             })
-            .style('fill',d=>theme&&(d.themes[theme]||0)>=.25?activeColor:'var(--constellation-text)');
+            .style('fill',d=>d.blendColor);
         }
         updatePaperDetails(theme);
       }
@@ -499,7 +530,7 @@
           .attr('class','star-dust').attr('cx',d=>d.x).attr('cy',d=>d.y)
           .attr('r',d=>d.r).attr('opacity',d=>d.opacity);
 
-        const keywordFont=d3.scaleSqrt().domain([.40,1]).range(width<520?[8,12.5]:[9,16]);
+        const keywordFont=d3.scaleSqrt().domain(d3.extent(keywordData,d=>d.prevalence)).range(width<520?[7.4,10.8]:[8.6,13.4]);
         const cloudData=keywordData.map((d,i)=>({
           ...d,
           angle:i*2*Math.PI/keywordData.length+systemRotation+(random()-.5)*.08,
@@ -513,6 +544,7 @@
           .attr('class','keyword-cloud-label')
           .attr('text-anchor','middle')
           .style('font-size',d=>`${keywordFont(d.prevalence)}px`)
+          .style('fill',d=>d.blendColor)
           .text(d=>d.label);
         keywordLabels.each(function(d){d.textWidth=this.getComputedTextLength();});
         const positionKeywordCloud=seconds=>{
@@ -546,6 +578,8 @@
         }));
         const simLinks = keptLinks.map(d=>({...d}));
         const radius = d3.scaleSqrt().domain(d3.extent(simNodes,d=>d.weight)).range(width < 520 ? [6,15] : [7,19]);
+        const themeLabelFont=d3.scaleSqrt().domain(d3.extent(simNodes,d=>d.weight)).range(width<520?[9.8,13.2]:[11,15.8]);
+        simNodes.forEach(d=>{d.labelFontSize=themeLabelFont(d.weight);});
         d3.forceSimulation(simNodes)
           .randomSource(random)
           .force('link',d3.forceLink(simLinks).id(d=>d.id).distance(d=>(width<520?68:92)-18*Math.min(1,d.weight)).strength(d=>.18+.12*d.weight))
@@ -811,8 +845,8 @@
                 const anchor=el.getAttribute('text-anchor')||'start';
                 const x=Number(el.getAttribute('x'))+(d.orbitX||0)*d.currentScale;
                 const y=Number(el.getAttribute('y'))+(d.orbitY||0)*d.currentScale;
-                const textWidth=(d.labelWidth||0)*(d.id===activeHoverId?1.18:1);
-                const textHeight=d.id===activeHoverId?(width<520?18:22):16;
+                const textWidth=(d.labelWidth||0)*(d.id===activeHoverId?1.16:1);
+                const textHeight=d.labelFontSize*(d.id===activeHoverId?1.42:1.16);
                 const left=anchor==='middle'?x-textWidth/2:anchor==='end'?x-textWidth:x;
                 const box={left:left-4,right:left+textWidth+4,top:y-textHeight,bottom:y+4};
                 const clear=animatedOccupied.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
@@ -880,7 +914,10 @@
 
         const labelData = simNodes.filter(d=>width>=520 || d.rank<12 || requiredThemes.has(d.id)).sort((a,b)=>a.rank-b.rank);
         const labels = motionLayer.append('g').selectAll('text').data(labelData).join('text')
-          .attr('class','vos-label').text(d=>d.id);
+          .attr('class','vos-label')
+          .style('--label-size',d=>`${d.labelFontSize}px`)
+          .style('fill',d=>d.blendColor)
+          .text(d=>d.id);
         const occupied = [];
         labels.each(function(d) {
           const r = radius(d.weight), el = d3.select(this);
@@ -981,8 +1018,8 @@
             if (d!==focus&&!d.labelVisible) return;
             const p=positions.get(d.id), el=labelElements.get(d.id);
             let x=p.x+d.labelDx, y=p.y+d.labelDy, anchor=d.labelAnchor;
-            const textWidth=(d.labelWidth||0)*(d===focus?1.18:1);
-            const textHeight=d===focus?(width<520?18:22):16;
+            const textWidth=(d.labelWidth||0)*(d===focus?1.16:1);
+            const textHeight=d.labelFontSize*(d===focus?1.42:1.16);
             if (d===focus) {
               x=Math.max(textWidth/2+4,Math.min(width-textWidth/2-4,p.x));
               y=Math.max(textHeight+4,p.y-radius(d.weight)*1.45-8);
