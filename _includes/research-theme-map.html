@@ -138,109 +138,23 @@
         {id:'P14',year:2026, title:'Is Memorization Helpful or Harmful? Prior Information Sets the Threshold', url:'https://arxiv.org/abs/2602.09405', linkLabel:'arXiv'}
       ];
 
-      const themeFamily = {
-        'Spectral inference':'Random matrices & spectral methods', 'Matrix perturbation':'Random matrices & spectral methods', 'Low-rank structure':'Random matrices & spectral methods', 'Heteroscedastic noise':'Random matrices & spectral methods', 'Random matrix theory':'Random matrices & spectral methods',
-        'State evolution':'High dimensional statistics', 'Dynamical mean field theory':'High dimensional statistics', 'High-dimensional asymptotics':'High dimensional statistics', 'Calibration':'High dimensional statistics', 'Uncertainty quantification':'High dimensional statistics',
-        'Iterative algorithms':'Linear regression & linear methods', 'Ridge regression':'Linear regression & linear methods', 'Missing & distributed data':'Linear regression & linear methods',
-        'Linear and nonlinear algorithms':'Linear regression & linear methods',
-        'Neural networks':'Machine learning theory', 'Interpolation & memorization':'Machine learning theory', 'Label aggregation & cleaning':'Machine learning theory', 'Robust learning':'Machine learning theory', 'Benign overfitting':'Machine learning theory', 'Model and data aggregation':'Machine learning theory', 'Conformal prediction':'Machine learning theory',
-        'Reinforcement learning':'Machine learning theory', 'Reinforcement learning & policy optimization':'Machine learning theory',
-        'Policy optimization':'Information theory & optimality', 'Stochastic optimization':'Information theory & optimality',
-        'Optimality and lower bounds':'Information theory & optimality',
-        'Exchangeability & tensors':'Probability & its applications', 'Concentration inequalities':'Probability & its applications'
-      };
-
-      const themeOrder = [
-        'Spectral inference','Matrix perturbation','Low-rank structure','Heteroscedastic noise',
-        'State evolution','Dynamical mean field theory','Iterative algorithms','High-dimensional asymptotics','Random matrix theory',
-        'Neural networks','Ridge regression','Interpolation & memorization',
-        'Label aggregation & cleaning','Robust learning','Missing & distributed data','Conformal prediction','Calibration','Uncertainty quantification',
-        'Reinforcement learning','Policy optimization','Stochastic optimization',
-        'Exchangeability & tensors','Concentration inequalities'
-      ];
-
-      const relevance = {
-        P1:{'Spectral inference':.90,'Matrix perturbation':1,'Low-rank structure':.80,'Heteroscedastic noise':.75,'Random matrix theory':.45,'High-dimensional asymptotics':.30,'Concentration inequalities':.20},
-        P2:{'Spectral inference':1,'Matrix perturbation':.90,'Low-rank structure':.65,'Heteroscedastic noise':1,'Uncertainty quantification':.35,'Concentration inequalities':.30,'High-dimensional asymptotics':.25},
-        P3:{'Reinforcement learning':1,'Policy optimization':1,'Stochastic optimization':.55,'Iterative algorithms':.25},
-        P4:{'State evolution':.70,'Dynamical mean field theory':1,'Iterative algorithms':.90,'Neural networks':.55,'High-dimensional asymptotics':.75,'Random matrix theory':.50,'Stochastic optimization':.35},
-        P5:{'Random matrix theory':.65,'Ridge regression':.50,'Interpolation & memorization':1,'High-dimensional asymptotics':.75,'Low-rank structure':.20,'Neural networks':.30},
-        P6:{'Label aggregation & cleaning':1,'Robust learning':.65,'Calibration':.55,'High-dimensional asymptotics':.30},
-        P7:{'Ridge regression':1,'Interpolation & memorization':.65,'Spectral inference':.40,'High-dimensional asymptotics':.60,'Random matrix theory':.50},
-        P8:{'Missing & distributed data':1,'Uncertainty quantification':.20,'High-dimensional asymptotics':.40,'Stochastic optimization':.20},
-        P9:{'Conformal prediction':1,'Calibration':1,'Uncertainty quantification':1,'Concentration inequalities':.20},
-        P10:{'Stochastic optimization':1,'Iterative algorithms':.40,'High-dimensional asymptotics':.20},
-        P11:{'State evolution':1,'Iterative algorithms':.90,'Random matrix theory':.45,'Dynamical mean field theory':.40,'Stochastic optimization':.35,'High-dimensional asymptotics':.50,'Concentration inequalities':.25},
-        P12:{'Label aggregation & cleaning':1,'Robust learning':1,'High-dimensional asymptotics':.20,'Uncertainty quantification':.15},
-        P13:{'Exchangeability & tensors':1,'Concentration inequalities':1,'Missing & distributed data':.40,'Matrix perturbation':.20,'Random matrix theory':.20},
-        P14:{'Interpolation & memorization':1,'Low-rank structure':.55,'High-dimensional asymptotics':.55,'Neural networks':.25,'Random matrix theory':.25,'Ridge regression':.20}
-      };
-
-      const omittedFromMap = new Set([
-        'Low-rank structure','Neural networks','Robust learning','Uncertainty quantification',
-        'Reinforcement learning','Policy optimization','Heteroscedastic noise','Exchangeability & tensors',
-        'Label aggregation & cleaning','Missing & distributed data'
-      ]);
-      const mapThemeOrder = themeOrder.filter(theme => !omittedFromMap.has(theme));
-      mapThemeOrder.splice(mapThemeOrder.indexOf('Stochastic optimization'), 0, 'Reinforcement learning & policy optimization');
-      mapThemeOrder.splice(mapThemeOrder.indexOf('Iterative algorithms')+1, 0, 'Linear and nonlinear algorithms');
-      mapThemeOrder.splice(mapThemeOrder.indexOf('Interpolation & memorization')+1, 0, 'Benign overfitting');
-      mapThemeOrder.splice(mapThemeOrder.indexOf('Benign overfitting')+1, 0, 'Model and data aggregation');
-      mapThemeOrder.splice(mapThemeOrder.indexOf('Stochastic optimization')+1, 0, 'Optimality and lower bounds');
-      const mapLabelOverrides = {
-        'Interpolation & memorization':'Memorization',
-        'Reinforcement learning & policy optimization':'Reinforcement learning',
-        'Exchangeability & tensors':'Exchangeability'
-      };
-      papers.forEach(p => {
-        relevance[p.id]['Reinforcement learning & policy optimization'] = Math.max(
-          relevance[p.id]['Reinforcement learning'] || 0,
-          relevance[p.id]['Policy optimization'] || 0
-        );
+      const corpusScores = {{ site.data.research_theme_scores | jsonify }};
+      const families = corpusScores.metadata.families;
+      const themeConcepts = corpusScores.concepts.filter(concept=>concept.kind==='theme');
+      const keywordConcepts = corpusScores.concepts.filter(concept=>concept.kind==='keyword');
+      const themeFamily = Object.fromEntries(themeConcepts.map(concept=>[concept.label,concept.family]));
+      const relevance = Object.fromEntries(papers.map(paper=>[paper.id,{}]));
+      themeConcepts.forEach(concept=>{
+        papers.forEach(paper=>{relevance[paper.id][concept.label]=concept.paper_scores[paper.id]||0;});
       });
-      const addedThemeScores = {
-        P3:{'Linear and nonlinear algorithms':.45,'Optimality and lower bounds':.35},
-        P4:{'Linear and nonlinear algorithms':.75},
-        P5:{'Benign overfitting':.90,'Optimality and lower bounds':.35},
-        P6:{'Optimality and lower bounds':.30,'Model and data aggregation':.90},
-        P7:{'Benign overfitting':.85},
-        P8:{'Optimality and lower bounds':.45,'Model and data aggregation':1},
-        P9:{'Optimality and lower bounds':1},
-        P10:{'Linear and nonlinear algorithms':.85,'Optimality and lower bounds':1},
-        P11:{'Linear and nonlinear algorithms':.90},
-        P12:{'Model and data aggregation':.85},
-        P14:{'Benign overfitting':.75}
-      };
-      papers.forEach(p => Object.assign(relevance[p.id],addedThemeScores[p.id] || {}));
+      const keywordData = keywordConcepts.map(concept=>({
+        label:concept.label,
+        lines:concept.lines,
+        prevalence:concept.prevalence,
+        themes:concept.theme_similarities,
+        familyWeights:concept.family_weights
+      }));
 
-      /* Secondary full-text concepts. Prevalence controls word size; per-theme
-         scores control visibility when a theme is previewed or pinned. */
-      const keywordData = [
-        {label:'low-rank signals',prevalence:.92,themes:{'Spectral inference':.90,'Matrix perturbation':.95,'Random matrix theory':.76,'Memorization':.30}},
-        {label:'small eigengaps',prevalence:.72,themes:{'Spectral inference':1,'Matrix perturbation':.92,'Random matrix theory':.48}},
-        {label:'asymmetric perturbations',prevalence:.67,themes:{'Matrix perturbation':1,'Spectral inference':.82,'Random matrix theory':.42}},
-        {label:'heteroscedastic noise',prevalence:.74,themes:{'Spectral inference':.88,'Matrix perturbation':.88,'Concentration inequalities':.28}},
-        {label:'random designs',prevalence:1,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.88,'State evolution':.76,'Iterative algorithms':.58}},
-        {label:'structured missingness',prevalence:.62,themes:{'Model and data aggregation':1,'Linear and nonlinear algorithms':.46,'Optimality and lower bounds':.28}},
-        {label:'distributed datasets',prevalence:.56,themes:{'Model and data aggregation':.92,'Linear and nonlinear algorithms':.52}},
-        {label:'exchangeable data',prevalence:.69,themes:{'Concentration inequalities':1,'Conformal prediction':.42,'Model and data aggregation':.30}},
-        {label:'hierarchical sampling',prevalence:.53,themes:{'Concentration inequalities':.88,'Model and data aggregation':.52,'Conformal prediction':.24}},
-        {label:'tensor-valued data',prevalence:.52,themes:{'Concentration inequalities':.96,'Random matrix theory':.58,'Matrix perturbation':.26}},
-        {label:'ridge regularization',prevalence:.82,themes:{'Linear and nonlinear algorithms':.78,'Benign overfitting':.74,'Memorization':.64,'Optimality and lower bounds':.38}},
-        {label:'interpolation threshold',prevalence:.86,themes:{'Memorization':1,'Benign overfitting':1,'High-dimensional asymptotics':.50}},
-        {label:'prior information',prevalence:.71,themes:{'Benign overfitting':1,'Memorization':.78,'Optimality and lower bounds':.48}},
-        {label:'gold-standard labels',prevalence:.58,themes:{'Model and data aggregation':1,'Conformal prediction':.20}},
-        {label:'label cleaning',prevalence:.64,themes:{'Model and data aggregation':1,'Concentration inequalities':.28}},
-        {label:'entropy regularization',prevalence:.48,themes:{'Reinforcement learning':1,'Stochastic optimization':.68,'Iterative algorithms':.30}},
-        {label:'natural policy gradients',prevalence:.51,themes:{'Reinforcement learning':1,'Stochastic optimization':.78,'Iterative algorithms':.46}},
-        {label:'dimension-free rates',prevalence:.77,themes:{'Linear and nonlinear algorithms':.82,'Benign overfitting':.68,'Memorization':.58,'Optimality and lower bounds':.62}},
-        {label:'finite-sample guarantees',prevalence:.88,themes:{'State evolution':.84,'Concentration inequalities':.88,'Optimality and lower bounds':.58}},
-        {label:'predictive coverage',prevalence:.73,themes:{'Conformal prediction':1,'Optimality and lower bounds':.72,'Concentration inequalities':.48}},
-        {label:'label-noise robustness',prevalence:.60,themes:{'Model and data aggregation':1,'Conformal prediction':.36,'Concentration inequalities':.38}},
-        {label:'computational complexity',prevalence:.66,themes:{'Stochastic optimization':1,'Optimality and lower bounds':1,'Iterative algorithms':.44,'Linear and nonlinear algorithms':.44}}
-      ];
-
-      const families = [...new Set(Object.values(themeFamily))];
       const familyColor = {};
       families.forEach((family, i) => familyColor[family] = `var(--viz-series-${i + 1})`);
       const colorChannels = value => {
@@ -254,35 +168,31 @@
       const blendFamilyWeights = weights => {
         const entries=Object.entries(weights).filter(([family,weight])=>familyRgb[family]&&weight>0);
         if (!entries.length) return `rgb(${constellationTextRgb.map(Math.round).join(',')})`;
-        const dominant=entries.reduce((best,item)=>item[1]>best[1]?item:best,entries[0]);
-        const dominantBoost=dominant[1]*.28;
-        const total=entries.reduce((sum,[,weight])=>sum+weight,0)+dominantBoost;
-        const mixed=[0,1,2].map(channel=>(entries.reduce((sum,[family,weight])=>sum+familyRgb[family][channel]*weight,0)+familyRgb[dominant[0]][channel]*dominantBoost)/total);
+        const total=entries.reduce((sum,[,weight])=>sum+weight,0);
+        const mixed=[0,1,2].map(channel=>entries.reduce((sum,[family,weight])=>sum+familyRgb[family][channel]*weight,0)/total);
         const lifted=mixed.map((channel,index)=>channel*.86+constellationTextRgb[index]*.14);
         return `rgb(${lifted.map(Math.round).join(',')})`;
       };
 
-      const allNodes = mapThemeOrder.map(theme => {
-        const values = papers.map(p => relevance[p.id][theme] || 0);
+      const allNodes = themeConcepts.map(concept => {
+        const values = papers.map(p => relevance[p.id][concept.label] || 0);
         const paperMatches = papers.map((p,i) => ({...p, score:values[i]}))
-          .filter(p => p.score >= .15)
+          .filter(p => p.score >= .12)
           .sort((a,b) => b.score-a.score || b.year-a.year || a.id.localeCompare(b.id));
         return {
-          theme,
-          id:mapLabelOverrides[theme] || theme,
-          family:themeFamily[theme],
+          theme:concept.label,
+          id:concept.label,
+          labelLines:concept.lines,
+          family:concept.family,
+          familyWeights:concept.family_weights,
+          prevalence:concept.prevalence,
           weight:d3.sum(values),
           paperIds:paperMatches.map(p=>p.id),
           paperMatches
         };
-      }).filter(d => d.weight >= .5);
+      });
       const rankedNodes = allNodes.slice().sort((a,b)=>b.weight-a.weight || a.id.localeCompare(b.id));
-      const requiredThemes = new Set(['Conformal prediction','State evolution']);
-      const selectedThemeIds = new Set([
-        ...rankedNodes.filter(d=>!requiredThemes.has(d.id)).slice(0,12).map(d=>d.id),
-        ...requiredThemes
-      ]);
-      const nodes = rankedNodes.filter(d=>selectedThemeIds.has(d.id));
+      const nodes = rankedNodes;
 
       const linkCandidates = [];
       for (let i=0; i<nodes.length; i++) {
@@ -331,27 +241,11 @@
         }
       });
       const keptLinks = linkCandidates.filter(l=>keptLinkKeys.has(`${l.source}|${l.target}`));
-      const allNodeById=new Map(allNodes.map(node=>[node.id,node]));
       nodes.forEach(node=>{
-        const weights=Object.fromEntries(families.map(family=>[family,0]));
-        weights[node.family]+=node.weight*1.1;
-        papers.forEach(paper=>{
-          const base=relevance[paper.id][node.theme]||0;
-          if (base<.15) return;
-          nodes.forEach(other=>{
-            const overlap=relevance[paper.id][other.theme]||0;
-            if (overlap>=.15) weights[other.family]+=Math.min(base,overlap)*.22;
-          });
-        });
-        node.blendColor=blendFamilyWeights(weights);
+        node.blendColor=blendFamilyWeights(node.familyWeights);
       });
       keywordData.forEach(keyword=>{
-        const weights=Object.fromEntries(families.map(family=>[family,0]));
-        Object.entries(keyword.themes).forEach(([theme,score])=>{
-          const family=allNodeById.get(theme)?.family||themeFamily[theme];
-          if (family) weights[family]+=score;
-        });
-        keyword.blendColor=blendFamilyWeights(weights);
+        keyword.blendColor=blendFamilyWeights(keyword.familyWeights);
       });
 
       const select = document.getElementById('vos-term-select');
@@ -446,7 +340,7 @@
         const node=nodes.find(d=>d.id===theme);
         const extra=node.paperMatches.slice(3);
         const state=theme===currentSelection?'Pinned':'Preview';
-        selectionText.innerHTML=`<strong>${state}: ${escapeHtml(theme)}.</strong> ${node.paperMatches.length} related ${node.paperMatches.length===1?'paper':'papers'}, ranked by full-text relevance.`;
+        selectionText.innerHTML=`<strong>${state}: ${escapeHtml(theme)}.</strong> ${node.paperMatches.length} related ${node.paperMatches.length===1?'paper':'papers'}, ranked by corpus-derived full-text relevance.`;
         morePapers.innerHTML=extra.length
           ? `<div class="more-papers-heading">More papers</div><ol class="paper-list">${extra.map(p=>`<li>${paperLine(p)}</li>`).join('')}</ol>`
           : '';
@@ -516,7 +410,7 @@
           .attr('width', width).attr('height', height)
           .attr('aria-labelledby','vos-svg-title vos-svg-desc');
         svg.append('title').attr('id','vos-svg-title').text('Research theme co-occurrence map');
-        svg.append('desc').attr('id','vos-svg-desc').text('Themes are closer and connected when they recur in the same papers. Node size represents prominence across the full text corpus. A faint outer cloud shows recurring technical keywords and brightens by relevance when a theme is selected.');
+        svg.append('desc').attr('id','vos-svg-desc').text('Themes are closer and connected when their corpus-derived paper relevance overlaps. Label and node size represent prevalence across the full-text corpus. Colors blend six research families according to empirical relevance. A faint outer cloud shows secondary concepts and brightens by cosine similarity when a theme is selected.');
         const motionLayer = svg.append('g').attr('class','network-motion');
         const spaceLayer = motionLayer.append('g').attr('aria-hidden','true');
         const starData=Array.from({length:width<520?26:40},()=>({
@@ -530,7 +424,9 @@
           .attr('class','star-dust').attr('cx',d=>d.x).attr('cy',d=>d.y)
           .attr('r',d=>d.r).attr('opacity',d=>d.opacity);
 
-        const keywordFont=d3.scaleSqrt().domain(d3.extent(keywordData,d=>d.prevalence)).range(width<520?[7.4,10.8]:[8.6,13.4]);
+        const prevalenceExtent=d3.extent(corpusScores.concepts,d=>d.prevalence);
+        const commonLabelFont=d3.scaleSqrt().domain(prevalenceExtent).range(width<520?[7.2,13.1]:[8.4,15.2]);
+        const keywordFont=d=>commonLabelFont(d.prevalence);
         const cloudData=keywordData.map((d,i)=>({
           ...d,
           angle:i*2*Math.PI/keywordData.length+systemRotation+(random()-.5)*.08,
@@ -543,10 +439,19 @@
           .selectAll('text').data(cloudData).join('text')
           .attr('class','keyword-cloud-label')
           .attr('text-anchor','middle')
-          .style('font-size',d=>`${keywordFont(d.prevalence)}px`)
-          .style('fill',d=>d.blendColor)
-          .text(d=>d.label);
-        keywordLabels.each(function(d){d.textWidth=this.getComputedTextLength();});
+          .style('font-size',d=>`${keywordFont(d)}px`)
+          .style('fill',d=>d.blendColor);
+        keywordLabels.each(function(d){
+          const lines=d.lines?.length?d.lines:[d.label];
+          const text=d3.select(this);
+          lines.forEach((line,index)=>{
+            text.append('tspan').attr('x',0)
+              .attr('dy',index? '1.04em' : `${-(lines.length-1)*.50}em`)
+              .text(line);
+          });
+          d.textWidth=d3.max(Array.from(this.querySelectorAll('tspan')),span=>span.getComputedTextLength())||50;
+          d.textHeight=keywordFont(d)*Math.max(1,lines.length)*1.04;
+        });
         const positionKeywordCloud=seconds=>{
           const cx=width/2,cy=height/2;
           keywordLabels.each(function(d){
@@ -556,9 +461,9 @@
             const ry=(height/2-(width<520?17:22))*d.radialBand;
             const drift=3.5*Math.sin(seconds*.23+d.floatPhase);
             d.cloudX=Math.max((d.textWidth||50)/2+6,Math.min(width-(d.textWidth||50)/2-6,cx+Math.cos(angle)*(rx+drift)));
-            d.cloudY=Math.max(keywordFont(d.prevalence)+4,Math.min(height-7,cy+Math.sin(angle)*(ry+drift*.7)));
+            d.cloudY=Math.max(d.textHeight/2+5,Math.min(height-d.textHeight/2-5,cy+Math.sin(angle)*(ry+drift*.7)));
           });
-          keywordLabels.attr('x',d=>d.cloudX).attr('y',d=>d.cloudY);
+          keywordLabels.attr('transform',d=>`translate(${d.cloudX},${d.cloudY})`);
         };
         positionKeywordCloud(0);
         keywordCloudSelection=keywordLabels;
@@ -578,8 +483,8 @@
         }));
         const simLinks = keptLinks.map(d=>({...d}));
         const radius = d3.scaleSqrt().domain(d3.extent(simNodes,d=>d.weight)).range(width < 520 ? [6,15] : [7,19]);
-        const themeLabelFont=d3.scaleSqrt().domain(d3.extent(simNodes,d=>d.weight)).range(width<520?[9.8,13.2]:[11,15.8]);
-        simNodes.forEach(d=>{d.labelFontSize=themeLabelFont(d.weight);});
+        const mainThemeBonus=width<520?1.25:1.65;
+        simNodes.forEach(d=>{d.labelFontSize=commonLabelFont(d.prevalence)+mainThemeBonus;});
         d3.forceSimulation(simNodes)
           .randomSource(random)
           .force('link',d3.forceLink(simLinks).id(d=>d.id).distance(d=>(width<520?68:92)-18*Math.min(1,d.weight)).strength(d=>.18+.12*d.weight))
@@ -761,11 +666,11 @@
         const nodeDepth = nodeFloat.append('path')
           .attr('class','node-depth').attr('d',d=>nodePolygonPath(d))
           .attr('transform','translate(4,5)')
-          .attr('fill',d=>familyColor[d.family]);
+          .attr('fill',d=>d.blendColor);
         const node = nodeFloat.append('path')
           .attr('class','vos-node').attr('d',d=>nodePolygonPath(d))
           .attr('data-polytope-sides',d=>d.polySides)
-          .attr('fill',d=>familyColor[d.family]).attr('fill-opacity',.72)
+          .attr('fill',d=>d.blendColor).attr('fill-opacity',.72)
           .attr('role','button').attr('tabindex',0)
           .attr('aria-pressed',d=>String(d.id===currentSelection))
           .attr('aria-label',d=>`${d.id}, connected to ${d.paperIds.length} papers`)
@@ -808,6 +713,10 @@
               d.currentBaseX+=(d.targetBaseX-d.currentBaseX)*focusBlend;
               d.currentBaseY+=(d.targetBaseY-d.currentBaseY)*focusBlend;
               d.currentScale+=(d.targetScale-d.currentScale)*focusBlend;
+              if (Number.isFinite(d.targetLabelX)) {
+                d.currentLabelX+=(d.targetLabelX-d.currentLabelX)*focusBlend;
+                d.currentLabelY+=(d.targetLabelY-d.currentLabelY)*focusBlend;
+              }
             });
             nodeWrap.attr('transform',d=>`translate(${d.currentBaseX},${d.currentBaseY}) scale(${d.currentScale})`);
             nodeFloat.attr('transform',d=>{
@@ -831,7 +740,7 @@
               d.orbitY=dy;
               return `translate(${dx},${dy}) rotate(${tilt}) skewX(${tilt*.55}) scale(${squash},1)`;
             });
-            labels.attr('transform',d=>`translate(${(d.orbitX||0)*d.currentScale},${(d.orbitY||0)*d.currentScale})`);
+            labels.attr('transform',d=>`translate(${d.currentLabelX+(d.orbitX||0)*d.currentScale},${d.currentLabelY+(d.orbitY||0)*d.currentScale})`);
 
             if (time-lastLabelFrame>=120) {
               const animatedLabelItems=[];
@@ -843,12 +752,12 @@
               const animatedOccupied=[];
               animatedLabelItems.forEach(({d,el})=>{
                 const anchor=el.getAttribute('text-anchor')||'start';
-                const x=Number(el.getAttribute('x'))+(d.orbitX||0)*d.currentScale;
-                const y=Number(el.getAttribute('y'))+(d.orbitY||0)*d.currentScale;
+                const x=d.currentLabelX+(d.orbitX||0)*d.currentScale;
+                const y=d.currentLabelY+(d.orbitY||0)*d.currentScale;
                 const textWidth=(d.labelWidth||0)*(d.id===activeHoverId?1.16:1);
-                const textHeight=d.labelFontSize*(d.id===activeHoverId?1.42:1.16);
+                const textHeight=(d.labelHeight||d.labelFontSize)*(d.id===activeHoverId?1.16:1);
                 const left=anchor==='middle'?x-textWidth/2:anchor==='end'?x-textWidth:x;
-                const box={left:left-4,right:left+textWidth+4,top:y-textHeight,bottom:y+4};
+                const box={left:left-4,right:left+textWidth+4,top:y-textHeight/2-3,bottom:y+textHeight/2+3};
                 const clear=animatedOccupied.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
                 const keep=d.id===activeHoverId||clear;
                 el.style.visibility=keep?'visible':'hidden';
@@ -912,17 +821,26 @@
           syncAnimationState();
         }
 
-        const labelData = simNodes.filter(d=>width>=520 || d.rank<12 || requiredThemes.has(d.id)).sort((a,b)=>a.rank-b.rank);
+        const labelData = simNodes.slice().sort((a,b)=>a.rank-b.rank);
         const labels = motionLayer.append('g').selectAll('text').data(labelData).join('text')
           .attr('class','vos-label')
           .style('--label-size',d=>`${d.labelFontSize}px`)
-          .style('fill',d=>d.blendColor)
-          .text(d=>d.id);
+          .style('fill',d=>d.blendColor);
+        labels.each(function(d){
+          const lines=d.labelLines?.length?d.labelLines:[d.id];
+          const text=d3.select(this);
+          lines.forEach((line,index)=>{
+            text.append('tspan').attr('x',0)
+              .attr('dy',index? '1.04em' : `${-(lines.length-1)*.50}em`)
+              .text(line);
+          });
+          d.labelWidth=d3.max(Array.from(this.querySelectorAll('tspan')),span=>span.getComputedTextLength())||0;
+          d.labelHeight=d.labelFontSize*Math.max(1,lines.length)*1.04;
+        });
         const occupied = [];
         labels.each(function(d) {
           const r = radius(d.weight), el = d3.select(this);
           el.style('display',null);
-          d.labelWidth=this.getComputedTextLength();
           const candidates = [
             [d.x,d.y-r-5,'middle'], [d.x,d.y+r+14,'middle'],
             [d.x+r+6,d.y+4,'start'], [d.x-r-6,d.y+4,'end'],
@@ -931,9 +849,9 @@
           ];
           let placed = false;
           for (const [x,y,anchor] of candidates) {
-            el.attr('x',x).attr('y',y).attr('text-anchor',anchor).style('display',null);
-            const b = this.getBBox();
-            const box = {left:b.x-2,right:b.x+b.width+2,top:b.y-2,bottom:b.y+b.height+2};
+            el.attr('transform',`translate(${x},${y})`).attr('text-anchor',anchor).style('display',null);
+            const left=anchor==='middle'?x-d.labelWidth/2:anchor==='end'?x-d.labelWidth:x;
+            const box={left:left-3,right:left+d.labelWidth+3,top:y-d.labelHeight/2-3,bottom:y+d.labelHeight/2+3};
             const inside = box.left>=3 && box.right<=width-3 && box.top>=3 && box.bottom<=height-3;
             const clear = occupied.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
             if (inside && clear) {
@@ -941,6 +859,10 @@
               d.labelDx=x-d.x;
               d.labelDy=y-d.y;
               d.labelAnchor=anchor;
+              d.currentLabelX=x;
+              d.currentLabelY=y;
+              d.targetLabelX=x;
+              d.targetLabelY=y;
               placed=true;
               break;
             }
@@ -950,6 +872,10 @@
             d.labelDx=0;
             d.labelDy=-r-5;
             d.labelAnchor='middle';
+            d.currentLabelX=d.x;
+            d.currentLabelY=d.y-r-5;
+            d.targetLabelX=d.currentLabelX;
+            d.targetLabelY=d.currentLabelY;
             el.style('display','none');
           }
         });
@@ -988,7 +914,6 @@
             ty=Math.max(28-d3.min(py),Math.min(height-28-d3.max(py),ty));
             positions.forEach(p=>{p.x+=tx;p.y+=ty;});
           }
-          const duration=reduceMotion?0:460;
           simNodes.forEach(d=>{
             const p=positions.get(d.id);
             d.targetBaseX=p.x;
@@ -1019,14 +944,14 @@
             const p=positions.get(d.id), el=labelElements.get(d.id);
             let x=p.x+d.labelDx, y=p.y+d.labelDy, anchor=d.labelAnchor;
             const textWidth=(d.labelWidth||0)*(d===focus?1.16:1);
-            const textHeight=d.labelFontSize*(d===focus?1.42:1.16);
+            const textHeight=(d.labelHeight||d.labelFontSize)*(d===focus?1.16:1);
             if (d===focus) {
               x=Math.max(textWidth/2+4,Math.min(width-textWidth/2-4,p.x));
-              y=Math.max(textHeight+4,p.y-radius(d.weight)*1.45-8);
+              y=Math.max(textHeight/2+4,p.y-radius(d.weight)*1.45-8-textHeight/2);
               anchor='middle';
             }
             const left=anchor==='middle'?x-textWidth/2:anchor==='end'?x-textWidth:x;
-            const box={left:left-3,right:left+textWidth+3,top:y-textHeight,bottom:y+3};
+            const box={left:left-3,right:left+textWidth+3,top:y-textHeight/2-3,bottom:y+textHeight/2+3};
             const inside=box.left>=2&&box.right<=width-2&&box.top>=2&&box.bottom<=height-2;
             const clear=occupiedLabels.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
             if (d===focus||(inside&&clear)) {
@@ -1036,10 +961,17 @@
             }
           });
           labels.style('display',d=>visibleLabels.has(d.id)?null:'none')
-            .transition().duration(duration).ease(d3.easeCubicOut)
-            .attr('x',d=>(labelTargets.get(d.id)||{x:positions.get(d.id).x}).x)
-            .attr('y',d=>(labelTargets.get(d.id)||{y:positions.get(d.id).y}).y)
-            .attr('text-anchor',d=>(labelTargets.get(d.id)||{anchor:d.labelAnchor}).anchor);
+            .attr('text-anchor',d=>(labelTargets.get(d.id)||{anchor:d.labelAnchor}).anchor)
+            .each(function(d){
+              const target=labelTargets.get(d.id)||{x:positions.get(d.id).x,y:positions.get(d.id).y};
+              d.targetLabelX=target.x;
+              d.targetLabelY=target.y;
+              if (reduceMotion) {
+                d.currentLabelX=target.x;
+                d.currentLabelY=target.y;
+                d3.select(this).attr('transform',`translate(${target.x},${target.y})`);
+              }
+            });
         }
 
         function restoreMap() {

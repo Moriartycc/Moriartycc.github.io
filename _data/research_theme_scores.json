@@ -1,0 +1,3001 @@
+{
+  "metadata": {
+    "method": "BM25F phrase scoring over full-text PDFs",
+    "normalization": "Each concept's paper scores are divided by that concept's maximum paper score; prevalence is their mean.",
+    "similarity": "Cosine similarity between 14-paper relevance vectors.",
+    "family_profile": "Per paper, the maximum normalized relevance among themes assigned to the family.",
+    "family_color_weights": "Cosine similarities to the six family profiles, normalized to sum to one.",
+    "alias_matching": "Case-folded exact phrases with punctuation normalized to spaces; longest overlapping alias wins.",
+    "references_excluded": true,
+    "k1": 1.2,
+    "field_weights": {
+      "title": 4.0,
+      "abstract": 3.0,
+      "headings": 2.0,
+      "body": 1.0
+    },
+    "field_length_normalization": {
+      "title": 0.2,
+      "abstract": 0.6,
+      "headings": 0.5,
+      "body": 0.75
+    },
+    "concept_config_sha256": "11b80705e81f43d16f590693f3926ac1f2f30d6ce39bf11baae16755e518a05c",
+    "paper_order": [
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5",
+      "P6",
+      "P7",
+      "P8",
+      "P9",
+      "P10",
+      "P11",
+      "P12",
+      "P13",
+      "P14"
+    ],
+    "families": [
+      "Random matrices & spectral methods",
+      "High dimensional statistics",
+      "Linear regression & linear methods",
+      "Machine learning theory",
+      "Information theory & optimality",
+      "Probability & its applications"
+    ]
+  },
+  "sources": [
+    {
+      "id": "P1",
+      "title": "Asymmetry Helps: Eigenvalue and Eigenvector Analyses of Asymmetrically Perturbed Low-Rank Matrices",
+      "year": 2019,
+      "pdf_url": "https://arxiv.org/pdf/1811.12804",
+      "pdf_sha256": "f17027214e3ccb55370fe48c5480c0baa5fd7d6eb20aeb41826b1cf84f6d59e9",
+      "pages": 37,
+      "extracted_characters": 110068,
+      "abstract_words": 255,
+      "heading_count": 49,
+      "body_words": 10510
+    },
+    {
+      "id": "P2",
+      "title": "Tackling Small Eigen-gaps: Fine-Grained Eigenvector Estimation and Inference under Heteroscedastic Noise",
+      "year": 2020,
+      "pdf_url": "https://arxiv.org/pdf/2001.04620",
+      "pdf_sha256": "14a6159e61d71a18c45e38f9463c14e75183a5e065510bcaf5a983ba39eeb078",
+      "pages": 69,
+      "extracted_characters": 171490,
+      "abstract_words": 232,
+      "heading_count": 65,
+      "body_words": 29117
+    },
+    {
+      "id": "P3",
+      "title": "Fast Global Convergence of Natural Policy Gradient Methods with Entropy Regularization",
+      "year": 2020,
+      "pdf_url": "https://arxiv.org/pdf/2007.06558",
+      "pdf_sha256": "23fddbc3f493d02e27b6f7bcde2d592864a576c7e47858446d4744a37235bd90",
+      "pages": 40,
+      "extracted_characters": 112516,
+      "abstract_words": 193,
+      "heading_count": 35,
+      "body_words": 10058
+    },
+    {
+      "id": "P4",
+      "title": "The High-dimensional Asymptotics of First Order Methods with Random Data",
+      "year": 2021,
+      "pdf_url": "https://arxiv.org/pdf/2112.07572",
+      "pdf_sha256": "0b5cca02187d71ef52de5b02835b62b5a1154f5b2d0188a5c3ae90094e331514",
+      "pages": 78,
+      "extracted_characters": 183018,
+      "abstract_words": 204,
+      "heading_count": 39,
+      "body_words": 13801
+    },
+    {
+      "id": "P5",
+      "title": "Memorize to Generalize: On the Necessity of Interpolation in High Dimensional Linear Regression",
+      "year": 2022,
+      "pdf_url": "https://arxiv.org/pdf/2202.09889",
+      "pdf_sha256": "5a2a8cd5b7e2fecbbaa8de759671a7c61789aa8c7440676b038d16993ffd1e0e",
+      "pages": 32,
+      "extracted_characters": 71256,
+      "abstract_words": 136,
+      "heading_count": 17,
+      "body_words": 5554
+    },
+    {
+      "id": "P6",
+      "title": "How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels",
+      "year": 2022,
+      "pdf_url": "https://arxiv.org/pdf/2206.12041",
+      "pdf_sha256": "73bba3dd9118096752fbc2a5e3d72af2727acae85aef186dbb5aa4e66e803a46",
+      "pages": 63,
+      "extracted_characters": 152766,
+      "abstract_words": 156,
+      "heading_count": 35,
+      "body_words": 12845
+    },
+    {
+      "id": "P7",
+      "title": "Dimension Free Ridge Regression",
+      "year": 2023,
+      "pdf_url": "https://arxiv.org/pdf/2210.08571",
+      "pdf_sha256": "5fcce9d2aea751e76487104fb372647430cae702f666881efe642734e50c11df",
+      "pages": 86,
+      "extracted_characters": 163609,
+      "abstract_words": 285,
+      "heading_count": 47,
+      "body_words": 13680
+    },
+    {
+      "id": "P8",
+      "title": "Collaboratively Learning Linear Models with Structured Missing Data",
+      "year": 2023,
+      "pdf_url": "https://arxiv.org/pdf/2307.11947",
+      "pdf_sha256": "a9741ca646741a01bb66352c2f63c56014ffb2330e8e7e4dc24b7613885598a7",
+      "pages": 22,
+      "extracted_characters": 62022,
+      "abstract_words": 123,
+      "heading_count": 30,
+      "body_words": 5456
+    },
+    {
+      "id": "P9",
+      "title": "Two Fundamental Limits for Uncertainty Quantification in Predictive Inference",
+      "year": 2024,
+      "pdf_url": "https://proceedings.mlr.press/v247/areces24a/areces24a.pdf",
+      "pdf_sha256": "1a98e77e1857638b81b906a44cb0407e80c854b6d0c7cabb5c46ed4fa44165ac",
+      "pages": 33,
+      "extracted_characters": 71244,
+      "abstract_words": 180,
+      "heading_count": 35,
+      "body_words": 6446
+    },
+    {
+      "id": "P10",
+      "title": "Geometry, Computation, and Optimality in Stochastic Optimization",
+      "year": 2024,
+      "pdf_url": "https://arxiv.org/pdf/1909.10455",
+      "pdf_sha256": "31ae77f623e1007bf54bfa5142dbf86c23befbbb6793c38077d3b427f5dc4c0e",
+      "pages": 47,
+      "extracted_characters": 108288,
+      "abstract_words": 121,
+      "heading_count": 30,
+      "body_words": 14054
+    },
+    {
+      "id": "P11",
+      "title": "State Evolution Beyond First-order Methods I: Rigorous Predictions and Finite-sample Guarantees",
+      "year": 2025,
+      "pdf_url": "https://arxiv.org/pdf/2507.19611",
+      "pdf_sha256": "7d3a99667cb0ca2932a6e5223900e097d6a20f09076cb7b2627540de4ae2a500",
+      "pages": 55,
+      "extracted_characters": 161989,
+      "abstract_words": 202,
+      "heading_count": 58,
+      "body_words": 22507
+    },
+    {
+      "id": "P12",
+      "title": "Some Robustness Properties of Label Cleaning",
+      "year": 2025,
+      "pdf_url": "https://arxiv.org/pdf/2509.11379",
+      "pdf_sha256": "09865036a41a29e68b73d282b77db1a2640369561f83cc3313968d5a5b6c37a9",
+      "pages": 41,
+      "extracted_characters": 93052,
+      "abstract_words": 166,
+      "heading_count": 29,
+      "body_words": 15645
+    },
+    {
+      "id": "P13",
+      "title": "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data",
+      "year": 2026,
+      "pdf_url": "https://arxiv.org/pdf/2601.20152",
+      "pdf_sha256": "6093c08029728a9bb3c78578b326c32028b31683e89ada892ef9614f965c2268",
+      "pages": 48,
+      "extracted_characters": 123219,
+      "abstract_words": 157,
+      "heading_count": 65,
+      "body_words": 11445
+    },
+    {
+      "id": "P14",
+      "title": "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold",
+      "year": 2026,
+      "pdf_url": "https://arxiv.org/pdf/2602.09405",
+      "pdf_sha256": "607a5bfca87d93e2dfa383864c22cbf5892da6f1d328881c66206997a146618c",
+      "pages": 33,
+      "extracted_characters": 75921,
+      "abstract_words": 95,
+      "heading_count": 27,
+      "body_words": 5116
+    }
+  ],
+  "concepts": [
+    {
+      "label": "Spectral inference",
+      "kind": "theme",
+      "family": "Random matrices & spectral methods",
+      "lines": [
+        "Spectral inference"
+      ],
+      "aliases": [
+        "eigenvalue estimation",
+        "eigenvector estimation",
+        "spectral estimation",
+        "spectral inference",
+        "spectral method"
+      ],
+      "paper_scores": {
+        "P1": 1.0,
+        "P2": 0.561631,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.163426,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.123218,
+      "alias_document_frequency": {
+        "eigenvector estimation": 2,
+        "eigenvalue estimation": 2,
+        "spectral estimation": 1,
+        "spectral inference": 0,
+        "spectral method": 1
+      },
+      "alias_papers": {
+        "eigenvector estimation": [
+          "P1",
+          "P2"
+        ],
+        "eigenvalue estimation": [
+          "P1",
+          "P2"
+        ],
+        "spectral estimation": [
+          "P1"
+        ],
+        "spectral inference": [],
+        "spectral method": [
+          "P11"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.474427,
+        "High dimensional statistics": 0.063309,
+        "Linear regression & linear methods": 0.06635,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.395915,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 1.0,
+        "Matrix perturbation": 0.974991,
+        "Random matrix theory": 0.341855,
+        "State evolution": 0.10723,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.118671,
+        "Linear and nonlinear algorithms": 0.104911,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.017035,
+        "Optimality and lower bounds": 0.609013,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Matrix perturbation",
+      "kind": "theme",
+      "family": "Random matrices & spectral methods",
+      "lines": [
+        "Matrix",
+        "perturbation"
+      ],
+      "aliases": [
+        "matrix perturbation",
+        "matrix perturbations",
+        "perturbation analysis",
+        "perturbed matrix"
+      ],
+      "paper_scores": {
+        "P1": 1.0,
+        "P2": 0.350789,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.096485,
+      "alias_document_frequency": {
+        "perturbation analysis": 1,
+        "matrix perturbations": 0,
+        "matrix perturbation": 2,
+        "perturbed matrix": 1
+      },
+      "alias_papers": {
+        "perturbation analysis": [
+          "P1"
+        ],
+        "matrix perturbations": [],
+        "matrix perturbation": [
+          "P1",
+          "P2"
+        ],
+        "perturbed matrix": [
+          "P1"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.534016,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.465984,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.974991,
+        "Matrix perturbation": 1.0,
+        "Random matrix theory": 0.28239,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.588523,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Random matrix theory",
+      "kind": "theme",
+      "family": "Random matrices & spectral methods",
+      "lines": [
+        "Random matrix",
+        "theory"
+      ],
+      "aliases": [
+        "matrix resolvent",
+        "random matrices",
+        "random matrix",
+        "random matrix theory",
+        "spectral distribution"
+      ],
+      "paper_scores": {
+        "P1": 0.362355,
+        "P2": 0.17121,
+        "P3": 0.0,
+        "P4": 0.160163,
+        "P5": 1.0,
+        "P6": 0.0,
+        "P7": 0.463702,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.615026,
+        "P12": 0.0,
+        "P13": 0.401385,
+        "P14": 0.227488
+      },
+      "prevalence": 0.242952,
+      "alias_document_frequency": {
+        "random matrix theory": 4,
+        "spectral distribution": 1,
+        "matrix resolvent": 0,
+        "random matrices": 5,
+        "random matrix": 6
+      },
+      "alias_papers": {
+        "random matrix theory": [
+          "P5",
+          "P7",
+          "P11",
+          "P14"
+        ],
+        "spectral distribution": [
+          "P5"
+        ],
+        "matrix resolvent": [],
+        "random matrices": [
+          "P1",
+          "P2",
+          "P7",
+          "P11",
+          "P13"
+        ],
+        "random matrix": [
+          "P1",
+          "P2",
+          "P4",
+          "P5",
+          "P11",
+          "P13"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.264272,
+        "High dimensional statistics": 0.18029,
+        "Linear regression & linear methods": 0.194561,
+        "Machine learning theory": 0.146159,
+        "Information theory & optimality": 0.133499,
+        "Probability & its applications": 0.08122
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.341855,
+        "Matrix perturbation": 0.28239,
+        "Random matrix theory": 1.0,
+        "State evolution": 0.404933,
+        "High-dimensional asymptotics": 0.448277,
+        "Iterative algorithms": 0.414124,
+        "Linear and nonlinear algorithms": 0.71461,
+        "Memorization": 0.7215,
+        "Benign overfitting": 0.666244,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.04623,
+        "Stochastic optimization": 0.2167,
+        "Optimality and lower bounds": 0.480058,
+        "Concentration inequalities": 0.281093
+      }
+    },
+    {
+      "label": "State evolution",
+      "kind": "theme",
+      "family": "High dimensional statistics",
+      "lines": [
+        "State evolution"
+      ],
+      "aliases": [
+        "dynamical mean field",
+        "gaussian recursion",
+        "onsager correction",
+        "state evolution"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.854788,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 1.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.132485,
+      "alias_document_frequency": {
+        "dynamical mean field": 2,
+        "gaussian recursion": 0,
+        "onsager correction": 1,
+        "state evolution": 2
+      },
+      "alias_papers": {
+        "dynamical mean field": [
+          "P4",
+          "P11"
+        ],
+        "gaussian recursion": [],
+        "onsager correction": [
+          "P11"
+        ],
+        "state evolution": [
+          "P4",
+          "P11"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.15318,
+        "High dimensional statistics": 0.436854,
+        "Linear regression & linear methods": 0.352015,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.057951,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.10723,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.404933,
+        "State evolution": 1.0,
+        "High-dimensional asymptotics": 0.558304,
+        "Iterative algorithms": 0.911922,
+        "Linear and nonlinear algorithms": 0.699846,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.191614,
+        "Optimality and lower bounds": 0.075542,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "High-dimensional asymptotics",
+      "kind": "theme",
+      "family": "High dimensional statistics",
+      "lines": [
+        "High-dimensional",
+        "asymptotics"
+      ],
+      "aliases": [
+        "asymptotic regime",
+        "high dimensional asymptotics",
+        "high dimensional limit",
+        "large dimensional",
+        "proportional asymptotics"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 1.0,
+        "P5": 0.342865,
+        "P6": 0.0,
+        "P7": 0.325973,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.361437
+      },
+      "prevalence": 0.14502,
+      "alias_document_frequency": {
+        "high dimensional asymptotics": 1,
+        "high dimensional limit": 1,
+        "proportional asymptotics": 3,
+        "asymptotic regime": 0,
+        "large dimensional": 0
+      },
+      "alias_papers": {
+        "high dimensional asymptotics": [
+          "P4"
+        ],
+        "high dimensional limit": [
+          "P4"
+        ],
+        "proportional asymptotics": [
+          "P5",
+          "P7",
+          "P14"
+        ],
+        "asymptotic regime": [],
+        "large dimensional": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.171363,
+        "High dimensional statistics": 0.364403,
+        "Linear regression & linear methods": 0.207901,
+        "Machine learning theory": 0.170807,
+        "Information theory & optimality": 0.085527,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.448277,
+        "State evolution": 0.558304,
+        "High-dimensional asymptotics": 1.0,
+        "Iterative algorithms": 0.360302,
+        "Linear and nonlinear algorithms": 0.330548,
+        "Memorization": 0.463553,
+        "Benign overfitting": 0.510448,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.192989,
+        "Optimality and lower bounds": 0.117721,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Iterative algorithms",
+      "kind": "theme",
+      "family": "Linear regression & linear methods",
+      "lines": [
+        "Iterative",
+        "algorithms"
+      ],
+      "aliases": [
+        "first order method",
+        "iterative algorithm",
+        "iterative method",
+        "optimization iteration"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.405695,
+        "P4": 0.498456,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 1.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.136011,
+      "alias_document_frequency": {
+        "first order method": 3,
+        "optimization iteration": 0,
+        "iterative algorithm": 0,
+        "iterative method": 1
+      },
+      "alias_papers": {
+        "first order method": [
+          "P3",
+          "P4",
+          "P11"
+        ],
+        "optimization iteration": [],
+        "iterative algorithm": [],
+        "iterative method": [
+          "P11"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.151742,
+        "High dimensional statistics": 0.378331,
+        "Linear regression & linear methods": 0.373905,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.096021,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.118671,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.414124,
+        "State evolution": 0.911922,
+        "High-dimensional asymptotics": 0.360302,
+        "Iterative algorithms": 1.0,
+        "Linear and nonlinear algorithms": 0.712452,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.166006,
+        "Optimality and lower bounds": 0.186291,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Linear and nonlinear algorithms",
+      "kind": "theme",
+      "family": "Linear regression & linear methods",
+      "lines": [
+        "Linear and nonlinear",
+        "algorithms"
+      ],
+      "aliases": [
+        "general first order method",
+        "gfom",
+        "linear algorithm",
+        "linear estimator",
+        "linear method",
+        "nonlinear algorithm",
+        "nonlinear estimator",
+        "nonlinear method"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.278397,
+        "P5": 0.696696,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.495104,
+        "P11": 1.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.176443,
+      "alias_document_frequency": {
+        "general first order method": 2,
+        "nonlinear algorithm": 0,
+        "nonlinear estimator": 0,
+        "linear algorithm": 0,
+        "linear estimator": 1,
+        "nonlinear method": 1,
+        "linear method": 1,
+        "gfom": 1
+      },
+      "alias_papers": {
+        "general first order method": [
+          "P4",
+          "P11"
+        ],
+        "nonlinear algorithm": [],
+        "nonlinear estimator": [],
+        "linear algorithm": [],
+        "linear estimator": [
+          "P5"
+        ],
+        "nonlinear method": [
+          "P10"
+        ],
+        "linear method": [
+          "P11"
+        ],
+        "gfom": [
+          "P11"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.197566,
+        "High dimensional statistics": 0.255526,
+        "Linear regression & linear methods": 0.329932,
+        "Machine learning theory": 0.072967,
+        "Information theory & optimality": 0.144008,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.104911,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.71461,
+        "State evolution": 0.699846,
+        "High-dimensional asymptotics": 0.330548,
+        "Iterative algorithms": 0.712452,
+        "Linear and nonlinear algorithms": 1.0,
+        "Memorization": 0.378301,
+        "Benign overfitting": 0.273183,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.581846,
+        "Optimality and lower bounds": 0.374839,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Memorization",
+      "kind": "theme",
+      "family": "Machine learning theory",
+      "lines": [
+        "Memorization"
+      ],
+      "aliases": [
+        "interpolating estimator",
+        "interpolation",
+        "memorization",
+        "memorize"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 1.0,
+        "P6": 0.0,
+        "P7": 0.238652,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.209007,
+        "P14": 0.880487
+      },
+      "prevalence": 0.166296,
+      "alias_document_frequency": {
+        "interpolating estimator": 0,
+        "interpolation": 4,
+        "memorization": 2,
+        "memorize": 2
+      },
+      "alias_papers": {
+        "interpolating estimator": [],
+        "interpolation": [
+          "P5",
+          "P7",
+          "P13",
+          "P14"
+        ],
+        "memorization": [
+          "P5",
+          "P14"
+        ],
+        "memorize": [
+          "P5",
+          "P14"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.246969,
+        "High dimensional statistics": 0.151258,
+        "Linear regression & linear methods": 0.149469,
+        "Machine learning theory": 0.274461,
+        "Information theory & optimality": 0.112947,
+        "Probability & its applications": 0.064896
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.7215,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.463553,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.378301,
+        "Memorization": 1.0,
+        "Benign overfitting": 0.879966,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.024809,
+        "Stochastic optimization": 0.151138,
+        "Optimality and lower bounds": 0.278103,
+        "Concentration inequalities": 0.150846
+      }
+    },
+    {
+      "label": "Benign overfitting",
+      "kind": "theme",
+      "family": "Machine learning theory",
+      "lines": [
+        "Benign overfitting"
+      ],
+      "aliases": [
+        "benign overfitting",
+        "harmless interpolation",
+        "over parametrized regression",
+        "overparameterized regression"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.864965,
+        "P6": 0.0,
+        "P7": 0.971184,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 1.0
+      },
+      "prevalence": 0.202582,
+      "alias_document_frequency": {
+        "over parametrized regression": 0,
+        "overparameterized regression": 0,
+        "harmless interpolation": 0,
+        "benign overfitting": 3
+      },
+      "alias_papers": {
+        "over parametrized regression": [],
+        "overparameterized regression": [],
+        "harmless interpolation": [],
+        "benign overfitting": [
+          "P5",
+          "P7",
+          "P14"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.256459,
+        "High dimensional statistics": 0.187304,
+        "Linear regression & linear methods": 0.12138,
+        "Machine learning theory": 0.335631,
+        "Information theory & optimality": 0.099226,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.666244,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.510448,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.273183,
+        "Memorization": 0.879966,
+        "Benign overfitting": 1.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.109141,
+        "Optimality and lower bounds": 0.217259,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Model and data aggregation",
+      "kind": "theme",
+      "family": "Machine learning theory",
+      "lines": [
+        "Model and data",
+        "aggregation"
+      ],
+      "aliases": [
+        "collaborative learning",
+        "data aggregation",
+        "distributed learning",
+        "label aggregation",
+        "model aggregation"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.391365,
+        "P7": 0.0,
+        "P8": 0.973576,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 1.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.168924,
+      "alias_document_frequency": {
+        "collaborative learning": 1,
+        "distributed learning": 1,
+        "label aggregation": 2,
+        "model aggregation": 0,
+        "data aggregation": 1
+      },
+      "alias_papers": {
+        "collaborative learning": [
+          "P8"
+        ],
+        "distributed learning": [
+          "P8"
+        ],
+        "label aggregation": [
+          "P6",
+          "P12"
+        ],
+        "model aggregation": [],
+        "data aggregation": [
+          "P12"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.0,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.667251,
+        "Information theory & optimality": 0.332749,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.0,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 1.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.310327,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Conformal prediction",
+      "kind": "theme",
+      "family": "Machine learning theory",
+      "lines": [
+        "Conformal",
+        "prediction"
+      ],
+      "aliases": [
+        "conformal prediction",
+        "coverage guarantee",
+        "prediction set",
+        "predictive inference"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 1.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.164765,
+        "P14": 0.0
+      },
+      "prevalence": 0.083197,
+      "alias_document_frequency": {
+        "conformal prediction": 2,
+        "predictive inference": 1,
+        "coverage guarantee": 1,
+        "prediction set": 0
+      },
+      "alias_papers": {
+        "conformal prediction": [
+          "P9",
+          "P13"
+        ],
+        "predictive inference": [
+          "P9"
+        ],
+        "coverage guarantee": [
+          "P9"
+        ],
+        "prediction set": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.032407,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.364454,
+        "Information theory & optimality": 0.330101,
+        "Probability & its applications": 0.273039
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.04623,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.024809,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 1.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.396889,
+        "Concentration inequalities": 0.309911
+      }
+    },
+    {
+      "label": "Stochastic optimization",
+      "kind": "theme",
+      "family": "Information theory & optimality",
+      "lines": [
+        "Stochastic",
+        "optimization"
+      ],
+      "aliases": [
+        "optimization oracle",
+        "stochastic first order",
+        "stochastic gradient",
+        "stochastic optimization"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.160258,
+        "P5": 0.215937,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 1.0,
+        "P11": 0.125969,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.107297,
+      "alias_document_frequency": {
+        "stochastic first order": 0,
+        "stochastic optimization": 1,
+        "optimization oracle": 0,
+        "stochastic gradient": 4
+      },
+      "alias_papers": {
+        "stochastic first order": [],
+        "stochastic optimization": [
+          "P10"
+        ],
+        "optimization oracle": [],
+        "stochastic gradient": [
+          "P4",
+          "P5",
+          "P10",
+          "P11"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.108606,
+        "High dimensional statistics": 0.141773,
+        "Linear regression & linear methods": 0.351141,
+        "Machine learning theory": 0.052846,
+        "Information theory & optimality": 0.345634,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.017035,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.2167,
+        "State evolution": 0.191614,
+        "High-dimensional asymptotics": 0.192989,
+        "Iterative algorithms": 0.166006,
+        "Linear and nonlinear algorithms": 0.581846,
+        "Memorization": 0.151138,
+        "Benign overfitting": 0.109141,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 1.0,
+        "Optimality and lower bounds": 0.44594,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Optimality and lower bounds",
+      "kind": "theme",
+      "family": "Information theory & optimality",
+      "lines": [
+        "Optimality and",
+        "lower bounds"
+      ],
+      "aliases": [
+        "fundamental limit",
+        "information theoretic limit",
+        "lower bound",
+        "minimax",
+        "optimality",
+        "oracle complexity"
+      ],
+      "paper_scores": {
+        "P1": 1.0,
+        "P2": 0.604919,
+        "P3": 0.584808,
+        "P4": 0.0,
+        "P5": 0.594902,
+        "P6": 0.47152,
+        "P7": 0.083329,
+        "P8": 0.471975,
+        "P9": 0.75034,
+        "P10": 0.75135,
+        "P11": 0.193154,
+        "P12": 0.230227,
+        "P13": 0.190936,
+        "P14": 0.097248
+      },
+      "prevalence": 0.430336,
+      "alias_document_frequency": {
+        "information theoretic limit": 0,
+        "fundamental limit": 1,
+        "oracle complexity": 0,
+        "lower bound": 12,
+        "optimality": 9,
+        "minimax": 8
+      },
+      "alias_papers": {
+        "information theoretic limit": [],
+        "fundamental limit": [
+          "P1"
+        ],
+        "oracle complexity": [],
+        "lower bound": [
+          "P1",
+          "P2",
+          "P3",
+          "P5",
+          "P6",
+          "P7",
+          "P8",
+          "P9",
+          "P10",
+          "P11",
+          "P12",
+          "P14"
+        ],
+        "optimality": [
+          "P2",
+          "P3",
+          "P5",
+          "P6",
+          "P9",
+          "P10",
+          "P11",
+          "P12",
+          "P13"
+        ],
+        "minimax": [
+          "P1",
+          "P2",
+          "P3",
+          "P5",
+          "P6",
+          "P8",
+          "P9",
+          "P10"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.221267,
+        "High dimensional statistics": 0.053648,
+        "Linear regression & linear methods": 0.148918,
+        "Machine learning theory": 0.17701,
+        "Information theory & optimality": 0.345011,
+        "Probability & its applications": 0.054147
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.609013,
+        "Matrix perturbation": 0.588523,
+        "Random matrix theory": 0.480058,
+        "State evolution": 0.075542,
+        "High-dimensional asymptotics": 0.117721,
+        "Iterative algorithms": 0.186291,
+        "Linear and nonlinear algorithms": 0.374839,
+        "Memorization": 0.278103,
+        "Benign overfitting": 0.217259,
+        "Model and data aggregation": 0.310327,
+        "Conformal prediction": 0.396889,
+        "Stochastic optimization": 0.44594,
+        "Optimality and lower bounds": 1.0,
+        "Concentration inequalities": 0.155487
+      }
+    },
+    {
+      "label": "Concentration inequalities",
+      "kind": "theme",
+      "family": "Probability & its applications",
+      "lines": [
+        "Concentration",
+        "inequalities"
+      ],
+      "aliases": [
+        "bounded differences",
+        "concentration bound",
+        "concentration inequality",
+        "exchangeability",
+        "tail bound"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.152979,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 1.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.082356,
+      "alias_document_frequency": {
+        "concentration inequality": 1,
+        "bounded differences": 0,
+        "concentration bound": 1,
+        "tail bound": 1,
+        "exchangeability": 2
+      },
+      "alias_papers": {
+        "concentration inequality": [
+          "P13"
+        ],
+        "bounded differences": [],
+        "concentration bound": [
+          "P13"
+        ],
+        "tail bound": [
+          "P13"
+        ],
+        "exchangeability": [
+          "P9",
+          "P13"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.147581,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.095695,
+        "Information theory & optimality": 0.096859,
+        "Probability & its applications": 0.659865
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.281093,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.150846,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.309911,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.155487,
+        "Concentration inequalities": 1.0
+      }
+    },
+    {
+      "label": "Low-rank signals",
+      "kind": "keyword",
+      "lines": [
+        "Low-rank signals"
+      ],
+      "aliases": [
+        "low rank matrix",
+        "low rank signal",
+        "low rank structure",
+        "signal matrix",
+        "spiked matrix"
+      ],
+      "paper_scores": {
+        "P1": 0.75293,
+        "P2": 0.782297,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 1.0
+      },
+      "prevalence": 0.181088,
+      "alias_document_frequency": {
+        "low rank structure": 1,
+        "low rank matrix": 2,
+        "low rank signal": 0,
+        "signal matrix": 0,
+        "spiked matrix": 0
+      },
+      "alias_papers": {
+        "low rank structure": [
+          "P14"
+        ],
+        "low rank matrix": [
+          "P1",
+          "P2"
+        ],
+        "low rank signal": [],
+        "signal matrix": [],
+        "spiked matrix": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.384036,
+        "High dimensional statistics": 0.113032,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.194482,
+        "Information theory & optimality": 0.30845,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.697215,
+        "Matrix perturbation": 0.656751,
+        "Random matrix theory": 0.304408,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.210394,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.435512,
+        "Benign overfitting": 0.412949,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.46128,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Small eigengaps",
+      "kind": "keyword",
+      "lines": [
+        "Small eigengaps"
+      ],
+      "aliases": [
+        "eigen gap",
+        "eigengap",
+        "small eigen gap",
+        "small eigengap"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 1.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "small eigen gap": 1,
+        "small eigengap": 0,
+        "eigen gap": 1,
+        "eigengap": 0
+      },
+      "alias_papers": {
+        "small eigen gap": [
+          "P2"
+        ],
+        "small eigengap": [],
+        "eigen gap": [
+          "P2"
+        ],
+        "eigengap": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.518649,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.481351,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.484789,
+        "Matrix perturbation": 0.331013,
+        "Random matrix theory": 0.121294,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.311234,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Asymmetric perturbations",
+      "kind": "keyword",
+      "lines": [
+        "Asymmetric",
+        "perturbations"
+      ],
+      "aliases": [
+        "asymmetric perturbation",
+        "asymmetrically perturbed",
+        "non symmetric perturbation"
+      ],
+      "paper_scores": {
+        "P1": 1.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "non symmetric perturbation": 0,
+        "asymmetrically perturbed": 1,
+        "asymmetric perturbation": 0
+      },
+      "alias_papers": {
+        "non symmetric perturbation": [],
+        "asymmetrically perturbed": [
+          "P1"
+        ],
+        "asymmetric perturbation": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.537151,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.462849,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.86318,
+        "Matrix perturbation": 0.943626,
+        "Random matrix theory": 0.256711,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.514505,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Heteroscedastic noise",
+      "kind": "keyword",
+      "lines": [
+        "Heteroscedastic",
+        "noise"
+      ],
+      "aliases": [
+        "heteroscedastic noise",
+        "heteroskedastic noise",
+        "unequal variances",
+        "variance profile"
+      ],
+      "paper_scores": {
+        "P1": 0.56222,
+        "P2": 1.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.111587,
+      "alias_document_frequency": {
+        "heteroscedastic noise": 2,
+        "heteroskedastic noise": 0,
+        "unequal variances": 0,
+        "variance profile": 0
+      },
+      "alias_papers": {
+        "heteroscedastic noise": [
+          "P1",
+          "P2"
+        ],
+        "heteroskedastic noise": [],
+        "unequal variances": [],
+        "variance profile": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.527743,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.472257,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.845605,
+        "Matrix perturbation": 0.750986,
+        "Random matrix theory": 0.231538,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.523443,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Random designs",
+      "kind": "keyword",
+      "lines": [
+        "Random designs"
+      ],
+      "aliases": [
+        "gaussian design",
+        "random covariates",
+        "random data matrix",
+        "random design"
+      ],
+      "paper_scores": {
+        "P1": 0.948385,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.857701,
+        "P5": 1.0,
+        "P6": 0.0,
+        "P7": 0.539767,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.23899,
+      "alias_document_frequency": {
+        "random data matrix": 1,
+        "random covariates": 0,
+        "gaussian design": 0,
+        "random design": 3
+      },
+      "alias_papers": {
+        "random data matrix": [
+          "P1"
+        ],
+        "random covariates": [],
+        "gaussian design": [],
+        "random design": [
+          "P4",
+          "P5",
+          "P7"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.296729,
+        "High dimensional statistics": 0.202152,
+        "Linear regression & linear methods": 0.173032,
+        "Machine learning theory": 0.139205,
+        "Information theory & optimality": 0.188882,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.478538,
+        "Matrix perturbation": 0.523137,
+        "Random matrix theory": 0.716998,
+        "State evolution": 0.325776,
+        "High-dimensional asymptotics": 0.691401,
+        "Iterative algorithms": 0.21024,
+        "Linear and nonlinear algorithms": 0.406689,
+        "Memorization": 0.481781,
+        "Benign overfitting": 0.494997,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.198032,
+        "Optimality and lower bounds": 0.477687,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Structured missingness",
+      "kind": "keyword",
+      "lines": [
+        "Structured",
+        "missingness"
+      ],
+      "aliases": [
+        "missing covariates",
+        "missing data pattern",
+        "partially observed data",
+        "structured missing data",
+        "structured missingness"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 1.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "partially observed data": 0,
+        "structured missing data": 1,
+        "missing data pattern": 0,
+        "structured missingness": 1,
+        "missing covariates": 0
+      },
+      "alias_papers": {
+        "partially observed data": [],
+        "structured missing data": [
+          "P8"
+        ],
+        "missing data pattern": [],
+        "structured missingness": [
+          "P8"
+        ],
+        "missing covariates": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.0,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.632519,
+        "Information theory & optimality": 0.367481,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.0,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.671669,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.242834,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Distributed datasets",
+      "kind": "keyword",
+      "lines": [
+        "Distributed",
+        "datasets"
+      ],
+      "aliases": [
+        "data across agents",
+        "datacenters",
+        "distributed data",
+        "distributed dataset",
+        "distributed learning",
+        "federated learning",
+        "multiple agents",
+        "multiple clients",
+        "multiple data sources"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 1.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.159369,
+        "P14": 0.0
+      },
+      "prevalence": 0.082812,
+      "alias_document_frequency": {
+        "multiple data sources": 0,
+        "data across agents": 0,
+        "distributed learning": 1,
+        "distributed dataset": 0,
+        "federated learning": 2,
+        "distributed data": 0,
+        "multiple clients": 0,
+        "multiple agents": 0,
+        "datacenters": 1
+      },
+      "alias_papers": {
+        "multiple data sources": [],
+        "data across agents": [],
+        "distributed learning": [
+          "P8"
+        ],
+        "distributed dataset": [],
+        "federated learning": [
+          "P8",
+          "P13"
+        ],
+        "distributed data": [],
+        "multiple clients": [],
+        "multiple agents": [],
+        "datacenters": [
+          "P8"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.042637,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.482537,
+        "Information theory & optimality": 0.288547,
+        "Probability & its applications": 0.186279
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.044754,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.024017,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.663298,
+        "Conformal prediction": 0.025586,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.255269,
+        "Concentration inequalities": 0.155573
+      }
+    },
+    {
+      "label": "Exchangeable data",
+      "kind": "keyword",
+      "lines": [
+        "Exchangeable data"
+      ],
+      "aliases": [
+        "exchangeability",
+        "exchangeable array",
+        "exchangeable data",
+        "exchangeable observations",
+        "exchangeable sequence"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.196398,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 1.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.085457,
+      "alias_document_frequency": {
+        "exchangeable observations": 0,
+        "exchangeable sequence": 1,
+        "exchangeable array": 0,
+        "exchangeable data": 1,
+        "exchangeability": 2
+      },
+      "alias_papers": {
+        "exchangeable observations": [],
+        "exchangeable sequence": [
+          "P13"
+        ],
+        "exchangeable array": [],
+        "exchangeable data": [
+          "P13"
+        ],
+        "exchangeability": [
+          "P9",
+          "P13"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.143829,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.104449,
+        "Information theory & optimality": 0.104456,
+        "Probability & its applications": 0.647266
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.279032,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.14974,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.349678,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.170795,
+        "Concentration inequalities": 0.999113
+      }
+    },
+    {
+      "label": "Hierarchical sampling",
+      "kind": "keyword",
+      "lines": [
+        "Hierarchical",
+        "sampling"
+      ],
+      "aliases": [
+        "batch experiments",
+        "cartesian product sub sampling",
+        "factor level subsets",
+        "hierarchical sample",
+        "hierarchical sampling",
+        "multi factor response",
+        "multi level sampling",
+        "multilevel sampling",
+        "nested sampling"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 1.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "cartesian product sub sampling": 1,
+        "multi factor response": 1,
+        "factor level subsets": 1,
+        "multi level sampling": 0,
+        "hierarchical sampling": 0,
+        "hierarchical sample": 0,
+        "multilevel sampling": 0,
+        "batch experiments": 1,
+        "nested sampling": 0
+      },
+      "alias_papers": {
+        "cartesian product sub sampling": [
+          "P13"
+        ],
+        "multi factor response": [
+          "P13"
+        ],
+        "factor level subsets": [
+          "P13"
+        ],
+        "multi level sampling": [],
+        "hierarchical sampling": [],
+        "hierarchical sample": [],
+        "multilevel sampling": [],
+        "batch experiments": [
+          "P13"
+        ],
+        "nested sampling": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.162516,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.060845,
+        "Information theory & optimality": 0.066614,
+        "Probability & its applications": 0.710025
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.284363,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.152601,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.162573,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.098238,
+        "Concentration inequalities": 0.9885
+      }
+    },
+    {
+      "label": "Tensor-valued data",
+      "kind": "keyword",
+      "lines": [
+        "Tensor-valued",
+        "data"
+      ],
+      "aliases": [
+        "exchangeable tensor",
+        "random tensor",
+        "tensor array",
+        "tensor data",
+        "tensor valued data"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 1.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "tensor valued data": 1,
+        "exchangeable tensor": 1,
+        "random tensor": 1,
+        "tensor array": 0,
+        "tensor data": 1
+      },
+      "alias_papers": {
+        "tensor valued data": [
+          "P13"
+        ],
+        "exchangeable tensor": [
+          "P13"
+        ],
+        "random tensor": [
+          "P13"
+        ],
+        "tensor array": [],
+        "tensor data": [
+          "P13"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.162516,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.060845,
+        "Information theory & optimality": 0.066614,
+        "Probability & its applications": 0.710025
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.284363,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.152601,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.162573,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.098238,
+        "Concentration inequalities": 0.9885
+      }
+    },
+    {
+      "label": "Ridge regularization",
+      "kind": "keyword",
+      "lines": [
+        "Ridge",
+        "regularization"
+      ],
+      "aliases": [
+        "ridge estimator",
+        "ridge regression",
+        "ridge regularization",
+        "tikhonov regularization"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.599796,
+        "P6": 0.0,
+        "P7": 1.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.180624,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.127173,
+      "alias_document_frequency": {
+        "tikhonov regularization": 1,
+        "ridge regularization": 1,
+        "ridge regression": 2,
+        "ridge estimator": 2
+      },
+      "alias_papers": {
+        "tikhonov regularization": [
+          "P11"
+        ],
+        "ridge regularization": [
+          "P7"
+        ],
+        "ridge regression": [
+          "P5",
+          "P7"
+        ],
+        "ridge estimator": [
+          "P5",
+          "P7"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.275587,
+        "High dimensional statistics": 0.193207,
+        "Linear regression & linear methods": 0.170151,
+        "Machine learning theory": 0.265017,
+        "Information theory & optimality": 0.096038,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.021593,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.705208,
+        "State evolution": 0.116356,
+        "High-dimensional asymptotics": 0.387117,
+        "Iterative algorithms": 0.128771,
+        "Linear and nonlinear algorithms": 0.37721,
+        "Memorization": 0.518791,
+        "Benign overfitting": 0.769692,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.123705,
+        "Optimality and lower bounds": 0.207128,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Interpolation threshold",
+      "kind": "keyword",
+      "lines": [
+        "Interpolation",
+        "threshold"
+      ],
+      "aliases": [
+        "interpolation boundary",
+        "interpolation regime",
+        "interpolation threshold",
+        "interpolation transition"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.981548,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 1.0
+      },
+      "prevalence": 0.141539,
+      "alias_document_frequency": {
+        "interpolation transition": 0,
+        "interpolation threshold": 2,
+        "interpolation boundary": 0,
+        "interpolation regime": 0
+      },
+      "alias_papers": {
+        "interpolation transition": [],
+        "interpolation threshold": [
+          "P5",
+          "P14"
+        ],
+        "interpolation boundary": [],
+        "interpolation regime": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.248962,
+        "High dimensional statistics": 0.16617,
+        "Linear regression & linear methods": 0.170626,
+        "Machine learning theory": 0.293379,
+        "Information theory & optimality": 0.120863,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.611283,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.428006,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.362949,
+        "Memorization": 0.970231,
+        "Benign overfitting": 0.804347,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.145004,
+        "Optimality and lower bounds": 0.250114,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Prior information",
+      "kind": "keyword",
+      "lines": [
+        "Prior information"
+      ],
+      "aliases": [
+        "informative prior",
+        "prior information",
+        "prior knowledge",
+        "side information"
+      ],
+      "paper_scores": {
+        "P1": 0.83881,
+        "P2": 0.865298,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 1.0
+      },
+      "prevalence": 0.193151,
+      "alias_document_frequency": {
+        "informative prior": 0,
+        "prior information": 1,
+        "side information": 0,
+        "prior knowledge": 2
+      },
+      "alias_papers": {
+        "informative prior": [],
+        "prior information": [
+          "P14"
+        ],
+        "side information": [],
+        "prior knowledge": [
+          "P1",
+          "P2"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.393304,
+        "High dimensional statistics": 0.105879,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.182175,
+        "Information theory & optimality": 0.318642,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.730226,
+        "Matrix perturbation": 0.688347,
+        "Random matrix theory": 0.307442,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.198317,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.410514,
+        "Benign overfitting": 0.389245,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.479514,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Gold-standard labels",
+      "kind": "keyword",
+      "lines": [
+        "Gold-standard",
+        "labels"
+      ],
+      "aliases": [
+        "expert labels",
+        "gold standard label",
+        "gold standard labels",
+        "reference labels",
+        "trusted labels"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 1.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.475478,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.105391,
+      "alias_document_frequency": {
+        "gold standard labels": 2,
+        "gold standard label": 0,
+        "reference labels": 0,
+        "trusted labels": 0,
+        "expert labels": 0
+      },
+      "alias_papers": {
+        "gold standard labels": [
+          "P6",
+          "P12"
+        ],
+        "gold standard label": [],
+        "reference labels": [],
+        "trusted labels": [],
+        "expert labels": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.0,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.554561,
+        "Information theory & optimality": 0.445439,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.0,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.54009,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.269959,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Label cleaning",
+      "kind": "keyword",
+      "lines": [
+        "Label cleaning"
+      ],
+      "aliases": [
+        "clean labels",
+        "cleaning labels",
+        "label cleaning",
+        "label correction"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.810718,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 1.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.129337,
+      "alias_document_frequency": {
+        "label correction": 0,
+        "cleaning labels": 0,
+        "label cleaning": 1,
+        "clean labels": 1
+      },
+      "alias_papers": {
+        "label correction": [],
+        "cleaning labels": [],
+        "label cleaning": [
+          "P12"
+        ],
+        "clean labels": [
+          "P6"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.0,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.642165,
+        "Information theory & optimality": 0.357835,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.0,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.705943,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.244792,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Entropy regularization",
+      "kind": "keyword",
+      "lines": [
+        "Entropy",
+        "regularization"
+      ],
+      "aliases": [
+        "entropic regularization",
+        "entropy regularization",
+        "entropy regularized"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 1.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "entropic regularization": 0,
+        "entropy regularization": 1,
+        "entropy regularized": 1
+      },
+      "alias_papers": {
+        "entropic regularization": [],
+        "entropy regularization": [
+          "P3"
+        ],
+        "entropy regularized": [
+          "P3"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.0,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.493806,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.506194,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.0,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.341288,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.300887,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Natural policy gradients",
+      "kind": "keyword",
+      "lines": [
+        "Natural policy",
+        "gradients"
+      ],
+      "aliases": [
+        "natural gradient policy",
+        "natural policy gradient",
+        "npg algorithm",
+        "npg method"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 1.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "natural gradient policy": 0,
+        "natural policy gradient": 1,
+        "npg algorithm": 0,
+        "npg method": 1
+      },
+      "alias_papers": {
+        "natural gradient policy": [],
+        "natural policy gradient": [
+          "P3"
+        ],
+        "npg algorithm": [],
+        "npg method": [
+          "P3"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.0,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.493806,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.506194,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.0,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.341288,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.300887,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Dimension-free rates",
+      "kind": "keyword",
+      "lines": [
+        "Dimension-free",
+        "rates"
+      ],
+      "aliases": [
+        "dimension agnostic",
+        "dimension free",
+        "dimension independent",
+        "effective dimension"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.375471,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 1.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.488318,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.54671
+      },
+      "prevalence": 0.172178,
+      "alias_document_frequency": {
+        "dimension independent": 0,
+        "effective dimension": 3,
+        "dimension agnostic": 0,
+        "dimension free": 2
+      },
+      "alias_papers": {
+        "dimension independent": [],
+        "effective dimension": [
+          "P7",
+          "P10",
+          "P14"
+        ],
+        "dimension agnostic": [],
+        "dimension free": [
+          "P3",
+          "P7"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.168507,
+        "High dimensional statistics": 0.173454,
+        "Linear regression & linear methods": 0.136831,
+        "Machine learning theory": 0.312723,
+        "Information theory & optimality": 0.208485,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.321591,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.347263,
+        "Iterative algorithms": 0.098914,
+        "Linear and nonlinear algorithms": 0.13879,
+        "Memorization": 0.405793,
+        "Benign overfitting": 0.714196,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.361338,
+        "Optimality and lower bounds": 0.287126,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Finite-sample guarantees",
+      "kind": "keyword",
+      "lines": [
+        "Finite-sample",
+        "guarantees"
+      ],
+      "aliases": [
+        "finite sample bound",
+        "finite sample bounds",
+        "finite sample guarantee",
+        "finite sample guarantees",
+        "high probability guarantee",
+        "high probability guarantees",
+        "non asymptotic guarantee",
+        "non asymptotic guarantees",
+        "nonasymptotic guarantee",
+        "nonasymptotic guarantees"
+      ],
+      "paper_scores": {
+        "P1": 0.346027,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 1.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.096145,
+      "alias_document_frequency": {
+        "high probability guarantees": 0,
+        "high probability guarantee": 1,
+        "non asymptotic guarantees": 1,
+        "finite sample guarantees": 1,
+        "non asymptotic guarantee": 0,
+        "finite sample guarantee": 0,
+        "finite sample bounds": 0,
+        "finite sample bound": 0,
+        "nonasymptotic guarantees": 0,
+        "nonasymptotic guarantee": 0
+      },
+      "alias_papers": {
+        "high probability guarantees": [],
+        "high probability guarantee": [
+          "P1"
+        ],
+        "non asymptotic guarantees": [
+          "P11"
+        ],
+        "finite sample guarantees": [
+          "P11"
+        ],
+        "non asymptotic guarantee": [],
+        "finite sample guarantee": [],
+        "finite sample bounds": [],
+        "finite sample bound": [],
+        "nonasymptotic guarantees": [],
+        "nonasymptotic guarantee": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.253341,
+        "High dimensional statistics": 0.304773,
+        "Linear regression & linear methods": 0.319414,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.122472,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.415574,
+        "Matrix perturbation": 0.308569,
+        "Random matrix theory": 0.495708,
+        "State evolution": 0.71835,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.794995,
+        "Linear and nonlinear algorithms": 0.702815,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.114119,
+        "Optimality and lower bounds": 0.26216,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Predictive coverage",
+      "kind": "keyword",
+      "lines": [
+        "Predictive coverage"
+      ],
+      "aliases": [
+        "conditional coverage",
+        "coverage probability",
+        "marginal coverage",
+        "prediction coverage",
+        "predictive coverage"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 1.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.071429,
+      "alias_document_frequency": {
+        "conditional coverage": 1,
+        "coverage probability": 0,
+        "prediction coverage": 0,
+        "predictive coverage": 0,
+        "marginal coverage": 1
+      },
+      "alias_papers": {
+        "conditional coverage": [
+          "P9"
+        ],
+        "coverage probability": [],
+        "prediction coverage": [],
+        "predictive coverage": [],
+        "marginal coverage": [
+          "P9"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.0,
+        "High dimensional statistics": 0.0,
+        "Linear regression & linear methods": 0.0,
+        "Machine learning theory": 0.440074,
+        "Information theory & optimality": 0.395728,
+        "Probability & its applications": 0.164198
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.0,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.0,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.986697,
+        "Stochastic optimization": 0.0,
+        "Optimality and lower bounds": 0.386054,
+        "Concentration inequalities": 0.151219
+      }
+    },
+    {
+      "label": "Label-noise robustness",
+      "kind": "keyword",
+      "lines": [
+        "Label-noise",
+        "robustness"
+      ],
+      "aliases": [
+        "corrupted labels",
+        "label corruption",
+        "label noise",
+        "noisy labels",
+        "robust to label"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0,
+        "P4": 0.0,
+        "P5": 0.73206,
+        "P6": 1.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.0,
+        "P11": 0.0,
+        "P12": 0.47072,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.157341,
+      "alias_document_frequency": {
+        "robust to label": 0,
+        "corrupted labels": 0,
+        "label corruption": 0,
+        "noisy labels": 2,
+        "label noise": 2
+      },
+      "alias_papers": {
+        "robust to label": [],
+        "corrupted labels": [],
+        "label corruption": [],
+        "noisy labels": [
+          "P6",
+          "P12"
+        ],
+        "label noise": [
+          "P5",
+          "P6"
+        ]
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.199941,
+        "High dimensional statistics": 0.079258,
+        "Linear regression & linear methods": 0.168788,
+        "Machine learning theory": 0.313049,
+        "Information theory & optimality": 0.238964,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.0,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.391212,
+        "State evolution": 0.0,
+        "High-dimensional asymptotics": 0.162683,
+        "Iterative algorithms": 0.0,
+        "Linear and nonlinear algorithms": 0.286116,
+        "Memorization": 0.403177,
+        "Benign overfitting": 0.291147,
+        "Model and data aggregation": 0.448631,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.114308,
+        "Optimality and lower bounds": 0.394075,
+        "Concentration inequalities": 0.0
+      }
+    },
+    {
+      "label": "Computational complexity",
+      "kind": "keyword",
+      "lines": [
+        "Computational",
+        "complexity"
+      ],
+      "aliases": [
+        "computational complexity",
+        "computational lower bound",
+        "iteration complexity",
+        "oracle complexity",
+        "query complexity"
+      ],
+      "paper_scores": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 1.0,
+        "P4": 0.0,
+        "P5": 0.0,
+        "P6": 0.0,
+        "P7": 0.0,
+        "P8": 0.0,
+        "P9": 0.0,
+        "P10": 0.58217,
+        "P11": 0.287154,
+        "P12": 0.0,
+        "P13": 0.0,
+        "P14": 0.0
+      },
+      "prevalence": 0.133523,
+      "alias_document_frequency": {
+        "computational lower bound": 0,
+        "computational complexity": 2,
+        "iteration complexity": 1,
+        "oracle complexity": 0,
+        "query complexity": 0
+      },
+      "alias_papers": {
+        "computational lower bound": [],
+        "computational complexity": [
+          "P10",
+          "P11"
+        ],
+        "iteration complexity": [
+          "P3"
+        ],
+        "oracle complexity": [],
+        "query complexity": []
+      },
+      "family_weights": {
+        "Random matrices & spectral methods": 0.064204,
+        "High dimensional statistics": 0.120694,
+        "Linear regression & linear methods": 0.432169,
+        "Machine learning theory": 0.0,
+        "Information theory & optimality": 0.382933,
+        "Probability & its applications": 0.0
+      },
+      "theme_similarities": {
+        "Spectral inference": 0.033977,
+        "Matrix perturbation": 0.0,
+        "Random matrix theory": 0.104946,
+        "State evolution": 0.183085,
+        "High-dimensional asymptotics": 0.0,
+        "Iterative algorithms": 0.488883,
+        "Linear and nonlinear algorithms": 0.358926,
+        "Memorization": 0.0,
+        "Benign overfitting": 0.0,
+        "Model and data aggregation": 0.0,
+        "Conformal prediction": 0.0,
+        "Stochastic optimization": 0.497192,
+        "Optimality and lower bounds": 0.46508,
+        "Concentration inequalities": 0.0
+      }
+    }
+  ]
+}
