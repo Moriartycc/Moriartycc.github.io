@@ -376,10 +376,12 @@
         const toggle=tooltip.select('.tooltip-more-toggle');
         if (!group.empty()) {
           group
-            .on('pointerenter.expand',()=>{if (currentSelection===node.id) setTooltipDisclosure(group,toggle,true);})
+            .on('pointerenter.expand',event=>{
+              if (event.pointerType==='touch'||event.pointerType==='pen') return;
+              if (currentSelection===node.id) setTooltipDisclosure(group,toggle,true);
+            })
             .on('pointerleave.expand',()=>{if (!coarsePointer) setTooltipDisclosure(group,toggle,false);});
           toggle
-            .on('focus.expand',()=>{if (currentSelection===node.id) setTooltipDisclosure(group,toggle,true);})
             .on('click.expand',event=>{
               if (currentSelection!==node.id) {
                 expandTooltipAfterPin=node.id;
@@ -387,7 +389,7 @@
               }
               event.preventDefault();
               event.stopPropagation();
-              setTooltipDisclosure(group,toggle,!group.classed('is-expanded'));
+              setTooltipDisclosure(group,toggle,coarsePointer?!group.classed('is-expanded'):true);
             });
         }
         if (preservePinnedPosition&&pinnedTooltipPosition) {
