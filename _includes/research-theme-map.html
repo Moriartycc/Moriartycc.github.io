@@ -213,8 +213,8 @@
       };
       papers.forEach(p => Object.assign(relevance[p.id],addedThemeScores[p.id] || {}));
 
-      // Secondary full-text concepts. Prevalence controls word size; per-theme
-      // scores control visibility when a theme is previewed or pinned.
+      /* Secondary full-text concepts. Prevalence controls word size; per-theme
+         scores control visibility when a theme is previewed or pinned. */
       const keywordData = [
         {label:'high-dimensional limits',prevalence:1.00,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.76,'State evolution':.72,'Benign overfitting':.48}},
         {label:'random data',prevalence:.92,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.88,'State evolution':.72,'Iterative algorithms':.58}},
