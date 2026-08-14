@@ -73,6 +73,7 @@
     const mobileQuery = window.matchMedia('(max-width: 700px)');
     let dragging = false;
     let frameRequested = false;
+    let lastActiveIndex = -1;
 
     const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
     const headerOffset = () => mobileQuery.matches ? 118 : 96;
@@ -87,7 +88,10 @@
 
     const setProgress = progress => {
       const value = clamp(progress);
+      const markerStart = mobileQuery.matches ? 3.85 : 3.5;
+      const markerEnd = mobileQuery.matches ? 96.15 : 96.5;
       shell.style.setProperty('--publication-scroll-progress', `${value * 100}%`);
+      shell.style.setProperty('--publication-marker-position', `${markerStart + value * (markerEnd - markerStart)}%`);
       track.setAttribute('aria-valuenow', String(Math.round(value * 100)));
     };
 
@@ -103,6 +107,13 @@
         if (active) marker.setAttribute('aria-current', 'true');
         else marker.removeAttribute('aria-current');
       });
+      if (activeIndex !== lastActiveIndex) {
+        const activeMarker = markers[activeIndex];
+        activeMarker?.classList.remove('is-turning');
+        if (activeMarker) void activeMarker.offsetWidth;
+        activeMarker?.classList.add('is-turning');
+        lastActiveIndex = activeIndex;
+      }
       track.setAttribute('aria-valuetext', markers[activeIndex]?.dataset.publicationYear || '');
     };
 
@@ -149,6 +160,9 @@
     };
 
     markers.forEach((marker, index) => {
+      marker.addEventListener('animationend', event => {
+        if (event.animationName === 'publication-cog-turn') marker.classList.remove('is-turning');
+      });
       marker.addEventListener('click', () => {
         const section = sections[index];
         if (!section) return;
