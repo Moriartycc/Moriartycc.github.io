@@ -1,0 +1,41 @@
+<div class="publications-list" aria-label="Publications grouped by first preprint year">
+  {% for year_group in site.data.publications.years %}
+    <section class="publication-year-group" aria-labelledby="publications-{{ year_group.year }}">
+      <h2 class="publication-year" id="publications-{{ year_group.year }}">{{ year_group.year }}</h2>
+      <div class="publication-year-papers">
+        {% for paper in year_group.papers %}
+          <article class="publication-card">
+            <h3 class="publication-card__title">{{ paper.title }}</h3>
+            <p class="publication-card__authors">
+              {% for author in paper.authors %}{% if author.self %}<span class="publication-author--self">{{ author.name }}</span>{% else %}{{ author.name }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+            </p>
+            <p class="publication-card__venue">{{ paper.venue }}</p>
+            <div class="publication-card__links" aria-label="Links for {{ paper.title }}">
+              {% for link in paper.links %}
+                <a class="publication-link publication-link--{{ link.type }}" href="{{ link.url }}" target="_blank" rel="noopener">
+                  {% if link.type == "code" %}<i class="fab fa-fw fa-github" aria-hidden="true"></i>{% elsif link.type == "published" %}<i class="fas fa-fw fa-book-open" aria-hidden="true"></i>{% else %}<i class="fas fa-fw fa-file-alt" aria-hidden="true"></i>{% endif %}
+                  <span>{{ link.label }}</span>
+                </a>
+              {% endfor %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</div>
+
+<section class="thesis-section" aria-labelledby="thesis-heading">
+  <h2 id="thesis-heading">Dissertation</h2>
+  <article class="publication-card thesis-card">
+    <div class="thesis-card__label">Doctoral dissertation</div>
+    <h3 class="publication-card__title">{{ site.data.publications.thesis.title }}</h3>
+    <p class="publication-card__venue">{{ site.data.publications.thesis.institution }} · {{ site.data.publications.thesis.year }}</p>
+    <div class="publication-card__links">
+      <a class="publication-link publication-link--published" href="{{ site.data.publications.thesis.url }}" target="_blank" rel="noopener">
+        <i class="fas fa-fw fa-graduation-cap" aria-hidden="true"></i>
+        <span>ProQuest</span>
+      </a>
+    </div>
+  </article>
+</section>

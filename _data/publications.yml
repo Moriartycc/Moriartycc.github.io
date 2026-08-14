@@ -1,0 +1,216 @@
+years:
+  - year: 2026
+    papers:
+      - title: "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: R. F. Barber
+        venue: "Proceedings of the Thirty-Eighth Conference on Learning Theory (COLT 2026)"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2602.09405
+          - label: PMLR
+            type: published
+            url: https://proceedings.mlr.press/v336/cheng26a.html
+          - label: Code
+            type: code
+            url: https://github.com/Moriartycc/is-memorization-helpful-or-harmful
+      - title: "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: R. F. Barber
+        venue: Preprint
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2601.20152
+          - label: Code
+            type: code
+            url: https://github.com/Moriartycc/exchangeable-tensors-matrix-valued-data
+
+  - year: 2025
+    papers:
+      - title: "Some Robustness Properties of Label Cleaning"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: J. Duchi
+        venue: "Transactions on Machine Learning Research (TMLR 2026)"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2509.11379
+          - label: TMLR
+            type: published
+            url: https://openreview.net/forum?id=O2ORErbcBy
+      - title: "State Evolution Beyond First-order Methods I: Rigorous Predictions and Finite-sample Guarantees"
+        authors:
+          - name: M. Celentano
+          - name: Chen Cheng
+            self: true
+          - name: A. Pananjady
+          - name: K. A. Verchand
+        venue: Preprint
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2507.19611
+
+  - year: 2024
+    papers:
+      - title: "Geometry, Computation, and Optimality in Stochastic Optimization"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: J. Duchi
+          - name: D. Levy
+        venue: "Accepted to Mathematics of Operations Research, 2026"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/1909.10455
+      - title: "Two Fundamental Limits for Uncertainty Quantification in Predictive Inference"
+        authors:
+          - name: F. Areces
+          - name: Chen Cheng
+            self: true
+          - name: J. Duchi
+          - name: R. Kuditipudi
+        venue: "Proceedings of the Thirty-Seventh Conference on Learning Theory (COLT 2025)"
+        links:
+          - label: PMLR
+            type: published
+            url: https://proceedings.mlr.press/v247/areces24a.html
+
+  - year: 2023
+    papers:
+      - title: "Collaboratively Learning Linear Models with Structured Missing Data"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: G. Cheng
+          - name: J. Duchi
+        venue: "Advances in Neural Information Processing Systems (NeurIPS 2023)"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2307.11947
+          - label: NeurIPS
+            type: published
+            url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/17f158c25b08758cf650130f7f173e51-Abstract-Conference.html
+      - title: "Dimension Free Ridge Regression"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: A. Montanari
+        venue: "The Annals of Statistics, Vol. 52, No. 6, pp. 2879–2912, 2024"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2210.08571
+          - label: Annals of Statistics
+            type: published
+            url: https://doi.org/10.1214/24-AOS2449
+
+  - year: 2022
+    papers:
+      - title: "How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: H. Asi
+          - name: J. Duchi
+        venue: Preprint
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2206.12041
+          - label: Code
+            type: code
+            url: https://github.com/Moriartycc/how-many-labelers-do-you-need
+      - title: "Memorize to Generalize: On the Necessity of Interpolation in High Dimensional Linear Regression"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: J. Duchi
+          - name: R. Kuditipudi
+        venue: "Proceedings of the Thirty-Fifth Conference on Learning Theory (COLT 2022)"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2202.09889
+          - label: PMLR
+            type: published
+            url: https://proceedings.mlr.press/v178/cheng22a.html
+  - year: 2021
+    papers:
+      - title: "The High-dimensional Asymptotics of First Order Methods with Random Data"
+        authors:
+          - name: M. Celentano
+          - name: Chen Cheng
+            self: true
+          - name: A. Montanari
+        venue: "Accepted to Annals of Applied Probability, 2026"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2112.07572
+
+  - year: 2020
+    papers:
+      - title: "Fast Global Convergence of Natural Policy Gradient Methods with Entropy Regularization"
+        authors:
+          - name: S. Cen
+          - name: Chen Cheng
+            self: true
+          - name: Y. Chen
+          - name: Y. Wei
+          - name: Y. Chi
+        venue: "Operations Research, Vol. 69, No. 6, pp. 1716–1731, 2021"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2007.06558
+          - label: Operations Research
+            type: published
+            url: https://doi.org/10.1287/opre.2021.2156
+      - title: "Tackling Small Eigen-gaps: Fine-Grained Eigenvector Estimation and Inference under Heteroscedastic Noise"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: Y. Wei
+          - name: Y. Chen
+        venue: "IEEE Transactions on Information Theory, Vol. 67, No. 12, pp. 8152–8194, 2021"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2001.04620
+          - label: IEEE TIT
+            type: published
+            url: https://doi.org/10.1109/TIT.2021.3093869
+
+  - year: 2019
+    papers:
+      - title: "Asymmetry Helps: Eigenvalue and Eigenvector Analyses of Asymmetrically Perturbed Low-Rank Matrices"
+        authors:
+          - name: Y. Chen
+          - name: Chen Cheng
+            self: true
+          - name: J. Fan
+        venue: "The Annals of Statistics, Vol. 49, No. 1, pp. 435–458, 2021"
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/1811.12804
+          - label: Annals of Statistics
+            type: published
+            url: https://doi.org/10.1214/20-AOS1968
+
+thesis:
+  title: "High dimensionality in modern machine learning: a random matrix theory perspective"
+  institution: Stanford University
+  year: 2025
+  url: https://www.proquest.com/openview/f1efb29df77ad5600efbc00d0aa8b1dd
