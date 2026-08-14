@@ -42,8 +42,12 @@
     #research-keyword-previews .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 8px; color: var(--muted-foreground); }
     #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 6px; }
     #research-keyword-previews .legend-swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--swatch); }
-    #research-keyword-previews .tooltip { display: none; position: absolute; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--popover); color: var(--popover-foreground); pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; }
+    #research-keyword-previews .tooltip { display: none; position: absolute; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--popover); color: var(--popover-foreground); box-shadow: 0 12px 30px color-mix(in srgb, var(--foreground) 12%, transparent); cursor: pointer; pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; }
     #research-keyword-previews .tooltip.is-visible { display: block; pointer-events: auto; opacity: 1; visibility: visible; }
+    #research-keyword-previews .tooltip.is-pinned { border-color: color-mix(in srgb, var(--viz-series-1) 70%, var(--border)); }
+    #research-keyword-previews .tooltip-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    #research-keyword-previews .tooltip-pin-state { flex: 0 0 auto; color: var(--muted-foreground); font-size: 10px; font-weight: 500; letter-spacing: .025em; }
+    #research-keyword-previews .tooltip.is-pinned .tooltip-pin-state { color: var(--viz-series-1); }
     #research-keyword-previews .tooltip-family { color: var(--muted-foreground); margin: 2px 0 6px; }
     #research-keyword-previews .tooltip-paper { margin-top: 6px; font-size: 12px; line-height: 1.35; }
     #research-keyword-previews .paper-title { font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif; font-size: 0.94em; font-weight: 500; letter-spacing: 0.005em; }
@@ -62,6 +66,7 @@
     #research-keyword-previews .vos-node-wrap.is-muted, #research-keyword-previews .vos-link.is-muted { opacity: 0.12; }
     #research-keyword-previews .vos-label.is-muted { opacity: 0.2; }
     #research-keyword-previews .vos-node-wrap.is-selected .vos-node { stroke: var(--foreground); stroke-width: 2px; }
+    #research-keyword-previews .vos-node-wrap.is-pinned .vos-node { stroke: var(--viz-series-1); stroke-width: 2.6px; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--viz-series-1) 58%, transparent)); }
     #research-keyword-previews svg { display: block; max-width: 100%; }
     @keyframes research-network-drift {
       0% { transform: translate(-2px, 1px) rotate(-0.2deg); }
@@ -86,7 +91,7 @@
     </div>
     <div class="map-shell">
       <div id="vos-keyword-map" class="map-host" role="img" aria-label="Network map of fourteen major research themes across fourteen papers"></div>
-      <div id="vos-tooltip" class="tooltip" role="tooltip"></div>
+      <div id="vos-tooltip" class="tooltip" role="tooltip" tabindex="-1"></div>
     </div>
     <div id="vos-selection" class="selected-line" aria-live="polite"></div>
     <div id="vos-more-papers" class="more-papers" aria-live="polite"></div>
@@ -302,8 +307,10 @@
       function positionTooltip(event) {
         const tip=tooltip.node();
         const box=tip.parentElement.getBoundingClientRect();
-        const left=Math.max(4,Math.min(event.clientX-box.left+12,box.width-tip.offsetWidth-4));
-        const top=Math.max(4,Math.min(event.clientY-box.top+12,box.height-tip.offsetHeight-4));
+        const clientX=Number.isFinite(event?.clientX)?event.clientX:box.left+box.width/2;
+        const clientY=Number.isFinite(event?.clientY)?event.clientY:box.top+box.height/2;
+        const left=Math.max(4,Math.min(clientX-box.left+12,box.width-tip.offsetWidth-4));
+        const top=Math.max(4,Math.min(clientY-box.top+12,box.height-tip.offsetHeight-4));
         tooltip.style('left',`${left}px`).style('top',`${top}px`);
       }
 
@@ -311,24 +318,26 @@
         clearTimeout(tooltipHideTimer);
         const firstThree=node.paperMatches.slice(0,3);
         const remaining=node.paperMatches.length-firstThree.length;
+        const pinned=currentSelection===node.id;
         tooltip.html(
-          `<strong>${escapeHtml(node.id)}</strong>`+
+          `<div class="tooltip-heading"><strong>${escapeHtml(node.id)}</strong><span class="tooltip-pin-state">${pinned?'Pinned':'Click to pin'}</span></div>`+
           `<div class="tooltip-family">${escapeHtml(node.family)}</div>`+
           firstThree.map(p=>`<div class="tooltip-paper">${paperLine(p)}</div>`).join('')+
           (remaining>0?`<div class="tooltip-more">${remaining} more ${remaining===1?'paper':'papers'} below</div>`:'')
-        ).classed('is-visible',true);
+        ).classed('is-visible',true).classed('is-pinned',pinned).attr('tabindex','0');
         positionTooltip(event);
       }
 
       function updatePaperDetails(theme) {
         if (!theme) {
-          selectionText.innerHTML='<strong>All themes.</strong> Hover over a topic to see its three most relevant papers.';
+          selectionText.innerHTML='<strong>All themes.</strong> Hover to preview; click a node or its paper window to pin it.';
           morePapers.innerHTML='';
           return;
         }
         const node=nodes.find(d=>d.id===theme);
         const extra=node.paperMatches.slice(3);
-        selectionText.innerHTML=`<strong>${escapeHtml(theme)}.</strong> ${node.paperMatches.length} related ${node.paperMatches.length===1?'paper':'papers'}, ranked by full-text relevance.`;
+        const state=theme===currentSelection?'Pinned':'Preview';
+        selectionText.innerHTML=`<strong>${state}: ${escapeHtml(theme)}.</strong> ${node.paperMatches.length} related ${node.paperMatches.length===1?'paper':'papers'}, ranked by full-text relevance.`;
         morePapers.innerHTML=extra.length
           ? `<div class="more-papers-heading">More papers</div><ol class="paper-list">${extra.map(p=>`<li>${paperLine(p)}</li>`).join('')}</ol>`
           : '';
@@ -342,7 +351,11 @@
           if (s === theme) connected.add(t);
           if (t === theme) connected.add(s);
         });
-        d3.selectAll('#vos-keyword-map .vos-node-wrap').classed('is-muted', d => theme && !connected.has(d.id)).classed('is-selected', d=>d.id===theme);
+        d3.selectAll('#vos-keyword-map .vos-node-wrap')
+          .classed('is-muted', d => theme && !connected.has(d.id))
+          .classed('is-selected', d=>d.id===theme)
+          .classed('is-pinned', d=>d.id===currentSelection);
+        d3.selectAll('#vos-keyword-map .vos-node').attr('aria-pressed',d=>String(d.id===currentSelection));
         d3.selectAll('#vos-keyword-map .vos-label').classed('is-muted', d => theme && !connected.has(d.id));
         d3.selectAll('#vos-keyword-map .vos-link').classed('is-muted', d => {
           if (!theme) return false;
@@ -356,6 +369,7 @@
       function showSelection(theme) {
         currentSelection = theme;
         select.value = theme;
+        root.dataset.selectedTheme = theme;
         applyHighlight(theme);
       }
 
@@ -483,6 +497,32 @@
           showPaperTooltip(event,d);
         }
 
+        function pinTheme(event,d) {
+          clearTimeout(tooltipHideTimer);
+          activeHoverId=d.id;
+          activeHoverTheme='';
+          hoverLockUntil=0;
+          showSelection(d.id);
+          focusNode(d);
+          const clickedLink=event?.target?.closest?.('a');
+          if (clickedLink) {
+            tooltip.classed('is-pinned',true);
+            tooltip.select('.tooltip-pin-state').text('Pinned');
+          } else {
+            showPaperTooltip(event,d);
+          }
+        }
+
+        function clearPinnedTheme() {
+          clearTimeout(tooltipHideTimer);
+          activeHoverId='';
+          activeHoverTheme='';
+          hoverLockUntil=0;
+          showSelection('');
+          focusNode(null);
+          tooltip.classed('is-visible',false).classed('is-pinned',false).attr('tabindex','-1');
+        }
+
         const ranked = simNodes.slice().sort((a,b)=>b.weight-a.weight);
         ranked.forEach((d,i)=>d.rank=i);
         const polygonLine=d3.line().curve(d3.curveLinearClosed);
@@ -508,9 +548,19 @@
           .attr('class','vos-node').attr('d',d=>nodePolygonPath(d))
           .attr('data-polytope-sides',d=>d.polySides)
           .attr('fill',d=>familyColor[d.family]).attr('fill-opacity',.72)
+          .attr('role','button').attr('tabindex',0)
+          .attr('aria-pressed',d=>String(d.id===currentSelection))
           .attr('aria-label',d=>`${d.id}, connected to ${d.paperIds.length} papers`)
           .on('pointerenter',beginHover)
-          .on('pointermove',positionTooltip);
+          .on('pointermove',positionTooltip)
+          .on('focus',beginHover)
+          .on('click',(event,d)=>{event.stopPropagation();pinTheme(event,d);})
+          .on('keydown',(event,d)=>{
+            if (event.key!=='Enter'&&event.key!==' ') return;
+            event.preventDefault();
+            event.stopPropagation();
+            pinTheme(event,d);
+          });
         const nodeHighlight = nodeFloat.append('path')
           .attr('class','node-highlight').attr('d',d=>nodePolygonPath(d))
           .attr('transform','translate(-1.5,-1.5) scale(.76)');
@@ -633,7 +683,13 @@
         });
         labels
           .on('pointerenter',beginHover)
-          .on('pointermove',positionTooltip);
+          .on('pointermove',positionTooltip)
+          .on('click',(event,d)=>{event.stopPropagation();pinTheme(event,d);});
+
+        svg.on('click.clear-selection',event=>{
+          if (event.target.closest?.('.vos-node-wrap, .vos-label')) return;
+          clearPinnedTheme();
+        });
 
         function focusNode(focus) {
           const cx=width/2, cy=height/2;
@@ -704,21 +760,36 @@
         }
 
         function restoreMap() {
-          activeHoverId='';
+          const selectedNode=simNodes.find(d=>d.id===currentSelection);
+          activeHoverId=selectedNode?.id||'';
           activeHoverTheme='';
           hoverLockUntil=0;
-          focusNode(null);
+          focusNode(selectedNode||null);
           applyHighlight(currentSelection);
-          tooltip.classed('is-visible',false);
+          tooltip.classed('is-visible',false).classed('is-pinned',false).attr('tabindex','-1');
         }
         d3.select(host.parentElement).on('pointerleave.map',()=>{
           clearTimeout(tooltipHideTimer);
           tooltipHideTimer=setTimeout(restoreMap,180);
         });
-        tooltip.on('pointerenter',()=>clearTimeout(tooltipHideTimer));
+        tooltip
+          .on('pointerenter',()=>clearTimeout(tooltipHideTimer))
+          .on('click.pin',event=>{
+            const activeNode=simNodes.find(d=>d.id===activeHoverId);
+            if (!activeNode) return;
+            event.stopPropagation();
+            pinTheme(event,activeNode);
+          })
+          .on('keydown.pin',event=>{
+            if (event.key!=='Enter'&&event.key!==' ') return;
+            const activeNode=simNodes.find(d=>d.id===activeHoverId);
+            if (!activeNode) return;
+            event.preventDefault();
+            pinTheme(event,activeNode);
+          });
         showSelection(currentSelection);
-        if (activeHoverTheme) {
-          const activeNode=simNodes.find(d=>d.id===activeHoverTheme);
+        if (activeHoverTheme||currentSelection) {
+          const activeNode=simNodes.find(d=>d.id===(activeHoverTheme||currentSelection));
           if (activeNode) {
             activeHoverId=activeNode.id;
             focusNode(activeNode);
