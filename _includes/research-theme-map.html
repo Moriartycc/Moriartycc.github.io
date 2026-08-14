@@ -357,9 +357,11 @@
         const left=Math.max(4,Math.min(anchor.left,parent.clientWidth-tip.offsetWidth-4));
         let targetHeight=tip.offsetHeight;
         if (expanded&&extraNode) {
-          const extraLimit=Math.min(extraNode.scrollHeight,Math.max(180,window.innerHeight*.58));
+          const baseHeight=Math.max(0,tip.offsetHeight-extraNode.offsetHeight);
+          const viewportAllowance=Math.max(96,window.innerHeight-edge*2-baseHeight);
+          const extraLimit=Math.min(extraNode.scrollHeight,460,viewportAllowance);
           extraNode.style.setProperty('--tooltip-extra-height',`${extraLimit}px`);
-          targetHeight+=Math.max(0,extraLimit-extraNode.offsetHeight);
+          targetHeight=baseHeight+extraLimit;
         } else if (extraNode) {
           targetHeight-=extraNode.offsetHeight;
         }
