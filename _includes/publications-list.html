@@ -93,7 +93,7 @@
     };
 
     const updateActiveYear = () => {
-      const probe = window.scrollY + headerOffset() + 80;
+      const probe = window.scrollY + headerOffset() + 92;
       let activeIndex = 0;
       sections.forEach((section, index) => {
         if (section && section.getBoundingClientRect().top + window.scrollY <= probe) activeIndex = index;
