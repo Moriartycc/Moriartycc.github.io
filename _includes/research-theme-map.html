@@ -298,6 +298,7 @@
       let pinnedTooltipPosition = null;
       let pinnedTooltipAnchorPosition = null;
       let expandTooltipAfterPin = '';
+      let expandedTooltipTheme = '';
       let pinTooltipTheme = null;
       let keywordCloudSelection = null;
       let keywordCloudWidth = 0;
@@ -411,6 +412,9 @@
 
       function setTooltipDisclosure(group,toggle,expanded) {
         const extraNode=group.select('.tooltip-extra-papers').node();
+        const theme=tooltip.attr('data-theme')||'';
+        if (expanded) expandedTooltipTheme=theme;
+        else if (expandedTooltipTheme===theme) expandedTooltipTheme='';
         group.classed('is-expanded',expanded);
         toggle.attr('aria-expanded',String(expanded));
         requestAnimationFrame(()=>fitPinnedTooltip(expanded,extraNode));
@@ -459,8 +463,8 @@
         } else {
           positionTooltip(event,true);
         }
-        if (pinned&&expandTooltipAfterPin===node.id&&!group.empty()) {
-          expandTooltipAfterPin='';
+        if (pinned&&(expandTooltipAfterPin===node.id||expandedTooltipTheme===node.id)&&!group.empty()) {
+          if (expandTooltipAfterPin===node.id) expandTooltipAfterPin='';
           setTooltipDisclosure(group,toggle,true);
         }
       }
@@ -759,6 +763,7 @@
 
         function pinTheme(event,d) {
           clearTimeout(tooltipHideTimer);
+          if (expandedTooltipTheme&&expandedTooltipTheme!==d.id) expandedTooltipTheme='';
           activeHoverId=d.id;
           activeHoverTheme='';
           hoverLockUntil=0;
@@ -783,6 +788,7 @@
           hoverLockUntil=0;
           pinnedTooltipPosition=null;
           pinnedTooltipAnchorPosition=null;
+          expandedTooltipTheme='';
           showSelection('');
           focusNode(null);
           tooltip.classed('is-visible',false).classed('is-pinned',false).attr('tabindex','-1');
