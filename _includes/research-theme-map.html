@@ -57,6 +57,7 @@
     #research-keyword-previews .orbit-track { fill: none; stroke: var(--border); stroke-width: .7px; stroke-dasharray: 3 7; opacity: .32; }
     #research-keyword-previews .star-dust { fill: var(--foreground); pointer-events: none; }
     #research-keyword-previews .family-polytope { stroke-width: 1.2px; stroke-linejoin: round; }
+    #research-keyword-previews .node-hit-target { fill: transparent; cursor: pointer; }
     #research-keyword-previews .vos-node { cursor: pointer; stroke: var(--background); stroke-width: 1px; stroke-linejoin: round; }
     #research-keyword-previews .node-depth { pointer-events: none; opacity: .3; }
     #research-keyword-previews .node-highlight { fill: none; stroke: var(--background); stroke-width: 1.2px; stroke-linejoin: round; opacity: .42; pointer-events: none; }
@@ -540,6 +541,13 @@
           .attr('class','vos-node-wrap')
           .attr('transform',d=>`translate(${d.x},${d.y})`);
         const nodeFloat = nodeWrap.append('g').attr('class','node-float');
+        nodeFloat.append('circle')
+          .attr('class','node-hit-target')
+          .attr('r',d=>radius(d.weight)+(width<520?10:13))
+          .attr('aria-hidden','true')
+          .on('pointerenter',beginHover)
+          .on('pointermove',positionTooltip)
+          .on('click',(event,d)=>{event.stopPropagation();pinTheme(event,d);});
         const nodeDepth = nodeFloat.append('path')
           .attr('class','node-depth').attr('d',d=>nodePolygonPath(d))
           .attr('transform','translate(4,5)')
