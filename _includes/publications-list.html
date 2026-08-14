@@ -71,7 +71,6 @@
     const markers = [...shell.querySelectorAll('.publication-year-jump')];
     const sections = markers.map(marker => document.getElementById(`publications-${marker.dataset.publicationYear}`)?.closest('.publication-year-group'));
     const mobileQuery = window.matchMedia('(max-width: 700px)');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let dragging = false;
     let frameRequested = false;
 
@@ -155,7 +154,7 @@
         if (!section) return;
         window.scrollTo({
           top: section.getBoundingClientRect().top + window.scrollY - headerOffset(),
-          behavior: reduceMotion ? 'auto' : 'smooth'
+          behavior: 'auto'
         });
       });
     });
@@ -187,10 +186,10 @@
         PageDown: 0.2, PageUp: -0.2
       };
       if (event.key === 'Home' || event.key === 'End') {
-        scrollToProgress(event.key === 'Home' ? 0 : 1, reduceMotion ? 'auto' : 'smooth');
+        scrollToProgress(event.key === 'Home' ? 0 : 1);
         event.preventDefault();
       } else if (steps[event.key]) {
-        scrollToProgress(currentProgress() + steps[event.key], reduceMotion ? 'auto' : 'smooth');
+        scrollToProgress(currentProgress() + steps[event.key]);
         event.preventDefault();
       }
     });
