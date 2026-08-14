@@ -56,14 +56,15 @@
     #research-keyword-previews .map-shell { position: relative; contain: layout paint; isolation: isolate; }
     #research-keyword-previews .network-motion { transform-box: fill-box; transform-origin: center; animation: research-network-drift 16s ease-in-out infinite alternate; }
     #research-keyword-previews.is-map-paused .network-motion { animation-play-state: paused; }
-    #research-keyword-previews .orbit-track { fill: none; stroke: var(--border); stroke-width: .7px; stroke-dasharray: 3 7; opacity: .32; }
     #research-keyword-previews .star-dust { fill: var(--foreground); pointer-events: none; }
+    #research-keyword-previews .keyword-cloud { pointer-events: none; }
+    #research-keyword-previews .keyword-cloud-label { fill: var(--constellation-text, var(--foreground)); font-weight: 420; letter-spacing: .018em; paint-order: stroke; stroke: var(--constellation-sky, var(--background)); stroke-width: 2.6px; stroke-linejoin: round; opacity: .18; pointer-events: none; transition: opacity .22s ease, fill .22s ease; }
     #research-keyword-previews .family-polytope { stroke-width: 1.2px; stroke-linejoin: round; }
-    #research-keyword-previews .node-hit-target { fill: transparent; cursor: pointer; }
-    #research-keyword-previews .vos-node { cursor: pointer; stroke: var(--background); stroke-width: 1px; stroke-linejoin: round; }
+    #research-keyword-previews .node-hit-target { fill: transparent; cursor: pointer; touch-action: manipulation; }
+    #research-keyword-previews .vos-node { cursor: pointer; stroke: var(--background); stroke-width: 1px; stroke-linejoin: round; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
     #research-keyword-previews .node-depth { pointer-events: none; opacity: .3; }
     #research-keyword-previews .node-highlight { fill: none; stroke: var(--background); stroke-width: 1.2px; stroke-linejoin: round; opacity: .42; pointer-events: none; }
-    #research-keyword-previews .vos-label { fill: var(--foreground); font-size: 12px; font-weight: 400; paint-order: stroke; stroke: var(--background); stroke-width: 3px; stroke-linejoin: round; cursor: pointer; }
+    #research-keyword-previews .vos-label { fill: var(--foreground); font-size: 12px; font-weight: 400; paint-order: stroke; stroke: var(--background); stroke-width: 3px; stroke-linejoin: round; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
     #research-keyword-previews .vos-label.is-hovered { font-size: 14px; font-weight: 500; stroke-width: 3.5px; }
     #research-keyword-previews .vos-link { stroke: var(--border); }
     #research-keyword-previews .vos-node-wrap.is-muted, #research-keyword-previews .vos-link.is-muted { opacity: 0.12; }
@@ -212,6 +213,40 @@
       };
       papers.forEach(p => Object.assign(relevance[p.id],addedThemeScores[p.id] || {}));
 
+      // Secondary full-text concepts. Prevalence controls word size; per-theme
+      // scores control visibility when a theme is previewed or pinned.
+      const keywordData = [
+        {label:'high-dimensional limits',prevalence:1.00,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.76,'State evolution':.72,'Benign overfitting':.48}},
+        {label:'random data',prevalence:.92,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.88,'State evolution':.72,'Iterative algorithms':.58}},
+        {label:'asymptotic theory',prevalence:.90,themes:{'High-dimensional asymptotics':1,'Random matrix theory':.74,'State evolution':.76}},
+        {label:'eigenvalues',prevalence:.88,themes:{'Spectral inference':1,'Matrix perturbation':.92,'Random matrix theory':.84,'Concentration inequalities':.24}},
+        {label:'linear regression',prevalence:.86,themes:{'Linear and nonlinear algorithms':1,'Memorization':.86,'Benign overfitting':.86,'Model and data aggregation':.64}},
+        {label:'iterative methods',prevalence:.84,themes:{'Iterative algorithms':1,'Linear and nonlinear algorithms':.94,'State evolution':.84,'Stochastic optimization':.62}},
+        {label:'generalization',prevalence:.82,themes:{'Benign overfitting':1,'Memorization':.92,'Model and data aggregation':.52}},
+        {label:'interpolation',prevalence:.78,themes:{'Memorization':1,'Benign overfitting':1,'High-dimensional asymptotics':.52}},
+        {label:'concentration',prevalence:.76,themes:{'Concentration inequalities':1,'State evolution':.56,'Random matrix theory':.48,'Optimality and lower bounds':.32}},
+        {label:'state evolution',prevalence:.72,themes:{'State evolution':1,'Iterative algorithms':.88,'High-dimensional asymptotics':.78}},
+        {label:'uncertainty',prevalence:.69,themes:{'Conformal prediction':.94,'Optimality and lower bounds':.76,'Model and data aggregation':.42}},
+        {label:'eigenvectors',prevalence:.68,themes:{'Spectral inference':1,'Matrix perturbation':1,'Random matrix theory':.66}},
+        {label:'finite-sample guarantees',prevalence:.65,themes:{'State evolution':.76,'Concentration inequalities':.92,'Optimality and lower bounds':.58}},
+        {label:'low-rank matrices',prevalence:.63,themes:{'Spectral inference':.84,'Matrix perturbation':.94,'Random matrix theory':.68}},
+        {label:'ridge regularization',prevalence:.61,themes:{'Benign overfitting':.72,'Memorization':.62,'Linear and nonlinear algorithms':.72,'Optimality and lower bounds':.42}},
+        {label:'lower bounds',prevalence:.59,themes:{'Optimality and lower bounds':1,'Conformal prediction':.66,'Stochastic optimization':.58}},
+        {label:'predictive inference',prevalence:.57,themes:{'Conformal prediction':1,'Optimality and lower bounds':.72,'Concentration inequalities':.42}},
+        {label:'perturbation bounds',prevalence:.56,themes:{'Matrix perturbation':1,'Spectral inference':.74,'Optimality and lower bounds':.34}},
+        {label:'aggregation',prevalence:.55,themes:{'Model and data aggregation':1,'Concentration inequalities':.32,'Linear and nonlinear algorithms':.42}},
+        {label:'calibration',prevalence:.54,themes:{'Conformal prediction':1,'Model and data aggregation':.42}},
+        {label:'robustness',prevalence:.52,themes:{'Model and data aggregation':.68,'Conformal prediction':.46,'Benign overfitting':.34}},
+        {label:'coverage guarantees',prevalence:.51,themes:{'Conformal prediction':1,'Concentration inequalities':.72,'Optimality and lower bounds':.72}},
+        {label:'stochastic geometry',prevalence:.50,themes:{'Stochastic optimization':1,'Optimality and lower bounds':.74}},
+        {label:'label noise',prevalence:.49,themes:{'Model and data aggregation':.84,'Conformal prediction':.38,'Concentration inequalities':.30}},
+        {label:'exchangeability',prevalence:.48,themes:{'Concentration inequalities':1,'Conformal prediction':.38}},
+        {label:'policy gradients',prevalence:.47,themes:{'Reinforcement learning':1,'Stochastic optimization':.78,'Iterative algorithms':.52}},
+        {label:'distributed learning',prevalence:.44,themes:{'Model and data aggregation':.88,'Linear and nonlinear algorithms':.54}},
+        {label:'matrix-valued data',prevalence:.43,themes:{'Concentration inequalities':.94,'Random matrix theory':.58}},
+        {label:'entropy regularization',prevalence:.40,themes:{'Reinforcement learning':1,'Stochastic optimization':.62}}
+      ];
+
       const families = [...new Set(Object.values(themeFamily))];
       const familyColor = {};
       families.forEach((family, i) => familyColor[family] = `var(--viz-series-${i + 1})`);
@@ -308,6 +343,9 @@
       let lastRenderedWidth = 0;
       let resizeRenderTimer = null;
       let pinnedTooltipPosition = null;
+      let keywordCloudSelection = null;
+      let keywordCloudWidth = 0;
+      const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
       const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
         '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -366,7 +404,9 @@
 
       function updatePaperDetails(theme) {
         if (!theme) {
-          selectionText.innerHTML='<strong>All themes.</strong> Hover to preview; click a node or its paper window to pin it.';
+          selectionText.innerHTML=coarsePointer
+            ? '<strong>All themes.</strong> Tap a node once to pin it and keep its papers open.'
+            : '<strong>All themes.</strong> Hover to preview; click a node or its paper window to pin it.';
           morePapers.innerHTML='';
           return;
         }
@@ -399,6 +439,17 @@
           const t = typeof d.target === 'object' ? d.target.id : d.target;
           return s !== theme && t !== theme;
         });
+        if (keywordCloudSelection) {
+          const activeNode=nodes.find(d=>d.id===theme);
+          const activeColor=activeNode?familyColor[activeNode.family]:'var(--constellation-text)';
+          keywordCloudSelection
+            .style('opacity',d=>{
+              if (!theme) return keywordCloudWidth<520 ? .035+.10*d.prevalence : .075+.17*d.prevalence;
+              const score=d.themes[theme]||0;
+              return .025+.87*Math.pow(score,.78);
+            })
+            .style('fill',d=>theme&&(d.themes[theme]||0)>=.25?activeColor:'var(--constellation-text)');
+        }
         updatePaperDetails(theme);
       }
 
@@ -421,7 +472,9 @@
         animationVisibilityHandler=null;
         const host = document.getElementById('vos-keyword-map');
         host.innerHTML = '';
+        keywordCloudSelection=null;
         const width = Math.max(320, host.getBoundingClientRect().width || 736);
+        keywordCloudWidth=width;
         lastRenderedWidth=Math.round(width);
         const height = width < 520 ? 500 : 560;
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -432,18 +485,9 @@
           .attr('width', width).attr('height', height)
           .attr('aria-labelledby','vos-svg-title vos-svg-desc');
         svg.append('title').attr('id','vos-svg-title').text('Research theme co-occurrence map');
-        svg.append('desc').attr('id','vos-svg-desc').text('Themes are closer and connected when they recur in the same papers. Node size represents prominence across the full text corpus.');
+        svg.append('desc').attr('id','vos-svg-desc').text('Themes are closer and connected when they recur in the same papers. Node size represents prominence across the full text corpus. A faint outer cloud shows recurring technical keywords and brightens by relevance when a theme is selected.');
         const motionLayer = svg.append('g').attr('class','network-motion');
         const spaceLayer = motionLayer.append('g').attr('aria-hidden','true');
-        spaceLayer.selectAll('ellipse').data([
-          {rx:width*.18,ry:height*.12,rotation:-18+systemRotation*180/Math.PI},
-          {rx:width*.29,ry:height*.20,rotation:12+systemRotation*180/Math.PI},
-          {rx:width*.39,ry:height*.29,rotation:-8+systemRotation*180/Math.PI}
-        ]).join('ellipse')
-          .attr('class','orbit-track')
-          .attr('cx',width/2).attr('cy',height/2)
-          .attr('rx',d=>d.rx).attr('ry',d=>d.ry)
-          .attr('transform',d=>`rotate(${d.rotation} ${width/2} ${height/2})`);
         const starData=Array.from({length:width<520?26:40},()=>({
           x:14+random()*Math.max(30,width-28),
           y:12+random()*Math.max(30,height-24),
@@ -454,6 +498,38 @@
         const stars=spaceLayer.selectAll('circle').data(starData).join('circle')
           .attr('class','star-dust').attr('cx',d=>d.x).attr('cy',d=>d.y)
           .attr('r',d=>d.r).attr('opacity',d=>d.opacity);
+
+        const keywordFont=d3.scaleSqrt().domain([.40,1]).range(width<520?[8,12.5]:[9,16]);
+        const cloudData=keywordData.map((d,i)=>({
+          ...d,
+          angle:i*2*Math.PI/keywordData.length+systemRotation+(random()-.5)*.08,
+          speed:(i%2?-1:1)*(.030+random()*.018),
+          radialBand:.78+(i%3)*.075,
+          floatPhase:random()*Math.PI*2
+        }));
+        const keywordLabels=motionLayer.append('g').attr('class','keyword-cloud').attr('aria-hidden','true')
+          .selectAll('text').data(cloudData).join('text')
+          .attr('class','keyword-cloud-label')
+          .attr('text-anchor','middle')
+          .style('font-size',d=>`${keywordFont(d.prevalence)}px`)
+          .text(d=>d.label);
+        keywordLabels.each(function(d){d.textWidth=this.getComputedTextLength();});
+        const positionKeywordCloud=seconds=>{
+          const cx=width/2,cy=height/2;
+          keywordLabels.each(function(d){
+            const angle=d.angle+seconds*d.speed;
+            const horizontalRoom=Math.max(42,width/2-(d.textWidth||50)/2-10);
+            const rx=horizontalRoom*d.radialBand;
+            const ry=(height/2-(width<520?17:22))*d.radialBand;
+            const drift=3.5*Math.sin(seconds*.23+d.floatPhase);
+            d.cloudX=Math.max((d.textWidth||50)/2+6,Math.min(width-(d.textWidth||50)/2-6,cx+Math.cos(angle)*(rx+drift)));
+            d.cloudY=Math.max(keywordFont(d.prevalence)+4,Math.min(height-7,cy+Math.sin(angle)*(ry+drift*.7)));
+          });
+          keywordLabels.attr('x',d=>d.cloudX).attr('y',d=>d.cloudY);
+        };
+        positionKeywordCloud(0);
+        keywordCloudSelection=keywordLabels;
+        applyHighlight(currentSelection||activeHoverTheme);
 
         const centers = {};
         families.forEach((f,i) => {
@@ -537,7 +613,9 @@
 
         let activeHoverId=activeHoverTheme;
         let hoverLockUntil=0;
+        let lastTouchPin=0;
         function beginHover(event,d) {
+          if (event?.pointerType==='touch'||event?.pointerType==='pen') return;
           const now=performance.now();
           if (now<hoverLockUntil&&activeHoverId!==d.id) return;
           activeHoverId=d.id;
@@ -546,6 +624,28 @@
           focusNode(d);
           applyHighlight(d.id);
           showPaperTooltip(event,d);
+        }
+
+        function pinFromTouch(event,d) {
+          const now=performance.now();
+          if (now-lastTouchPin<240&&currentSelection===d.id) return;
+          lastTouchPin=now;
+          event.preventDefault?.();
+          event.stopPropagation?.();
+          const touch=event.changedTouches?.[0];
+          const pointEvent=touch?{clientX:touch.clientX,clientY:touch.clientY,target:event.target}:event;
+          pinTheme(pointEvent,d);
+        }
+
+        function pinFromPointer(event,d) {
+          if (event.pointerType!=='touch'&&event.pointerType!=='pen') return;
+          pinFromTouch(event,d);
+        }
+
+        function pinFromClick(event,d) {
+          event.stopPropagation();
+          if (performance.now()-lastTouchPin<850) return;
+          pinTheme(event,d);
         }
 
         function pinTheme(event,d) {
@@ -599,7 +699,9 @@
           .attr('aria-hidden','true')
           .on('pointerenter',beginHover)
           .on('pointermove',positionTooltip)
-          .on('click',(event,d)=>{event.stopPropagation();pinTheme(event,d);});
+          .on('pointerup.touch-pin',pinFromPointer)
+          .on('touchend.touch-pin',pinFromTouch)
+          .on('click',pinFromClick);
         const nodeDepth = nodeFloat.append('path')
           .attr('class','node-depth').attr('d',d=>nodePolygonPath(d))
           .attr('transform','translate(4,5)')
@@ -614,7 +716,9 @@
           .on('pointerenter',beginHover)
           .on('pointermove',positionTooltip)
           .on('focus',beginHover)
-          .on('click',(event,d)=>{event.stopPropagation();pinTheme(event,d);})
+          .on('pointerup.touch-pin',pinFromPointer)
+          .on('touchend.touch-pin',pinFromTouch)
+          .on('click',pinFromClick)
           .on('keydown',(event,d)=>{
             if (event.key!=='Enter'&&event.key!==' ') return;
             event.preventDefault();
@@ -630,6 +734,7 @@
           let lastNetworkFrame=-Infinity;
           let lastLabelFrame=-Infinity;
           let lastStarFrame=-Infinity;
+          let lastKeywordFrame=-Infinity;
           let mapVisible=true;
           const networkInterval=width<520?50:32;
 
@@ -719,6 +824,10 @@
               stars.attr('opacity',(d,i)=>d.opacity*(.72+.28*Math.sin(seconds*(.7+(i%7)*.05)+d.phase)));
               lastStarFrame=time;
             }
+            if (time-lastKeywordFrame>=66) {
+              positionKeywordCloud(seconds);
+              lastKeywordFrame=time;
+            }
             shapeAnimationFrame=requestAnimationFrame(animateShapes);
           };
 
@@ -786,7 +895,9 @@
         labels
           .on('pointerenter',beginHover)
           .on('pointermove',positionTooltip)
-          .on('click',(event,d)=>{event.stopPropagation();pinTheme(event,d);});
+          .on('pointerup.touch-pin',pinFromPointer)
+          .on('touchend.touch-pin',pinFromTouch)
+          .on('click',pinFromClick);
 
         svg.on('click.clear-selection',event=>{
           if (event.target.closest?.('.vos-node-wrap, .vos-label')) return;
