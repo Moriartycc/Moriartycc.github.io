@@ -78,7 +78,11 @@
     const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
     const headerOffset = () => mobileQuery.matches ? 118 : 96;
     const listTop = () => list.getBoundingClientRect().top + window.scrollY;
-    const scrollRange = () => Math.max(1, list.offsetHeight - window.innerHeight * 0.36);
+    const scrollRange = () => {
+      const firstTop = sections[0]?.getBoundingClientRect().top + window.scrollY || listTop();
+      const lastTop = sections.at(-1)?.getBoundingClientRect().top + window.scrollY || listTop() + list.offsetHeight;
+      return Math.max(1, lastTop - firstTop);
+    };
     const currentProgress = () => clamp((window.scrollY - (listTop() - headerOffset())) / scrollRange());
 
     const setProgress = progress => {
