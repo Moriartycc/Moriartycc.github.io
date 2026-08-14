@@ -298,6 +298,7 @@
       let activeHoverTheme = '';
       let tooltipHideTimer = null;
       let shapeAnimationFrame = 0;
+      let pinnedTooltipPosition = null;
 
       const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
         '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -315,7 +316,7 @@
         tooltip.style('left',`${left}px`).style('top',`${top}px`);
       }
 
-      function showPaperTooltip(event,node) {
+      function showPaperTooltip(event,node,preservePinnedPosition=false) {
         clearTimeout(tooltipHideTimer);
         const firstThree=node.paperMatches.slice(0,3);
         const remaining=node.paperMatches.length-firstThree.length;
@@ -325,8 +326,12 @@
           `<div class="tooltip-family">${escapeHtml(node.family)}</div>`+
           firstThree.map(p=>`<div class="tooltip-paper">${paperLine(p)}</div>`).join('')+
           (remaining>0?`<div class="tooltip-more">${remaining} more ${remaining===1?'paper':'papers'} below</div>`:'')
-        ).classed('is-visible',true).classed('is-pinned',pinned).attr('tabindex','0');
-        positionTooltip(event);
+        ).classed('is-visible',true).classed('is-pinned',pinned).attr('tabindex','0').attr('data-theme',node.id);
+        if (preservePinnedPosition&&pinnedTooltipPosition) {
+          tooltip.style('left',pinnedTooltipPosition.left).style('top',pinnedTooltipPosition.top);
+        } else {
+          positionTooltip(event);
+        }
       }
 
       function updatePaperDetails(theme) {
@@ -512,6 +517,7 @@
           } else {
             showPaperTooltip(event,d);
           }
+          pinnedTooltipPosition={left:tooltip.style('left'),top:tooltip.style('top')};
         }
 
         function clearPinnedTheme() {
@@ -519,6 +525,7 @@
           activeHoverId='';
           activeHoverTheme='';
           hoverLockUntil=0;
+          pinnedTooltipPosition=null;
           showSelection('');
           focusNode(null);
           tooltip.classed('is-visible',false).classed('is-pinned',false).attr('tabindex','-1');
@@ -774,7 +781,11 @@
           hoverLockUntil=0;
           focusNode(selectedNode||null);
           applyHighlight(currentSelection);
-          tooltip.classed('is-visible',false).classed('is-pinned',false).attr('tabindex','-1');
+          if (selectedNode) {
+            showPaperTooltip(null,selectedNode,true);
+          } else {
+            tooltip.classed('is-visible',false).classed('is-pinned',false).attr('tabindex','-1').attr('data-theme',null);
+          }
         }
         d3.select(host.parentElement).on('pointerleave.map',()=>{
           clearTimeout(tooltipHideTimer);
