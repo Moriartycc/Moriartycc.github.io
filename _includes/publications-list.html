@@ -80,7 +80,8 @@
     const scrollRange = () => {
       const firstTop = sections[0]?.getBoundingClientRect().top + window.scrollY || listTop();
       const lastTop = sections.at(-1)?.getBoundingClientRect().top + window.scrollY || listTop() + list.offsetHeight;
-      return Math.max(1, lastTop - firstTop);
+      const maximumReach = document.documentElement.scrollHeight - window.innerHeight - (listTop() - headerOffset());
+      return Math.max(1, Math.min(lastTop - firstTop, maximumReach));
     };
     const currentProgress = () => clamp((window.scrollY - (listTop() - headerOffset())) / scrollRange());
 
@@ -92,7 +93,7 @@
     };
 
     const updateActiveYear = () => {
-      const probe = window.scrollY + headerOffset() + 28;
+      const probe = window.scrollY + headerOffset() + 80;
       let activeIndex = 0;
       sections.forEach((section, index) => {
         if (section && section.getBoundingClientRect().top + window.scrollY <= probe) activeIndex = index;
@@ -121,10 +122,10 @@
     const positionMarkers = () => {
       track.setAttribute('aria-orientation', mobileQuery.matches ? 'horizontal' : 'vertical');
       const firstOffset = sections[0]?.offsetTop || 0;
-      const lastOffset = Math.max(1, (sections.at(-1)?.offsetTop || list.offsetHeight) - firstOffset);
+      const markerRange = scrollRange();
       sections.forEach((section, index) => {
         const relativeOffset = Math.max(0, (section?.offsetTop || firstOffset) - firstOffset);
-        const position = clamp(relativeOffset / lastOffset, 0.035, 0.965);
+        const position = clamp(relativeOffset / markerRange, 0.035, 0.965);
         markers[index].style.setProperty('--publication-year-position', `${position * 100}%`);
       });
       rail.classList.add('is-ready');
