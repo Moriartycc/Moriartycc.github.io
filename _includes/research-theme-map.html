@@ -34,10 +34,6 @@
     html[data-theme="dark"] #research-keyword-previews .map-controls .form-select option { color: #e6edf7; background-color: #14233a; border-color: #385475; }
     #research-keyword-previews .selected-line { color: var(--muted-foreground); min-height: 28px; margin-top: 6px; }
     #research-keyword-previews .selected-line strong { color: var(--foreground); font-weight: 500; }
-    #research-keyword-previews .more-papers { margin-top: 6px; }
-    #research-keyword-previews .more-papers-heading { color: var(--foreground); font-weight: 500; margin-bottom: 4px; }
-    #research-keyword-previews .paper-list { margin: 0; padding-left: 20px; }
-    #research-keyword-previews .paper-list li { margin: 3px 0; }
     #research-keyword-previews .paper-link, #research-keyword-previews .tooltip a { white-space: nowrap; font-size: 11px; }
     #research-keyword-previews .legend { position: absolute; top: 10px; right: 10px; z-index: 12; display: grid; grid-template-columns: repeat(2, max-content); gap: 5px 7px; max-width: calc(100% - 20px); margin: 0; color: var(--muted-foreground); pointer-events: none; }
     #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 2px 7px; background: color-mix(in srgb, var(--glass-card-fill, var(--background)) 78%, transparent); border: 1px solid color-mix(in srgb, var(--glass-edge, var(--border)) 76%, transparent); border-radius: 999px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 56%, transparent), 0 5px 14px color-mix(in srgb, var(--constellation-sky, var(--background)) 34%, transparent); font-size: 10px; line-height: 1.25; white-space: nowrap; opacity: .68; -webkit-backdrop-filter: blur(10px) saturate(130%); backdrop-filter: blur(10px) saturate(130%); transition: opacity .22s ease, border-color .22s ease, box-shadow .22s ease; }
@@ -57,7 +53,14 @@
     #research-keyword-previews .tooltip-family { color: var(--muted-foreground); margin: 2px 0 6px; }
     #research-keyword-previews .tooltip-paper { margin-top: 6px; font-size: 12px; line-height: 1.35; }
     #research-keyword-previews .paper-title { font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif; font-size: 0.94em; font-weight: 500; letter-spacing: 0.005em; }
-    #research-keyword-previews .tooltip-more { color: var(--muted-foreground); margin-top: 6px; }
+    #research-keyword-previews .tooltip-more-group { margin-top: 7px; }
+    #research-keyword-previews .tooltip-more-toggle { display: flex; align-items: center; gap: 5px; width: 100%; padding: 3px 1px; color: var(--muted-foreground); background: transparent; border: 0; font: inherit; font-size: 11px; text-align: left; cursor: pointer; }
+    #research-keyword-previews .tooltip-more-toggle:hover, #research-keyword-previews .tooltip-more-toggle:focus-visible { color: var(--foreground); outline: none; }
+    #research-keyword-previews .tooltip-more-chevron { display: inline-block; color: var(--viz-series-1); font-size: 10px; transition: transform .18s ease; }
+    #research-keyword-previews .tooltip-more-group.is-expanded .tooltip-more-chevron { transform: rotate(90deg); }
+    #research-keyword-previews .tooltip-extra-papers { max-height: 0; padding-right: 3px; opacity: 0; visibility: hidden; overflow: hidden; transition: max-height .22s ease, opacity .16s ease; }
+    #research-keyword-previews .tooltip-more-group.is-expanded .tooltip-extra-papers { max-height: 230px; opacity: 1; visibility: visible; overflow-y: auto; scrollbar-width: thin; }
+    #research-keyword-previews .tooltip-extra-paper { padding-left: 14px; }
     #research-keyword-previews .map-shell { position: relative; contain: layout paint; isolation: isolate; }
     #research-keyword-previews .network-motion { transform-box: fill-box; transform-origin: center; animation: research-network-drift 16s ease-in-out infinite alternate; }
     #research-keyword-previews.is-map-paused .network-motion { animation-play-state: paused; }
@@ -110,7 +113,6 @@
       <div id="vos-tooltip" class="tooltip" role="tooltip" tabindex="-1"></div>
     </div>
     <div id="vos-selection" class="selected-line" aria-live="polite"></div>
-    <div id="vos-more-papers" class="more-papers" aria-live="polite"></div>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script>
@@ -282,7 +284,6 @@
 
       const tooltip = d3.select('#vos-tooltip');
       const selectionText = document.getElementById('vos-selection');
-      const morePapers = document.getElementById('vos-more-papers');
       let currentSelection = '';
       let activeHoverTheme = '';
       let tooltipHideTimer = null;
@@ -294,6 +295,7 @@
       let lastRenderedWidth = 0;
       let resizeRenderTimer = null;
       let pinnedTooltipPosition = null;
+      let expandTooltipAfterPin = '';
       let keywordCloudSelection = null;
       let keywordCloudWidth = 0;
       const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
@@ -335,21 +337,67 @@
         });
       }
 
+      function clampTooltipWithinMap() {
+        const tip=tooltip.node();
+        const parent=tip.parentElement;
+        const transform=tooltip.style('transform')||'';
+        const match=transform.match(/translate3d\(([-\d.]+)px,\s*([-\d.]+)px/i);
+        if (!match) {
+          positionTooltip(null,true);
+          return;
+        }
+        const left=Math.max(4,Math.min(Number(match[1]),parent.clientWidth-tip.offsetWidth-4));
+        const top=Math.max(4,Math.min(Number(match[2]),parent.clientHeight-tip.offsetHeight-4));
+        tooltip.style('transform',`translate3d(${left}px,${top}px,0)`);
+        pinnedTooltipPosition=tooltip.style('transform');
+      }
+
+      function setTooltipDisclosure(group,toggle,expanded) {
+        group.classed('is-expanded',expanded);
+        toggle.attr('aria-expanded',String(expanded));
+        requestAnimationFrame(clampTooltipWithinMap);
+      }
+
       function showPaperTooltip(event,node,preservePinnedPosition=false) {
         clearTimeout(tooltipHideTimer);
         const firstThree=node.paperMatches.slice(0,3);
-        const remaining=node.paperMatches.length-firstThree.length;
+        const extra=node.paperMatches.slice(3);
+        const remaining=extra.length;
         const pinned=currentSelection===node.id;
         tooltip.html(
           `<div class="tooltip-heading"><strong>${escapeHtml(node.id)}</strong><span class="tooltip-pin-state">${pinned?'Pinned':'Click to pin'}</span></div>`+
           `<div class="tooltip-family">${escapeHtml(node.family)}</div>`+
           firstThree.map(p=>`<div class="tooltip-paper">${paperLine(p)}</div>`).join('')+
-          (remaining>0?`<div class="tooltip-more">${remaining} more ${remaining===1?'paper':'papers'} below</div>`:'')
+          (remaining>0
+            ? `<div class="tooltip-more-group"><button type="button" class="tooltip-more-toggle" aria-expanded="false"><span class="tooltip-more-chevron" aria-hidden="true">&#9656;</span><span>${remaining} more ${remaining===1?'paper':'papers'}</span></button><div class="tooltip-extra-papers">${extra.map(p=>`<div class="tooltip-paper tooltip-extra-paper">${paperLine(p)}</div>`).join('')}</div></div>`
+            : '')
         ).classed('is-visible',true).classed('is-pinned',pinned).attr('tabindex','0').attr('data-theme',node.id);
+        const group=tooltip.select('.tooltip-more-group');
+        const toggle=tooltip.select('.tooltip-more-toggle');
+        if (!group.empty()) {
+          group
+            .on('pointerenter.expand',()=>{if (currentSelection===node.id) setTooltipDisclosure(group,toggle,true);})
+            .on('pointerleave.expand',()=>{if (!coarsePointer) setTooltipDisclosure(group,toggle,false);});
+          toggle
+            .on('focus.expand',()=>{if (currentSelection===node.id) setTooltipDisclosure(group,toggle,true);})
+            .on('click.expand',event=>{
+              if (currentSelection!==node.id) {
+                expandTooltipAfterPin=node.id;
+                return;
+              }
+              event.preventDefault();
+              event.stopPropagation();
+              setTooltipDisclosure(group,toggle,!group.classed('is-expanded'));
+            });
+        }
         if (preservePinnedPosition&&pinnedTooltipPosition) {
           tooltip.style('transform',pinnedTooltipPosition);
         } else {
           positionTooltip(event,true);
+        }
+        if (pinned&&expandTooltipAfterPin===node.id&&!group.empty()) {
+          expandTooltipAfterPin='';
+          setTooltipDisclosure(group,toggle,true);
         }
       }
 
@@ -358,16 +406,11 @@
           selectionText.innerHTML=coarsePointer
             ? '<strong>All themes.</strong> Tap a node once to pin it and keep its papers open.'
             : '<strong>All themes.</strong> Hover to preview; click a node or its paper window to pin it.';
-          morePapers.innerHTML='';
           return;
         }
         const node=nodes.find(d=>d.id===theme);
-        const extra=node.paperMatches.slice(3);
         const state=theme===currentSelection?'Pinned':'Preview';
         selectionText.innerHTML=`<strong>${state}: ${escapeHtml(theme)}.</strong> ${node.paperMatches.length} related ${node.paperMatches.length===1?'paper':'papers'}, ranked by corpus-derived full-text relevance.`;
-        morePapers.innerHTML=extra.length
-          ? `<div class="more-papers-heading">More papers</div><ol class="paper-list">${extra.map(p=>`<li>${paperLine(p)}</li>`).join('')}</ol>`
-          : '';
       }
 
       function updateLegend(theme) {
