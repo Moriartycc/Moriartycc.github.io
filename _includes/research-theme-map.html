@@ -43,6 +43,7 @@
     #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 2px 7px; background: color-mix(in srgb, var(--glass-card-fill, var(--background)) 78%, transparent); border: 1px solid color-mix(in srgb, var(--glass-edge, var(--border)) 76%, transparent); border-radius: 999px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 56%, transparent), 0 5px 14px color-mix(in srgb, var(--constellation-sky, var(--background)) 34%, transparent); font-size: 10px; line-height: 1.25; white-space: nowrap; opacity: .68; -webkit-backdrop-filter: blur(10px) saturate(130%); backdrop-filter: blur(10px) saturate(130%); transition: opacity .22s ease, border-color .22s ease, box-shadow .22s ease; }
     #research-keyword-previews .legend-item.is-leading { border-color: color-mix(in srgb, var(--swatch) 68%, var(--glass-edge, var(--border))); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 66%, transparent), 0 6px 16px color-mix(in srgb, var(--swatch) 16%, transparent); }
     #research-keyword-previews .legend-label { overflow: hidden; text-overflow: ellipsis; }
+    #research-keyword-previews .legend-label-short { display: none; }
     #research-keyword-previews .legend-weight { min-width: 2.6em; color: var(--foreground); font-size: .9em; font-variant-numeric: tabular-nums; text-align: right; }
     #research-keyword-previews .legend:not(.is-reading) .legend-weight { display: none; }
     #research-keyword-previews .legend-swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--swatch); }
@@ -91,6 +92,8 @@
       #research-keyword-previews .vos-label.is-hovered { font-size: calc(var(--label-size, 11px) * 1.14); }
       #research-keyword-previews .legend { top: 8px; right: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); width: calc(100% - 16px); max-width: none; gap: 4px; }
       #research-keyword-previews .legend-item { gap: 4px; padding: 2px 5px; font-size: 8px; }
+      #research-keyword-previews .legend-label-full { display: none; }
+      #research-keyword-previews .legend-label-short { display: inline; }
       #research-keyword-previews .legend-weight { min-width: 2.35em; }
     }
   </style>
@@ -261,9 +264,18 @@
         .map(d=>`<option value="${d.id}">${d.id}</option>`).join('');
 
       const legend = document.getElementById('vos-legend');
+      const shortFamilyLabel = {
+        'Random matrices & spectral methods':'Spectral methods',
+        'High dimensional statistics':'High-dimensional stats',
+        'Linear regression & linear methods':'Linear methods',
+        'Machine learning theory':'ML theory',
+        'Information theory & optimality':'Info theory & optimality',
+        'Probability & its applications':'Probability & applications'
+      };
       legend.innerHTML = families.map((family,index) =>
         `<span class="legend-item" role="listitem" data-family-index="${index}" style="--swatch:${familyColor[family]}">`+
-          `<span class="legend-swatch"></span><span class="legend-label">${family}</span><span class="legend-weight"></span>`+
+          `<span class="legend-swatch"></span><span class="legend-label legend-label-full">${family}</span>`+
+          `<span class="legend-label legend-label-short">${shortFamilyLabel[family]}</span><span class="legend-weight"></span>`+
         `</span>`
       ).join('');
       const legendItems=d3.select(legend).selectAll('.legend-item').data(families);
