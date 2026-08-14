@@ -8,7 +8,7 @@ redirect_from:
 ---
 Welcome!
 
-I am an Assistant Professor in [Statistics at University of Illinois Urbana-Champaign](https://stat.illinois.edu/news).
+I am an Assistant Professor in <a class="advisor-link" href="https://stat.illinois.edu/news">Statistics at University of Illinois Urbana-Champaign</a>.
 
 My research develops theoretical tools for modern machine learning, with an emphasis on random matrices, high-dimensional statistics, information theory, and iterative algorithms. I study applications including overparameterized models, neural networks, structured data, conformal prediction, and reinforcement learning.
 
