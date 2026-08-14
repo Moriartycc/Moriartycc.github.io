@@ -42,7 +42,7 @@
     #research-keyword-previews .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 8px; color: var(--muted-foreground); }
     #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 6px; }
     #research-keyword-previews .legend-swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--swatch); }
-    #research-keyword-previews .tooltip { display: none; position: absolute; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--popover); color: var(--popover-foreground); box-shadow: 0 12px 30px color-mix(in srgb, var(--foreground) 12%, transparent); cursor: pointer; pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; }
+    #research-keyword-previews .tooltip { display: none; position: absolute; top: 0; left: 0; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--popover); color: var(--popover-foreground); box-shadow: 0 12px 30px color-mix(in srgb, var(--foreground) 12%, transparent); cursor: pointer; pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; will-change: transform; }
     #research-keyword-previews .tooltip.is-visible { display: block; pointer-events: auto; opacity: 1; visibility: visible; }
     #research-keyword-previews .tooltip.is-pinned { border-color: color-mix(in srgb, var(--viz-series-1) 70%, var(--border)); }
     #research-keyword-previews .tooltip-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
@@ -52,8 +52,9 @@
     #research-keyword-previews .tooltip-paper { margin-top: 6px; font-size: 12px; line-height: 1.35; }
     #research-keyword-previews .paper-title { font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif; font-size: 0.94em; font-weight: 500; letter-spacing: 0.005em; }
     #research-keyword-previews .tooltip-more { color: var(--muted-foreground); margin-top: 6px; }
-    #research-keyword-previews .map-shell { position: relative; }
+    #research-keyword-previews .map-shell { position: relative; contain: layout paint; isolation: isolate; }
     #research-keyword-previews .network-motion { transform-box: fill-box; transform-origin: center; animation: research-network-drift 16s ease-in-out infinite alternate; }
+    #research-keyword-previews.is-map-paused .network-motion { animation-play-state: paused; }
     #research-keyword-previews .orbit-track { fill: none; stroke: var(--border); stroke-width: .7px; stroke-dasharray: 3 7; opacity: .32; }
     #research-keyword-previews .star-dust { fill: var(--foreground); pointer-events: none; }
     #research-keyword-previews .family-polytope { stroke-width: 1.2px; stroke-linejoin: round; }
@@ -67,7 +68,8 @@
     #research-keyword-previews .vos-node-wrap.is-muted, #research-keyword-previews .vos-link.is-muted { opacity: 0.12; }
     #research-keyword-previews .vos-label.is-muted { opacity: 0.2; }
     #research-keyword-previews .vos-node-wrap.is-selected .vos-node { stroke: var(--foreground); stroke-width: 2px; }
-    #research-keyword-previews .vos-node-wrap.is-pinned .vos-node { stroke: var(--viz-series-1); stroke-width: 2.6px; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--viz-series-1) 58%, transparent)); }
+    #research-keyword-previews .vos-node-wrap.is-pinned .vos-node { stroke: var(--viz-series-1); stroke-width: 2.8px; }
+    #research-keyword-previews .vos-node-wrap.is-pinned .node-highlight { stroke: var(--viz-series-1); stroke-width: 1.5px; opacity: .78; }
     #research-keyword-previews svg { display: block; max-width: 100%; }
     @keyframes research-network-drift {
       0% { transform: translate(-2px, 1px) rotate(-0.2deg); }
@@ -298,6 +300,12 @@
       let activeHoverTheme = '';
       let tooltipHideTimer = null;
       let shapeAnimationFrame = 0;
+      let tooltipMoveFrame = 0;
+      let pendingTooltipPoint = null;
+      let animationVisibilityObserver = null;
+      let animationVisibilityHandler = null;
+      let lastRenderedWidth = 0;
+      let resizeRenderTimer = null;
       let pinnedTooltipPosition = null;
 
       const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
@@ -306,14 +314,35 @@
       const paperLink = paper => `<a class="paper-link" href="${paper.url}" target="_blank" rel="noopener">${paper.linkLabel} ↗</a>`;
       const paperLine = paper => `<span class="paper-title">${escapeHtml(paper.title)} (${paper.year})</span> ${paperLink(paper)}`;
 
-      function positionTooltip(event) {
+      function placeTooltip(clientX,clientY) {
         const tip=tooltip.node();
         const box=tip.parentElement.getBoundingClientRect();
-        const clientX=Number.isFinite(event?.clientX)?event.clientX:box.left+box.width/2;
-        const clientY=Number.isFinite(event?.clientY)?event.clientY:box.top+box.height/2;
         const left=Math.max(4,Math.min(clientX-box.left+12,box.width-tip.offsetWidth-4));
         const top=Math.max(4,Math.min(clientY-box.top+12,box.height-tip.offsetHeight-4));
-        tooltip.style('left',`${left}px`).style('top',`${top}px`);
+        tooltip.style('transform',`translate3d(${left}px,${top}px,0)`);
+      }
+
+      function positionTooltip(event,immediate=false) {
+        let clientX=event?.clientX;
+        let clientY=event?.clientY;
+        if (!Number.isFinite(clientX)||!Number.isFinite(clientY)) {
+          const box=tooltip.node().parentElement.getBoundingClientRect();
+          clientX=box.left+box.width/2;
+          clientY=box.top+box.height/2;
+        }
+        if (immediate) {
+          placeTooltip(clientX,clientY);
+          return;
+        }
+        pendingTooltipPoint={clientX,clientY};
+        if (tooltipMoveFrame) return;
+        tooltipMoveFrame=requestAnimationFrame(()=>{
+          tooltipMoveFrame=0;
+          if (!pendingTooltipPoint) return;
+          const point=pendingTooltipPoint;
+          pendingTooltipPoint=null;
+          placeTooltip(point.clientX,point.clientY);
+        });
       }
 
       function showPaperTooltip(event,node,preservePinnedPosition=false) {
@@ -328,9 +357,9 @@
           (remaining>0?`<div class="tooltip-more">${remaining} more ${remaining===1?'paper':'papers'} below</div>`:'')
         ).classed('is-visible',true).classed('is-pinned',pinned).attr('tabindex','0').attr('data-theme',node.id);
         if (preservePinnedPosition&&pinnedTooltipPosition) {
-          tooltip.style('left',pinnedTooltipPosition.left).style('top',pinnedTooltipPosition.top);
+          tooltip.style('transform',pinnedTooltipPosition);
         } else {
-          positionTooltip(event);
+          positionTooltip(event,true);
         }
       }
 
@@ -381,9 +410,18 @@
 
       function renderMap() {
         cancelAnimationFrame(shapeAnimationFrame);
+        shapeAnimationFrame=0;
+        cancelAnimationFrame(tooltipMoveFrame);
+        tooltipMoveFrame=0;
+        pendingTooltipPoint=null;
+        animationVisibilityObserver?.disconnect();
+        animationVisibilityObserver=null;
+        if (animationVisibilityHandler) document.removeEventListener('visibilitychange',animationVisibilityHandler);
+        animationVisibilityHandler=null;
         const host = document.getElementById('vos-keyword-map');
         host.innerHTML = '';
         const width = Math.max(320, host.getBoundingClientRect().width || 736);
+        lastRenderedWidth=Math.round(width);
         const height = width < 520 ? 500 : 560;
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const random = seededRandom(width<520 ? 2.25 : 1.25);
@@ -405,7 +443,7 @@
           .attr('cx',width/2).attr('cy',height/2)
           .attr('rx',d=>d.rx).attr('ry',d=>d.ry)
           .attr('transform',d=>`rotate(${d.rotation} ${width/2} ${height/2})`);
-        const starData=Array.from({length:44},()=>({
+        const starData=Array.from({length:width<520?26:40},()=>({
           x:14+random()*Math.max(30,width-28),
           y:12+random()*Math.max(30,height-24),
           r:.4+random()*1.05,
@@ -437,7 +475,7 @@
           .force('x',d3.forceX(d=>centers[d.family][0]).strength(.12))
           .force('y',d3.forceY(d=>centers[d.family][1]).strength(.12))
           .force('collide',d3.forceCollide(d=>radius(d.weight)+(width<520?16:24)))
-          .stop().tick(320);
+          .stop().tick(width<520?220:260);
         simNodes.forEach(d => { d.x=Math.max(28,Math.min(width-28,d.x)); d.y=Math.max(28,Math.min(height-28,d.y)); });
         simNodes.forEach((d,i) => {
           d.originX=d.x;
@@ -449,6 +487,12 @@
           d.orbitAmpY=.82+random()*.46;
           d.orbitSecondary=.32+random()*.26;
           d.polyFactors=Array.from({length:d.polySides},()=>.84+random()*.18);
+          d.currentBaseX=d.originX;
+          d.currentBaseY=d.originY;
+          d.currentScale=1;
+          d.targetBaseX=d.originX;
+          d.targetBaseY=d.originY;
+          d.targetScale=1;
         });
 
         const familyData=families.map((family,i)=>({family,index:i,phase:random()*Math.PI*2,members:simNodes.filter(d=>d.family===family)})).filter(d=>d.members.length);
@@ -517,7 +561,7 @@
           } else {
             showPaperTooltip(event,d);
           }
-          pinnedTooltipPosition={left:tooltip.style('left'),top:tooltip.style('top')};
+          pinnedTooltipPosition=tooltip.style('transform');
         }
 
         function clearPinnedTheme() {
@@ -580,84 +624,99 @@
           .attr('class','node-highlight').attr('d',d=>nodePolygonPath(d))
           .attr('transform','translate(-1.5,-1.5) scale(.76)');
         if (!reduceMotion) {
-          let lastShapeFrame=0;
+          let lastFrameTime=0;
+          let lastShapeFrame=-Infinity;
+          let lastNetworkFrame=-Infinity;
+          let lastStarFrame=-Infinity;
+          let mapVisible=true;
+          const networkInterval=width<520?50:32;
+
           const animateShapes=time=>{
-            if (time-lastShapeFrame>34) {
-              const seconds=time/1000;
+            shapeAnimationFrame=0;
+            if (!mapVisible||document.hidden) return;
+            const delta=lastFrameTime?Math.min(50,time-lastFrameTime):16.7;
+            lastFrameTime=time;
+            const seconds=time/1000;
+            const focusBlend=1-Math.exp(-delta/140);
+
+            simNodes.forEach(d=>{
+              d.currentBaseX+=(d.targetBaseX-d.currentBaseX)*focusBlend;
+              d.currentBaseY+=(d.targetBaseY-d.currentBaseY)*focusBlend;
+              d.currentScale+=(d.targetScale-d.currentScale)*focusBlend;
+            });
+            nodeWrap.attr('transform',d=>`translate(${d.currentBaseX},${d.currentBaseY}) scale(${d.currentScale})`);
+            nodeFloat.attr('transform',d=>{
+              const speed=d.orbitSpeed*.35;
+              const ampX=3*((width<520?8:12)+(d.rank%3)*(width<520?2.2:3.2))*d.orbitAmpX;
+              const ampY=3*((width<520?7:10)+((d.rank+2)%3)*(width<520?2:3))*d.orbitAmpY;
+              const orbitStrength=d.id===activeHoverId ? .22 : 1;
+              const secondary=d.orbitSecondary;
+              const rawX=orbitStrength*ampX*((1-secondary)*Math.sin(seconds*speed+d.polyPhase)+secondary*Math.sin(seconds*speed*.41+d.polyPhase*2.1));
+              const rawY=orbitStrength*ampY*((1-secondary)*Math.cos(seconds*speed*.81+d.polyPhase*1.31)+secondary*Math.sin(seconds*speed*.37+d.polyPhase*.63));
+              const margin=radius(d.weight)*(d.id===activeHoverId?1.5:1)+8;
+              const minX=(margin-d.currentBaseX)/d.currentScale;
+              const maxX=(width-margin-d.currentBaseX)/d.currentScale;
+              const minY=(margin-d.currentBaseY)/d.currentScale;
+              const maxY=(height-margin-d.currentBaseY)/d.currentScale;
+              const dx=Math.max(minX,Math.min(maxX,rawX));
+              const dy=Math.max(minY,Math.min(maxY,rawY));
+              const tilt=8*Math.sin(seconds*(speed*.78)+d.polyPhase*.7);
+              const squash=.94+.08*(.5+.5*Math.sin(seconds*(speed*.91)+d.polyPhase));
+              d.orbitX=dx;
+              d.orbitY=dy;
+              return `translate(${dx},${dy}) rotate(${tilt}) skewX(${tilt*.55}) scale(${squash},1)`;
+            });
+            labels.attr('transform',d=>`translate(${(d.orbitX||0)*d.currentScale},${(d.orbitY||0)*d.currentScale})`);
+
+            if (time-lastShapeFrame>=50) {
               node.attr('d',d=>nodePolygonPath(d,seconds));
               nodeDepth.attr('d',d=>nodePolygonPath(d,seconds+.18));
               nodeHighlight.attr('d',d=>nodePolygonPath(d,seconds-.12));
-              const displayedPositions=new Map();
-              nodeWrap.each(function(d){
-                const transform=this.getAttribute('transform')||'';
-                const translate=/translate\(([-+\d.eE]+)[ ,]+([-+\d.eE]+)/.exec(transform);
-                const scaleMatch=/scale\(([-+\d.eE]+)/.exec(transform);
-                d.currentBaseX=translate?Number(translate[1]):d.originX;
-                d.currentBaseY=translate?Number(translate[2]):d.originY;
-                d.currentScale=scaleMatch?Number(scaleMatch[1]):1;
-              });
-              nodeFloat.attr('transform',d=>{
-                const speed=d.orbitSpeed*.35;
-                const ampX=3*((width<520?8:12)+(d.rank%3)*(width<520?2.2:3.2))*d.orbitAmpX;
-                const ampY=3*((width<520?7:10)+((d.rank+2)%3)*(width<520?2:3))*d.orbitAmpY;
-                const orbitStrength=d.id===activeHoverId ? .22 : 1;
-                const secondary=d.orbitSecondary;
-                const rawX=orbitStrength*ampX*((1-secondary)*Math.sin(seconds*speed+d.polyPhase)+secondary*Math.sin(seconds*speed*.41+d.polyPhase*2.1));
-                const rawY=orbitStrength*ampY*((1-secondary)*Math.cos(seconds*speed*.81+d.polyPhase*1.31)+secondary*Math.sin(seconds*speed*.37+d.polyPhase*.63));
-                const margin=radius(d.weight)*(d.id===activeHoverId?1.5:1)+8;
-                const minX=(margin-d.currentBaseX)/d.currentScale;
-                const maxX=(width-margin-d.currentBaseX)/d.currentScale;
-                const minY=(margin-d.currentBaseY)/d.currentScale;
-                const maxY=(height-margin-d.currentBaseY)/d.currentScale;
-                const dx=Math.max(minX,Math.min(maxX,rawX));
-                const dy=Math.max(minY,Math.min(maxY,rawY));
-                const tilt=8*Math.sin(seconds*(speed*.78)+d.polyPhase*.7);
-                const squash=.94+.08*(.5+.5*Math.sin(seconds*(speed*.91)+d.polyPhase));
-                d.orbitX=dx;
-                d.orbitY=dy;
-                return `translate(${dx},${dy}) rotate(${tilt}) skewX(${tilt*.55}) scale(${squash},1)`;
-              });
-              nodeWrap.each(function(d){
-                displayedPositions.set(d.id,{
-                  x:d.currentBaseX+(d.orbitX||0)*d.currentScale,
-                  y:d.currentBaseY+(d.orbitY||0)*d.currentScale
-                });
-              });
+              lastShapeFrame=time;
+            }
+
+            if (time-lastNetworkFrame>=networkInterval) {
+              const displayedPositions=new Map(simNodes.map(d=>[d.id,{
+                x:d.currentBaseX+(d.orbitX||0)*d.currentScale,
+                y:d.currentBaseY+(d.orbitY||0)*d.currentScale
+              }]));
               link
                 .attr('x1',d=>displayedPositions.get(d.source.id).x)
                 .attr('y1',d=>displayedPositions.get(d.source.id).y)
                 .attr('x2',d=>displayedPositions.get(d.target.id).x)
                 .attr('y2',d=>displayedPositions.get(d.target.id).y);
               hull.attr('points',d=>familyPolygon(d,displayedPositions));
-              labels.classed('is-hovered',d=>d.id===activeHoverId)
-                .attr('transform',d=>`translate(${(d.orbitX||0)*(d.currentScale||1)},${(d.orbitY||0)*(d.currentScale||1)})`);
-              nodeWrap.classed('is-selected',d=>d.id===activeHoverId||d.id===currentSelection);
-              const animatedLabelItems=[];
-              labels.each(function(d){
-                if (getComputedStyle(this).display==='none') return;
-                animatedLabelItems.push({d,el:this});
-              });
-              animatedLabelItems.sort((a,b)=>a.d.id===activeHoverId?-1:b.d.id===activeHoverId?1:a.d.rank-b.d.rank);
-              const animatedOccupied=[];
-              animatedLabelItems.forEach(({d,el})=>{
-                const anchor=el.getAttribute('text-anchor')||'start';
-                const x=Number(el.getAttribute('x'))+(d.orbitX||0)*(d.currentScale||1);
-                const y=Number(el.getAttribute('y'))+(d.orbitY||0)*(d.currentScale||1);
-                const textWidth=el.getComputedTextLength();
-                const textHeight=d.id===activeHoverId?(width<520?18:22):16;
-                const left=anchor==='middle'?x-textWidth/2:anchor==='end'?x-textWidth:x;
-                const box={left:left-4,right:left+textWidth+4,top:y-textHeight,bottom:y+4};
-                const clear=animatedOccupied.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
-                const keep=d.id===activeHoverId||clear;
-                el.style.visibility=keep?'visible':'hidden';
-                if (keep) animatedOccupied.push(box);
-              });
+              lastNetworkFrame=time;
+            }
+
+            if (time-lastStarFrame>=80) {
               stars.attr('opacity',(d,i)=>d.opacity*(.72+.28*Math.sin(seconds*(.7+(i%7)*.05)+d.phase)));
-              lastShapeFrame=time;
+              lastStarFrame=time;
             }
             shapeAnimationFrame=requestAnimationFrame(animateShapes);
           };
-          shapeAnimationFrame=requestAnimationFrame(animateShapes);
+
+          const syncAnimationState=()=>{
+            const shouldRun=mapVisible&&!document.hidden;
+            root.classList.toggle('is-map-paused',!shouldRun);
+            if (shouldRun&&!shapeAnimationFrame) {
+              lastFrameTime=0;
+              shapeAnimationFrame=requestAnimationFrame(animateShapes);
+            } else if (!shouldRun&&shapeAnimationFrame) {
+              cancelAnimationFrame(shapeAnimationFrame);
+              shapeAnimationFrame=0;
+            }
+          };
+          animationVisibilityHandler=syncAnimationState;
+          document.addEventListener('visibilitychange',animationVisibilityHandler);
+          if ('IntersectionObserver' in window) {
+            animationVisibilityObserver=new IntersectionObserver(entries=>{
+              mapVisible=entries[0]?.isIntersecting??true;
+              syncAnimationState();
+            },{rootMargin:'160px 0px'});
+            animationVisibilityObserver.observe(host);
+          }
+          syncAnimationState();
         }
 
         const labelData = simNodes.filter(d=>width>=520 || d.rank<12 || requiredThemes.has(d.id)).sort((a,b)=>a.rank-b.rank);
@@ -728,12 +787,19 @@
             positions.forEach(p=>{p.x+=tx;p.y+=ty;});
           }
           const duration=reduceMotion?0:460;
-          nodeWrap.interrupt().transition().duration(duration).ease(d3.easeCubicOut)
-            .attr('transform',d=>{
-              const p=positions.get(d.id),scale=d===focus?1.45:1;
-              return `translate(${p.x},${p.y}) scale(${scale})`;
-            });
+          simNodes.forEach(d=>{
+            const p=positions.get(d.id);
+            d.targetBaseX=p.x;
+            d.targetBaseY=p.y;
+            d.targetScale=d===focus?1.45:1;
+            if (reduceMotion) {
+              d.currentBaseX=d.targetBaseX;
+              d.currentBaseY=d.targetBaseY;
+              d.currentScale=d.targetScale;
+            }
+          });
           if (reduceMotion) {
+            nodeWrap.attr('transform',d=>`translate(${d.currentBaseX},${d.currentBaseY}) scale(${d.currentScale})`);
             hull.attr('points',d=>familyPolygon(d,positions));
             link.attr('x1',d=>positions.get(d.source.id).x)
               .attr('y1',d=>positions.get(d.source.id).y)
@@ -820,7 +886,23 @@
       select.addEventListener('change', event => showSelection(event.target.value));
       renderMap();
       showSelection('');
-      new ResizeObserver(() => renderMap()).observe(document.getElementById('vos-keyword-map'));
+      const mapHost=document.getElementById('vos-keyword-map');
+      const scheduleResizeRender=nextWidth=>{
+        if (Math.abs(nextWidth-lastRenderedWidth)<2) return;
+        clearTimeout(resizeRenderTimer);
+        resizeRenderTimer=setTimeout(()=>{
+          const settledWidth=Math.round(mapHost.getBoundingClientRect().width);
+          if (Math.abs(settledWidth-lastRenderedWidth)>=2) renderMap();
+        },140);
+      };
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(entries=>{
+          const nextWidth=Math.round(entries[0]?.contentRect.width||mapHost.getBoundingClientRect().width);
+          scheduleResizeRender(nextWidth);
+        }).observe(mapHost);
+      } else {
+        window.addEventListener('resize',()=>scheduleResizeRender(Math.round(mapHost.getBoundingClientRect().width)),{passive:true});
+      }
     })();
   </script>
 </div>
