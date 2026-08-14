@@ -401,6 +401,31 @@ body {
   color: var(--global-text-color-light);
 }
 
+/* Teaching: the publication-card visual language, reduced to one course card. */
+.teaching-list {
+  max-width: 760px;
+}
+
+.page__content .teaching-card__term {
+  margin-top: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.page__content .teaching-link {
+  color: color-mix(in srgb, var(--tech-accent-bright) 76%, var(--global-text-color));
+  background: color-mix(in srgb, var(--tech-accent-bright) 8%, var(--tech-surface-raised));
+  border-color: color-mix(in srgb, var(--tech-accent-bright) 38%, var(--tech-border)) !important;
+}
+
+.page__content .teaching-link--empty {
+  cursor: default;
+  opacity: 0.76;
+}
+
+.page__content .teaching-link--empty:hover {
+  transform: none;
+}
+
 .publication-card__links {
   display: flex;
   flex-wrap: wrap;

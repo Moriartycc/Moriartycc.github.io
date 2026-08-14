@@ -1,12 +1,27 @@
 ---
-layout: archive
+layout: single
 title: "Teaching"
 permalink: /teaching/
 author_profile: true
 ---
 
-{% include base_path %}
-
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<div class="publications-list teaching-list" aria-label="Courses">
+  <article class="publication-card teaching-card">
+    <h2 class="publication-card__title">STAT 410. Statistics and Probability II.</h2>
+    <p class="publication-card__venue teaching-card__term">Fall 2026</p>
+    <div class="publication-card__links" aria-label="Course links for STAT 410">
+      <a class="publication-link teaching-link teaching-link--empty" aria-disabled="true">
+        <i class="fas fa-fw fa-chalkboard-teacher" aria-hidden="true"></i>
+        <span>Canvas</span>
+      </a>
+      <a class="publication-link teaching-link teaching-link--empty" aria-disabled="true">
+        <i class="fas fa-fw fa-comments" aria-hidden="true"></i>
+        <span>Piazza</span>
+      </a>
+      <a class="publication-link teaching-link teaching-link--empty" aria-disabled="true">
+        <i class="fas fa-fw fa-check-double" aria-hidden="true"></i>
+        <span>Gradescope</span>
+      </a>
+    </div>
+  </article>
+</div>
