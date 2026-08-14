@@ -124,6 +124,12 @@ html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
   --tech-accent-bright: #0891b2;
   --tech-accent-soft: rgba(37, 99, 235, 0.10);
   --tech-shadow: 0 18px 50px rgba(43, 69, 107, 0.10);
+  --glass-card-fill: rgba(248, 252, 255, 0.66);
+  --glass-map-fill: rgba(241, 248, 255, 0.54);
+  --glass-edge: rgba(76, 146, 207, 0.28);
+  --glass-specular: rgba(255, 255, 255, 0.72);
+  --glass-grid: rgba(37, 99, 235, 0.055);
+  --glass-shadow: 0 18px 46px rgba(37, 63, 104, 0.13);
 }
 
 html[data-theme="dark"] {
@@ -134,6 +140,12 @@ html[data-theme="dark"] {
   --tech-accent-bright: #67e8f9;
   --tech-accent-soft: rgba(56, 189, 248, 0.11);
   --tech-shadow: 0 24px 70px rgba(0, 5, 18, 0.42);
+  --glass-card-fill: rgba(17, 35, 58, 0.61);
+  --glass-map-fill: rgba(12, 28, 49, 0.56);
+  --glass-edge: rgba(132, 202, 255, 0.26);
+  --glass-specular: rgba(216, 251, 255, 0.24);
+  --glass-grid: rgba(103, 232, 249, 0.052);
+  --glass-shadow: 0 24px 58px rgba(0, 7, 22, 0.42);
 }
 
 body {
@@ -267,11 +279,62 @@ body {
 }
 
 #research-keyword-previews .map-shell {
-  padding: 8px;
-  background: color-mix(in srgb, var(--tech-surface-raised) 76%, transparent);
-  border: 1px solid var(--tech-border);
-  border-radius: 18px;
-  box-shadow: inset 0 1px 0 color-mix(in srgb, white 8%, transparent), 0 18px 46px rgba(4, 14, 31, 0.12);
+  position: relative;
+  padding: 9px;
+  overflow: hidden;
+  background:
+    linear-gradient(142deg, var(--glass-specular), transparent 24%),
+    radial-gradient(circle at 88% 10%, color-mix(in srgb, var(--tech-accent-bright) 14%, transparent), transparent 15rem),
+    linear-gradient(155deg, var(--glass-map-fill), color-mix(in srgb, var(--glass-map-fill) 68%, transparent));
+  border: 1px solid var(--glass-edge);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 var(--glass-specular),
+    inset 0 -1px 0 color-mix(in srgb, var(--tech-accent) 12%, transparent),
+    var(--glass-shadow);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+
+#research-keyword-previews .map-shell::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--glass-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--glass-grid) 1px, transparent 1px),
+    linear-gradient(118deg, transparent 0 72%, color-mix(in srgb, var(--tech-accent-bright) 9%, transparent) 72.2% 72.5%, transparent 72.7%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+  content: "";
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+#research-keyword-previews .map-shell::after {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+  z-index: 3;
+  width: 58px;
+  height: 19px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--tech-accent-bright) 72%, transparent) 0 23px, transparent 23px) top right / 100% 1px no-repeat,
+    linear-gradient(color-mix(in srgb, var(--tech-accent-bright) 56%, transparent) 0 9px, transparent 9px) top right / 1px 100% no-repeat,
+    linear-gradient(135deg, transparent 46%, color-mix(in srgb, var(--tech-accent-bright) 48%, transparent) 47% 49%, transparent 50%) bottom left / 20px 13px no-repeat;
+  content: "";
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+#research-keyword-previews .map-host {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--tech-accent) 7%, transparent), transparent 52%),
+    color-mix(in srgb, var(--global-bg-color) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--glass-edge) 72%, transparent);
+  border-radius: 14px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -331,37 +394,71 @@ body {
 
 .publication-card {
   position: relative;
+  isolation: isolate;
   min-width: 0;
   padding: 1rem 1.05rem;
   overflow: hidden;
   background:
-    linear-gradient(115deg, color-mix(in srgb, var(--tech-accent) 5%, transparent), transparent 48%),
-    var(--tech-surface-raised);
-  border: 1px solid var(--tech-border);
-  border-radius: 14px;
-  box-shadow: 0 9px 26px rgba(4, 18, 38, 0.08);
+    linear-gradient(142deg, var(--glass-specular), transparent 23%),
+    radial-gradient(circle at 94% 5%, color-mix(in srgb, var(--tech-accent-bright) 13%, transparent), transparent 9rem),
+    linear-gradient(155deg, var(--glass-card-fill), color-mix(in srgb, var(--glass-card-fill) 72%, transparent));
+  border: 1px solid var(--glass-edge);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 1px 0 var(--glass-specular),
+    inset 0 -1px 0 color-mix(in srgb, var(--tech-accent) 10%, transparent),
+    0 12px 30px rgba(4, 18, 38, 0.10);
+  -webkit-backdrop-filter: blur(15px) saturate(140%);
+  backdrop-filter: blur(15px) saturate(140%);
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .publication-card::before {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 12px;
+  bottom: 12px;
   left: 0;
-  width: 2px;
+  width: 3px;
   background: linear-gradient(var(--tech-accent-bright), var(--tech-accent));
+  border-radius: 0 999px 999px 0;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--tech-accent-bright) 28%, transparent);
+  content: "";
+  opacity: 0.72;
+}
+
+.publication-card::after {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 48px;
+  height: 17px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--tech-accent-bright) 54%, transparent) 0 19px, transparent 19px) top right / 100% 1px no-repeat,
+    linear-gradient(color-mix(in srgb, var(--tech-accent-bright) 42%, transparent) 0 8px, transparent 8px) top right / 1px 100% no-repeat,
+    linear-gradient(135deg, transparent 46%, color-mix(in srgb, var(--tech-accent-bright) 34%, transparent) 47% 49%, transparent 50%) bottom left / 18px 12px no-repeat;
   content: "";
   opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .publication-card:hover {
-  border-color: color-mix(in srgb, var(--tech-accent-bright) 42%, var(--tech-border));
-  box-shadow: 0 14px 34px color-mix(in srgb, var(--tech-accent) 13%, transparent);
-  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--tech-accent-bright) 58%, var(--glass-edge));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--glass-specular) 84%, white),
+    inset 0 -1px 0 color-mix(in srgb, var(--tech-accent) 18%, transparent),
+    0 17px 40px color-mix(in srgb, var(--tech-accent) 16%, transparent);
+  transform: translateY(-2px);
+}
+
+.publication-card:hover::after {
+  opacity: 0.9;
+  transform: translate(-2px, 2px);
 }
 
 .page__content .publication-card__title {
   margin: 0;
+  padding-right: 2.2rem;
   color: var(--global-text-color);
   font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
   font-size: clamp(1rem, 1.5vw, 1.08rem);
@@ -495,6 +592,7 @@ body {
   font-weight: 650;
   line-height: 1;
   text-decoration: none;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular) 64%, transparent);
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
@@ -622,7 +720,8 @@ body {
 .thesis-card {
   background:
     radial-gradient(circle at 92% 15%, color-mix(in srgb, var(--tech-accent-bright) 12%, transparent), transparent 10rem),
-    var(--tech-surface-raised);
+    linear-gradient(142deg, var(--glass-specular), transparent 23%),
+    linear-gradient(155deg, var(--glass-card-fill), color-mix(in srgb, var(--glass-card-fill) 72%, transparent));
 }
 
 .thesis-card__label {
@@ -652,6 +751,10 @@ body {
     border-radius: 12px;
   }
 
+  .page__content .publication-card__title {
+    padding-right: 1.7rem;
+  }
+
   .publication-card__authors,
   .publication-card__venue {
     font-size: 0.82rem;
@@ -666,6 +769,36 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .publication-card__abstract {
     transition: none;
+  }
+
+  .publication-card,
+  .publication-card::after {
+    transition: none;
+  }
+
+  .publication-card:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .publication-card,
+  #research-keyword-previews .map-shell {
+    background: var(--tech-surface-raised);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .publication-card {
+    -webkit-backdrop-filter: blur(9px) saturate(125%);
+    backdrop-filter: blur(9px) saturate(125%);
+  }
+
+  #research-keyword-previews .map-shell {
+    -webkit-backdrop-filter: blur(11px) saturate(130%);
+    backdrop-filter: blur(11px) saturate(130%);
   }
 }
 

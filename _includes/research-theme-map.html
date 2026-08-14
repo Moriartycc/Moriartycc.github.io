@@ -29,7 +29,7 @@
     #research-keyword-previews .map-host { width: 100%; min-height: 560px; }
     #research-keyword-previews .map-controls { margin-bottom: 8px; }
     #research-keyword-previews .map-controls .form-label { min-width: min(100%, 320px); }
-    #research-keyword-previews .map-controls .form-select { width: min(100%, 360px); color: var(--foreground); background-color: var(--background); border: 1px solid var(--border); box-shadow: none; color-scheme: light dark; }
+    #research-keyword-previews .map-controls .form-select { width: min(100%, 360px); color: var(--foreground); background: linear-gradient(145deg, var(--glass-specular, rgba(255,255,255,.2)), transparent 42%), var(--glass-card-fill, var(--background)); border: 1px solid var(--glass-edge, var(--border)); border-radius: 10px; box-shadow: inset 0 1px 0 var(--glass-specular, rgba(255,255,255,.16)), 0 8px 20px color-mix(in srgb, var(--foreground) 7%, transparent); color-scheme: light dark; }
     html[data-theme="dark"] #research-keyword-previews .map-controls .form-select,
     html[data-theme="dark"] #research-keyword-previews .map-controls .form-select option { color: #e6edf7; background-color: #14233a; border-color: #385475; }
     #research-keyword-previews .selected-line { color: var(--muted-foreground); min-height: 28px; margin-top: 6px; }
@@ -40,9 +40,10 @@
     #research-keyword-previews .paper-list li { margin: 3px 0; }
     #research-keyword-previews .paper-link, #research-keyword-previews .tooltip a { white-space: nowrap; font-size: 11px; }
     #research-keyword-previews .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 8px; color: var(--muted-foreground); }
-    #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 6px; padding: 2px 7px; background: color-mix(in srgb, var(--glass-card-fill, var(--background)) 72%, transparent); border: 1px solid color-mix(in srgb, var(--glass-edge, var(--border)) 72%, transparent); border-radius: 999px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 56%, transparent); }
     #research-keyword-previews .legend-swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--swatch); }
-    #research-keyword-previews .tooltip { display: none; position: absolute; top: 0; left: 0; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--popover); color: var(--popover-foreground); box-shadow: 0 12px 30px color-mix(in srgb, var(--foreground) 12%, transparent); cursor: pointer; pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; will-change: transform; }
+    #research-keyword-previews .tooltip { display: none; position: absolute; top: 0; left: 0; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 9px 11px; border: 1px solid var(--glass-edge, var(--border)); border-radius: 12px; background: linear-gradient(145deg, var(--glass-specular, rgba(255,255,255,.18)), transparent 32%), color-mix(in srgb, var(--glass-card-fill, var(--popover)) 92%, transparent); color: var(--popover-foreground); box-shadow: inset 0 1px 0 var(--glass-specular, rgba(255,255,255,.18)), 0 16px 36px color-mix(in srgb, var(--foreground) 15%, transparent); -webkit-backdrop-filter: blur(18px) saturate(145%); backdrop-filter: blur(18px) saturate(145%); cursor: pointer; pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; will-change: transform; }
+    #research-keyword-previews .tooltip::before { position: absolute; top: 0; right: 12px; left: 12px; height: 1px; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--viz-series-1) 70%, white), transparent); content: ""; opacity: .72; }
     #research-keyword-previews .tooltip.is-visible { display: block; pointer-events: auto; opacity: 1; visibility: visible; }
     #research-keyword-previews .tooltip.is-pinned { border-color: color-mix(in srgb, var(--viz-series-1) 70%, var(--border)); }
     #research-keyword-previews .tooltip-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
