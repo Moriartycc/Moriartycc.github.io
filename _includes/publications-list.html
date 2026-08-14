@@ -5,7 +5,9 @@
       <div class="publication-year-papers">
         {% for paper in year_group.papers %}
           <article class="publication-card">
-            <h3 class="publication-card__title">{{ paper.title }}</h3>
+            {% assign primary_url = paper.links.first.url %}
+            {% for link in paper.links %}{% if link.type == "published" %}{% assign primary_url = link.url %}{% endif %}{% endfor %}
+            <h3 class="publication-card__title"><a href="{{ primary_url }}" target="_blank" rel="noopener">{{ paper.title }}</a></h3>
             <p class="publication-card__authors">
               {% for author in paper.authors %}{% if author.self %}<span class="publication-author--self">{{ author.name }}</span>{% else %}{{ author.name }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
             </p>

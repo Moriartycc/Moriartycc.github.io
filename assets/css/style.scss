@@ -2,7 +2,7 @@
 # Only front matter so Jekyll processes it
 ---
 
-@import url("https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Zhi+Mang+Xing&display=swap");
 
 /* Keep native scrolling controls consistent with the site's default night mode. */
 html[data-theme="dark"],
@@ -363,10 +363,22 @@ body {
 .page__content .publication-card__title {
   margin: 0;
   color: var(--global-text-color);
-  font-family: Georgia, Cambria, "Times New Roman", serif;
+  font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
   font-size: clamp(1rem, 1.5vw, 1.08rem);
   font-weight: 500;
   line-height: 1.32;
+}
+
+.page__content .publication-card__title a,
+.page__content .publication-card__title a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page__content .publication-card__title a:hover,
+.page__content .publication-card__title a:focus-visible {
+  color: color-mix(in srgb, var(--tech-accent-bright) 76%, var(--global-text-color));
+  text-decoration: none;
 }
 
 .publication-card__authors,
@@ -497,5 +509,151 @@ body {
   .publication-card__authors,
   .publication-card__venue {
     font-size: 0.82rem;
+  }
+}
+
+/* Unified typography: modern interface sans with a scholarly serif accent. */
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.masthead__menu-item a {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.page__title {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(30px, 2.35vw, 32px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.page__content {
+  line-height: 1.6;
+}
+
+.page__content > h2,
+.thesis-section > h2 {
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+}
+
+.author__name {
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.author__bio,
+.author__urls {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.page__content .publication-card__title {
+  font-size: 19px;
+  font-weight: 550;
+  line-height: 1.35;
+}
+
+.page__content .publication-card__authors,
+.page__content .publication-card__venue {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.page__content .publication-link {
+  font-size: 13px;
+}
+
+/* Flat Scholar pill aligned with the cold deep-tech controls. */
+.page__title .btn-scholar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  margin-left: 0;
+  padding: 5px 10px;
+  color: color-mix(in srgb, var(--tech-accent-bright) 82%, var(--global-text-color));
+  background: color-mix(in srgb, var(--tech-accent-bright) 9%, var(--tech-surface-raised));
+  border: 1px solid color-mix(in srgb, var(--tech-accent-bright) 44%, var(--tech-border));
+  border-radius: 999px;
+  box-shadow: 0 5px 16px rgba(9, 25, 48, 0.08);
+  font-size: 12.5px;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.page__title .btn-scholar:hover,
+.page__title .btn-scholar:focus-visible {
+  color: var(--tech-accent-bright);
+  background: color-mix(in srgb, var(--tech-accent-bright) 16%, var(--tech-surface-raised));
+  border-color: color-mix(in srgb, var(--tech-accent-bright) 68%, var(--tech-border));
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--tech-accent) 17%, transparent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.page__title .btn-scholar .ai {
+  margin-right: 0;
+  color: currentColor;
+  font-size: 0.95em;
+}
+
+.page__footer-copyright {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  color: var(--global-text-color-light);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.footer-divider {
+  color: var(--tech-accent-bright);
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .masthead__menu-item a {
+    font-size: 14.5px;
+  }
+
+  .page__title {
+    font-size: 25px;
+  }
+
+  .page__content > h2,
+  .thesis-section > h2 {
+    font-size: 19.5px;
+  }
+
+  .page__content .publication-card__title {
+    font-size: 17px;
+  }
+
+  .page__content .publication-card__authors,
+  .page__content .publication-card__venue {
+    font-size: 14px;
+  }
+
+  .page__content .publication-link {
+    font-size: 12px;
+  }
+
+  .page__footer-copyright {
+    font-size: 12px;
   }
 }
