@@ -21,7 +21,8 @@
       <h2 class="publication-year" id="publications-{{ year_group.year }}">{{ year_group.year }}</h2>
       <div class="publication-year-papers">
         {% for paper in year_group.papers %}
-          <article class="publication-card">
+          {% assign abstract_id = 'publication-abstract-' | append: year_group.year | append: '-' | append: forloop.index %}
+          <article class="publication-card" data-abstract-card>
             {% assign primary_url = paper.links.first.url %}
             {% for link in paper.links %}{% if link.type == "published" %}{% assign primary_url = link.url %}{% endif %}{% endfor %}
             <h3 class="publication-card__title"><a href="{{ primary_url }}" target="_blank" rel="noopener">{{ paper.title }}</a></h3>
@@ -36,6 +37,16 @@
                   <span>{{ link.label }}</span>
                 </a>
               {% endfor %}
+              <button class="publication-link publication-link--abstract publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="{{ abstract_id }}">
+                <i class="fas fa-fw fa-align-left" aria-hidden="true"></i>
+                <span>Abstract</span>
+              </button>
+            </div>
+            <div class="publication-card__abstract" id="{{ abstract_id }}" aria-hidden="true">
+              <div class="publication-card__abstract-inner">
+                <div class="publication-card__abstract-label">Abstract</div>
+                <p>{{ paper.abstract | escape }}</p>
+              </div>
             </div>
           </article>
         {% endfor %}
@@ -47,7 +58,7 @@
 
 <section class="thesis-section" aria-labelledby="thesis-heading">
   <h2 id="thesis-heading">Dissertation</h2>
-  <article class="publication-card thesis-card">
+  <article class="publication-card thesis-card" data-abstract-card>
     <div class="thesis-card__label">Doctoral dissertation</div>
     <h3 class="publication-card__title">{{ site.data.publications.thesis.title }}</h3>
     <p class="publication-card__venue">{{ site.data.publications.thesis.institution }} · {{ site.data.publications.thesis.year }}</p>
@@ -56,9 +67,81 @@
         <i class="fas fa-fw fa-graduation-cap" aria-hidden="true"></i>
         <span>ProQuest</span>
       </a>
+      <button class="publication-link publication-link--abstract publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="publication-abstract-thesis">
+        <i class="fas fa-fw fa-align-left" aria-hidden="true"></i>
+        <span>Abstract</span>
+      </button>
+    </div>
+    <div class="publication-card__abstract" id="publication-abstract-thesis" aria-hidden="true">
+      <div class="publication-card__abstract-inner">
+        <div class="publication-card__abstract-label">Abstract</div>
+        <p>{{ site.data.publications.thesis.abstract | escape }}</p>
+      </div>
     </div>
   </article>
 </section>
+
+<script>
+  (() => {
+    const cards = [...document.querySelectorAll('[data-abstract-card]')];
+    if (!cards.length) return;
+
+    const typesetAbstract = panel => {
+      if (panel.dataset.mathTypeset === 'true' || panel.querySelector('mjx-container')) return;
+      const render = () => {
+        if (!window.MathJax?.typesetPromise) return false;
+        window.MathJax.typesetPromise([panel]).then(() => {
+          panel.dataset.mathTypeset = 'true';
+        }).catch(() => {});
+        return true;
+      };
+      if (!render()) window.addEventListener('load', render, { once: true });
+    };
+
+    cards.forEach(card => {
+      const toggle = card.querySelector('.publication-abstract-toggle');
+      const panel = card.querySelector('.publication-card__abstract');
+      if (!toggle || !panel) return;
+
+      const open = () => {
+        card.classList.add('is-abstract-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        panel.setAttribute('aria-hidden', 'false');
+        typesetAbstract(panel);
+      };
+
+      const close = () => {
+        card.classList.remove('is-abstract-open');
+        card.classList.remove('is-abstract-pinned');
+        toggle.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+      };
+
+      toggle.addEventListener('pointerenter', open);
+      toggle.addEventListener('focus', open);
+
+      card.addEventListener('pointerleave', () => {
+        if (!card.classList.contains('is-abstract-pinned')) close();
+      });
+
+      card.addEventListener('focusout', event => {
+        if (!card.contains(event.relatedTarget) && !card.classList.contains('is-abstract-pinned')) close();
+      });
+
+      toggle.addEventListener('click', () => {
+        const pinned = card.classList.toggle('is-abstract-pinned');
+        if (pinned) open();
+        else close();
+      });
+
+      toggle.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        close();
+        toggle.focus();
+      });
+    });
+  })();
+</script>
 
 <script>
   (() => {

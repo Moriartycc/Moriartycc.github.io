@@ -404,6 +404,7 @@ body {
 .publication-card__links {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.45rem;
   margin-top: 0.78rem;
 }
@@ -465,6 +466,77 @@ body {
   background: color-mix(in srgb, var(--global-text-color) 12%, transparent);
 }
 
+.page__content .publication-link--abstract {
+  appearance: none;
+  margin-left: auto;
+  color: color-mix(in srgb, var(--tech-accent-bright) 72%, var(--global-text-color));
+  background: color-mix(in srgb, var(--tech-accent-bright) 7%, var(--tech-surface-raised));
+  border-color: color-mix(in srgb, var(--tech-accent-bright) 34%, var(--tech-border)) !important;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.page__content .publication-link--abstract:hover,
+.page__content .publication-link--abstract:focus-visible,
+.publication-card.is-abstract-open .publication-link--abstract {
+  color: var(--tech-accent-bright);
+  background: color-mix(in srgb, var(--tech-accent-bright) 15%, var(--tech-surface-raised));
+  border-color: color-mix(in srgb, var(--tech-accent-bright) 62%, var(--tech-border)) !important;
+}
+
+.publication-card__abstract {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    grid-template-rows 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    margin-top 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease,
+    visibility 0s linear 300ms;
+}
+
+.publication-card__abstract-inner {
+  min-height: 0;
+  overflow: hidden;
+  border-top: 1px solid color-mix(in srgb, var(--tech-accent-bright) 24%, var(--tech-border));
+}
+
+.publication-card.is-abstract-open .publication-card__abstract {
+  grid-template-rows: 1fr;
+  margin-top: 0.9rem;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.publication-card__abstract-label {
+  padding-top: 0.78rem;
+  color: color-mix(in srgb, var(--tech-accent-bright) 78%, var(--global-text-color));
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.085em;
+  text-transform: uppercase;
+}
+
+.page__content .publication-card__abstract p {
+  margin: 0.38rem 0 0.08rem;
+  color: color-mix(in srgb, var(--global-text-color) 88%, var(--global-text-color-light));
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.publication-card__abstract mjx-container {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .thesis-section {
   margin-top: 1.8rem;
 }
@@ -509,6 +581,17 @@ body {
   .publication-card__authors,
   .publication-card__venue {
     font-size: 0.82rem;
+  }
+
+  .page__content .publication-card__abstract p {
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publication-card__abstract {
+    transition: none;
   }
 }
 
