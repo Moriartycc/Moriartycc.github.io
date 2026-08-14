@@ -627,6 +627,7 @@
           let lastFrameTime=0;
           let lastShapeFrame=-Infinity;
           let lastNetworkFrame=-Infinity;
+          let lastLabelFrame=-Infinity;
           let lastStarFrame=-Infinity;
           let mapVisible=true;
           const networkInterval=width<520?50:32;
@@ -667,6 +668,30 @@
               return `translate(${dx},${dy}) rotate(${tilt}) skewX(${tilt*.55}) scale(${squash},1)`;
             });
             labels.attr('transform',d=>`translate(${(d.orbitX||0)*d.currentScale},${(d.orbitY||0)*d.currentScale})`);
+
+            if (time-lastLabelFrame>=120) {
+              const animatedLabelItems=[];
+              labels.each(function(d){
+                if (this.style.display==='none') return;
+                animatedLabelItems.push({d,el:this});
+              });
+              animatedLabelItems.sort((a,b)=>a.d.id===activeHoverId?-1:b.d.id===activeHoverId?1:a.d.rank-b.d.rank);
+              const animatedOccupied=[];
+              animatedLabelItems.forEach(({d,el})=>{
+                const anchor=el.getAttribute('text-anchor')||'start';
+                const x=Number(el.getAttribute('x'))+(d.orbitX||0)*d.currentScale;
+                const y=Number(el.getAttribute('y'))+(d.orbitY||0)*d.currentScale;
+                const textWidth=(d.labelWidth||0)*(d.id===activeHoverId?1.18:1);
+                const textHeight=d.id===activeHoverId?(width<520?18:22):16;
+                const left=anchor==='middle'?x-textWidth/2:anchor==='end'?x-textWidth:x;
+                const box={left:left-4,right:left+textWidth+4,top:y-textHeight,bottom:y+4};
+                const clear=animatedOccupied.every(o=>box.right<o.left||box.left>o.right||box.bottom<o.top||box.top>o.bottom);
+                const keep=d.id===activeHoverId||clear;
+                el.style.visibility=keep?'visible':'hidden';
+                if (keep) animatedOccupied.push(box);
+              });
+              lastLabelFrame=time;
+            }
 
             if (time-lastShapeFrame>=50) {
               node.attr('d',d=>nodePolygonPath(d,seconds));
@@ -725,6 +750,8 @@
         const occupied = [];
         labels.each(function(d) {
           const r = radius(d.weight), el = d3.select(this);
+          el.style('display',null);
+          d.labelWidth=this.getComputedTextLength();
           const candidates = [
             [d.x,d.y-r-5,'middle'], [d.x,d.y+r+14,'middle'],
             [d.x+r+6,d.y+4,'start'], [d.x-r-6,d.y+4,'end'],
@@ -816,7 +843,7 @@
             if (d!==focus&&!d.labelVisible) return;
             const p=positions.get(d.id), el=labelElements.get(d.id);
             let x=p.x+d.labelDx, y=p.y+d.labelDy, anchor=d.labelAnchor;
-            const textWidth=el.getComputedTextLength();
+            const textWidth=(d.labelWidth||0)*(d===focus?1.18:1);
             const textHeight=d===focus?(width<520?18:22):16;
             if (d===focus) {
               x=Math.max(textWidth/2+4,Math.min(width-textWidth/2-4,p.x));
