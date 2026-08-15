@@ -12,15 +12,15 @@ I am an Assistant Professor in <a class="advisor-link" href="https://stat.illino
 
 My research develops theoretical tools for modern machine learning, with an emphasis on random matrices, high-dimensional statistics, information theory, and iterative algorithms. I study applications including overparameterized models, neural networks, structured data, conformal prediction, and reinforcement learning.
 
+{% include research-theme-map.html %}
+
 In a nutshell, it is always about:
 
 $$
 y = f_\theta(X; \epsilon) \in \mathbb{R}^n, \qquad X \in \mathbb{R}^{n \times d}, \qquad \theta \in \Theta. 
 $$
 
-But at least one of the above is unusual --- Explore my research themes below!
-
-{% include research-theme-map.html %}
+But at least one of the above is unusual --- Explore my research themes above!
 
 ## Contact
 chcheng (at) illinois (dot) edu
