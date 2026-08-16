@@ -117,10 +117,16 @@
         panel.setAttribute('aria-hidden', 'true');
       };
 
-      toggle.addEventListener('pointerenter', open);
-      toggle.addEventListener('focus', open);
+      toggle.addEventListener('pointerenter', event => {
+        if (event.pointerType === 'mouse') open();
+      });
 
-      card.addEventListener('pointerleave', () => {
+      toggle.addEventListener('focus', () => {
+        if (toggle.matches(':focus-visible')) open();
+      });
+
+      card.addEventListener('pointerleave', event => {
+        if (event.pointerType !== 'mouse') return;
         if (!card.classList.contains('is-abstract-pinned')) close();
       });
 
