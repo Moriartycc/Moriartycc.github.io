@@ -549,6 +549,14 @@ body {
 
 .teaching-card .publication-card__links {
   flex-wrap: nowrap;
+}
+
+.teaching-card__platform-links {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 0.45rem;
   padding-bottom: 0.18rem;
   overflow-x: auto;
   overflow-y: hidden;
@@ -558,12 +566,13 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-.teaching-card .publication-card__links > * {
+.teaching-card__platform-links > * {
   flex: 0 0 auto;
 }
 
 .page__content .teaching-link--logistics {
   appearance: none;
+  flex: 0 0 auto;
   cursor: pointer;
   font-family: inherit;
   touch-action: manipulation;
