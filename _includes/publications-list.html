@@ -129,7 +129,7 @@
         <span>You can still use Open PDF above.</span>
       </div>
       <div class="publication-pdf-reader__page-stage">
-        <canvas data-pdf-reader-canvas hidden></canvas>
+        <div class="publication-pdf-reader__pages" data-pdf-reader-pages></div>
       </div>
       <nav class="publication-pdf-reader__page-controls" aria-label="PDF page and zoom controls" data-pdf-reader-page-controls hidden>
         <button type="button" data-pdf-reader-previous aria-label="Previous page" title="Previous page">
@@ -225,7 +225,7 @@
     const reader = document.querySelector('[data-pdf-reader]');
     const dialog = reader?.querySelector('[data-pdf-reader-dialog]');
     const viewport = reader?.querySelector('[data-pdf-reader-viewport]');
-    const canvas = reader?.querySelector('[data-pdf-reader-canvas]');
+    const pagesContainer = reader?.querySelector('[data-pdf-reader-pages]');
     const title = reader?.querySelector('#publication-pdf-reader-title');
     const eyebrow = reader?.querySelector('.publication-pdf-reader__eyebrow');
     const loading = reader?.querySelector('[data-pdf-reader-loading]');
@@ -243,18 +243,22 @@
     const fullscreenLabel = fullscreenButton?.querySelector('span');
     const closeButton = reader?.querySelector('[data-pdf-reader-close]');
     const openButtons = [...document.querySelectorAll('[data-pdf-reader-open]')];
-    if (!reader || !dialog || !viewport || !canvas || !title || !eyebrow || !loading || !errorMessage || !pageControls || !previousButton || !nextButton || !pageStatus || !zoomOutButton || !zoomInButton || !zoomStatus || !externalLink || !fullscreenButton || !closeButton || !openButtons.length) return;
+    if (!reader || !dialog || !viewport || !pagesContainer || !title || !eyebrow || !loading || !errorMessage || !pageControls || !previousButton || !nextButton || !pageStatus || !zoomOutButton || !zoomInButton || !zoomStatus || !externalLink || !fullscreenButton || !closeButton || !openButtons.length) return;
     document.body.appendChild(reader);
 
     let returnFocus = null;
     let pdfDocument = null;
     let pdfLoadingTask = null;
-    let renderTask = null;
+    let pageElements = [];
+    let pageMetrics = [];
+    const renderTasks = new Map();
+    const renderRequests = new Map();
     let currentPage = 1;
     let zoomLevel = 1;
     let documentSequence = 0;
-    let renderSequence = 0;
+    let renderGeneration = 0;
     let resizeTimer = null;
+    let scrollFrame = null;
     const pdfJsVersion = '4.10.38';
     const pdfJsBase = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfJsVersion}`;
     let pdfJsPromise = null;
@@ -281,11 +285,174 @@
       zoomStatus.textContent = `${Math.round(zoomLevel * 100)}%`;
     };
 
+    const defaultPageMetrics = () => pageMetrics.find(Boolean) || { width: 612, height: 792 };
+
+    const pageDisplaySize = metrics => {
+      const availableWidth = Math.max(280, viewport.clientWidth - 32);
+      const scale = (availableWidth / metrics.width) * zoomLevel;
+      return {
+        width: Math.floor(metrics.width * scale),
+        height: Math.floor(metrics.height * scale),
+        scale
+      };
+    };
+
+    const setPageSize = (pageElement, metrics = defaultPageMetrics()) => {
+      const size = pageDisplaySize(metrics);
+      pageElement.style.width = `${size.width}px`;
+      pageElement.style.height = `${size.height}px`;
+      return size;
+    };
+
+    const addPagePlaceholder = (pageElement, pageNumber) => {
+      pageElement.replaceChildren();
+      pageElement.classList.remove('is-rendering');
+      pageElement.removeAttribute('data-rendered-zoom');
+      const label = document.createElement('span');
+      label.className = 'publication-pdf-reader__page-placeholder';
+      label.textContent = `Page ${pageNumber}`;
+      pageElement.appendChild(label);
+    };
+
+    const cancelPageRender = pageNumber => {
+      const task = renderTasks.get(pageNumber);
+      task?.cancel();
+      renderTasks.delete(pageNumber);
+      renderRequests.delete(pageNumber);
+    };
+
+    const unloadDistantPages = centrePage => {
+      pageElements.forEach((pageElement, index) => {
+        const pageNumber = index + 1;
+        if (Math.abs(pageNumber - centrePage) <= 4) return;
+        if (!pageElement.dataset.renderedZoom && !renderRequests.has(pageNumber)) return;
+        cancelPageRender(pageNumber);
+        addPagePlaceholder(pageElement, pageNumber);
+      });
+    };
+
+    const renderPage = async pageNumber => {
+      const documentAtStart = pdfDocument;
+      const pageElement = pageElements[pageNumber - 1];
+      const generation = renderGeneration;
+      const request = {};
+      let task = null;
+      if (!documentAtStart || !pageElement || pageElement.dataset.renderedZoom === String(zoomLevel) || renderRequests.has(pageNumber)) return;
+      renderRequests.set(pageNumber, request);
+      pageElement.classList.add('is-rendering');
+      try {
+        const page = await documentAtStart.getPage(pageNumber);
+        if (generation !== renderGeneration || documentAtStart !== pdfDocument || renderRequests.get(pageNumber) !== request) return;
+        const naturalViewport = page.getViewport({ scale: 1 });
+        const metrics = { width: naturalViewport.width, height: naturalViewport.height };
+        pageMetrics[pageNumber - 1] = metrics;
+        const size = setPageSize(pageElement, metrics);
+        const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+        const renderViewport = page.getViewport({ scale: size.scale });
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.floor(renderViewport.width * outputScale);
+        canvas.height = Math.floor(renderViewport.height * outputScale);
+        canvas.style.width = `${size.width}px`;
+        canvas.style.height = `${size.height}px`;
+        canvas.setAttribute('aria-label', `Page ${pageNumber} of ${documentAtStart.numPages}`);
+        pageElement.replaceChildren(canvas);
+        const context = canvas.getContext('2d', { alpha: false });
+        task = page.render({
+          canvasContext: context,
+          transform: outputScale === 1 ? null : [outputScale, 0, 0, outputScale, 0, 0],
+          viewport: renderViewport
+        });
+        renderTasks.set(pageNumber, task);
+        await task.promise;
+        if (generation !== renderGeneration || documentAtStart !== pdfDocument || renderRequests.get(pageNumber) !== request) return;
+        pageElement.dataset.renderedZoom = String(zoomLevel);
+        pageElement.classList.remove('is-rendering');
+        if (pageNumber === 1) {
+          loading.hidden = true;
+          pageControls.hidden = false;
+        }
+      } catch (error) {
+        if (error?.name === 'RenderingCancelledException' || generation !== renderGeneration) return;
+        pageElement.classList.remove('is-rendering');
+        if (pageNumber === 1) {
+          loading.hidden = true;
+          errorMessage.hidden = false;
+        } else {
+          addPagePlaceholder(pageElement, pageNumber);
+        }
+      } finally {
+        if (renderTasks.get(pageNumber) === task) renderTasks.delete(pageNumber);
+        if (renderRequests.get(pageNumber) === request) renderRequests.delete(pageNumber);
+      }
+    };
+
+    const renderPageWindow = centrePage => {
+      if (!pdfDocument) return;
+      const firstPage = Math.max(1, centrePage - 2);
+      const lastPage = Math.min(pdfDocument.numPages, centrePage + 2);
+      for (let pageNumber = firstPage; pageNumber <= lastPage; pageNumber += 1) renderPage(pageNumber);
+      unloadDistantPages(centrePage);
+    };
+
+    const updateCurrentPageFromScroll = () => {
+      if (!pdfDocument || !pageElements.length) return;
+      const viewportTop = viewport.getBoundingClientRect().top + 18;
+      let nearestPage = currentPage;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+      pageElements.forEach((pageElement, index) => {
+        const bounds = pageElement.getBoundingClientRect();
+        const distance = bounds.bottom < viewportTop
+          ? viewportTop - bounds.bottom
+          : Math.abs(bounds.top - viewportTop);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestPage = index + 1;
+        }
+      });
+      if (nearestPage !== currentPage) {
+        currentPage = nearestPage;
+        updatePageControls();
+      }
+      renderPageWindow(currentPage);
+    };
+
+    const requestScrollUpdate = () => {
+      if (scrollFrame !== null) return;
+      scrollFrame = window.requestAnimationFrame(() => {
+        scrollFrame = null;
+        updateCurrentPageFromScroll();
+      });
+    };
+
+    const scrollToPage = (pageNumber, behavior = 'smooth') => {
+      const pageElement = pageElements[pageNumber - 1];
+      if (!pageElement) return;
+      currentPage = pageNumber;
+      updatePageControls();
+      renderPageWindow(currentPage);
+      pageElement.scrollIntoView({ block: 'start', inline: 'center', behavior });
+    };
+
+    const refreshPageLayout = () => {
+      if (!pdfDocument) return;
+      renderGeneration += 1;
+      renderTasks.forEach(task => task.cancel());
+      renderTasks.clear();
+      renderRequests.clear();
+      pageElements.forEach((pageElement, index) => {
+        setPageSize(pageElement, pageMetrics[index] || defaultPageMetrics());
+        addPagePlaceholder(pageElement, index + 1);
+      });
+      renderPageWindow(currentPage);
+      window.requestAnimationFrame(() => scrollToPage(currentPage, 'auto'));
+    };
+
     const clearDocument = async () => {
       documentSequence += 1;
-      renderSequence += 1;
-      renderTask?.cancel();
-      renderTask = null;
+      renderGeneration += 1;
+      renderTasks.forEach(task => task.cancel());
+      renderTasks.clear();
+      renderRequests.clear();
       if (pdfLoadingTask) {
         await pdfLoadingTask.destroy().catch(() => {});
         pdfLoadingTask = null;
@@ -294,57 +461,16 @@
         await pdfDocument.destroy().catch(() => {});
         pdfDocument = null;
       }
-      const context = canvas.getContext('2d');
-      context?.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.width = 0;
-      canvas.height = 0;
-      canvas.hidden = true;
+      if (scrollFrame !== null) window.cancelAnimationFrame(scrollFrame);
+      scrollFrame = null;
+      pagesContainer.replaceChildren();
+      pageElements = [];
+      pageMetrics = [];
       pageControls.hidden = true;
       errorMessage.hidden = true;
       currentPage = 1;
       zoomLevel = 1;
       updatePageControls();
-    };
-
-    const renderCurrentPage = async () => {
-      if (!pdfDocument) return;
-      const sequence = ++renderSequence;
-      const documentAtStart = pdfDocument;
-      const pageNumber = currentPage;
-      renderTask?.cancel();
-      loading.hidden = false;
-      try {
-        const page = await documentAtStart.getPage(pageNumber);
-        if (sequence !== renderSequence || documentAtStart !== pdfDocument) return;
-        const naturalViewport = page.getViewport({ scale: 1 });
-        const availableWidth = Math.max(280, viewport.clientWidth - 32);
-        const fitScale = availableWidth / naturalViewport.width;
-        const cssScale = fitScale * zoomLevel;
-        const outputScale = Math.min(window.devicePixelRatio || 1, 2);
-        const renderViewport = page.getViewport({ scale: cssScale });
-        canvas.width = Math.floor(renderViewport.width * outputScale);
-        canvas.height = Math.floor(renderViewport.height * outputScale);
-        canvas.style.width = `${Math.floor(renderViewport.width)}px`;
-        canvas.style.height = `${Math.floor(renderViewport.height)}px`;
-        canvas.setAttribute('aria-label', `Page ${pageNumber} of ${documentAtStart.numPages}`);
-        const context = canvas.getContext('2d', { alpha: false });
-        renderTask = page.render({
-          canvasContext: context,
-          transform: outputScale === 1 ? null : [outputScale, 0, 0, outputScale, 0, 0],
-          viewport: renderViewport
-        });
-        await renderTask.promise;
-        if (sequence !== renderSequence || documentAtStart !== pdfDocument) return;
-        canvas.hidden = false;
-        pageControls.hidden = false;
-        loading.hidden = true;
-        viewport.scrollTo({ top: 0, left: Math.max(0, (canvas.offsetWidth - viewport.clientWidth) / 2), behavior: 'auto' });
-        updatePageControls();
-      } catch (error) {
-        if (error?.name === 'RenderingCancelledException' || sequence !== renderSequence) return;
-        loading.hidden = true;
-        errorMessage.hidden = false;
-      }
     };
 
     const loadDocument = async pdfUrl => {
@@ -363,8 +489,26 @@
         pdfDocument = loadedDocument;
         pdfLoadingTask = null;
         eyebrow.textContent = `Full-Text · ${pdfDocument.numPages} pages`;
+        const firstPage = await pdfDocument.getPage(1);
+        if (sequence !== documentSequence) return;
+        const firstViewport = firstPage.getViewport({ scale: 1 });
+        pageMetrics[0] = { width: firstViewport.width, height: firstViewport.height };
+        const fragment = document.createDocumentFragment();
+        pageElements = Array.from({ length: pdfDocument.numPages }, (_, index) => {
+          const pageElement = document.createElement('section');
+          const pageNumber = index + 1;
+          pageElement.className = 'publication-pdf-reader__page';
+          pageElement.dataset.pageNumber = String(pageNumber);
+          pageElement.setAttribute('aria-label', `Page ${pageNumber}`);
+          setPageSize(pageElement, pageMetrics[0]);
+          addPagePlaceholder(pageElement, pageNumber);
+          fragment.appendChild(pageElement);
+          return pageElement;
+        });
+        pagesContainer.appendChild(fragment);
+        viewport.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         updatePageControls();
-        await renderCurrentPage();
+        renderPageWindow(1);
       } catch (error) {
         if (sequence !== documentSequence) return;
         pdfLoadingTask = null;
@@ -416,25 +560,21 @@
     closeButton.addEventListener('click', closeReader);
     previousButton.addEventListener('click', () => {
       if (!pdfDocument || currentPage <= 1) return;
-      currentPage -= 1;
-      updatePageControls();
-      renderCurrentPage();
+      scrollToPage(currentPage - 1, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
     });
     nextButton.addEventListener('click', () => {
       if (!pdfDocument || currentPage >= pdfDocument.numPages) return;
-      currentPage += 1;
-      updatePageControls();
-      renderCurrentPage();
+      scrollToPage(currentPage + 1, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
     });
     zoomOutButton.addEventListener('click', () => {
       zoomLevel = Math.max(0.75, zoomLevel - 0.25);
       updatePageControls();
-      renderCurrentPage();
+      refreshPageLayout();
     });
     zoomInButton.addEventListener('click', () => {
       zoomLevel = Math.min(2, zoomLevel + 0.25);
       updatePageControls();
-      renderCurrentPage();
+      refreshPageLayout();
     });
 
     fullscreenButton.addEventListener('click', async () => {
@@ -443,24 +583,25 @@
       } else if (reader.classList.contains('is-reader-maximized')) {
         reader.classList.remove('is-reader-maximized');
         updateFullscreenControl();
-        window.setTimeout(renderCurrentPage, 120);
+        window.setTimeout(refreshPageLayout, 120);
       } else {
         reader.classList.add('is-reader-maximized');
         updateFullscreenControl();
         if (dialog.requestFullscreen) await dialog.requestFullscreen().catch(() => {});
-        window.setTimeout(renderCurrentPage, 120);
+        window.setTimeout(refreshPageLayout, 120);
       }
     });
 
     document.addEventListener('fullscreenchange', () => {
       if (!document.fullscreenElement) reader.classList.remove('is-reader-maximized');
       updateFullscreenControl();
-      window.setTimeout(renderCurrentPage, 120);
+      window.setTimeout(refreshPageLayout, 120);
     });
     window.addEventListener('resize', () => {
       window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(renderCurrentPage, 180);
+      resizeTimer = window.setTimeout(refreshPageLayout, 180);
     }, { passive: true });
+    viewport.addEventListener('scroll', requestScrollUpdate, { passive: true });
     reader.addEventListener('pointerdown', event => {
       if (event.target === reader) closeReader();
     });
@@ -469,7 +610,7 @@
         event.preventDefault();
         reader.classList.remove('is-reader-maximized');
         updateFullscreenControl();
-        window.setTimeout(renderCurrentPage, 120);
+        window.setTimeout(refreshPageLayout, 120);
         return;
       }
       if (event.key === 'Escape' && !document.fullscreenElement) {

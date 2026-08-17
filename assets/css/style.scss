@@ -888,26 +888,58 @@ body.publication-pdf-reader-open {
   overflow: auto;
   background: #e9edf1;
   overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
   -webkit-overflow-scrolling: touch;
 }
 
 .publication-pdf-reader__page-stage {
-  display: grid;
+  width: max-content;
   min-width: 100%;
   min-height: 100%;
   padding: 1rem;
-  place-items: start center;
 }
 
-.publication-pdf-reader__page-stage canvas {
-  display: block;
-  max-width: none;
+.publication-pdf-reader__pages {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.publication-pdf-reader__page {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
   background: #fff;
   box-shadow: 0 8px 26px rgba(14, 31, 52, 0.2);
 }
 
-.publication-pdf-reader__page-stage canvas[hidden] {
-  display: none;
+.publication-pdf-reader__page canvas {
+  display: block;
+  max-width: none;
+  background: #fff;
+}
+
+.publication-pdf-reader__page-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #718096;
+  background: linear-gradient(110deg, #fff 18%, #f5f7f9 42%, #fff 66%);
+  background-size: 220% 100%;
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.publication-pdf-reader__page.is-rendering .publication-pdf-reader__page-placeholder {
+  animation: publication-pdf-reader-page-loading 1.2s ease-in-out infinite;
+}
+
+@keyframes publication-pdf-reader-page-loading {
+  to { background-position-x: -220%; }
 }
 
 .publication-pdf-reader__loading {
@@ -962,13 +994,14 @@ body.publication-pdf-reader-open {
   position: sticky;
   z-index: 2;
   bottom: 0.75rem;
+  left: 50%;
   display: flex;
   width: max-content;
   max-width: calc(100% - 1rem);
   min-height: 38px;
   align-items: center;
   gap: 0.25rem;
-  margin: -3.25rem auto 0.75rem;
+  margin: -3.25rem 0 0.75rem;
   padding: 0.3rem;
   color: #f5f9ff;
   background: rgba(15, 29, 48, 0.92);
@@ -977,6 +1010,7 @@ body.publication-pdf-reader-open {
   box-shadow: 0 8px 24px rgba(3, 11, 23, 0.3);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  transform: translateX(-50%);
 }
 
 .publication-pdf-reader__page-controls[hidden] {
@@ -1164,6 +1198,10 @@ body.publication-pdf-reader-open {
   }
 
   .publication-pdf-reader__spinner {
+    animation: none;
+  }
+
+  .publication-pdf-reader__page.is-rendering .publication-pdf-reader__page-placeholder {
     animation: none;
   }
 }
