@@ -373,7 +373,7 @@
     };
 
     const updateFullscreenControl = () => {
-      const isFullscreen = document.fullscreenElement === dialog;
+      const isFullscreen = document.fullscreenElement === dialog || reader.classList.contains('is-reader-maximized');
       fullscreenButton.setAttribute('aria-label', isFullscreen ? 'Exit full screen' : 'Open full screen');
       if (fullscreenLabel) fullscreenLabel.textContent = isFullscreen ? 'Exit full screen' : 'Full screen';
       if (fullscreenIcon) {
@@ -387,6 +387,7 @@
         await document.exitFullscreen().catch(() => {});
       }
       reader.hidden = true;
+      reader.classList.remove('is-reader-maximized');
       document.body.classList.remove('publication-pdf-reader-open');
       await clearDocument();
       eyebrow.textContent = 'Full-Text';
@@ -438,12 +439,20 @@
     fullscreenButton.addEventListener('click', async () => {
       if (document.fullscreenElement === dialog && document.exitFullscreen) {
         await document.exitFullscreen().catch(() => {});
-      } else if (dialog.requestFullscreen) {
-        await dialog.requestFullscreen().catch(() => {});
+      } else if (reader.classList.contains('is-reader-maximized')) {
+        reader.classList.remove('is-reader-maximized');
+        updateFullscreenControl();
+        window.setTimeout(renderCurrentPage, 120);
+      } else {
+        reader.classList.add('is-reader-maximized');
+        updateFullscreenControl();
+        if (dialog.requestFullscreen) await dialog.requestFullscreen().catch(() => {});
+        window.setTimeout(renderCurrentPage, 120);
       }
     });
 
     document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) reader.classList.remove('is-reader-maximized');
       updateFullscreenControl();
       window.setTimeout(renderCurrentPage, 120);
     });
@@ -455,6 +464,13 @@
       if (event.target === reader) closeReader();
     });
     reader.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && reader.classList.contains('is-reader-maximized') && !document.fullscreenElement) {
+        event.preventDefault();
+        reader.classList.remove('is-reader-maximized');
+        updateFullscreenControl();
+        window.setTimeout(renderCurrentPage, 120);
+        return;
+      }
       if (event.key === 'Escape' && !document.fullscreenElement) {
         event.preventDefault();
         closeReader();
