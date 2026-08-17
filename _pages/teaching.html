@@ -44,10 +44,149 @@ author_profile: true
             <span>Gradescope</span>
           </a>
         </div>
+        <div class="teaching-card__actions">
+          <button
+            class="publication-link publication-link--full-text teaching-link--logistics"
+            type="button"
+            data-logistics-viewer-open
+            data-pdf-url="{{ '/files/teaching/stat410-syllabus.pdf#page=1&view=FitH' | relative_url }}"
+            aria-controls="teaching-logistics-viewer">
+            <i class="fas fa-fw fa-info-circle" aria-hidden="true"></i>
+            <span>Logistics</span>
+          </button>
+        </div>
       </article>
     </section>
   </div>
 </div>
+
+<div class="publication-pdf-reader teaching-logistics-viewer" id="teaching-logistics-viewer" data-logistics-viewer role="dialog" aria-modal="true" aria-labelledby="teaching-logistics-viewer-title" hidden>
+  <div class="publication-pdf-reader__dialog" data-logistics-viewer-dialog>
+    <header class="publication-pdf-reader__toolbar">
+      <div class="publication-pdf-reader__heading">
+        <span class="publication-pdf-reader__eyebrow">Logistics</span>
+        <h2 id="teaching-logistics-viewer-title">STAT 410. Statistics and Probability II.</h2>
+      </div>
+      <div class="publication-pdf-reader__controls">
+        <a class="publication-pdf-reader__control" data-logistics-viewer-external href="{{ '/files/teaching/stat410-syllabus.pdf' | relative_url }}" target="_blank" rel="noopener">
+          <i class="fas fa-fw fa-external-link-alt" aria-hidden="true"></i>
+          <span>Open syllabus</span>
+        </a>
+        <button class="publication-pdf-reader__control" type="button" data-logistics-viewer-fullscreen>
+          <i class="fas fa-fw fa-expand" aria-hidden="true"></i>
+          <span>Full screen</span>
+        </button>
+        <button class="publication-pdf-reader__control publication-pdf-reader__control--close" type="button" data-logistics-viewer-close>
+          <i class="fas fa-fw fa-times" aria-hidden="true"></i>
+          <span>Close</span>
+        </button>
+      </div>
+    </header>
+    <iframe
+      class="teaching-logistics-viewer__frame"
+      data-logistics-viewer-frame
+      title="STAT 410 syllabus"
+      loading="lazy"></iframe>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const viewer = document.querySelector('[data-logistics-viewer]');
+    const dialog = viewer?.querySelector('[data-logistics-viewer-dialog]');
+    const frame = viewer?.querySelector('[data-logistics-viewer-frame]');
+    const openButton = document.querySelector('[data-logistics-viewer-open]');
+    const externalLink = viewer?.querySelector('[data-logistics-viewer-external]');
+    const fullscreenButton = viewer?.querySelector('[data-logistics-viewer-fullscreen]');
+    const fullscreenIcon = fullscreenButton?.querySelector('i');
+    const fullscreenLabel = fullscreenButton?.querySelector('span');
+    const closeButton = viewer?.querySelector('[data-logistics-viewer-close]');
+    if (!viewer || !dialog || !frame || !openButton || !externalLink || !fullscreenButton || !closeButton) return;
+    document.body.appendChild(viewer);
+
+    const focusableElements = () => [...viewer.querySelectorAll('a[href], button:not([disabled])')]
+      .filter(element => element.getClientRects().length > 0);
+
+    const updateFullscreenControl = () => {
+      const isFullscreen = document.fullscreenElement === dialog || viewer.classList.contains('is-reader-maximized');
+      fullscreenButton.setAttribute('aria-label', isFullscreen ? 'Exit full screen' : 'Open full screen');
+      if (fullscreenLabel) fullscreenLabel.textContent = isFullscreen ? 'Exit full screen' : 'Full screen';
+      if (fullscreenIcon) {
+        fullscreenIcon.classList.toggle('fa-expand', !isFullscreen);
+        fullscreenIcon.classList.toggle('fa-compress', isFullscreen);
+      }
+    };
+
+    const closeViewer = async () => {
+      if (document.fullscreenElement === dialog && document.exitFullscreen) {
+        await document.exitFullscreen().catch(() => {});
+      }
+      viewer.hidden = true;
+      viewer.classList.remove('is-reader-maximized');
+      document.body.classList.remove('publication-pdf-reader-open');
+      frame.src = 'about:blank';
+      openButton.focus();
+      updateFullscreenControl();
+    };
+
+    openButton.addEventListener('click', () => {
+      const pdfUrl = openButton.dataset.pdfUrl;
+      if (!pdfUrl) return;
+      frame.src = pdfUrl;
+      externalLink.href = pdfUrl.split('#')[0];
+      viewer.hidden = false;
+      document.body.classList.add('publication-pdf-reader-open');
+      closeButton.focus();
+    });
+
+    closeButton.addEventListener('click', closeViewer);
+    fullscreenButton.addEventListener('click', async () => {
+      if (document.fullscreenElement === dialog && document.exitFullscreen) {
+        await document.exitFullscreen().catch(() => {});
+      } else if (viewer.classList.contains('is-reader-maximized')) {
+        viewer.classList.remove('is-reader-maximized');
+      } else {
+        viewer.classList.add('is-reader-maximized');
+        if (dialog.requestFullscreen) await dialog.requestFullscreen().catch(() => {});
+      }
+      updateFullscreenControl();
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) viewer.classList.remove('is-reader-maximized');
+      updateFullscreenControl();
+    });
+    viewer.addEventListener('pointerdown', event => {
+      if (event.target === viewer) closeViewer();
+    });
+    viewer.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && viewer.classList.contains('is-reader-maximized') && !document.fullscreenElement) {
+        event.preventDefault();
+        viewer.classList.remove('is-reader-maximized');
+        updateFullscreenControl();
+        return;
+      }
+      if (event.key === 'Escape' && !document.fullscreenElement) {
+        event.preventDefault();
+        closeViewer();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = focusableElements();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+    updateFullscreenControl();
+  })();
+</script>
 
 <script>
   (() => {
