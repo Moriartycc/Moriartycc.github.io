@@ -46,6 +46,21 @@
               <div class="publication-card__abstract-inner">
                 <div class="publication-card__abstract-label">Abstract</div>
                 <p>{{ paper.abstract | escape }}</p>
+                {% if paper.pdf_url %}
+                  <div class="publication-card__abstract-actions">
+                    <button
+                      class="publication-link publication-link--full-text"
+                      type="button"
+                      data-pdf-reader-open
+                      data-pdf-url="{{ paper.pdf_url | escape }}"
+                      data-paper-title="{{ paper.title | escape }}"
+                      aria-haspopup="dialog"
+                      aria-controls="publication-pdf-reader">
+                      <i class="fas fa-fw fa-file-pdf" aria-hidden="true"></i>
+                      <span>Full-Text</span>
+                    </button>
+                  </div>
+                {% endif %}
               </div>
             </div>
           </article>
@@ -80,6 +95,38 @@
     </div>
   </article>
 </section>
+
+<div class="publication-pdf-reader" id="publication-pdf-reader" data-pdf-reader role="dialog" aria-modal="true" aria-labelledby="publication-pdf-reader-title" hidden>
+  <div class="publication-pdf-reader__dialog" data-pdf-reader-dialog>
+    <header class="publication-pdf-reader__toolbar">
+      <div class="publication-pdf-reader__heading">
+        <span class="publication-pdf-reader__eyebrow">Full-Text</span>
+        <h2 id="publication-pdf-reader-title">Paper</h2>
+      </div>
+      <div class="publication-pdf-reader__controls">
+        <a class="publication-pdf-reader__control" data-pdf-reader-external href="#" target="_blank" rel="noopener">
+          <i class="fas fa-fw fa-external-link-alt" aria-hidden="true"></i>
+          <span>Open PDF</span>
+        </a>
+        <button class="publication-pdf-reader__control" type="button" data-pdf-reader-fullscreen>
+          <i class="fas fa-fw fa-expand" aria-hidden="true"></i>
+          <span>Full screen</span>
+        </button>
+        <button class="publication-pdf-reader__control publication-pdf-reader__control--close" type="button" data-pdf-reader-close>
+          <i class="fas fa-fw fa-times" aria-hidden="true"></i>
+          <span>Close</span>
+        </button>
+      </div>
+    </header>
+    <div class="publication-pdf-reader__viewport">
+      <div class="publication-pdf-reader__loading" data-pdf-reader-loading role="status">
+        <span class="publication-pdf-reader__spinner" aria-hidden="true"></span>
+        <span>Loading full text&hellip;</span>
+      </div>
+      <iframe data-pdf-reader-frame title="Full-text PDF viewer" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 
 <script>
   (() => {
@@ -146,6 +193,104 @@
         toggle.focus();
       });
     });
+  })();
+</script>
+
+<script>
+  (() => {
+    const reader = document.querySelector('[data-pdf-reader]');
+    const dialog = reader?.querySelector('[data-pdf-reader-dialog]');
+    const frame = reader?.querySelector('[data-pdf-reader-frame]');
+    const title = reader?.querySelector('#publication-pdf-reader-title');
+    const loading = reader?.querySelector('[data-pdf-reader-loading]');
+    const externalLink = reader?.querySelector('[data-pdf-reader-external]');
+    const fullscreenButton = reader?.querySelector('[data-pdf-reader-fullscreen]');
+    const fullscreenIcon = fullscreenButton?.querySelector('i');
+    const fullscreenLabel = fullscreenButton?.querySelector('span');
+    const closeButton = reader?.querySelector('[data-pdf-reader-close]');
+    const openButtons = [...document.querySelectorAll('[data-pdf-reader-open]')];
+    if (!reader || !dialog || !frame || !title || !loading || !externalLink || !fullscreenButton || !closeButton || !openButtons.length) return;
+
+    let returnFocus = null;
+
+    const focusableElements = () => [...reader.querySelectorAll('a[href], button:not([disabled]), iframe')]
+      .filter(element => !element.hasAttribute('hidden'));
+
+    const updateFullscreenControl = () => {
+      const isFullscreen = document.fullscreenElement === dialog;
+      fullscreenButton.setAttribute('aria-label', isFullscreen ? 'Exit full screen' : 'Open full screen');
+      if (fullscreenLabel) fullscreenLabel.textContent = isFullscreen ? 'Exit full screen' : 'Full screen';
+      if (fullscreenIcon) {
+        fullscreenIcon.classList.toggle('fa-expand', !isFullscreen);
+        fullscreenIcon.classList.toggle('fa-compress', isFullscreen);
+      }
+    };
+
+    const closeReader = async () => {
+      if (document.fullscreenElement === dialog && document.exitFullscreen) {
+        await document.exitFullscreen().catch(() => {});
+      }
+      reader.hidden = true;
+      document.body.classList.remove('publication-pdf-reader-open');
+      frame.removeAttribute('src');
+      frame.title = 'Full-text PDF viewer';
+      loading.hidden = false;
+      returnFocus?.focus();
+      returnFocus = null;
+    };
+
+    const openReader = button => {
+      const pdfUrl = button.dataset.pdfUrl;
+      const paperTitle = button.dataset.paperTitle || 'Paper';
+      if (!pdfUrl) return;
+      returnFocus = button;
+      button.closest('[data-abstract-card]')?.classList.add('is-abstract-pinned');
+      title.textContent = paperTitle;
+      frame.title = `${paperTitle} full-text PDF`;
+      externalLink.href = pdfUrl;
+      loading.hidden = false;
+      frame.src = `${pdfUrl}#view=FitH`;
+      reader.hidden = false;
+      document.body.classList.add('publication-pdf-reader-open');
+      closeButton.focus();
+    };
+
+    openButtons.forEach(button => button.addEventListener('click', () => openReader(button)));
+    closeButton.addEventListener('click', closeReader);
+    frame.addEventListener('load', () => { loading.hidden = true; });
+
+    fullscreenButton.addEventListener('click', async () => {
+      if (document.fullscreenElement === dialog && document.exitFullscreen) {
+        await document.exitFullscreen().catch(() => {});
+      } else if (dialog.requestFullscreen) {
+        await dialog.requestFullscreen().catch(() => {});
+      }
+    });
+
+    document.addEventListener('fullscreenchange', updateFullscreenControl);
+    reader.addEventListener('pointerdown', event => {
+      if (event.target === reader) closeReader();
+    });
+    reader.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !document.fullscreenElement) {
+        event.preventDefault();
+        closeReader();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = focusableElements();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+    updateFullscreenControl();
   })();
 </script>
 

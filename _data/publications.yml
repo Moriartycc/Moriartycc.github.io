@@ -9,6 +9,7 @@ years:
         venue: "Proceedings of the Thirty-Ninth Conference on Learning Theory (COLT 2026), PMLR 336:1399–1433"
         abstract: >-
           In an overparameterized Bayesian linear model with a general prior \(\pi\), we characterize when good generalization requires near-interpolation and when fitting the training data too closely is harmful. The transition is governed by noise thresholds determined by the prior's Fisher information and variance, giving explicit conditions under which memorization is either necessary or detrimental.
+        pdf_url: https://arxiv.org/pdf/2602.09405
         links:
           - label: arXiv
             type: paper
@@ -27,6 +28,7 @@ years:
         venue: Preprint
         abstract: >-
           We develop Hoeffding- and Bernstein-type concentration inequalities for structured weighted sums under exchangeability, including tensor inner products and sequential matrix sums. The bounds recover optimal constants in classical scalar and random-matrix settings, sharpen results for combinatorial matrix sums, and support applications to multi-factor response models and fixed-design sketching in federated averaging.
+        pdf_url: https://arxiv.org/pdf/2601.20152
         links:
           - label: arXiv
             type: paper
@@ -45,6 +47,7 @@ years:
         venue: "Transactions on Machine Learning Research (TMLR 2026)"
         abstract: >-
           We show that learning from aggregated noisy labels can provide robustness unavailable to procedures trained on raw labels. In particular, label aggregation yields stronger risk-consistency guarantees under surrogate losses and remains reliable under mild model misspecification, clarifying how data collection, cleaning, model fitting, and prediction interact to produce robust classifiers.
+        pdf_url: https://arxiv.org/pdf/2509.11379
         links:
           - label: arXiv
             type: paper
@@ -62,6 +65,7 @@ years:
         venue: Preprint
         abstract: >-
           We establish state-evolution predictions for high-dimensional iterative algorithms that may interleave first-order and saddle-point updates and need not be coordinate-wise separable. The analysis also gives finite-sample deviation guarantees, using Hilbert-space lifting, Bolthausen conditioning, and a sequential form of Gordon's Gaussian comparison inequality.
+        pdf_url: https://arxiv.org/pdf/2507.19611
         links:
           - label: arXiv
             type: paper
@@ -78,6 +82,7 @@ years:
         venue: "Accepted to Mathematics of Operations Research, 2026"
         abstract: >-
           We study how constraint and gradient geometry determine the computational and statistical limits of stochastic optimization. Diagonally preconditioned stochastic gradient methods are minimax optimal for quadratically convex constraints, while departures from quadratic convexity quantify when nonlinear updates such as mirror descent are needed; the results include \(\ell_p\)-balls with \(p<2\).
+        pdf_url: https://arxiv.org/pdf/1909.10455
         links:
           - label: arXiv
             type: paper
@@ -92,6 +97,7 @@ years:
         venue: "Proceedings of the Thirty-Seventh Conference on Learning Theory (COLT 2024), PMLR 247:186–218"
         abstract: >-
           We identify minimax limits for prediction sets and calibration error in predictive inference. For witness classes of VC dimension \(d\), weighted conformal coverage cannot converge faster than order \(d^{1/2}n^{-1/2}\), while weighted weak calibration error has a lower-bound rate of order \(d^{1/4}n^{-1/2}\); existing procedures attain the corresponding rates in key settings.
+        pdf_url: https://proceedings.mlr.press/v247/areces24a/areces24a.pdf
         links:
           - label: PMLR
             type: published
@@ -108,6 +114,7 @@ years:
         venue: "Advances in Neural Information Processing Systems (NeurIPS 2023)"
         abstract: >-
           We study collaborative least-squares learning for \(m\) agents that observe different, structured subsets of the available features. The distributed semi-supervised algorithm Collab combines local training, aggregation, and redistribution without communicating labeled data, yet is nearly asymptotically local-minimax optimal even relative to methods that can share those labels.
+        pdf_url: https://arxiv.org/pdf/2307.11947
         links:
           - label: arXiv
             type: paper
@@ -123,6 +130,7 @@ years:
         venue: "The Annals of Statistics, Vol. 52, No. 6, pp. 2879–2912, 2024"
         abstract: >-
           We derive nonasymptotic, dimension-free approximations for the bias and variance of ridge regression, allowing feature vectors to be high- or infinite-dimensional. The risk is compared multiplicatively with an equivalent sequence model, extending random-matrix predictions beyond proportional asymptotics and yielding sharp results for Hilbert-space covariates and benign overfitting near interpolation.
+        pdf_url: https://arxiv.org/pdf/2210.08571
         links:
           - label: arXiv
             type: paper
@@ -142,6 +150,7 @@ years:
         venue: Preprint
         abstract: >-
           We examine the common practice of aggregating multiple annotations into a single gold-standard label. A theoretical model shows when retaining the full, non-aggregated label information improves calibration and learning rates, and when aggregation instead offers slower but more robust behavior; experiments on real and synthetic data support these predictions.
+        pdf_url: https://arxiv.org/pdf/2206.12041
         links:
           - label: arXiv
             type: paper
@@ -158,6 +167,7 @@ years:
         venue: "Proceedings of the Thirty-Fifth Conference on Learning Theory (COLT 2022)"
         abstract: >-
           In overparameterized linear regression \(y=X\theta+w\) with \(d/n\to\gamma>1\), we characterize the relationship between training error and prediction error. As the noise variance \(\sigma^2\) vanishes, estimators with training error of order at least \(\sigma^4\) are necessarily suboptimal, showing that optimal prediction may require fitting far more accurately than the nominal noise floor.
+        pdf_url: https://arxiv.org/pdf/2202.09889
         links:
           - label: arXiv
             type: paper
@@ -176,6 +186,7 @@ years:
         venue: "Accepted to Annals of Applied Probability, 2026"
         abstract: >-
           We characterize bounded-time, high-dimensional limits of deterministic flows driven by random data matrices. Their behavior is described by a finite-dimensional nonlinear stochastic process determined through a fixed-point condition, providing a rigorous dynamical mean field theory via approximate message passing and establishing universality for several gradient-flow models.
+        pdf_url: https://arxiv.org/pdf/2112.07572
         links:
           - label: arXiv
             type: paper
@@ -194,6 +205,7 @@ years:
         venue: "Operations Research, Vol. 69, No. 6, pp. 1716–1731, 2021"
         abstract: >-
           We give nonasymptotic convergence guarantees for entropy-regularized natural policy gradient methods with softmax policies in discounted Markov decision processes. With exact policy evaluation, the method converges globally at a linear rate and locally at a quadratic rate; the analysis also quantifies stability under inexact evaluation and accommodates a broad range of learning rates.
+        pdf_url: https://arxiv.org/pdf/2007.06558
         links:
           - label: arXiv
             type: paper
@@ -210,6 +222,7 @@ years:
         venue: "IEEE Transactions on Information Theory, Vol. 67, No. 12, pp. 8152–8194, 2021"
         abstract: >-
           We develop eigenvector estimation and inference methods for low-rank symmetric signals observed with independent, asymmetric, heteroscedastic noise. Eigen-decomposition of the asymmetric data yields distribution-free, noise-adaptive, and Gaussian-minimax-optimal procedures for eigenvectors, linear functionals, and eigenvalue confidence intervals, even when the relevant eigen-gaps are much smaller than classical perturbation theory permits.
+        pdf_url: https://arxiv.org/pdf/2001.04620
         links:
           - label: arXiv
             type: paper
@@ -229,6 +242,7 @@ years:
         venue: "The Annals of Statistics, Vol. 49, No. 1, pp. 435–458, 2021"
         abstract: >-
           We show that asymmetry in noisy observations can improve spectral estimation of a symmetric low-rank matrix. Eigen-decomposition of an asymmetric data matrix can estimate the leading eigenvalue up to roughly \(\sqrt{n}\) more accurately than an unadjusted singular value, while also controlling linear functionals of the leading eigenvector and adapting automatically to heteroscedastic noise.
+        pdf_url: https://arxiv.org/pdf/1811.12804
         links:
           - label: arXiv
             type: paper
