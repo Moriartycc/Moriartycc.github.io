@@ -184,6 +184,7 @@
     const mobileQuery = window.matchMedia('(max-width: 700px)');
     let dragging = false;
     let frameRequested = false;
+    let markerLayoutTimer = null;
     let yearProgressPositions = [];
 
     const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
@@ -241,6 +242,7 @@
     };
 
     const positionMarkers = () => {
+      markerLayoutTimer = null;
       track.setAttribute('aria-orientation', mobileQuery.matches ? 'horizontal' : 'vertical');
       const firstOffset = sections[0]?.offsetTop || 0;
       const markerRange = scrollRange();
@@ -254,6 +256,11 @@
       rail.classList.add('is-ready');
       shell.classList.add('publication-rail-ready');
       requestUpdate();
+    };
+
+    const scheduleMarkerPosition = () => {
+      window.clearTimeout(markerLayoutTimer);
+      markerLayoutTimer = window.setTimeout(positionMarkers, 100);
     };
 
     const scrollToProgress = (progress, behavior = 'auto') => {
@@ -320,9 +327,9 @@
     });
 
     window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', positionMarkers, { passive: true });
-    mobileQuery.addEventListener?.('change', positionMarkers);
-    if ('ResizeObserver' in window) new ResizeObserver(positionMarkers).observe(list);
+    window.addEventListener('resize', scheduleMarkerPosition, { passive: true });
+    mobileQuery.addEventListener?.('change', scheduleMarkerPosition);
+    if ('ResizeObserver' in window) new ResizeObserver(scheduleMarkerPosition).observe(list);
     positionMarkers();
   })();
 </script>

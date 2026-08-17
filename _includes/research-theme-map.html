@@ -36,7 +36,7 @@
     #research-keyword-previews .selected-line strong { color: var(--foreground); font-weight: 500; }
     #research-keyword-previews .paper-link, #research-keyword-previews .tooltip a { white-space: nowrap; font-size: 11px; }
     #research-keyword-previews .legend { position: absolute; top: 10px; right: 10px; z-index: 12; display: grid; grid-template-columns: repeat(2, max-content); gap: 5px 7px; max-width: calc(100% - 20px); margin: 0; color: var(--muted-foreground); pointer-events: none; }
-    #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 2px 7px; background: color-mix(in srgb, var(--glass-card-fill, var(--background)) 78%, transparent); border: 1px solid color-mix(in srgb, var(--glass-edge, var(--border)) 76%, transparent); border-radius: 999px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 56%, transparent), 0 5px 14px color-mix(in srgb, var(--constellation-sky, var(--background)) 34%, transparent); font-size: 10px; line-height: 1.25; white-space: nowrap; opacity: .68; -webkit-backdrop-filter: blur(10px) saturate(130%); backdrop-filter: blur(10px) saturate(130%); transition: opacity .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 2px 7px; background: color-mix(in srgb, var(--glass-card-fill, var(--background)) 94%, var(--constellation-sky, var(--background))); border: 1px solid color-mix(in srgb, var(--glass-edge, var(--border)) 76%, transparent); border-radius: 999px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 56%, transparent), 0 5px 14px color-mix(in srgb, var(--constellation-sky, var(--background)) 34%, transparent); font-size: 10px; line-height: 1.25; white-space: nowrap; opacity: .68; transition: opacity .22s ease, border-color .22s ease, box-shadow .22s ease; }
     #research-keyword-previews .legend-item.is-leading { border-color: color-mix(in srgb, var(--swatch) 68%, var(--glass-edge, var(--border))); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 66%, transparent), 0 6px 16px color-mix(in srgb, var(--swatch) 16%, transparent); }
     #research-keyword-previews .legend-label { overflow: hidden; text-overflow: ellipsis; }
     #research-keyword-previews .legend-label-short { display: none; }
@@ -46,7 +46,7 @@
     #research-keyword-previews .tooltip { display: none; position: absolute; top: 0; left: 0; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 9px 11px; border: 1px solid var(--glass-edge, var(--border)); border-radius: 12px; background: linear-gradient(145deg, var(--glass-specular, rgba(255,255,255,.18)), transparent 32%), color-mix(in srgb, var(--glass-card-fill, var(--popover)) 92%, transparent); color: var(--popover-foreground); box-shadow: inset 0 1px 0 var(--glass-specular, rgba(255,255,255,.18)), 0 16px 36px color-mix(in srgb, var(--foreground) 15%, transparent); -webkit-backdrop-filter: blur(18px) saturate(145%); backdrop-filter: blur(18px) saturate(145%); cursor: pointer; pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; will-change: transform; }
     #research-keyword-previews .tooltip::before { position: absolute; top: 0; right: 12px; left: 12px; height: 1px; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--viz-series-1) 70%, white), transparent); content: ""; opacity: .72; }
     #research-keyword-previews .tooltip.is-visible { display: block; pointer-events: auto; opacity: 1; visibility: visible; }
-    #research-keyword-previews .tooltip.is-pinned { border-color: color-mix(in srgb, var(--viz-series-1) 70%, var(--border)); transition: transform .22s cubic-bezier(.2,.72,.25,1); }
+    #research-keyword-previews .tooltip.is-pinned { background: linear-gradient(145deg, var(--glass-specular, rgba(255,255,255,.18)), transparent 32%), color-mix(in srgb, var(--glass-card-fill, var(--popover)) 98%, var(--constellation-sky, var(--background))); border-color: color-mix(in srgb, var(--viz-series-1) 70%, var(--border)); -webkit-backdrop-filter: none; backdrop-filter: none; transition: transform .16s cubic-bezier(.2,.72,.25,1); will-change: auto; }
     #research-keyword-previews .tooltip-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     #research-keyword-previews .tooltip-pin-state { flex: 0 0 auto; color: var(--muted-foreground); font-size: 10px; font-weight: 500; letter-spacing: .025em; }
     #research-keyword-previews .tooltip.is-pinned .tooltip-pin-state { color: var(--viz-series-1); }
@@ -63,7 +63,8 @@
     #research-keyword-previews .tooltip-extra-paper { padding-left: 14px; }
     #research-keyword-previews .map-shell { position: relative; contain: layout; isolation: isolate; overflow: visible; }
     #research-keyword-previews .network-motion { transform-box: fill-box; transform-origin: center; animation: research-network-drift 16s ease-in-out infinite alternate; }
-    #research-keyword-previews.is-map-paused .network-motion { animation-play-state: paused; }
+    #research-keyword-previews.is-map-paused .network-motion,
+    #research-keyword-previews.has-pinned-theme .network-motion { animation-play-state: paused; }
     #research-keyword-previews .star-dust { fill: var(--foreground); pointer-events: none; }
     #research-keyword-previews .keyword-cloud { pointer-events: none; }
     #research-keyword-previews .keyword-cloud-label { fill: var(--constellation-text, var(--foreground)); font-weight: 420; letter-spacing: .018em; paint-order: stroke; stroke: var(--constellation-sky, var(--background)); stroke-width: 2.6px; stroke-linejoin: round; opacity: .18; pointer-events: none; transition: opacity .22s ease, fill .22s ease; }
@@ -536,6 +537,7 @@
         currentSelection = theme;
         select.value = theme;
         root.dataset.selectedTheme = theme;
+        root.classList.toggle('has-pinned-theme',Boolean(theme));
         applyHighlight(theme);
       }
 
