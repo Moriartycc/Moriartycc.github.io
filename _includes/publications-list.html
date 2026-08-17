@@ -244,6 +244,7 @@
     const closeButton = reader?.querySelector('[data-pdf-reader-close]');
     const openButtons = [...document.querySelectorAll('[data-pdf-reader-open]')];
     if (!reader || !dialog || !viewport || !canvas || !title || !eyebrow || !loading || !errorMessage || !pageControls || !previousButton || !nextButton || !pageStatus || !zoomOutButton || !zoomInButton || !zoomStatus || !externalLink || !fullscreenButton || !closeButton || !openButtons.length) return;
+    document.body.appendChild(reader);
 
     let returnFocus = null;
     let pdfDocument = null;

@@ -830,7 +830,7 @@ body.publication-pdf-reader-open {
   text-transform: uppercase;
 }
 
-.page__content .publication-pdf-reader__heading h2 {
+.publication-pdf-reader__heading h2 {
   margin: 0;
   overflow: hidden;
   color: var(--global-text-color);
@@ -849,7 +849,7 @@ body.publication-pdf-reader-open {
   gap: 0.42rem;
 }
 
-.page__content .publication-pdf-reader__control {
+.publication-pdf-reader__control {
   display: inline-flex;
   min-height: 34px;
   align-items: center;
@@ -868,15 +868,15 @@ body.publication-pdf-reader-open {
   touch-action: manipulation;
 }
 
-.page__content .publication-pdf-reader__control:hover,
-.page__content .publication-pdf-reader__control:focus-visible {
+.publication-pdf-reader__control:hover,
+.publication-pdf-reader__control:focus-visible {
   color: var(--tech-accent-bright);
   background: color-mix(in srgb, var(--tech-accent-bright) 15%, var(--tech-surface-raised));
   border-color: color-mix(in srgb, var(--tech-accent-bright) 58%, var(--tech-border));
   text-decoration: none;
 }
 
-.page__content .publication-pdf-reader__control--close {
+.publication-pdf-reader__control--close {
   color: #fff;
   background: color-mix(in srgb, #d8485f 80%, var(--tech-surface-raised));
   border-color: color-mix(in srgb, #ff7184 70%, var(--tech-border));
@@ -1133,7 +1133,7 @@ body.publication-pdf-reader-open {
     border: 0;
   }
 
-  .page__content .publication-pdf-reader__heading h2 {
+  .publication-pdf-reader__heading h2 {
     padding-top: 0.36rem;
     font-size: 0.78rem;
   }
@@ -1142,7 +1142,7 @@ body.publication-pdf-reader-open {
     gap: 0.3rem;
   }
 
-  .page__content .publication-pdf-reader__control {
+  .publication-pdf-reader__control {
     min-width: 34px;
     justify-content: center;
     padding: 0.4rem;
