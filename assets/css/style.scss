@@ -578,14 +578,6 @@ body {
   touch-action: manipulation;
 }
 
-.teaching-logistics-viewer__frame {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  background: #e9edf1;
-  border: 0;
-}
-
 .teaching-year-jump::before,
 .teaching-year-jump::after {
   display: none;
@@ -641,6 +633,30 @@ body {
   align-items: center;
   gap: 0.45rem;
   margin-top: 0.78rem;
+}
+
+.publication-card__links--actions {
+  flex-wrap: nowrap;
+}
+
+.publication-card__primary-links {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 0.45rem;
+  padding-bottom: 0.18rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.publication-card__primary-links > *,
+.publication-card__links--actions > .publication-link--abstract {
+  flex: 0 0 auto;
 }
 
 .page__content .publication-link {
