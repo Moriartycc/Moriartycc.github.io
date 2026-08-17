@@ -859,12 +859,19 @@
           let lastLabelFrame=-Infinity;
           let lastStarFrame=-Infinity;
           let lastKeywordFrame=-Infinity;
+          let lastPinnedFrame=-Infinity;
           let mapVisible=true;
           const networkInterval=width<520?50:32;
 
           const animateShapes=time=>{
             shapeAnimationFrame=0;
             if (!mapVisible||document.hidden) return;
+            const pinnedCalm=Boolean(currentSelection)&&activeHoverId===currentSelection;
+            if (pinnedCalm&&time-lastPinnedFrame<50) {
+              shapeAnimationFrame=requestAnimationFrame(animateShapes);
+              return;
+            }
+            if (pinnedCalm) lastPinnedFrame=time;
             const delta=lastFrameTime?Math.min(50,time-lastFrameTime):16.7;
             lastFrameTime=time;
             const seconds=time/1000;
@@ -886,8 +893,8 @@
               const ampY=3*((width<520?7:10)+((d.rank+2)%3)*(width<520?2:3))*d.orbitAmpY;
               const orbitStrength=d.id===activeHoverId ? .22 : 1;
               const secondary=d.orbitSecondary;
-              const rawX=orbitStrength*ampX*((1-secondary)*Math.sin(seconds*speed+d.polyPhase)+secondary*Math.sin(seconds*speed*.41+d.polyPhase*2.1));
-              const rawY=orbitStrength*ampY*((1-secondary)*Math.cos(seconds*speed*.81+d.polyPhase*1.31)+secondary*Math.sin(seconds*speed*.37+d.polyPhase*.63));
+              const rawX=pinnedCalm?0:orbitStrength*ampX*((1-secondary)*Math.sin(seconds*speed+d.polyPhase)+secondary*Math.sin(seconds*speed*.41+d.polyPhase*2.1));
+              const rawY=pinnedCalm?0:orbitStrength*ampY*((1-secondary)*Math.cos(seconds*speed*.81+d.polyPhase*1.31)+secondary*Math.sin(seconds*speed*.37+d.polyPhase*.63));
               const margin=radius(d.weight)*(d.id===activeHoverId?1.5:1)+8;
               const minX=(margin-d.currentBaseX)/d.currentScale;
               const maxX=(width-margin-d.currentBaseX)/d.currentScale;
@@ -895,8 +902,8 @@
               const maxY=(height-margin-d.currentBaseY)/d.currentScale;
               const dx=Math.max(minX,Math.min(maxX,rawX));
               const dy=Math.max(minY,Math.min(maxY,rawY));
-              const tilt=8*Math.sin(seconds*(speed*.78)+d.polyPhase*.7);
-              const squash=.94+.08*(.5+.5*Math.sin(seconds*(speed*.91)+d.polyPhase));
+              const tilt=pinnedCalm?0:8*Math.sin(seconds*(speed*.78)+d.polyPhase*.7);
+              const squash=pinnedCalm?1:.94+.08*(.5+.5*Math.sin(seconds*(speed*.91)+d.polyPhase));
               d.orbitX=dx;
               d.orbitY=dy;
               return `translate(${dx},${dy}) rotate(${tilt}) skewX(${tilt*.55}) scale(${squash},1)`;
@@ -927,7 +934,7 @@
               lastLabelFrame=time;
             }
 
-            if (time-lastShapeFrame>=50) {
+            if (!pinnedCalm&&time-lastShapeFrame>=50) {
               node.attr('d',d=>nodePolygonPath(d,seconds));
               nodeDepth.attr('d',d=>nodePolygonPath(d,seconds+.18));
               nodeHighlight.attr('d',d=>nodePolygonPath(d,seconds-.12));
@@ -948,11 +955,11 @@
               lastNetworkFrame=time;
             }
 
-            if (time-lastStarFrame>=80) {
+            if (!pinnedCalm&&time-lastStarFrame>=80) {
               stars.attr('opacity',(d,i)=>d.opacity*(.72+.28*Math.sin(seconds*(.7+(i%7)*.05)+d.phase)));
               lastStarFrame=time;
             }
-            if (time-lastKeywordFrame>=66) {
+            if (!pinnedCalm&&time-lastKeywordFrame>=66) {
               positionKeywordCloud(seconds);
               lastKeywordFrame=time;
             }
