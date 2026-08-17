@@ -249,7 +249,7 @@
       frame.title = `${paperTitle} full-text PDF`;
       externalLink.href = pdfUrl;
       loading.hidden = false;
-      frame.src = `${pdfUrl}#view=FitH`;
+      frame.src = `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(pdfUrl)}`;
       reader.hidden = false;
       document.body.classList.add('publication-pdf-reader-open');
       closeButton.focus();
