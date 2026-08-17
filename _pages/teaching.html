@@ -27,7 +27,7 @@ author_profile: true
   <div class="publications-list teaching-list" aria-label="Courses grouped by year">
     <section class="publication-year-group teaching-year-group" id="teaching-2026" aria-labelledby="teaching-2026-heading">
       <h2 class="publication-year" id="teaching-2026-heading">2026</h2>
-      <article class="publication-card teaching-card">
+      <article class="publication-card teaching-card" data-course-folder="2026F STAT 410">
         <h3 class="publication-card__title">STAT 410. Statistics and Probability II.</h3>
         <p class="publication-card__venue teaching-card__term">Fall 2026</p>
         <div class="publication-card__links" aria-label="Course links for STAT 410">
@@ -50,6 +50,7 @@ author_profile: true
             type="button"
             data-logistics-viewer-open
             data-pdf-url="{{ '/files/teaching/stat410-syllabus.pdf#page=1&view=FitH' | relative_url }}"
+            data-course-title="STAT 410. Statistics and Probability II."
             aria-controls="teaching-logistics-viewer">
             <i class="fas fa-fw fa-info-circle" aria-hidden="true"></i>
             <span>Logistics</span>
@@ -65,7 +66,7 @@ author_profile: true
     <header class="publication-pdf-reader__toolbar">
       <div class="publication-pdf-reader__heading">
         <span class="publication-pdf-reader__eyebrow">Logistics</span>
-        <h2 id="teaching-logistics-viewer-title">STAT 410. Statistics and Probability II.</h2>
+        <h2 id="teaching-logistics-viewer-title">Course logistics</h2>
       </div>
       <div class="publication-pdf-reader__controls">
         <a class="publication-pdf-reader__control" data-logistics-viewer-external href="{{ '/files/teaching/stat410-syllabus.pdf' | relative_url }}" target="_blank" rel="noopener">
@@ -95,14 +96,16 @@ author_profile: true
     const viewer = document.querySelector('[data-logistics-viewer]');
     const dialog = viewer?.querySelector('[data-logistics-viewer-dialog]');
     const frame = viewer?.querySelector('[data-logistics-viewer-frame]');
-    const openButton = document.querySelector('[data-logistics-viewer-open]');
+    const viewerTitle = viewer?.querySelector('#teaching-logistics-viewer-title');
+    const openButtons = [...document.querySelectorAll('[data-logistics-viewer-open]')];
     const externalLink = viewer?.querySelector('[data-logistics-viewer-external]');
     const fullscreenButton = viewer?.querySelector('[data-logistics-viewer-fullscreen]');
     const fullscreenIcon = fullscreenButton?.querySelector('i');
     const fullscreenLabel = fullscreenButton?.querySelector('span');
     const closeButton = viewer?.querySelector('[data-logistics-viewer-close]');
-    if (!viewer || !dialog || !frame || !openButton || !externalLink || !fullscreenButton || !closeButton) return;
+    if (!viewer || !dialog || !frame || !viewerTitle || !openButtons.length || !externalLink || !fullscreenButton || !closeButton) return;
     document.body.appendChild(viewer);
+    let returnFocus = null;
 
     const focusableElements = () => [...viewer.querySelectorAll('a[href], button:not([disabled])')]
       .filter(element => element.getClientRects().length > 0);
@@ -125,19 +128,24 @@ author_profile: true
       viewer.classList.remove('is-reader-maximized');
       document.body.classList.remove('publication-pdf-reader-open');
       frame.src = 'about:blank';
-      openButton.focus();
+      returnFocus?.focus();
+      returnFocus = null;
       updateFullscreenControl();
     };
 
-    openButton.addEventListener('click', () => {
-      const pdfUrl = openButton.dataset.pdfUrl;
+    const openViewer = button => {
+      const pdfUrl = button.dataset.pdfUrl;
       if (!pdfUrl) return;
+      returnFocus = button;
+      viewerTitle.textContent = button.dataset.courseTitle || 'Course logistics';
       frame.src = pdfUrl;
       externalLink.href = pdfUrl.split('#')[0];
       viewer.hidden = false;
       document.body.classList.add('publication-pdf-reader-open');
       closeButton.focus();
-    });
+    };
+
+    openButtons.forEach(button => button.addEventListener('click', () => openViewer(button)));
 
     closeButton.addEventListener('click', closeViewer);
     fullscreenButton.addEventListener('click', async () => {
