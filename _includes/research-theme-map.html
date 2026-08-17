@@ -36,7 +36,7 @@
     #research-keyword-previews .selected-line strong { color: var(--foreground); font-weight: 500; }
     #research-keyword-previews .paper-link, #research-keyword-previews .tooltip a { white-space: nowrap; font-size: 11px; }
     #research-keyword-previews .legend { position: absolute; top: 10px; right: 10px; z-index: 12; display: grid; grid-template-columns: repeat(2, max-content); gap: 5px 7px; max-width: calc(100% - 20px); margin: 0; color: var(--muted-foreground); pointer-events: none; }
-    #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 2px 7px; background: color-mix(in srgb, var(--glass-card-fill, var(--background)) 94%, var(--constellation-sky, var(--background))); border: 1px solid color-mix(in srgb, var(--glass-edge, var(--border)) 76%, transparent); border-radius: 999px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 56%, transparent), 0 5px 14px color-mix(in srgb, var(--constellation-sky, var(--background)) 34%, transparent); font-size: 10px; line-height: 1.25; white-space: nowrap; opacity: .68; transition: opacity .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    #research-keyword-previews .legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 2px 7px; background: color-mix(in srgb, var(--glass-card-fill, var(--background)) 78%, transparent); border: 1px solid color-mix(in srgb, var(--glass-edge, var(--border)) 76%, transparent); border-radius: 999px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 56%, transparent), 0 5px 14px color-mix(in srgb, var(--constellation-sky, var(--background)) 34%, transparent); font-size: 10px; line-height: 1.25; white-space: nowrap; opacity: .68; -webkit-backdrop-filter: blur(10px) saturate(130%); backdrop-filter: blur(10px) saturate(130%); transition: opacity .22s ease, border-color .22s ease, box-shadow .22s ease; }
     #research-keyword-previews .legend-item.is-leading { border-color: color-mix(in srgb, var(--swatch) 68%, var(--glass-edge, var(--border))); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--glass-specular, white) 66%, transparent), 0 6px 16px color-mix(in srgb, var(--swatch) 16%, transparent); }
     #research-keyword-previews .legend-label { overflow: hidden; text-overflow: ellipsis; }
     #research-keyword-previews .legend-label-short { display: none; }
@@ -46,7 +46,7 @@
     #research-keyword-previews .tooltip { display: none; position: absolute; top: 0; left: 0; z-index: 20; width: min(340px, calc(100% - 8px)); padding: 9px 11px; border: 1px solid var(--glass-edge, var(--border)); border-radius: 12px; background: linear-gradient(145deg, var(--glass-specular, rgba(255,255,255,.18)), transparent 32%), color-mix(in srgb, var(--glass-card-fill, var(--popover)) 92%, transparent); color: var(--popover-foreground); box-shadow: inset 0 1px 0 var(--glass-specular, rgba(255,255,255,.18)), 0 16px 36px color-mix(in srgb, var(--foreground) 15%, transparent); -webkit-backdrop-filter: blur(18px) saturate(145%); backdrop-filter: blur(18px) saturate(145%); cursor: pointer; pointer-events: none; opacity: 0; visibility: hidden; overflow-wrap: anywhere; will-change: transform; }
     #research-keyword-previews .tooltip::before { position: absolute; top: 0; right: 12px; left: 12px; height: 1px; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--viz-series-1) 70%, white), transparent); content: ""; opacity: .72; }
     #research-keyword-previews .tooltip.is-visible { display: block; pointer-events: auto; opacity: 1; visibility: visible; }
-    #research-keyword-previews .tooltip.is-pinned { background: linear-gradient(145deg, var(--glass-specular, rgba(255,255,255,.18)), transparent 32%), color-mix(in srgb, var(--glass-card-fill, var(--popover)) 98%, var(--constellation-sky, var(--background))); border-color: color-mix(in srgb, var(--viz-series-1) 70%, var(--border)); -webkit-backdrop-filter: none; backdrop-filter: none; transition: transform .16s cubic-bezier(.2,.72,.25,1); will-change: auto; }
+    #research-keyword-previews .tooltip.is-pinned { border-color: color-mix(in srgb, var(--viz-series-1) 70%, var(--border)); transition: transform .22s cubic-bezier(.2,.72,.25,1); }
     #research-keyword-previews .tooltip-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     #research-keyword-previews .tooltip-pin-state { flex: 0 0 auto; color: var(--muted-foreground); font-size: 10px; font-weight: 500; letter-spacing: .025em; }
     #research-keyword-previews .tooltip.is-pinned .tooltip-pin-state { color: var(--viz-series-1); }
@@ -63,8 +63,7 @@
     #research-keyword-previews .tooltip-extra-paper { padding-left: 14px; }
     #research-keyword-previews .map-shell { position: relative; contain: layout; isolation: isolate; overflow: visible; }
     #research-keyword-previews .network-motion { transform-box: fill-box; transform-origin: center; animation: research-network-drift 16s ease-in-out infinite alternate; }
-    #research-keyword-previews.is-map-paused .network-motion,
-    #research-keyword-previews.has-pinned-theme .network-motion { animation-play-state: paused; }
+    #research-keyword-previews.is-map-paused .network-motion { animation-play-state: paused; }
     #research-keyword-previews .star-dust { fill: var(--foreground); pointer-events: none; }
     #research-keyword-previews .keyword-cloud { pointer-events: none; }
     #research-keyword-previews .keyword-cloud-label { fill: var(--constellation-text, var(--foreground)); font-weight: 420; letter-spacing: .018em; paint-order: stroke; stroke: var(--constellation-sky, var(--background)); stroke-width: 2.6px; stroke-linejoin: round; opacity: .18; pointer-events: none; transition: opacity .22s ease, fill .22s ease; }
@@ -254,6 +253,11 @@
         }
       });
       const keptLinks = linkCandidates.filter(l=>keptLinkKeys.has(`${l.source}|${l.target}`));
+      const connectedThemes = new Map(nodes.map(d=>[d.id,new Set([d.id])]));
+      keptLinks.forEach(link=>{
+        connectedThemes.get(link.source)?.add(link.target);
+        connectedThemes.get(link.target)?.add(link.source);
+      });
       nodes.forEach(node=>{
         node.blendColor=blendFamilyWeights(node.familyWeights);
       });
@@ -303,6 +307,10 @@
       let pinTooltipTheme = null;
       let keywordCloudSelection = null;
       let keywordCloudWidth = 0;
+      let mapNodeWrapSelection = null;
+      let mapNodeSelection = null;
+      let mapLabelSelection = null;
+      let mapLinkSelection = null;
       const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
       const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
@@ -501,20 +509,14 @@
       }
 
       function applyHighlight(theme) {
-        const connected = new Set([theme]);
-        keptLinks.forEach(l => {
-          const s = typeof l.source === 'object' ? l.source.id : l.source;
-          const t = typeof l.target === 'object' ? l.target.id : l.target;
-          if (s === theme) connected.add(t);
-          if (t === theme) connected.add(s);
-        });
-        d3.selectAll('#vos-keyword-map .vos-node-wrap')
-          .classed('is-muted', d => theme && !connected.has(d.id))
+        const connected = theme ? connectedThemes.get(theme) : null;
+        mapNodeWrapSelection
+          ?.classed('is-muted', d => theme && !connected?.has(d.id))
           .classed('is-selected', d=>d.id===theme)
           .classed('is-pinned', d=>d.id===currentSelection);
-        d3.selectAll('#vos-keyword-map .vos-node').attr('aria-pressed',d=>String(d.id===currentSelection));
-        d3.selectAll('#vos-keyword-map .vos-label').classed('is-muted', d => theme && !connected.has(d.id));
-        d3.selectAll('#vos-keyword-map .vos-link').classed('is-muted', d => {
+        mapNodeSelection?.attr('aria-pressed',d=>String(d.id===currentSelection));
+        mapLabelSelection?.classed('is-muted', d => theme && !connected?.has(d.id));
+        mapLinkSelection?.classed('is-muted', d => {
           if (!theme) return false;
           const s = typeof d.source === 'object' ? d.source.id : d.source;
           const t = typeof d.target === 'object' ? d.target.id : d.target;
@@ -537,7 +539,6 @@
         currentSelection = theme;
         select.value = theme;
         root.dataset.selectedTheme = theme;
-        root.classList.toggle('has-pinned-theme',Boolean(theme));
         applyHighlight(theme);
       }
 
@@ -554,6 +555,10 @@
         const host = document.getElementById('vos-keyword-map');
         host.innerHTML = '';
         keywordCloudSelection=null;
+        mapNodeWrapSelection=null;
+        mapNodeSelection=null;
+        mapLabelSelection=null;
+        mapLinkSelection=null;
         const width = Math.max(320, host.getBoundingClientRect().width || 736);
         keywordCloudWidth=width;
         lastRenderedWidth=Math.round(width);
@@ -693,10 +698,10 @@
           }
           return polygon.map(point=>`${Math.max(4,Math.min(width-4,point[0]))},${Math.max(4,Math.min(height-4,point[1]))}`).join(' ');
         }
-        const initialPositions=new Map(simNodes.map(d=>[d.id,{x:d.x,y:d.y}]));
+        const displayedPositions=new Map(simNodes.map(d=>[d.id,{x:d.x,y:d.y}]));
         const hull=motionLayer.append('g').attr('aria-hidden','true').selectAll('polygon').data(familyData).join('polygon')
           .attr('class','family-polytope')
-          .attr('points',d=>familyPolygon(d,initialPositions))
+          .attr('points',d=>familyPolygon(d,displayedPositions))
           .attr('fill',d=>familyColor[d.family]).attr('fill-opacity',.075)
           .attr('stroke',d=>familyColor[d.family]).attr('stroke-opacity',.42);
 
@@ -706,6 +711,7 @@
           .attr('aria-label',d=>`${d.source.id} connected to ${d.target.id}`)
           .attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y)
           .attr('stroke-width',d=>.5+Math.min(2.5,d.weight));
+        mapLinkSelection=link;
 
         let activeHoverId=activeHoverTheme;
         let hoverLockUntil=0;
@@ -797,21 +803,35 @@
         }
 
         const ranked = simNodes.slice().sort((a,b)=>b.weight-a.weight);
-        ranked.forEach((d,i)=>d.rank=i);
+        ranked.forEach((d,i)=>{
+          d.rank=i;
+          d.motionSpeed=d.orbitSpeed*.35;
+          d.motionAmpX=3*((width<520?8:12)+(i%3)*(width<520?2.2:3.2))*d.orbitAmpX;
+          d.motionAmpY=3*((width<520?7:10)+((i+2)%3)*(width<520?2:3))*d.orbitAmpY;
+          d.motionRadius=radius(d.weight);
+          d.polyPointBuffers={
+            node:Array.from({length:d.polySides},()=>[0,0]),
+            depth:Array.from({length:d.polySides},()=>[0,0]),
+            highlight:Array.from({length:d.polySides},()=>[0,0])
+          };
+        });
         const polygonLine=d3.line().curve(d3.curveLinearClosed);
-        function nodePolygonPath(d,time=0) {
-          const base=radius(d.weight);
-          const points=Array.from({length:d.polySides},(_,i)=>{
+        function nodePolygonPath(d,time=0,buffer='node') {
+          const base=d.motionRadius;
+          const points=d.polyPointBuffers[buffer];
+          for (let i=0;i<d.polySides;i+=1) {
             const angle=-Math.PI/2+i*2*Math.PI/d.polySides+d.polyPhase*.08+.025*Math.sin(time*.55+d.polyPhase+i*1.4);
             const pulse=1+.055*Math.sin(time*.9+d.polyPhase+i*1.73);
             const r=base*d.polyFactors[i]*pulse;
-            return [Math.cos(angle)*r,Math.sin(angle)*r];
-          });
+            points[i][0]=Math.cos(angle)*r;
+            points[i][1]=Math.sin(angle)*r;
+          }
           return polygonLine(points);
         }
         const nodeWrap = motionLayer.append('g').selectAll('g').data(simNodes).join('g')
           .attr('class','vos-node-wrap')
           .attr('transform',d=>`translate(${d.x},${d.y})`);
+        mapNodeWrapSelection=nodeWrap;
         const nodeFloat = nodeWrap.append('g').attr('class','node-float');
         nodeFloat.append('circle')
           .attr('class','node-hit-target')
@@ -825,7 +845,7 @@
           .on('touchend.touch-pin',pinFromTouch)
           .on('click',pinFromClick);
         const nodeDepth = nodeFloat.append('path')
-          .attr('class','node-depth').attr('d',d=>nodePolygonPath(d))
+          .attr('class','node-depth').attr('d',d=>nodePolygonPath(d,0,'depth'))
           .attr('transform','translate(4,5)')
           .attr('fill',d=>d.blendColor);
         const node = nodeFloat.append('path')
@@ -849,8 +869,9 @@
             event.stopPropagation();
             pinTheme(event,d);
           });
+        mapNodeSelection=node;
         const nodeHighlight = nodeFloat.append('path')
-          .attr('class','node-highlight').attr('d',d=>nodePolygonPath(d))
+          .attr('class','node-highlight').attr('d',d=>nodePolygonPath(d,0,'highlight'))
           .attr('transform','translate(-1.5,-1.5) scale(.76)');
         if (!reduceMotion) {
           let lastFrameTime=0;
@@ -859,19 +880,12 @@
           let lastLabelFrame=-Infinity;
           let lastStarFrame=-Infinity;
           let lastKeywordFrame=-Infinity;
-          let lastPinnedFrame=-Infinity;
           let mapVisible=true;
           const networkInterval=width<520?50:32;
 
           const animateShapes=time=>{
             shapeAnimationFrame=0;
             if (!mapVisible||document.hidden) return;
-            const pinnedCalm=Boolean(currentSelection)&&activeHoverId===currentSelection;
-            if (pinnedCalm&&time-lastPinnedFrame<50) {
-              shapeAnimationFrame=requestAnimationFrame(animateShapes);
-              return;
-            }
-            if (pinnedCalm) lastPinnedFrame=time;
             const delta=lastFrameTime?Math.min(50,time-lastFrameTime):16.7;
             lastFrameTime=time;
             const seconds=time/1000;
@@ -888,22 +902,20 @@
             });
             nodeWrap.attr('transform',d=>`translate(${d.currentBaseX},${d.currentBaseY}) scale(${d.currentScale})`);
             nodeFloat.attr('transform',d=>{
-              const speed=d.orbitSpeed*.35;
-              const ampX=3*((width<520?8:12)+(d.rank%3)*(width<520?2.2:3.2))*d.orbitAmpX;
-              const ampY=3*((width<520?7:10)+((d.rank+2)%3)*(width<520?2:3))*d.orbitAmpY;
+              const speed=d.motionSpeed;
               const orbitStrength=d.id===activeHoverId ? .22 : 1;
               const secondary=d.orbitSecondary;
-              const rawX=pinnedCalm?0:orbitStrength*ampX*((1-secondary)*Math.sin(seconds*speed+d.polyPhase)+secondary*Math.sin(seconds*speed*.41+d.polyPhase*2.1));
-              const rawY=pinnedCalm?0:orbitStrength*ampY*((1-secondary)*Math.cos(seconds*speed*.81+d.polyPhase*1.31)+secondary*Math.sin(seconds*speed*.37+d.polyPhase*.63));
-              const margin=radius(d.weight)*(d.id===activeHoverId?1.5:1)+8;
+              const rawX=orbitStrength*d.motionAmpX*((1-secondary)*Math.sin(seconds*speed+d.polyPhase)+secondary*Math.sin(seconds*speed*.41+d.polyPhase*2.1));
+              const rawY=orbitStrength*d.motionAmpY*((1-secondary)*Math.cos(seconds*speed*.81+d.polyPhase*1.31)+secondary*Math.sin(seconds*speed*.37+d.polyPhase*.63));
+              const margin=d.motionRadius*(d.id===activeHoverId?1.5:1)+8;
               const minX=(margin-d.currentBaseX)/d.currentScale;
               const maxX=(width-margin-d.currentBaseX)/d.currentScale;
               const minY=(margin-d.currentBaseY)/d.currentScale;
               const maxY=(height-margin-d.currentBaseY)/d.currentScale;
               const dx=Math.max(minX,Math.min(maxX,rawX));
               const dy=Math.max(minY,Math.min(maxY,rawY));
-              const tilt=pinnedCalm?0:8*Math.sin(seconds*(speed*.78)+d.polyPhase*.7);
-              const squash=pinnedCalm?1:.94+.08*(.5+.5*Math.sin(seconds*(speed*.91)+d.polyPhase));
+              const tilt=8*Math.sin(seconds*(speed*.78)+d.polyPhase*.7);
+              const squash=.94+.08*(.5+.5*Math.sin(seconds*(speed*.91)+d.polyPhase));
               d.orbitX=dx;
               d.orbitY=dy;
               return `translate(${dx},${dy}) rotate(${tilt}) skewX(${tilt*.55}) scale(${squash},1)`;
@@ -934,18 +946,19 @@
               lastLabelFrame=time;
             }
 
-            if (!pinnedCalm&&time-lastShapeFrame>=50) {
+            if (time-lastShapeFrame>=50) {
               node.attr('d',d=>nodePolygonPath(d,seconds));
-              nodeDepth.attr('d',d=>nodePolygonPath(d,seconds+.18));
-              nodeHighlight.attr('d',d=>nodePolygonPath(d,seconds-.12));
+              nodeDepth.attr('d',d=>nodePolygonPath(d,seconds+.18,'depth'));
+              nodeHighlight.attr('d',d=>nodePolygonPath(d,seconds-.12,'highlight'));
               lastShapeFrame=time;
             }
 
             if (time-lastNetworkFrame>=networkInterval) {
-              const displayedPositions=new Map(simNodes.map(d=>[d.id,{
-                x:d.currentBaseX+(d.orbitX||0)*d.currentScale,
-                y:d.currentBaseY+(d.orbitY||0)*d.currentScale
-              }]));
+              simNodes.forEach(d=>{
+                const point=displayedPositions.get(d.id);
+                point.x=d.currentBaseX+(d.orbitX||0)*d.currentScale;
+                point.y=d.currentBaseY+(d.orbitY||0)*d.currentScale;
+              });
               link
                 .attr('x1',d=>displayedPositions.get(d.source.id).x)
                 .attr('y1',d=>displayedPositions.get(d.source.id).y)
@@ -955,11 +968,11 @@
               lastNetworkFrame=time;
             }
 
-            if (!pinnedCalm&&time-lastStarFrame>=80) {
+            if (time-lastStarFrame>=80) {
               stars.attr('opacity',(d,i)=>d.opacity*(.72+.28*Math.sin(seconds*(.7+(i%7)*.05)+d.phase)));
               lastStarFrame=time;
             }
-            if (!pinnedCalm&&time-lastKeywordFrame>=66) {
+            if (time-lastKeywordFrame>=66) {
               positionKeywordCloud(seconds);
               lastKeywordFrame=time;
             }
@@ -994,6 +1007,7 @@
           .attr('class','vos-label')
           .style('--label-size',d=>`${d.labelFontSize}px`)
           .style('fill',d=>d.blendColor);
+        mapLabelSelection=labels;
         labels.each(function(d){
           const lines=d.labelLines?.length?d.labelLines:[d.id];
           const text=d3.select(this);
