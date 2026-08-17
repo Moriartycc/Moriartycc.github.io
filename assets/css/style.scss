@@ -547,10 +547,19 @@ body {
   transform: none;
 }
 
-.teaching-card__actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.9rem;
+.teaching-card .publication-card__links {
+  flex-wrap: nowrap;
+  padding-bottom: 0.18rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.teaching-card .publication-card__links > * {
+  flex: 0 0 auto;
 }
 
 .page__content .teaching-link--logistics {
@@ -1593,7 +1602,7 @@ body.publication-pdf-reader-open {
   }
 
   .publication-card__abstract-actions,
-  .teaching-card__actions,
+  .teaching-link--logistics,
   .publication-pdf-reader {
     display: none !important;
   }
