@@ -692,9 +692,13 @@ body {
   background: color-mix(in srgb, var(--global-text-color) 12%, transparent);
 }
 
+.page__content .publication-link--abstract,
+.page__content .teaching-link--logistics {
+  margin-left: auto;
+}
+
 .page__content .publication-link--abstract {
   appearance: none;
-  margin-left: auto;
   color: color-mix(in srgb, var(--tech-accent-bright) 72%, var(--global-text-color));
   background: color-mix(in srgb, var(--tech-accent-bright) 7%, var(--tech-surface-raised));
   border-color: color-mix(in srgb, var(--tech-accent-bright) 34%, var(--tech-border)) !important;
