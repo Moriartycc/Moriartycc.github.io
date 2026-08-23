@@ -38,6 +38,11 @@ html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
   font-family: 'Zhi Mang Xing', cursive;
 }
 
+/* GitHub's brand black disappears in night mode; follow the link color instead. */
+.author__urls.social-icons .fa-github {
+  color: inherit;
+}
+
 .page__title {
   display: inline-flex;
   align-items: center; /* vertical centering */
