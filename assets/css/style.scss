@@ -43,6 +43,18 @@ html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
   color: inherit;
 }
 
+/* Allow the complete office address to stay inside the narrow profile card. */
+.author__urls li.author__location {
+  display: flex;
+  align-items: flex-start;
+  white-space: normal;
+}
+
+.author__location span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .page__title {
   display: inline-flex;
   align-items: center; /* vertical centering */
