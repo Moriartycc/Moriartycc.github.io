@@ -8,6 +8,7 @@ Personal academic website published with GitHub Pages and Jekyll.
 - Publications: `_data/publications.yml` and `_includes/publications-list.html`
 - Teaching: `_pages/teaching.html`
 - CV: `files/cv/cv.tex` and `files/cv/cv.pdf`
+- Thoughts on AI: `_pages/thoughts-on-ai.md`
 - Cycling: `_pages/cycling.md`
 - Research-theme map: `_includes/research-theme-map.html`
 

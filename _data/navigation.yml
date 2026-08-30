@@ -17,6 +17,9 @@ main:
   - title: "CV"
     url: /cv/
 
+  - title: "Thoughts on AI"
+    url: /thoughts-on-ai/
+
   - title: "Cycling"
     url: /cycling/    
 
