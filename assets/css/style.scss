@@ -1845,52 +1845,21 @@ body {
 }
 
 .thoughts-shift {
-  --thoughts-self-color: #7c3aed;
-  --thoughts-wonder-color: #b45309;
-  position: relative;
-  isolation: isolate;
+  --thoughts-focus-color: #b45309;
   margin: 1.75rem 0;
-  padding: 1.45rem 1.6rem;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 8% 20%, color-mix(in srgb, var(--thoughts-self-color) 15%, transparent), transparent 12rem),
-    radial-gradient(circle at 92% 82%, color-mix(in srgb, var(--thoughts-wonder-color) 16%, transparent), transparent 13rem),
-    linear-gradient(145deg, color-mix(in srgb, var(--glass-specular) 68%, transparent), transparent 31%),
-    color-mix(in srgb, var(--tech-surface-raised) 92%, var(--global-bg-color));
-  border: 1px solid color-mix(in srgb, var(--tech-accent-bright) 27%, var(--tech-border));
-  border-radius: 16px;
-  box-shadow: inset 0 1px 0 var(--glass-specular), 0 16px 36px rgba(4, 18, 38, 0.11);
+  padding: 0.35rem 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   font-family: "Source Serif 4", Georgia, serif;
   font-size: clamp(1.05rem, 2vw, 1.22rem);
   font-style: normal;
   text-align: center;
 }
 
-.thoughts-shift::before,
-.thoughts-shift::after {
-  position: absolute;
-  z-index: -1;
-  width: 7rem;
-  height: 7rem;
-  border: 1px solid color-mix(in srgb, var(--tech-accent-bright) 18%, transparent);
-  border-radius: 50%;
-  content: "";
-  opacity: 0.45;
-}
-
-.thoughts-shift::before {
-  top: -5.2rem;
-  left: -3.3rem;
-}
-
-.thoughts-shift::after {
-  right: -3rem;
-  bottom: -5.4rem;
-}
-
 html[data-theme="dark"] .thoughts-shift {
-  --thoughts-self-color: #c4b5fd;
-  --thoughts-wonder-color: #fcd34d;
+  --thoughts-focus-color: #fcd34d;
 }
 
 .thoughts-shift__line {
@@ -1923,38 +1892,15 @@ html[data-theme="dark"] .thoughts-shift {
 }
 
 .thoughts-shift__focus {
-  font-weight: 750;
-}
-
-.thoughts-shift__focus--self {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.62em;
-  height: 1.62em;
-  margin: 0 0.08em;
-  color: var(--thoughts-self-color);
-  background: color-mix(in srgb, var(--thoughts-self-color) 12%, var(--tech-surface-raised));
-  border: 1px solid color-mix(in srgb, var(--thoughts-self-color) 48%, var(--tech-border));
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--thoughts-self-color) 7%, transparent);
-  font-family: Inter, sans-serif;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 1;
-  transform: rotate(-4deg);
-}
-
-.thoughts-shift__focus--wonder {
   position: relative;
   display: inline-block;
   padding: 0 0.12em;
-  color: var(--thoughts-wonder-color);
-  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--thoughts-wonder-color) 22%, transparent) 62% 92%, transparent 92%);
+  color: var(--thoughts-focus-color);
+  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--thoughts-focus-color) 22%, transparent) 62% 92%, transparent 92%);
   font-style: italic;
   font-weight: 700;
   letter-spacing: 0.012em;
-  text-shadow: 0 0 18px color-mix(in srgb, var(--thoughts-wonder-color) 19%, transparent);
+  text-shadow: 0 0 18px color-mix(in srgb, var(--thoughts-focus-color) 19%, transparent);
 }
 
 .thoughts-comments {
@@ -1964,26 +1910,8 @@ html[data-theme="dark"] .thoughts-shift {
   border-top: 1px solid var(--tech-border);
 }
 
-.thoughts-comments__header {
-  margin-bottom: 1.25rem;
-}
-
-.thoughts-comments__header h2 {
-  margin: 0.15rem 0 0.35rem;
-}
-
-.thoughts-comments__header p:last-child,
 .thoughts-comments__loading {
   color: var(--global-text-color-light);
-}
-
-.thoughts-comments__eyebrow {
-  margin: 0;
-  color: var(--tech-accent-bright);
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 #HCB_comment_box {
@@ -2070,8 +1998,7 @@ html[data-theme="dark"] .thoughts-shift {
 
 #HCB_comment_box .home-desc,
 #HCB_comment_box .hcb-link {
-  opacity: 0.55;
-  font-size: 0.72rem;
+  display: none !important;
 }
 
 #HCB_comment_box #no_comments {
@@ -2128,7 +2055,7 @@ html[data-theme="dark"] .thoughts-shift {
   }
 
   .thoughts-shift {
-    padding: 1rem;
+    padding: 0.25rem 0;
     font-size: 1rem;
   }
 
