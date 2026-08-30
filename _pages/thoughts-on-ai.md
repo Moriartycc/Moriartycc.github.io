@@ -6,7 +6,7 @@ date: 2026-08-30
 author_profile: true
 ---
 
-<div class="thoughts-article">
+<div class="thoughts-article" markdown="1">
 
 It goes without saying that AI is having a profound impact on academia and, more directly for us, on the fields of Statistics and Mathematics. We have seen remarkable advances in solving long-standing problems, which should be a net positive for science itself. Yet anxiety and confusion are everywhere: what will be the purpose of our profession in the future? I have been hearing these concerns, discussing them with others, and thinking deeply about them in the middle of the night (and early in the morning). The prevailing pessimism and nihilism have prompted me to write down some of my thoughts and share them with people who care.
 
