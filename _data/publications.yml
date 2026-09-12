@@ -1,6 +1,20 @@
 years:
   - year: 2026
     papers:
+      - title: "Distributionally Robust Bidding in First-Price Auctions"
+        authors:
+          - name: Y. Zhang
+          - name: Chen Cheng
+            self: true
+          - name: S. Feng
+          - name: Z. Zhou
+        venue: "Accepted to the 65th IEEE Conference on Decision and Control (CDC 2026)"
+        abstract: >-
+          We study distributionally robust offline learning for repeated first-price auctions using historical data with censored transaction-price feedback. Under a Kullback-Leibler divergence ambiguity set, we derive tractable bidding policies and finite-sample robust sub-optimality guarantees: \(O(T^{-1/2})\) when the feature distribution is known and \(O(\sqrt{(d+1)/T})\) for policy classes of finite pseudo-dimension \(d\) when it is unknown.
+        links:
+          - label: Full
+            type: paper
+            url: /files/papers/distributionally-robust-bidding-first-price-auctions.pdf
       - title: "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold"
         authors:
           - name: Chen Cheng
