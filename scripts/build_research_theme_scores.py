@@ -308,7 +308,7 @@ def build() -> dict[str, Any]:
         "metadata": {
             "method": "BM25F phrase scoring over full-text PDFs",
             "normalization": "Each concept's paper scores are divided by that concept's maximum paper score; prevalence is their mean.",
-            "similarity": "Cosine similarity between 14-paper relevance vectors.",
+            "similarity": "Cosine similarity between corpus-wide paper relevance vectors.",
             "family_profile": "Per paper, the maximum normalized relevance among themes assigned to the family.",
             "family_color_weights": "Cosine similarities to the six family profiles, normalized to sum to one.",
             "alias_matching": "Case-folded exact phrases with punctuation normalized to spaces; longest overlapping alias wins.",

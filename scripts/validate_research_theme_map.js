@@ -11,12 +11,15 @@ const configPath = path.join(root, 'scripts', 'research_theme_concepts.json');
 const include = fs.readFileSync(includePath, 'utf8');
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 const configBytes = fs.readFileSync(configPath);
+const config = JSON.parse(configBytes);
 const fail = message => { throw new Error(message); };
 const paperOrder = data.metadata.paper_order;
 const themes = data.concepts.filter(concept => concept.kind === 'theme');
 const keywords = data.concepts.filter(concept => concept.kind === 'keyword');
 
-if (data.sources.length !== 14 || paperOrder.length !== 14) fail('Expected 14 paper sources.');
+if (data.sources.length !== config.papers.length || paperOrder.length !== config.papers.length) {
+  fail(`Expected ${config.papers.length} paper sources.`);
+}
 if (themes.length !== 14) fail('Expected 14 main themes.');
 if (keywords.length !== 22) fail('Expected 22 secondary keywords.');
 if (data.metadata.families.length !== 6) fail('Expected six research families.');
@@ -47,4 +50,4 @@ scripts.forEach((script, index) => {
   }
 });
 
-console.log(`Validated ${scripts.length} map script(s), 14 themes, 22 keywords, and six family mixtures.`);
+console.log(`Validated ${scripts.length} map script(s), ${themes.length} themes, ${keywords.length} keywords, and ${data.metadata.families.length} family mixtures.`);
