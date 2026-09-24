@@ -1,6 +1,20 @@
 years:
   - year: 2026
     papers:
+      - title: "Rolling Conformal Prediction in Sequential Model Training"
+        authors:
+          - name: Chen Cheng
+            self: true
+          - name: R. Liang
+          - name: R. F. Barber
+        venue: Preprint
+        abstract: >-
+          We introduce rolling conformal prediction for sequentially trained models, calibrating each incoming observation against the current predictor before incorporating it into future training without requiring data splitting. The method provides distribution-free marginal coverage for exchangeable streams and uniform training-conditional validity for i.i.d. streams, with guarantees sharpening under stability. Experiments cover sequential regression, multiclass SGD, and one-pass neural-network training.
+        pdf_url: https://arxiv.org/pdf/2609.26951
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2609.26951
       - title: "Distributionally Robust Bidding in First-Price Auctions"
         authors:
           - name: Y. Zhang
