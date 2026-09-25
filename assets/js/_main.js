@@ -31,7 +31,7 @@ let setTheme = (theme) => {
   } else if (use_theme === "light") {
     $("html").removeAttr("data-theme");
     $("#theme-icon").removeClass("fa-moon").addClass("fa-sun");
-    $("meta[name='theme-color']").attr("content", "#e9e2d6");
+    $("meta[name='theme-color']").attr("content", "#efe4c8");
   }
 };
 
