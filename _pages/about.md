@@ -14,10 +14,10 @@ I am also a Core Member of the <a class="advisor-link" href="https://skai-instit
 
 My research studies foundational problems in modern machine learning and statistics:
 
-- When do overparameterized models and neural networks generalize?
-- How can we quantify uncertainty for adaptively trained models?
-- How can we learn from structured or imperfect data?
+- When do overparameterized models such as neural networks interpolate and still generalize?
+- How can we quantify uncertainty for iterative methods and adaptive models with evolving data?
 - How do learning and decision-making algorithms behave in high dimensions?
+- How can we learn from structured or imperfect data?
 
 To address these questions, I develop and use tools from high-dimensional probability and statistics, random matrix theory, information theory, optimization, and the analysis of iterative algorithms.
 
