@@ -2,8 +2,8 @@
    Various functions that we want to use within the template
    ========================================================================== */
 
-// Dark is the first-visit default. A visitor's manual light/dark choice is persisted.
-const defaultTheme = "dark";
+// Daylight is the first-visit default. A visitor's manual light/dark choice is persisted.
+const defaultTheme = "light";
 
 // Determine the expected state of the theme toggle, which can be "dark" or "light".
 let determineThemeSetting = () => {
@@ -27,11 +27,11 @@ let setTheme = (theme) => {
   if (use_theme === "dark") {
     $("html").attr("data-theme", "dark");
     $("#theme-icon").removeClass("fa-sun").addClass("fa-moon");
-    $("meta[name='theme-color']").attr("content", "#0b1220");
+    $("meta[name='theme-color']").attr("content", "#172536");
   } else if (use_theme === "light") {
     $("html").removeAttr("data-theme");
     $("#theme-icon").removeClass("fa-moon").addClass("fa-sun");
-    $("meta[name='theme-color']").attr("content", "#f6f9fe");
+    $("meta[name='theme-color']").attr("content", "#e9e2d6");
   }
 };
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
   const scssLarge = 925;          // pixels, from /_sass/_themes.scss
   const scssMastheadHeight = 70;  // pixels, from the current theme (e.g., /_sass/theme/_default.scss)
 
-  // Apply the dark default or the visitor's saved manual choice.
+  // Apply the daylight default or the visitor's saved manual choice.
   setTheme();
 
   // Enable the theme toggle

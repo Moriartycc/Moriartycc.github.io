@@ -7,7 +7,7 @@
 /* Keep native scrolling controls consistent with the site's default night mode. */
 html[data-theme="dark"],
 html[data-theme="dark"] * {
-  scrollbar-color: #486887 #0b1220;
+  scrollbar-color: #617f9a #172536;
   scrollbar-width: thin;
 }
 
@@ -19,19 +19,19 @@ html[data-theme="dark"] *::-webkit-scrollbar {
 
 html[data-theme="dark"]::-webkit-scrollbar-track,
 html[data-theme="dark"] *::-webkit-scrollbar-track {
-  background: #0b1220;
+  background: #172536;
 }
 
 html[data-theme="dark"]::-webkit-scrollbar-thumb,
 html[data-theme="dark"] *::-webkit-scrollbar-thumb {
-  background: #486887;
-  border: 2px solid #0b1220;
+  background: #617f9a;
+  border: 2px solid #172536;
   border-radius: 999px;
 }
 
 html[data-theme="dark"]::-webkit-scrollbar-thumb:hover,
 html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
-  background: #6f91b3;
+  background: #82a7c3;
 }
 
 .zhi-mang-xing {
@@ -134,45 +134,49 @@ html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
 
 /* Cold, layered deep-tech design system. */
 :root {
-  --tech-surface: rgba(255, 255, 255, 0.78);
-  --tech-surface-raised: rgba(255, 255, 255, 0.94);
-  --tech-border: rgba(78, 112, 154, 0.22);
-  --tech-accent: #2563eb;
-  --tech-accent-bright: #0891b2;
-  --tech-accent-soft: rgba(37, 99, 235, 0.10);
-  --tech-shadow: 0 18px 50px rgba(43, 69, 107, 0.10);
-  --glass-card-fill: rgba(248, 252, 255, 0.66);
-  --glass-map-fill: rgba(241, 248, 255, 0.54);
-  --glass-edge: rgba(76, 146, 207, 0.28);
-  --glass-specular: rgba(255, 255, 255, 0.72);
-  --glass-grid: rgba(37, 99, 235, 0.055);
-  --glass-shadow: 0 18px 46px rgba(37, 63, 104, 0.13);
-  --constellation-frame: rgba(7, 20, 43, 0.92);
-  --constellation-sky: #050d20;
-  --constellation-nebula: rgba(45, 105, 212, 0.24);
-  --constellation-text: #e6f3ff;
-  --constellation-line: rgba(149, 198, 255, 0.25);
+  --tech-surface: rgba(246, 242, 234, 0.78);
+  --tech-surface-raised: rgba(250, 247, 241, 0.94);
+  --tech-border: rgba(88, 101, 103, 0.22);
+  --tech-accent: #2f6f8f;
+  --tech-accent-bright: #287f88;
+  --tech-accent-soft: rgba(47, 111, 143, 0.10);
+  --tech-shadow: 0 18px 50px rgba(76, 63, 47, 0.13);
+  --glass-card-fill: rgba(247, 243, 235, 0.66);
+  --glass-map-fill: rgba(224, 226, 220, 0.50);
+  --glass-edge: rgba(76, 113, 124, 0.28);
+  --glass-specular: rgba(255, 252, 245, 0.72);
+  --glass-grid: rgba(47, 111, 143, 0.055);
+  --glass-shadow: 0 18px 46px rgba(70, 57, 43, 0.15);
+  --constellation-frame: rgba(39, 57, 68, 0.92);
+  --constellation-sky: #213644;
+  --constellation-depth: #172b39;
+  --constellation-nebula: rgba(79, 124, 151, 0.28);
+  --constellation-text: #f0f5f3;
+  --constellation-line: rgba(171, 211, 219, 0.30);
+  --constellation-shadow: rgba(6, 18, 26, 0.30);
 }
 
 html[data-theme="dark"] {
-  --tech-surface: rgba(15, 27, 46, 0.78);
-  --tech-surface-raised: rgba(20, 35, 58, 0.94);
-  --tech-border: rgba(125, 170, 222, 0.20);
-  --tech-accent: #60a5fa;
-  --tech-accent-bright: #67e8f9;
-  --tech-accent-soft: rgba(56, 189, 248, 0.11);
-  --tech-shadow: 0 24px 70px rgba(0, 5, 18, 0.42);
-  --glass-card-fill: rgba(17, 35, 58, 0.61);
-  --glass-map-fill: rgba(12, 28, 49, 0.56);
-  --glass-edge: rgba(132, 202, 255, 0.26);
-  --glass-specular: rgba(216, 251, 255, 0.24);
-  --glass-grid: rgba(103, 232, 249, 0.052);
-  --glass-shadow: 0 24px 58px rgba(0, 7, 22, 0.42);
-  --constellation-frame: rgba(2, 8, 23, 0.94);
-  --constellation-sky: #020716;
-  --constellation-nebula: rgba(37, 99, 235, 0.28);
-  --constellation-text: #e8f6ff;
-  --constellation-line: rgba(143, 202, 255, 0.27);
+  --tech-surface: rgba(33, 49, 67, 0.82);
+  --tech-surface-raised: rgba(40, 58, 78, 0.94);
+  --tech-border: rgba(144, 181, 201, 0.22);
+  --tech-accent: #78b9eb;
+  --tech-accent-bright: #8bd8e6;
+  --tech-accent-soft: rgba(96, 185, 220, 0.12);
+  --tech-shadow: 0 24px 70px rgba(7, 16, 28, 0.30);
+  --glass-card-fill: rgba(36, 54, 74, 0.68);
+  --glass-map-fill: rgba(25, 47, 66, 0.62);
+  --glass-edge: rgba(139, 196, 223, 0.28);
+  --glass-specular: rgba(225, 249, 250, 0.22);
+  --glass-grid: rgba(126, 207, 224, 0.060);
+  --glass-shadow: 0 24px 58px rgba(5, 14, 25, 0.32);
+  --constellation-frame: rgba(22, 41, 58, 0.94);
+  --constellation-sky: #132a3b;
+  --constellation-depth: #0e2030;
+  --constellation-nebula: rgba(65, 116, 166, 0.30);
+  --constellation-text: #eff8fa;
+  --constellation-line: rgba(157, 207, 226, 0.30);
+  --constellation-shadow: rgba(1, 8, 15, 0.34);
 }
 
 body {
@@ -228,6 +232,90 @@ body {
     border: 1px solid var(--tech-border);
     border-radius: 14px;
     box-shadow: 0 14px 34px rgba(2, 12, 28, 0.28);
+  }
+}
+
+/* Bridge the theme's 925px desktop breakpoint without an oversized oval avatar. */
+@media screen and (min-width: 925px) and (max-width: 1023px) {
+  .sidebar > div[itemscope] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+  }
+
+  .sidebar .author__avatar {
+    display: block;
+    width: 100%;
+    max-width: 112px;
+    margin: 0 auto;
+  }
+
+  .sidebar .author__avatar img {
+    display: block;
+    width: 100%;
+    max-width: 112px;
+    aspect-ratio: 4 / 5;
+    padding: 0;
+    object-fit: cover;
+    object-position: 50% 28%;
+    border: 1px solid var(--tech-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 26px rgba(2, 12, 28, 0.24);
+  }
+}
+
+/* Keep the profile compact while the page uses its stacked tablet layout. */
+@media screen and (min-width: 521px) and (max-width: 924px) {
+  .sidebar > div[itemscope] {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 15px;
+  }
+
+  .sidebar .author__avatar {
+    display: block;
+    width: 104px;
+    height: 130px;
+    margin: 0;
+  }
+
+  .sidebar .author__avatar img {
+    display: block;
+    width: 104px;
+    height: 130px;
+    max-width: none;
+    padding: 0;
+    object-fit: cover;
+    object-position: 50% 28%;
+    border: 1px solid var(--tech-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 26px rgba(2, 12, 28, 0.24);
+  }
+
+  .sidebar .author__content {
+    display: block;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .sidebar .author__name {
+    margin: 0 0 0.4rem;
+  }
+
+  .sidebar .author__bio {
+    margin: 0;
+  }
+
+  .sidebar .author__urls-wrapper {
+    display: block;
+  }
+
+  .sidebar .author__urls-wrapper .btn {
+    white-space: nowrap;
   }
 }
 
@@ -366,12 +454,12 @@ body {
     radial-gradient(ellipse at 50% 45%, var(--constellation-nebula), transparent 58%),
     radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--tech-accent-bright) 11%, transparent), transparent 30%),
     radial-gradient(circle at 88% 78%, rgba(99, 102, 241, 0.13), transparent 34%),
-    linear-gradient(160deg, color-mix(in srgb, var(--constellation-sky) 92%, #102c59), var(--constellation-sky) 72%, #01040d);
+    linear-gradient(160deg, color-mix(in srgb, var(--constellation-sky) 88%, #5a7890), var(--constellation-sky) 72%, var(--constellation-depth));
   border: 1px solid color-mix(in srgb, var(--glass-edge) 76%, transparent);
   border-radius: 14px;
   box-shadow:
     inset 0 1px 0 rgba(194, 234, 255, 0.09),
-    inset 0 0 110px rgba(0, 2, 12, 0.42);
+    inset 0 0 110px var(--constellation-shadow);
 }
 
 #research-keyword-previews .map-host .star-dust {

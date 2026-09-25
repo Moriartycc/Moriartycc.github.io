@@ -12,7 +12,14 @@ I am an Assistant Professor in the <a class="advisor-link" href="https://stat.il
 
 I am also a Core Member of the <a class="advisor-link" href="https://skai-institute.org/about-skai/skai-institute-members/">NSF-Simons AI Institute for the Sky (SkAI Institute)</a>.
 
-My research develops theoretical tools for modern machine learning, with an emphasis on random matrices, high-dimensional statistics, information theory, and iterative algorithms. I study applications including overparameterized models, neural networks, structured data, conformal prediction, and reinforcement learning.
+My research studies foundational problems in modern machine learning and statistics:
+
+- When do overparameterized models and neural networks generalize?
+- How can we quantify uncertainty for adaptively trained models?
+- How can we learn from structured or imperfect data?
+- How do learning and decision-making algorithms behave in high dimensions?
+
+To address these questions, I develop and use tools from high-dimensional probability and statistics, random matrix theory, information theory, optimization, and the analysis of iterative algorithms.
 
 {% include research-theme-map.html %}
 
