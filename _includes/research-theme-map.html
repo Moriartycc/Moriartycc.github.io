@@ -7,12 +7,12 @@
       --border: var(--global-border-color, #e5e7eb);
       --popover: var(--global-bg-color, #fff);
       --popover-foreground: var(--global-text-color, #343434);
-      --viz-series-1: #1d5c8e;
-      --viz-series-2: #8f4516;
-      --viz-series-3: #236b3b;
-      --viz-series-4: #923462;
-      --viz-series-5: #5a428e;
-      --viz-series-6: #155c59;
+      --viz-series-1: #005c9e;
+      --viz-series-2: #913e00;
+      --viz-series-3: #006b34;
+      --viz-series-4: #9f145f;
+      --viz-series-5: #6033ae;
+      --viz-series-6: #006875;
       color: var(--foreground);
       width: 100%;
       margin-top: 1rem;
@@ -66,14 +66,14 @@
     #research-keyword-previews.is-map-paused .network-motion { animation-play-state: paused; }
     #research-keyword-previews .star-dust { fill: var(--foreground); pointer-events: none; }
     #research-keyword-previews .keyword-cloud { pointer-events: none; }
-    #research-keyword-previews .keyword-cloud-label { fill: var(--constellation-text, var(--foreground)); font-weight: 440; letter-spacing: .018em; paint-order: stroke; stroke: var(--constellation-label-halo, var(--background)); stroke-width: 2.8px; stroke-linejoin: round; opacity: .22; pointer-events: none; transition: opacity .22s ease, fill .22s ease; }
+    #research-keyword-previews .keyword-cloud-label { fill: var(--constellation-text, var(--foreground)); font-weight: 460; letter-spacing: .018em; paint-order: normal; stroke: none; opacity: .22; pointer-events: none; transition: opacity .22s ease, fill .22s ease; }
     #research-keyword-previews .family-polytope { stroke-width: 1.2px; stroke-linejoin: round; }
     #research-keyword-previews .node-hit-target { fill: transparent; cursor: pointer; touch-action: manipulation; }
     #research-keyword-previews .vos-node { cursor: pointer; stroke: var(--background); stroke-width: 1px; stroke-linejoin: round; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
     #research-keyword-previews .node-depth { pointer-events: none; opacity: .3; }
     #research-keyword-previews .node-highlight { fill: none; stroke: var(--background); stroke-width: 1.2px; stroke-linejoin: round; opacity: .42; pointer-events: none; }
-    #research-keyword-previews .vos-label { fill: var(--foreground); font-size: var(--label-size, 12px); font-weight: 520; letter-spacing: .008em; paint-order: stroke; stroke: var(--constellation-label-halo, var(--background)); stroke-width: 3.2px; stroke-linejoin: round; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: fill .22s ease; }
-    #research-keyword-previews .vos-label.is-hovered { font-size: calc(var(--label-size, 12px) * 1.16); font-weight: 560; stroke-width: 3.5px; }
+    #research-keyword-previews .vos-label { fill: var(--foreground); font-size: var(--label-size, 12px); font-weight: 540; letter-spacing: .008em; paint-order: normal; stroke: none; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: fill .22s ease; }
+    #research-keyword-previews .vos-label.is-hovered { font-size: calc(var(--label-size, 12px) * 1.16); font-weight: 600; }
     #research-keyword-previews .vos-link { stroke: var(--border); }
     #research-keyword-previews .vos-node-wrap.is-muted, #research-keyword-previews .vos-link.is-muted { opacity: 0.12; }
     #research-keyword-previews .vos-label.is-muted { opacity: 0.2; }
@@ -177,16 +177,26 @@
         return Math.max(...channels)<=1.01?channels.map(channel=>channel*255):channels;
       };
       const familyRgb = {};
-      families.forEach((family,i)=>familyRgb[family]=colorChannels(css(`--viz-series-${i+1}`)));
-      const constellationTextRgb=colorChannels(css('--constellation-text'));
-      const blendFamilyWeights = weights => {
+      let constellationTextRgb=[232,246,255];
+      const refreshPaletteSources = () => {
+        families.forEach((family,i)=>familyRgb[family]=colorChannels(css(`--viz-series-${i+1}`)));
+        constellationTextRgb=colorChannels(css('--constellation-text'));
+      };
+      const blendFamilyWeights = (weights, textRatio=0) => {
         const entries=Object.entries(weights).filter(([family,weight])=>familyRgb[family]&&weight>0);
         if (!entries.length) return `rgb(${constellationTextRgb.map(Math.round).join(',')})`;
         const total=entries.reduce((sum,[,weight])=>sum+weight,0);
         const mixed=[0,1,2].map(channel=>entries.reduce((sum,[family,weight])=>sum+familyRgb[family][channel]*weight,0)/total);
-        const lifted=mixed.map((channel,index)=>channel*.86+constellationTextRgb[index]*.14);
+        const lifted=mixed.map((channel,index)=>channel*(1-textRatio)+constellationTextRgb[index]*textRatio);
         return `rgb(${lifted.map(Math.round).join(',')})`;
       };
+      const recolorConcept = concept => {
+        const darkMode=document.documentElement.dataset.theme==='dark';
+        const labelTextRatio=darkMode ? .14 : .08;
+        concept.blendColor=blendFamilyWeights(concept.familyWeights,darkMode ? .14 : 0);
+        concept.labelColor=blendFamilyWeights(concept.familyWeights,labelTextRatio);
+      };
+      refreshPaletteSources();
 
       const allNodes = themeConcepts.map(concept => {
         const values = papers.map(p => relevance[p.id][concept.label] || 0);
@@ -260,12 +270,8 @@
         connectedThemes.get(link.source)?.add(link.target);
         connectedThemes.get(link.target)?.add(link.source);
       });
-      nodes.forEach(node=>{
-        node.blendColor=blendFamilyWeights(node.familyWeights);
-      });
-      keywordData.forEach(keyword=>{
-        keyword.blendColor=blendFamilyWeights(keyword.familyWeights);
-      });
+      nodes.forEach(recolorConcept);
+      keywordData.forEach(recolorConcept);
 
       const select = document.getElementById('vos-term-select');
       select.innerHTML = '<option value="">Show all themes</option>' + nodes
@@ -603,7 +609,7 @@
           .attr('class','keyword-cloud-label')
           .attr('text-anchor','middle')
           .style('font-size',d=>`${keywordFont(d)}px`)
-          .style('fill',d=>d.blendColor);
+          .style('fill',d=>d.labelColor);
         keywordLabels.each(function(d){
           const lines=d.lines?.length?d.lines:[d.label];
           const text=d3.select(this);
@@ -1008,7 +1014,7 @@
         const labels = motionLayer.append('g').selectAll('text').data(labelData).join('text')
           .attr('class','vos-label')
           .style('--label-size',d=>`${d.labelFontSize}px`)
-          .style('fill',d=>d.blendColor);
+          .style('fill',d=>d.labelColor);
         mapLabelSelection=labels;
         labels.each(function(d){
           const lines=d.labelLines?.length?d.labelLines:[d.id];
@@ -1224,6 +1230,23 @@
       } else {
         window.addEventListener('resize',()=>scheduleResizeRender(Math.round(mapHost.getBoundingClientRect().width)),{passive:true});
       }
+      let activeThemeMode=document.documentElement.dataset.theme||'light';
+      const refreshRenderedPalette=()=>{
+        refreshPaletteSources();
+        nodes.forEach(recolorConcept);
+        keywordData.forEach(recolorConcept);
+        keywordCloudSelection?.each(recolorConcept).style('fill',d=>d.labelColor);
+        mapNodeWrapSelection?.each(recolorConcept);
+        mapNodeWrapSelection?.select('.node-depth').attr('fill',d=>d.blendColor);
+        mapNodeSelection?.attr('fill',d=>d.blendColor);
+        mapLabelSelection?.each(recolorConcept).style('fill',d=>d.labelColor);
+      };
+      new MutationObserver(()=>{
+        const nextThemeMode=document.documentElement.dataset.theme||'light';
+        if (nextThemeMode===activeThemeMode) return;
+        activeThemeMode=nextThemeMode;
+        requestAnimationFrame(refreshRenderedPalette);
+      }).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
       };
 
       let mapStarted=false;
