@@ -175,7 +175,7 @@ years:
             self: true
           - name: H. Asi
           - name: J. Duchi
-        venue: Preprint
+        venue: "Accepted to the Journal of the American Statistical Association (JASA), 2026"
         abstract: >-
           We examine the common practice of aggregating multiple annotations into a single gold-standard label. A theoretical model shows when retaining the full, non-aggregated label information improves calibration and learning rates, and when aggregation instead offers slower but more robust behavior; experiments on real and synthetic data support these predictions.
         pdf_url: https://arxiv.org/pdf/2206.12041
