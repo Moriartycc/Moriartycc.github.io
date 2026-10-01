@@ -230,7 +230,7 @@ years:
           - name: Y. Chen
           - name: Y. Wei
           - name: Y. Chi
-        venue: "Operations Research, Vol. 69, No. 6, pp. 1716–1731, 2021"
+        venue: "Operations Research, Vol. 70, No. 4, pp. 2563–2578, 2022"
         abstract: >-
           We give nonasymptotic convergence guarantees for entropy-regularized natural policy gradient methods with softmax policies in discounted Markov decision processes. With exact policy evaluation, the method converges globally at a linear rate and locally at a quadratic rate; the analysis also quantifies stability under inexact evaluation and accommodates a broad range of learning rates.
         pdf_url: https://arxiv.org/pdf/2007.06558
@@ -240,7 +240,7 @@ years:
             url: https://arxiv.org/abs/2007.06558
           - label: Operations Research
             type: published
-            url: https://doi.org/10.1287/opre.2021.2156
+            url: https://doi.org/10.1287/opre.2021.2151
       - title: "Tackling Small Eigen-gaps: Fine-Grained Eigenvector Estimation and Inference under Heteroscedastic Noise"
         authors:
           - name: Chen Cheng
