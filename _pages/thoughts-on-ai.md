@@ -2,15 +2,17 @@
 layout: single
 title: "Thoughts & Posts"
 permalink: /thoughts-on-ai/
-date: 2026-08-30
+last_modified_at: 2026-10-08
 author_profile: true
 ---
 
 <div class="thoughts-article" markdown="1">
 
-<article class="thoughts-post" markdown="1">
+<article class="thoughts-post" id="future-of-math-practical-branch" data-thoughts-post data-comments-page="https://moriartycc.github.io/thoughts-on-ai/future-of-math-practical-branch/" markdown="1">
 
-## Future of math (the practical branch)
+<h2 class="thoughts-post__title">Future of math (the practical branch) <time class="thoughts-post__date" datetime="2026-10-08">10-08-2026</time></h2>
+
+<div class="thoughts-post__body" id="future-of-math-practical-branch-body" data-thoughts-post-body markdown="1">
 
 The practical future of math is written in its past:
 
@@ -18,11 +20,21 @@ Cardano was chronically short of money and kept himself solvent by being an acco
 
 The point is not to be short of money, but to be problem-oriented.
 
+</div>
+
+<div class="thoughts-post__actions"><button class="thoughts-post__toggle" type="button" aria-expanded="false" aria-controls="future-of-math-practical-branch-body" data-thoughts-post-toggle hidden>Show more...</button></div>
+
+<section class="thoughts-comments" data-thoughts-comments aria-label="Comments on Future of math (the practical branch)" hidden></section>
+
+<noscript><p class="thoughts-post__noscript">Please enable JavaScript to read or leave comments.</p></noscript>
+
 </article>
 
-<article class="thoughts-post" markdown="1">
+<article class="thoughts-post" id="thoughts-on-ai" data-thoughts-post data-comments-page="https://moriartycc.github.io/thoughts-on-ai/" markdown="1">
 
-## Thoughts on AI
+<h2 class="thoughts-post__title">Thoughts on AI <time class="thoughts-post__date" datetime="2026-08-30">08-30-2026</time></h2>
+
+<div class="thoughts-post__body" id="thoughts-on-ai-body" data-thoughts-post-body markdown="1">
 
 It goes without saying that AI is having a profound impact on academia and, more directly for us, on the fields of Statistics and Mathematics. We have seen amazing advancement in solving long-standing problems, which should be a net positive for science itself. Yet anxiety and confusion are everywhere: what will be the purpose of our profession in the future? I have been hearing these concerns, discussing them with others, and thinking deeply about them in the middle of the night (and early in the morning). The prevailing pessimism and nihilism have prompted me to write down some of my thoughts and share them with people who care.
 
@@ -48,6 +60,14 @@ I will update this page regularly as I develop these thoughts further. Several c
 - How can we, as a scientific community, make the best use of an abundance of proofs through a standardized, responsible, and verifiable process? How should we institutionalize that process through policies rather than rely on self-disclosure?
 
 More to come.
+
+</div>
+
+<div class="thoughts-post__actions"><button class="thoughts-post__toggle" type="button" aria-expanded="false" aria-controls="thoughts-on-ai-body" data-thoughts-post-toggle hidden>Show more...</button></div>
+
+<section class="thoughts-comments" data-thoughts-comments aria-label="Comments on Thoughts on AI" hidden></section>
+
+<noscript><p class="thoughts-post__noscript">Please enable JavaScript to read or leave comments.</p></noscript>
 
 </article>
 
