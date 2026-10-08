@@ -1926,21 +1926,31 @@ body {
   padding: 1.25rem;
 }
 
-/* Thoughts on AI: a quiet reading layout with a lightweight discussion area. */
+/* Thoughts & Posts: a quiet reading layout with a lightweight discussion area. */
 .thoughts-article {
   max-width: 54rem;
 }
 
-.thoughts-article > p,
-.thoughts-article > ul {
+.thoughts-post + .thoughts-post {
+  margin-top: 3.25rem;
+  padding-top: 2.75rem;
+  border-top: 1px solid var(--tech-border);
+}
+
+.thoughts-post > h2 {
+  margin-top: 0;
+}
+
+.thoughts-post > p,
+.thoughts-post > ul {
   line-height: 1.75;
 }
 
-.thoughts-article > ul {
+.thoughts-post > ul {
   padding-left: 1.25rem;
 }
 
-.thoughts-article > ul li + li {
+.thoughts-post > ul li + li {
   margin-top: 0.65rem;
 }
 

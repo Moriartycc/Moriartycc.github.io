@@ -1,12 +1,28 @@
 ---
 layout: single
-title: "Thoughts on AI"
+title: "Thoughts & Posts"
 permalink: /thoughts-on-ai/
 date: 2026-08-30
 author_profile: true
 ---
 
 <div class="thoughts-article" markdown="1">
+
+<article class="thoughts-post" markdown="1">
+
+## Future of math (the practical branch)
+
+The practical future of math is written in its past:
+
+Cardano was chronically short of money and kept himself solvent by being an accomplished gambler and chess player. His book, *Liber de ludo aleae* ("Book on Games of Chance"), written around 1564 but not published until 1663, contains the first systematic treatment of probability, as well as a section on effective cheating methods. He used the game of throwing dice to understand the basic concepts of probability.
+
+The point is not to be short of money, but to be problem-oriented.
+
+</article>
+
+<article class="thoughts-post" markdown="1">
+
+## Thoughts on AI
 
 It goes without saying that AI is having a profound impact on academia and, more directly for us, on the fields of Statistics and Mathematics. We have seen amazing advancement in solving long-standing problems, which should be a net positive for science itself. Yet anxiety and confusion are everywhere: what will be the purpose of our profession in the future? I have been hearing these concerns, discussing them with others, and thinking deeply about them in the middle of the night (and early in the morning). The prevailing pessimism and nihilism have prompted me to write down some of my thoughts and share them with people who care.
 
@@ -32,6 +48,8 @@ I will update this page regularly as I develop these thoughts further. Several c
 - How can we, as a scientific community, make the best use of an abundance of proofs through a standardized, responsible, and verifiable process? How should we institutionalize that process through policies rather than rely on self-disclosure?
 
 More to come.
+
+</article>
 
 </div>
 
