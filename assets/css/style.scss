@@ -2355,7 +2355,12 @@ html[data-theme="dark"] .research-diamond {
 .research-diamond__node--models {
   top: 0;
   left: 50%;
+  width: 48%;
   transform: translateX(-50%);
+}
+
+.research-diamond__node--models span {
+  white-space: nowrap;
 }
 
 .research-diamond__node--models:is(:hover, :focus) {
@@ -2389,7 +2394,12 @@ html[data-theme="dark"] .research-diamond {
 .research-diamond__node--procedures {
   bottom: 0;
   left: 50%;
+  width: 70%;
   transform: translateX(-50%);
+}
+
+.research-diamond__node--procedures span {
+  white-space: nowrap;
 }
 
 .research-diamond__node--procedures:is(:hover, :focus) {
