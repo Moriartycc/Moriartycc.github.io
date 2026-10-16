@@ -2247,7 +2247,7 @@ html[data-theme="dark"] .thoughts-shift {
   --research-diamond-muted: #53657d;
   --research-diamond-line: rgba(83, 101, 125, 0.38);
   --research-diamond-accent: #ff5f05;
-  margin: 2.35rem 0 2.6rem;
+  margin: 1.75rem 0 2.6rem;
 }
 
 html[data-theme="dark"] .research-diamond {
@@ -2257,32 +2257,10 @@ html[data-theme="dark"] .research-diamond {
   --research-diamond-accent: #ff8a3d;
 }
 
-.page__content .research-diamond__heading {
-  margin: 0;
-  padding-bottom: 0;
-  color: var(--research-diamond-title);
-  border-bottom: 0;
-  font-family: Inter, sans-serif;
-  font-size: clamp(1.15rem, 2.1vw, 1.45rem);
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  text-align: center;
-}
-
-.page__content .research-diamond__heading::after {
-  display: block;
-  width: 2rem;
-  height: 2px;
-  margin: 0.65rem auto 0;
-  background: var(--research-diamond-accent);
-  border-radius: 999px;
-  content: "";
-}
-
 .research-diamond__canvas {
   position: relative;
   min-height: 28rem;
-  margin-top: 0.6rem;
+  margin-top: 0;
   isolation: isolate;
 }
 
@@ -2390,6 +2368,10 @@ html[data-theme="dark"] .research-diamond {
   transform: translateY(-50%);
 }
 
+.research-diamond__node--uncertainty strong {
+  white-space: nowrap;
+}
+
 .research-diamond__node--uncertainty:is(:hover, :focus) {
   transform: translateY(calc(-50% - 2px));
 }
@@ -2444,7 +2426,7 @@ html[data-theme="dark"] .research-diamond {
 
 @media screen and (max-width: 640px) {
   .research-diamond {
-    margin: 2rem 0 2.25rem;
+    margin: 1.5rem 0 2.25rem;
   }
 
   .research-diamond__canvas {
@@ -2463,6 +2445,10 @@ html[data-theme="dark"] .research-diamond {
 
   .research-diamond__node strong {
     font-size: clamp(0.92rem, 4vw, 1.08rem);
+  }
+
+  .research-diamond__node--uncertainty strong {
+    font-size: clamp(0.86rem, 3.7vw, 1rem);
   }
 
   .research-diamond__node span {

@@ -14,10 +14,10 @@ I am also a Core Member of the <a class="advisor-link" href="https://skai-instit
 
 My research studies foundational problems in modern machine learning and statistics:
 
-- How does overparameterization shape fitting and model geometry?
-- How can we calibrate predictions and quantify uncertainty?
-- What determines optimal generalization and prediction?
-- How do iterative procedures shape learning dynamics?
+- How does overparameterization shape fitting and prediction?
+- How to define and what determines optimal generalization?
+- How do iterative and dynamic procedures shape learning?
+- How to calibrate predictions and quantify uncertainty under above considerations?
 
 {% include research-program-diamond.html %}
 
