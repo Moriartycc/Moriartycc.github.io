@@ -2240,3 +2240,240 @@ html[data-theme="dark"] .thoughts-shift {
     margin-top: 2.5rem;
   }
 }
+
+/* A compact overview of the four research directions on the homepage. */
+.research-diamond {
+  --research-diamond-title: #13294b;
+  --research-diamond-muted: #53657d;
+  --research-diamond-line: rgba(83, 101, 125, 0.38);
+  --research-diamond-accent: #ff5f05;
+  margin: 2.35rem 0 2.6rem;
+}
+
+html[data-theme="dark"] .research-diamond {
+  --research-diamond-title: #f1f6fb;
+  --research-diamond-muted: #b7c5d4;
+  --research-diamond-line: rgba(183, 197, 212, 0.34);
+  --research-diamond-accent: #ff8a3d;
+}
+
+.page__content .research-diamond__heading {
+  margin: 0;
+  padding-bottom: 0;
+  color: var(--research-diamond-title);
+  border-bottom: 0;
+  font-family: Inter, sans-serif;
+  font-size: clamp(1.15rem, 2.1vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-align: center;
+}
+
+.page__content .research-diamond__heading::after {
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin: 0.65rem auto 0;
+  background: var(--research-diamond-accent);
+  border-radius: 999px;
+  content: "";
+}
+
+.research-diamond__canvas {
+  position: relative;
+  min-height: 28rem;
+  margin-top: 0.6rem;
+  isolation: isolate;
+}
+
+.research-diamond__links,
+.research-diamond__nodes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.research-diamond__links {
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.research-diamond__link {
+  fill: none;
+  stroke: var(--research-diamond-line);
+  stroke-linecap: round;
+  stroke-width: 1.45;
+  transition: opacity 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
+}
+
+.research-diamond__nodes {
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.research-diamond__node {
+  position: absolute;
+  box-sizing: border-box;
+  width: 38%;
+  padding: 0.6rem;
+  color: var(--research-diamond-title);
+  border-radius: 12px;
+  outline: none;
+  overflow-wrap: anywhere;
+  text-align: center;
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.research-diamond__node strong,
+.research-diamond__node span {
+  display: block;
+}
+
+.research-diamond__node strong {
+  font-family: Inter, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.28rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+
+.research-diamond__node span {
+  margin-top: 0.45rem;
+  color: var(--research-diamond-muted);
+  font-size: clamp(0.78rem, 1.5vw, 0.94rem);
+  line-height: 1.4;
+}
+
+.research-diamond__node::after {
+  display: block;
+  width: 0;
+  height: 2px;
+  margin: 0.55rem auto 0;
+  background: var(--research-diamond-accent);
+  border-radius: 999px;
+  content: "";
+  transition: width 180ms ease;
+}
+
+.research-diamond__node:is(:hover, :focus) {
+  color: var(--research-diamond-accent);
+  background: color-mix(in srgb, var(--research-diamond-accent) 6%, transparent);
+  transform: translateY(-2px);
+}
+
+.research-diamond__node:focus-visible {
+  outline: 2px solid var(--research-diamond-accent);
+  outline-offset: 3px;
+}
+
+.research-diamond__node:is(:hover, :focus)::after {
+  width: 1.85rem;
+}
+
+.research-diamond__node--models {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.research-diamond__node--models:is(:hover, :focus) {
+  transform: translate(-50%, -2px);
+}
+
+.research-diamond__node--uncertainty {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.research-diamond__node--uncertainty:is(:hover, :focus) {
+  transform: translateY(calc(-50% - 2px));
+}
+
+.research-diamond__node--prediction {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.research-diamond__node--prediction:is(:hover, :focus) {
+  transform: translateY(calc(-50% - 2px));
+}
+
+.research-diamond__node--procedures {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.research-diamond__node--procedures:is(:hover, :focus) {
+  transform: translate(-50%, -2px);
+}
+
+.research-diamond__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 8px;
+  height: 8px;
+  background: var(--research-diamond-accent);
+  border: 2px solid var(--global-bg-color);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--research-diamond-accent) 34%, transparent);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.research-diamond__canvas:has(.research-diamond__node--models:is(:hover, :focus)) .research-diamond__link:not(.research-diamond__link--models),
+.research-diamond__canvas:has(.research-diamond__node--uncertainty:is(:hover, :focus)) .research-diamond__link:not(.research-diamond__link--uncertainty),
+.research-diamond__canvas:has(.research-diamond__node--prediction:is(:hover, :focus)) .research-diamond__link:not(.research-diamond__link--prediction),
+.research-diamond__canvas:has(.research-diamond__node--procedures:is(:hover, :focus)) .research-diamond__link:not(.research-diamond__link--procedures) {
+  opacity: 0.12;
+}
+
+.research-diamond__canvas:has(.research-diamond__node--models:is(:hover, :focus)) .research-diamond__link--models,
+.research-diamond__canvas:has(.research-diamond__node--uncertainty:is(:hover, :focus)) .research-diamond__link--uncertainty,
+.research-diamond__canvas:has(.research-diamond__node--prediction:is(:hover, :focus)) .research-diamond__link--prediction,
+.research-diamond__canvas:has(.research-diamond__node--procedures:is(:hover, :focus)) .research-diamond__link--procedures {
+  stroke: var(--research-diamond-accent);
+  stroke-width: 2.2;
+}
+
+@media screen and (max-width: 640px) {
+  .research-diamond {
+    margin: 2rem 0 2.25rem;
+  }
+
+  .research-diamond__canvas {
+    min-height: 30rem;
+  }
+
+  .research-diamond__node {
+    width: 48%;
+    padding: 0.55rem 0.3rem;
+  }
+
+  .research-diamond__node--models,
+  .research-diamond__node--procedures {
+    width: 92%;
+  }
+
+  .research-diamond__node strong {
+    font-size: clamp(0.92rem, 4vw, 1.08rem);
+  }
+
+  .research-diamond__node span {
+    font-size: clamp(0.72rem, 3.2vw, 0.84rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .research-diamond__link,
+  .research-diamond__node,
+  .research-diamond__node::after {
+    transition: none;
+  }
+}

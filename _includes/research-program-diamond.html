@@ -1,0 +1,41 @@
+<section class="research-diamond" aria-labelledby="research-diamond-title" aria-describedby="research-diamond-description">
+  <h2 class="research-diamond__heading" id="research-diamond-title">How these directions connect</h2>
+
+  <p class="screen-reader-text" id="research-diamond-description">
+    Overparameterized models connect to calibration and uncertainty quantification,
+    generalization and prediction, and iterative procedures. Iterative procedures also
+    connect to calibration and uncertainty quantification and to generalization and
+    prediction. There is no direct connection between the two side themes.
+  </p>
+
+  <div class="research-diamond__canvas">
+    <svg class="research-diamond__links" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+      <path class="research-diamond__link research-diamond__link--models research-diamond__link--uncertainty" d="M 410 135 L 300 220" pathLength="1" vector-effect="non-scaling-stroke"></path>
+      <path class="research-diamond__link research-diamond__link--models research-diamond__link--prediction" d="M 590 135 L 700 220" pathLength="1" vector-effect="non-scaling-stroke"></path>
+      <path class="research-diamond__link research-diamond__link--uncertainty research-diamond__link--procedures" d="M 300 340 L 410 425" pathLength="1" vector-effect="non-scaling-stroke"></path>
+      <path class="research-diamond__link research-diamond__link--prediction research-diamond__link--procedures" d="M 700 340 L 590 425" pathLength="1" vector-effect="non-scaling-stroke"></path>
+      <path class="research-diamond__link research-diamond__link--models research-diamond__link--procedures" d="M 500 140 L 500 420" pathLength="1" vector-effect="non-scaling-stroke"></path>
+    </svg>
+
+    <span class="research-diamond__center" aria-hidden="true"></span>
+
+    <ul class="research-diamond__nodes">
+      <li class="research-diamond__node research-diamond__node--models" tabindex="0">
+        <strong>Overparameterized models</strong>
+        <span>Neural networks · LLMs</span>
+      </li>
+      <li class="research-diamond__node research-diamond__node--uncertainty" tabindex="0">
+        <strong>Calibration and<br>uncertainty quantification</strong>
+        <span>Conformal prediction · Aligning distributions</span>
+      </li>
+      <li class="research-diamond__node research-diamond__node--prediction" tabindex="0">
+        <strong>Generalization<br>and prediction</strong>
+        <span>Optimality and complexity</span>
+      </li>
+      <li class="research-diamond__node research-diamond__node--procedures" tabindex="0">
+        <strong>Iterative procedures</strong>
+        <span>SGD · AMP · Test-time training</span>
+      </li>
+    </ul>
+  </div>
+</section>
