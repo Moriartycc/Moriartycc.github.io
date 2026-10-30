@@ -16,10 +16,12 @@ I am also affiliated with the <a class="advisor-link" href="https://www.ncsa.ill
 
 My research studies foundational problems in modern machine learning and statistics:
 
-- When do overparameterized models such as neural networks interpolate and still generalize?
-- How can we quantify uncertainty for iterative methods and adaptive models with evolving data?
-- How do learning and decision-making algorithms behave in high dimensions?
-- How can we learn from structured or imperfect data?
+- How does overparameterization shape fitting and prediction?
+- How to define and what determines optimal generalization?
+- How do iterative and dynamic procedures shape learning?
+- How to calibrate predictions and quantify uncertainty under above considerations?
+
+{% include research-program-diamond.html %}
 
 To address these questions, I develop and use tools from high-dimensional probability and statistics, random matrix theory, information theory, optimization, and the analysis of iterative algorithms.
 
