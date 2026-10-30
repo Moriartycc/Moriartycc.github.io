@@ -12,6 +12,8 @@ I am an Assistant Professor in the <a class="advisor-link" href="https://stat.il
 
 I am also a Core Member of the <a class="advisor-link" href="https://skai-institute.org/about-skai/skai-institute-members/">NSF-Simons AI Institute for the Sky (SkAI Institute)</a>.
 
+I am also affiliated with the <a class="advisor-link" href="https://www.ncsa.illinois.edu/">National Center for Supercomputing Applications (NCSA)</a> as a Faculty Affiliate.
+
 My research studies foundational problems in modern machine learning and statistics:
 
 - When do overparameterized models such as neural networks interpolate and still generalize?
