@@ -43,6 +43,8 @@
 \sectionfont{\rmfamily\mdseries\upshape\Large}
 \subsectionfont{\rmfamily\bfseries\upshape\normalsize} 
 \subsubsectionfont{\rmfamily\mdseries\upshape\normalsize} 
+% Keep a minimum gap between entry text and its right-aligned date.
+\newcommand{\cvdategap}{\hspace{1.5em}\hfill}
 \makeatletter
 \def\namedlabel#1#2{\begingroup
 	#2%
@@ -67,17 +69,18 @@
 \begin{itemize}
 	\item[] \textbf{University of Illinois Urbana-Champaign}, IL, USA
 	\begin{itemize}
-		\item [--] \textbf{Assistant Professor}, Department of Statistics. \hfill 8/2026 -- Current
+		\item [--] \textbf{Assistant Professor}, Department of Statistics. \cvdategap 8/2026 -- Current
 		\item [--] \textbf{Affiliated Positions}
 		\begin{itemize}
-			\item [--] \textbf{Affiliate Assistant Professor}, National Center for Supercomputing Applications (NCSA). \\
-			\mbox{}\hfill 11/2026 -- Current
-			\item [--] \textbf{Core Member}, NSF-Simons AI Institute for the Sky (SkAI Institute). \hfill 8/2026 -- Current
+			\setlength{\itemsep}{2pt}
+			\item [--] \textbf{Affiliate Assistant Professor}, National Center for Supercomputing Applications (NCSA). \\[2pt]
+			\mbox{}\cvdategap 11/2026 -- Current
+			\item [--] \textbf{Core Member}, NSF-Simons AI Institute for the Sky (SkAI Institute). \cvdategap 8/2026 -- Current
 		\end{itemize}
 	\end{itemize}
 	\item[] \textbf{University of Chicago}, IL, USA
 	\begin{itemize}
-		\item [--] \textbf{Postdoctoral Scholar}, Department of Statistics. \hfill 7/2025 -- 7/2026 \\
+		\item [--] \textbf{Postdoctoral Scholar}, Department of Statistics. \cvdategap 7/2025 -- 7/2026 \\[2pt]
 		Advised by: Rina Foygel Barber.
 	\end{itemize}
 \end{itemize}
@@ -86,13 +89,13 @@
 \begin{itemize}
 	\item[] \textbf{Stanford University}, CA, USA
 	\begin{itemize}
-		\item [--] \textbf{Ph.D. in Statistics}, Department of Statistics. \\
-		Jointly advised by: John Duchi and Andrea Montanari\hfill 9/2019 -- 6/2025
+		\item [--] \textbf{Ph.D. in Statistics}, Department of Statistics. \\[2pt]
+		Jointly advised by: John Duchi and Andrea Montanari\cvdategap 9/2019 -- 6/2025
 		\item [--] GPA: $4.20/4.30$.
 	\end{itemize}
 	\item[] \textbf{Peking University}, Beijing, China
 	\begin{itemize}
-		\item [--] \textbf{B.S. in Computational Mathematics}, School of Mathematical Sciences. \hfill 9/2015 -- 7/2019
+		\item [--] \textbf{B.S. in Computational Mathematics}, School of Mathematical Sciences. \cvdategap 9/2015 -- 7/2019
 		\item [--] GPA: $3.90/4.00$, Rank: $1/18$. (with distinction)
 	\end{itemize}
 \end{itemize}
@@ -138,45 +141,45 @@ Machine learning theory, Random matrix theory, High dimensional statistics, Rein
 \section*{\textbf{Academic Honors \& Awards}}
 \subsection*{\textbf{Fellowship \& Scholarship}}
 	\begin{itemize}
-		\item[--] William R. Hewlett Stanford Graduate Fellowship. \hfill 09/2019
-		\item[--] Yizheng Special Scholarship and Merit Student. \hfill 09/2018
-		\item[--] Leo-KoGuan Scholarship and Merit Student. \hfill 09/2017
-		\item[--] National Scholarship and Merit Student Pacesetter (Highest Honor) . \hfill 09/2016
+		\item[--] William R. Hewlett Stanford Graduate Fellowship. \cvdategap 09/2019
+		\item[--] Yizheng Special Scholarship and Merit Student. \cvdategap 09/2018
+		\item[--] Leo-KoGuan Scholarship and Merit Student. \cvdategap 09/2017
+		\item[--] National Scholarship and Merit Student Pacesetter (Highest Honor) . \cvdategap 09/2016
 	\end{itemize}
 \subsection*{\textbf{Awards}}
 	\begin{itemize}
-		\item[--] George E. Nicholson Student Paper Competition. Finalist. \hfill 10/2021
-		\item[--] Excellent Graduate of Beijing. \hfill 06/2019
-		\item[--] Excellent Graduate of Elite Training Program of Applied Mathematics. \hfill 06/2019
-		\item[--] S.T. Yau College Student Mathematics Contests -- Group (Probability). Silver Medalist. \hfill 08/2017
-		\item[--] Elite Training Program of Applied Mathematics \& Pure Mathematics. \hfill 2016-2019
-		\item[--] Chinese Mathematical Olympiad (CMO). Gold Medalist. \hfill 2014
-		\item[--] National Olympiad in Informatics (NOI), China. Silver Medalist. \hfill 2012
+		\item[--] George E. Nicholson Student Paper Competition. Finalist. \cvdategap 10/2021
+		\item[--] Excellent Graduate of Beijing. \cvdategap 06/2019
+		\item[--] Excellent Graduate of Elite Training Program of Applied Mathematics. \cvdategap 06/2019
+		\item[--] S.T. Yau College Student Mathematics Contests -- Group (Probability). Silver Medalist. \cvdategap 08/2017
+		\item[--] Elite Training Program of Applied Mathematics \& Pure Mathematics. \cvdategap 2016-2019
+		\item[--] Chinese Mathematical Olympiad (CMO). Gold Medalist. \cvdategap 2014
+		\item[--] National Olympiad in Informatics (NOI), China. Silver Medalist. \cvdategap 2012
 	\end{itemize}
 
 \section*{\textbf{Talks and Presentations}}
 \begin{enumerate}
-	\item[\namedlabel{talk:IMS-26-4}{T21}] [\ref{pub:IsMemorizationHelpful}] IMS New Researcher Conference, UMass Amherst. \hfill 07/2026
-	\item[\namedlabel{talk:COLT-26-3}{T20}] [\ref{pub:IsMemorizationHelpful}] Conference on Learning Theory (COLT), San Diego. \hfill 07/2026
-	\item[\namedlabel{talk:IOC-26-2}{T19}] [\ref{pub:IsMemorizationHelpful}] INFORMS Optimization Society Conference, Atlanta. \hfill 03/2026
-	\item[\namedlabel{talk:UF-26-1}{T18}] Workshop in Frontiers in Learning Under Data Heterogeneity, University of Florida. \hfill 01/2026
-	\item[\namedlabel{talk:NITMB-25-8}{T17}] NSF-Simons NITMB MathBio Convergence Conference, Chicago. \hfill 08/2025 
-	\item[\namedlabel{talk:UIUC-25-1}{T16}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, University of Illinois Urbana-Champaign. \hfill 01/2025
-	\item[\namedlabel{talk:Rutgers-25-1}{T15}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Rutgers University New Brunswick. \hfill 01/2025
-	\item[\namedlabel{talk:NYU-25-1}{T14}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, New York University Stern. \hfill 01/2025
-	\item[\namedlabel{talk:Cambridge-25-1}{T13}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, University of Cambridge DPMMS. \hfill 01/2025
-	\item[\namedlabel{talk:PKU-24-1}{T12}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Symposium on Statistics and Biostatistics, Peking University. \hfill 12/2024
-	\item[\namedlabel{talk:THU-24-1}{T11}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Tsinghua University YMSC. \hfill 12/2024
-	\item[\namedlabel{talk:CUHK-24-1}{T10}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Chinese University of Hong Kong. \hfill 12/2024
-	\item[\namedlabel{talk:NUS-24-1}{T9}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, National University of Singapore. \hfill 12/2024
-	\item[\namedlabel{talk:Berkeley-24-1}{T8}] [\ref{pub:HighdimensionalFlow}], Simons Seminar, University of California Berkeley. \hfill 11/2024
-	\item[\namedlabel{talk:NeurIPS-23-1}{T7}] [\ref{pub:CollaborativelyLearning}], Conference on Neural Information Processing Systems (NeurIPS), New Orleans. \hfill 12/2023
-	\item[\namedlabel{talk:StanfordIAC-23-1}{T6}] Stanford Stats Department Industrial Affiliated Conference, Stanford University. \hfill 11/2023
-	\item[\namedlabel{talk:StanfordIAC-22-1}{T5}] [\ref{pub:HowMany}], Stanford Stats Department Industrial Affiliated Conference, Stanford University. \hfill 11/2022
-	\item[\namedlabel{talk:COLT-22-1}{T4}] [\ref{pub:MemorizeGeneralize}], Conference on Learning Theory (COLT), London. \hfill 07/2022
-	\item[\namedlabel{talk:StanfordDAWN-22-1}{T3}] [\ref{pub:HowMany}], Stanford Data Analytics for What’s Next (DAWN) workshop, Aptos. \hfill 05/2022
-	\item[\namedlabel{talk:NYU-18-1}{T2}] [\ref{pub:AsymmetryHelps}], Seminar for Modeling \& Simulation, New York University Courant. \hfill 10/2018
-	\item[\namedlabel{talk:PKU-17-1}{T1}] Seminar for Elite Ph.D Training Program of Applied Mathematics, Peking University. \hfill 11/2017
+	\item[\namedlabel{talk:IMS-26-4}{T21}] [\ref{pub:IsMemorizationHelpful}] IMS New Researcher Conference, UMass Amherst. \cvdategap 07/2026
+	\item[\namedlabel{talk:COLT-26-3}{T20}] [\ref{pub:IsMemorizationHelpful}] Conference on Learning Theory (COLT), San Diego. \cvdategap 07/2026
+	\item[\namedlabel{talk:IOC-26-2}{T19}] [\ref{pub:IsMemorizationHelpful}] INFORMS Optimization Society Conference, Atlanta. \cvdategap 03/2026
+	\item[\namedlabel{talk:UF-26-1}{T18}] Workshop in Frontiers in Learning Under Data Heterogeneity, University of Florida. \cvdategap 01/2026
+	\item[\namedlabel{talk:NITMB-25-8}{T17}] NSF-Simons NITMB MathBio Convergence Conference, Chicago. \cvdategap 08/2025
+	\item[\namedlabel{talk:UIUC-25-1}{T16}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, University of Illinois Urbana-Champaign. \cvdategap 01/2025
+	\item[\namedlabel{talk:Rutgers-25-1}{T15}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Rutgers University New Brunswick. \cvdategap 01/2025
+	\item[\namedlabel{talk:NYU-25-1}{T14}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, New York University Stern. \cvdategap 01/2025
+	\item[\namedlabel{talk:Cambridge-25-1}{T13}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, University of Cambridge DPMMS. \cvdategap 01/2025
+	\item[\namedlabel{talk:PKU-24-1}{T12}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Symposium on Statistics and Biostatistics, Peking University. \cvdategap 12/2024
+	\item[\namedlabel{talk:THU-24-1}{T11}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Tsinghua University YMSC. \cvdategap 12/2024
+	\item[\namedlabel{talk:CUHK-24-1}{T10}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, Chinese University of Hong Kong. \cvdategap 12/2024
+	\item[\namedlabel{talk:NUS-24-1}{T9}] [\ref{pub:HowMany}, \ref{pub:DimensionFree}], Statistics Seminar, National University of Singapore. \cvdategap 12/2024
+	\item[\namedlabel{talk:Berkeley-24-1}{T8}] [\ref{pub:HighdimensionalFlow}], Simons Seminar, University of California Berkeley. \cvdategap 11/2024
+	\item[\namedlabel{talk:NeurIPS-23-1}{T7}] [\ref{pub:CollaborativelyLearning}], Conference on Neural Information Processing Systems (NeurIPS), New Orleans. \cvdategap 12/2023
+	\item[\namedlabel{talk:StanfordIAC-23-1}{T6}] Stanford Stats Department Industrial Affiliated Conference, Stanford University. \cvdategap 11/2023
+	\item[\namedlabel{talk:StanfordIAC-22-1}{T5}] [\ref{pub:HowMany}], Stanford Stats Department Industrial Affiliated Conference, Stanford University. \cvdategap 11/2022
+	\item[\namedlabel{talk:COLT-22-1}{T4}] [\ref{pub:MemorizeGeneralize}], Conference on Learning Theory (COLT), London. \cvdategap 07/2022
+	\item[\namedlabel{talk:StanfordDAWN-22-1}{T3}] [\ref{pub:HowMany}], Stanford Data Analytics for What’s Next (DAWN) workshop, Aptos. \cvdategap 05/2022
+	\item[\namedlabel{talk:NYU-18-1}{T2}] [\ref{pub:AsymmetryHelps}], Seminar for Modeling \& Simulation, New York University Courant. \cvdategap 10/2018
+	\item[\namedlabel{talk:PKU-17-1}{T1}] Seminar for Elite Ph.D Training Program of Applied Mathematics, Peking University. \cvdategap 11/2017
 \end{enumerate}
 
 \section*{\textbf{Teaching Experiences}}
@@ -184,39 +187,39 @@ Machine learning theory, Random matrix theory, High dimensional statistics, Rein
 \subsection*{\textbf{As Instructor (UIUC)}}
 
 \begin{itemize}
-	\item[--] STAT 410. Statistics and Probability II. \hfill Fall 2026
+	\item[--] STAT 410. Statistics and Probability II. \cvdategap Fall 2026
 \end{itemize}
 
 \subsection*{\textbf{As Teaching Assistant (Stanford)}}
 
 \begin{itemize}
-	\item[--] STATS 141. Biostatistics. \hfill Autumn 2019
-	\item[--] STATS 214/CS 229M. Machine Learning Theory. (Head TA) \hfill Winter 2021
-	\item[--] STATS 205. Introduction to Nonparametric Statistics. \hfill Spring 2021
-	\item[--] STATS 369. Methods from Statistical Physics. \hfill Autumn 2021
-	\item[--] MATH 230A/STATS 310A. Theory of Probability. \hfill Autumn 2022
-	\item[--] STATS 208. Bootstrap, Cross-Validation, and Sample Re-use. \hfill Winter 2023
-	\item[--] STATS 311/EE 377. Information Theory and Statistics. \hfill Autumn 2023
-	\item[--] STATS 315A. Modern Statistical Learning. \hfill Winter 2024
-	\item[--] STATS 118. Theory of Probability II. \hfill Summer 2024
+	\item[--] STATS 141. Biostatistics. \cvdategap Autumn 2019
+	\item[--] STATS 214/CS 229M. Machine Learning Theory. (Head TA) \cvdategap Winter 2021
+	\item[--] STATS 205. Introduction to Nonparametric Statistics. \cvdategap Spring 2021
+	\item[--] STATS 369. Methods from Statistical Physics. \cvdategap Autumn 2021
+	\item[--] MATH 230A/STATS 310A. Theory of Probability. \cvdategap Autumn 2022
+	\item[--] STATS 208. Bootstrap, Cross-Validation, and Sample Re-use. \cvdategap Winter 2023
+	\item[--] STATS 311/EE 377. Information Theory and Statistics. \cvdategap Autumn 2023
+	\item[--] STATS 315A. Modern Statistical Learning. \cvdategap Winter 2024
+	\item[--] STATS 118. Theory of Probability II. \cvdategap Summer 2024
 \end{itemize}
 
 \section*{\textbf{Visiting and Working Experiences}}
 \begin{itemize}
 	\item[] \textbf{LinkedIn Corporation}, WA, USA
 	\begin{itemize}
-		\item [--] \textbf{Research Intern}. \\
-		Supervised by: Ryan Rogers and Saikrishna Badrinarayanan  \hfill 6/2023 -- 9/2023
+		\item [--] \textbf{Research Intern}. \\[2pt]
+		Supervised by: Ryan Rogers and Saikrishna Badrinarayanan  \cvdategap 6/2023 -- 9/2023
 	\end{itemize}
 	\item[] \textbf{New York University, Courant Institute of Mathematical Sciences}, NY, USA
 	\begin{itemize}
-		\item [--] \textbf{Research Assistant}. \\
-		Supervised by: Miranda Holmes-Cerfon \hfill 9/2018 -- 12/2018
+		\item [--] \textbf{Research Assistant}. \\[2pt]
+		Supervised by: Miranda Holmes-Cerfon \cvdategap 9/2018 -- 12/2018
 	\end{itemize}
 	\item[] \textbf{Princeton University}, NJ, USA
 	\begin{itemize}
-		\item [--] \textbf{Research Assistant}. \\
-		Supervised by: Yuxin Chen\hfill 7/2018 -- 9/2018
+		\item [--] \textbf{Research Assistant}. \\[2pt]
+		Supervised by: Yuxin Chen\cvdategap 7/2018 -- 9/2018
 	\end{itemize}
 \end{itemize}
 
