@@ -12,7 +12,7 @@ I am an Assistant Professor in the <a class="advisor-link" href="https://stat.il
 
 I am also a Core Member of the <a class="advisor-link" href="https://skai-institute.org/about-skai/skai-institute-members/">NSF-Simons AI Institute for the Sky (SkAI Institute)</a>.
 
-I am also affiliated with the <a class="advisor-link" href="https://www.ncsa.illinois.edu/">National Center for Supercomputing Applications (NCSA)</a> as a Faculty Affiliate.
+I am also an Affiliate Assistant Professor at the <a class="advisor-link" href="https://www.ncsa.illinois.edu/">National Center for Supercomputing Applications (NCSA)</a>.
 
 My research studies foundational problems in modern machine learning and statistics:
 
