@@ -2405,9 +2405,7 @@ html[data-theme="dark"] .research-diamond {
 
 .research-diamond__node--uncertainty strong,
 .research-diamond__node--prediction strong {
-  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
-  letter-spacing: -0.024em;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .research-diamond__node--uncertainty:is(:hover, :focus) {
@@ -2493,7 +2491,6 @@ html[data-theme="dark"] .research-diamond {
 
   .research-diamond__node--uncertainty strong,
   .research-diamond__node--prediction strong {
-    font-size: clamp(0.78rem, 3.4vw, 0.92rem);
     overflow-wrap: normal;
     text-wrap: balance;
     white-space: normal;
