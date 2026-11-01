@@ -1,16 +1,20 @@
 ---
 permalink: /
-title: "About me"
+title: "Chen Cheng"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-Welcome!
+<p class="homepage-institution">University of Illinois Urbana-Champaign</p>
 
-I am an Assistant Professor in the <strong><a class="advisor-link" href="https://stat.illinois.edu/">Department of Statistics</a></strong> and an Affiliate Assistant Professor at the <a class="advisor-link" href="https://www.ncsa.illinois.edu/">National Center for Supercomputing Applications (NCSA)</a>, both at the <a class="advisor-link" href="https://illinois.edu/">University of Illinois Urbana-Champaign (UIUC)</a>.
+<div class="homepage-appointments" aria-label="Academic appointments">
+  <p>Assistant Professor, <a class="advisor-link" href="https://stat.illinois.edu/">Department of Statistics</a></p>
+  <p>Faculty Affiliate, <a class="advisor-link" href="https://www.ncsa.illinois.edu/">National Center for Supercomputing Applications (NCSA)</a></p>
+  <p>Core Member, <a class="advisor-link" href="https://skai-institute.org/about-skai/skai-institute-members/">NSF-Simons AI Institute for the Sky (SkAI Institute)</a></p>
+</div>
 
-I am also a Core Member of the <a class="advisor-link" href="https://skai-institute.org/about-skai/skai-institute-members/">NSF-Simons AI Institute for the Sky (SkAI Institute)</a>.
+<p class="homepage-welcome">Welcome!</p>
 
 My research studies foundational problems in modern machine learning and statistics:
 
