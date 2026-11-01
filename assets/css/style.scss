@@ -1813,8 +1813,11 @@ body {
 .page__content .homepage-appointments p {
   margin: 0;
   padding: 0.45rem 0;
-  border-bottom: 1px solid var(--tech-border);
   line-height: 1.5;
+}
+
+.page__content .homepage-appointments p:last-child {
+  border-bottom: 1px solid var(--tech-border);
 }
 
 .page__content > .homepage-welcome {
@@ -2396,10 +2399,14 @@ html[data-theme="dark"] .research-diamond {
 .research-diamond__node--uncertainty {
   top: 50%;
   left: 0;
+  width: 49%;
   transform: translateY(-50%);
 }
 
-.research-diamond__node--uncertainty strong {
+.research-diamond__node--uncertainty strong,
+.research-diamond__node--prediction strong {
+  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+  letter-spacing: -0.024em;
   white-space: nowrap;
 }
 
@@ -2410,6 +2417,7 @@ html[data-theme="dark"] .research-diamond {
 .research-diamond__node--prediction {
   top: 50%;
   right: 0;
+  width: 49%;
   transform: translateY(-50%);
 }
 
@@ -2466,7 +2474,7 @@ html[data-theme="dark"] .research-diamond {
   }
 
   .research-diamond__canvas {
-    min-height: 30rem;
+    min-height: 32rem;
   }
 
   .research-diamond__node {
@@ -2483,8 +2491,12 @@ html[data-theme="dark"] .research-diamond {
     font-size: clamp(0.92rem, 4vw, 1.08rem);
   }
 
-  .research-diamond__node--uncertainty strong {
-    font-size: clamp(0.86rem, 3.7vw, 1rem);
+  .research-diamond__node--uncertainty strong,
+  .research-diamond__node--prediction strong {
+    font-size: clamp(0.78rem, 3.4vw, 0.92rem);
+    overflow-wrap: normal;
+    text-wrap: balance;
+    white-space: normal;
   }
 
   .research-diamond__node span {
