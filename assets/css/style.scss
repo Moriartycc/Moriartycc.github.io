@@ -2303,11 +2303,12 @@ html[data-theme="dark"] .publication-layout {
   grid-auto-rows: 1fr;
   gap: 0.75rem;
 }
-@media (min-width: 925px) {
-  .publication-sidebar {
-    max-height: calc(100vh - 5rem);
-    overflow-y: auto;
-  }
+.sidebar.publication-sidebar {
+  position: static;
+  height: auto;
+  /* The masthead script adds inline padding for fixed sidebars. */
+  padding-top: 0 !important;
+  overflow: visible;
 }
 .publication-profile-frame { position: relative; }
 .publication-topic-diamond {
