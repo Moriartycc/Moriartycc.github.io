@@ -2,6 +2,8 @@ years:
   - year: 2026
     papers:
       - title: "Rolling Conformal Prediction in Sequential Model Training"
+        type: preprints
+        topics: [uncertainty, procedures]
         authors:
           - name: Chen Cheng
             self: true
@@ -16,6 +18,8 @@ years:
             type: paper
             url: https://arxiv.org/abs/2609.26951
       - title: "Distributionally Robust Bidding in First-Price Auctions"
+        type: conferences
+        topics: [procedures]
         authors:
           - name: Y. Zhang
           - name: Chen Cheng
@@ -30,6 +34,8 @@ years:
             type: paper
             url: /files/papers/distributionally-robust-bidding-first-price-auctions.pdf
       - title: "Is Memorization Helpful or Harmful? Prior Information Sets the Threshold"
+        type: conferences
+        topics: [models, generalization]
         authors:
           - name: Chen Cheng
             self: true
@@ -49,6 +55,8 @@ years:
             type: code
             url: https://github.com/Moriartycc/is-memorization-helpful-or-harmful
       - title: "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data"
+        type: preprints
+        topics: [uncertainty]
         authors:
           - name: Chen Cheng
             self: true
@@ -68,6 +76,8 @@ years:
   - year: 2025
     papers:
       - title: "Some Robustness Properties of Label Cleaning"
+        type: journals
+        topics: [generalization]
         authors:
           - name: Chen Cheng
             self: true
@@ -84,6 +94,8 @@ years:
             type: published
             url: https://openreview.net/forum?id=O2ORErbcBy
       - title: "State Evolution Beyond First-order Methods I: Rigorous Predictions and Finite-sample Guarantees"
+        type: preprints
+        topics: [models, procedures]
         authors:
           - name: M. Celentano
           - name: Chen Cheng
@@ -102,6 +114,8 @@ years:
   - year: 2024
     papers:
       - title: "Geometry, Computation, and Optimality in Stochastic Optimization"
+        type: journals
+        topics: [procedures]
         authors:
           - name: Chen Cheng
             self: true
@@ -116,6 +130,8 @@ years:
             type: paper
             url: https://arxiv.org/abs/1909.10455
       - title: "Two Fundamental Limits for Uncertainty Quantification in Predictive Inference"
+        type: conferences
+        topics: [uncertainty]
         authors:
           - name: F. Areces
           - name: Chen Cheng
@@ -134,6 +150,8 @@ years:
   - year: 2023
     papers:
       - title: "Collaboratively Learning Linear Models with Structured Missing Data"
+        type: conferences
+        topics: [generalization, procedures]
         authors:
           - name: Chen Cheng
             self: true
@@ -151,6 +169,8 @@ years:
             type: published
             url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/17f158c25b08758cf650130f7f173e51-Abstract-Conference.html
       - title: "Dimension Free Ridge Regression"
+        type: journals
+        topics: [models, generalization]
         authors:
           - name: Chen Cheng
             self: true
@@ -170,6 +190,8 @@ years:
   - year: 2022
     papers:
       - title: "How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels"
+        type: journals
+        topics: [uncertainty, generalization]
         authors:
           - name: Chen Cheng
             self: true
@@ -190,6 +212,8 @@ years:
             type: code
             url: https://github.com/Moriartycc/how-many-labelers-do-you-need
       - title: "Memorize to Generalize: On the Necessity of Interpolation in High Dimensional Linear Regression"
+        type: conferences
+        topics: [models, generalization]
         authors:
           - name: Chen Cheng
             self: true
@@ -209,6 +233,8 @@ years:
   - year: 2021
     papers:
       - title: "The High-dimensional Asymptotics of First Order Methods with Random Data"
+        type: journals
+        topics: [procedures]
         authors:
           - name: M. Celentano
           - name: Chen Cheng
@@ -226,6 +252,8 @@ years:
   - year: 2020
     papers:
       - title: "Fast Global Convergence of Natural Policy Gradient Methods with Entropy Regularization"
+        type: journals
+        topics: [procedures]
         authors:
           - name: S. Cen
           - name: Chen Cheng
@@ -245,6 +273,8 @@ years:
             type: published
             url: https://doi.org/10.1287/opre.2021.2151
       - title: "Tackling Small Eigen-gaps: Fine-Grained Eigenvector Estimation and Inference under Heteroscedastic Noise"
+        type: journals
+        topics: [uncertainty]
         authors:
           - name: Chen Cheng
             self: true
@@ -265,6 +295,8 @@ years:
   - year: 2019
     papers:
       - title: "Asymmetry Helps: Eigenvalue and Eigenvector Analyses of Asymmetrically Perturbed Low-Rank Matrices"
+        type: journals
+        topics: [uncertainty]
         authors:
           - name: Y. Chen
           - name: Chen Cheng
@@ -284,6 +316,7 @@ years:
 
 thesis:
   title: "High dimensionality in modern machine learning: a random matrix theory perspective"
+  topics: [models, generalization, procedures]
   institution: Stanford University
   year: 2025
   url: https://www.proquest.com/openview/f1efb29df77ad5600efbc00d0aa8b1dd

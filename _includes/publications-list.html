@@ -1,3 +1,10 @@
+<div class="publication-type-row" role="group" aria-label="Filter publications by type" hidden>
+  {% assign types = 'All|Preprints|Journals|Conferences|Ph.D. Thesis' | split: '|' %}
+  {% for type in types %}
+    <button type="button" data-type="{% if forloop.last %}thesis{% else %}{{ type | downcase }}{% endif %}" aria-pressed="{{ forloop.first }}">{{ type }}</button>
+  {% endfor %}
+</div>
+<p class="publication-result-status screen-reader-text" role="status"></p>
 <div class="publications-shell" data-publications-shell>
   <nav class="publication-scroll-rail" aria-label="Jump between publication years">
     <div class="publication-scroll-rail__meter">
@@ -22,7 +29,7 @@
       <div class="publication-year-papers">
         {% for paper in year_group.papers %}
           {% assign abstract_id = 'publication-abstract-' | append: year_group.year | append: '-' | append: forloop.index %}
-          <article class="publication-card" data-abstract-card>
+          <article class="publication-card" data-abstract-card data-paper-type="{{ paper.type }}" data-paper-topics="{{ paper.topics | join: ' ' }}">
             {% assign primary_url = paper.links.first.url %}
             {% for link in paper.links %}{% if link.type == "published" %}{% assign primary_url = link.url %}{% endif %}{% endfor %}
             <h3 class="publication-card__title"><a href="{{ primary_url }}" target="_blank" rel="noopener">{{ paper.title }}</a></h3>
@@ -73,7 +80,7 @@
   </div>
 </div>
 
-<section class="thesis-section" aria-labelledby="thesis-heading">
+<section class="thesis-section" aria-labelledby="thesis-heading" data-paper-type="thesis" data-paper-topics="{{ site.data.publications.thesis.topics | join: ' ' }}">
   <h2 id="thesis-heading">Dissertation</h2>
   <article class="publication-card thesis-card" data-abstract-card>
     <div class="thesis-card__label">Doctoral dissertation</div>
@@ -179,8 +186,10 @@
     const list = shell.querySelector('.publications-list');
     const rail = shell.querySelector('.publication-scroll-rail');
     const track = shell.querySelector('.publication-scroll-rail__track');
-    const markers = [...shell.querySelectorAll('.publication-year-jump')];
-    const sections = markers.map(marker => document.getElementById(`publications-${marker.dataset.publicationYear}`)?.closest('.publication-year-group'));
+    const allMarkers = [...shell.querySelectorAll('.publication-year-jump')];
+    const yearSection = marker => document.getElementById(`publications-${marker.dataset.publicationYear}`).closest('.publication-year-group');
+    let markers = allMarkers;
+    let sections = markers.map(yearSection);
     const mobileQuery = window.matchMedia('(max-width: 700px)');
     let dragging = false;
     let frameRequested = false;
@@ -280,9 +289,9 @@
         : clamp((event.clientY - rect.top) / rect.height);
     };
 
-    markers.forEach((marker, index) => {
+    allMarkers.forEach(marker => {
       marker.addEventListener('click', () => {
-        const section = sections[index];
+        const section = yearSection(marker);
         if (!section) return;
         window.scrollTo({
           top: section.getBoundingClientRect().top + window.scrollY - headerOffset(),
@@ -330,6 +339,41 @@
     window.addEventListener('resize', scheduleMarkerPosition, { passive: true });
     mobileQuery.addEventListener?.('change', scheduleMarkerPosition);
     if ('ResizeObserver' in window) new ResizeObserver(scheduleMarkerPosition).observe(list);
+    const typeRow = document.querySelector('.publication-type-row');
+    const panel = document.querySelector('.publication-topic-panel');
+    const status = document.querySelector('.publication-result-status');
+    const papers = [...document.querySelectorAll('[data-paper-type]')];
+    const selection = {type: 'all', topic: 'all'};
+
+    function filterPapers() {
+      let count = 0;
+      for (const paper of papers) {
+        paper.hidden = !(selection.type === 'all' || selection.type === paper.dataset.paperType) ||
+          !(selection.topic === 'all' || paper.dataset.paperTopics.split(' ').includes(selection.topic));
+        if (!paper.hidden) count++;
+      }
+      markers = allMarkers.filter(marker => {
+        const section = yearSection(marker);
+        section.hidden = !section.querySelector('[data-paper-type]:not([hidden])');
+        marker.hidden = section.hidden;
+        return !marker.hidden;
+      });
+      sections = markers.map(yearSection);
+      shell.hidden = !markers.length;
+      status.classList.toggle('screen-reader-text', count > 0);
+      status.textContent = count ? `${count} publication${count === 1 ? '' : 's'} shown.` : 'No publications match this type and topic.';
+      positionMarkers();
+    }
+
+    for (const [group, key] of [[typeRow, 'type'], [panel, 'topic']]) {
+      group.hidden = false;
+      const buttons = group.querySelectorAll('button');
+      buttons.forEach(button => button.addEventListener('click', () => {
+        selection[key] = button.dataset[key];
+        buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        filterPapers();
+      }));
+    }
     positionMarkers();
   })();
 </script>
