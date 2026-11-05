@@ -2393,6 +2393,8 @@ html[data-theme="dark"] .publication-layout {
   line-height: 1.15;
 }
 .publication-topic-panel button[data-topic="all"] {
+  width: max-content;
+  padding-inline: 0.45em;
   min-height: 34px;
   font-size: 16px;
   font-weight: 800;
