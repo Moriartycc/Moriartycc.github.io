@@ -2359,7 +2359,11 @@ html[data-theme="dark"] .publication-layout {
   padding: 0.22rem;
   border: 1px solid var(--tech-border);
   border-radius: 0.55rem;
-  background: transparent;
+  background-color: var(--tech-surface-raised);
+  background-image: linear-gradient(155deg, rgba(255,255,255,0.17), transparent 60%);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 1px rgba(255,255,255,0.24), 0 2px 5px rgba(7,18,35,0.14);
   color: var(--research-diamond-muted);
   font: 600 0.78rem/1.25 Inter, sans-serif;
   overflow-wrap: anywhere;
@@ -2368,9 +2372,9 @@ html[data-theme="dark"] .publication-layout {
   &:hover, &[aria-pressed="true"] {
     color: var(--research-diamond-title);
     border-color: var(--research-diamond-accent);
-    background: color-mix(in srgb, var(--research-diamond-accent) 6%, transparent);
+    background-color: color-mix(in srgb, var(--research-diamond-accent) 10%, var(--tech-surface-raised));
   }
-  &[aria-pressed="true"] { box-shadow: inset 0 -2px var(--research-diamond-accent); }
+  &[aria-pressed="true"] { box-shadow: inset 0 -2px var(--research-diamond-accent), 0 2px 5px rgba(7,18,35,0.14); }
   &:focus-visible { outline: 2px solid var(--research-diamond-accent); outline-offset: 2px; }
 }
 
@@ -2389,18 +2393,12 @@ html[data-theme="dark"] .publication-layout {
 .publication-topic-panel button:not([data-topic="all"]) {
   width: calc(100% - 6px);
   text-align: center;
-  background-color: var(--tech-surface-raised);
-  background-image: linear-gradient(155deg, rgba(255,255,255,0.17), transparent 60%);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  box-shadow: inset 0 1px rgba(255,255,255,0.24), 0 2px 5px rgba(7,18,35,0.14);
-
-  &:hover, &[aria-pressed="true"] {
-    background-color: color-mix(in srgb, var(--research-diamond-accent) 10%, var(--tech-surface-raised));
-  }
-  &[aria-pressed="true"] {
-    box-shadow: inset 0 -2px var(--research-diamond-accent), 0 2px 5px rgba(7,18,35,0.14);
-  }
+}
+.publication-topic-panel button[data-topic="all"] {
+  width: 100%;
+  min-height: 34px;
+  font-size: 14px;
+  font-weight: 700;
 }
 @media (max-width: 520px) {
   .publication-topic-diamond {
@@ -2412,6 +2410,10 @@ html[data-theme="dark"] .publication-layout {
     padding: 0 3px;
     font-size: 11px;
     line-height: 1;
+  }
+  .publication-topic-panel button[data-topic="all"] {
+    min-height: 19px;
+    font-size: 12.5px;
   }
 }
 
