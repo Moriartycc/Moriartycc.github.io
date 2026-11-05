@@ -77,7 +77,7 @@ years:
     papers:
       - title: "Some Robustness Properties of Label Cleaning"
         type: journals
-        topics: [generalization]
+        topics: [uncertainty]
         authors:
           - name: Chen Cheng
             self: true
@@ -191,7 +191,7 @@ years:
     papers:
       - title: "How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels"
         type: journals
-        topics: [uncertainty, generalization]
+        topics: [uncertainty]
         authors:
           - name: Chen Cheng
             self: true
@@ -234,7 +234,7 @@ years:
     papers:
       - title: "The High-dimensional Asymptotics of First Order Methods with Random Data"
         type: journals
-        topics: [procedures]
+        topics: [models, procedures]
         authors:
           - name: M. Celentano
           - name: Chen Cheng
