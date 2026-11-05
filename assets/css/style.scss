@@ -2385,20 +2385,17 @@ html[data-theme="dark"] .publication-layout {
   font-size: 10.5px;
 }
 .publication-topic-panel button {
+  width: calc(100% - 6px);
+  text-align: center;
   min-height: 24px;
   padding: 2px 4px;
   font-size: 12px;
   line-height: 1.15;
 }
-.publication-topic-panel button:not([data-topic="all"]) {
-  width: calc(100% - 6px);
-  text-align: center;
-}
 .publication-topic-panel button[data-topic="all"] {
-  width: 100%;
   min-height: 34px;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 800;
 }
 @media (max-width: 520px) {
   .publication-topic-diamond {
@@ -2413,7 +2410,7 @@ html[data-theme="dark"] .publication-layout {
   }
   .publication-topic-panel button[data-topic="all"] {
     min-height: 19px;
-    font-size: 12.5px;
+    font-size: 14px;
   }
 }
 
