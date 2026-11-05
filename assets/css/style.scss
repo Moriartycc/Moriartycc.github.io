@@ -208,7 +208,8 @@ body {
 }
 
 .page__inner-wrap,
-.sidebar > div[itemscope] {
+.sidebar > div[itemscope],
+.sidebar > .publication-profile-frame {
   background: var(--tech-surface);
   border: 1px solid var(--tech-border);
   box-shadow: var(--tech-shadow);
@@ -220,7 +221,8 @@ body {
 }
 
 @media screen and (min-width: 1024px) {
-  .sidebar > div[itemscope] {
+  .sidebar > div[itemscope],
+  .sidebar > .publication-profile-frame {
     width: min(100%, 190px);
     padding: 14px;
     border-radius: 18px;
@@ -249,7 +251,8 @@ body {
 
 /* Bridge the theme's 925px desktop breakpoint without an oversized oval avatar. */
 @media screen and (min-width: 925px) and (max-width: 1023px) {
-  .sidebar > div[itemscope] {
+  .sidebar > div[itemscope],
+  .sidebar > .publication-profile-frame {
     width: 100%;
     padding: 10px;
     border-radius: 15px;
@@ -278,7 +281,8 @@ body {
 
 /* Keep the profile compact while the page uses its stacked tablet layout. */
 @media screen and (min-width: 521px) and (max-width: 924px) {
-  .sidebar > div[itemscope] {
+  .sidebar > div[itemscope],
+  .sidebar > .publication-profile-frame {
     display: grid;
     grid-template-columns: 104px minmax(0, 1fr) auto;
     gap: 16px;
@@ -2293,44 +2297,16 @@ html[data-theme="dark"] .publication-layout {
 
 .publication-layout [hidden] { display: none !important; }
 
-.publication-topic-panel {
-  padding: 0.6rem;
-  margin: 0 auto 1rem;
-  max-width: 24rem;
-  background: var(--tech-surface);
-  border: 1px solid var(--tech-border);
-  border-radius: 18px;
-  box-shadow: var(--tech-shadow);
-}
-
-@media (min-width: 925px) {
-  #main.publication-layout {
-    display: grid;
-    grid-template-columns: minmax(16rem, 24%) minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
-  }
-  #main.publication-layout::after { display: none; }
-  .publication-layout > .page {
-    grid-column: 2;
-    width: 100%;
-    padding: 0;
-  }
-  .publication-topic-panel {
-    position: sticky;
-    top: 5rem;
-    width: 100%;
-    margin: 0;
-  }
-}
-
+/* Keep the profile's intrinsic dimensions as its contents wrap at each breakpoint. */
+.publication-profile-frame { position: relative; }
+.publication-profile-frame > [inert] { visibility: hidden; }
 .publication-topic-diamond {
-  position: relative;
+  position: absolute;
+  inset: 1px;
   display: grid;
-  grid-template: "models models models" auto "left center right" auto "bottom bottom bottom" auto / minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template: "left models right" 1fr "left center right" 1fr "left bottom right" 1fr / 1fr 1.35fr 1fr;
   align-items: center;
   justify-items: center;
-  gap: 1.55rem 0.15rem;
 }
 .publication-topic-diamond svg {
   position: absolute;
@@ -2346,16 +2322,24 @@ html[data-theme="dark"] .publication-layout {
 .publication-topic-diamond [data-topic="all"] { grid-area: center; }
 .publication-topic-diamond [data-topic="generalization"] { grid-area: right; }
 .publication-topic-diamond [data-topic="procedures"] { grid-area: bottom; }
+.topic-links-tall { display: none; }
+
+@media (min-width: 925px) {
+  .publication-topic-diamond {
+    inset: 0.28rem;
+    grid-template: "models" 1fr "left" 1fr "center" 1fr "right" 1fr "bottom" 1fr / minmax(0, 1fr);
+  }
+  .publication-topic-diamond [data-topic="uncertainty"] { justify-self: start; }
+  .publication-topic-diamond [data-topic="generalization"] { justify-self: end; }
+  .topic-links-wide { display: none; }
+  .topic-links-tall { display: block; }
+}
 
 .publication-type-row {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(0, 95px));
   gap: 0.28rem;
-  max-width: 33rem;
   margin: 0.4rem 0 1rem;
-}
-@media (max-width: 600px) {
-  .publication-type-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .publication-type-row button,
@@ -2380,6 +2364,30 @@ html[data-theme="dark"] .publication-layout {
   }
   &[aria-pressed="true"] { box-shadow: inset 0 -2px var(--research-diamond-accent); }
   &:focus-visible { outline: 2px solid var(--research-diamond-accent); outline-offset: 2px; }
+}
+
+/* About 80% of the 119 by 30px Scholar pill. */
+.publication-type-row button {
+  min-height: 24px;
+  padding: 2px 5px;
+  font-size: 10.5px;
+}
+.publication-topic-panel button {
+  min-height: 24px;
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 1.15;
+}
+@media (max-width: 520px) {
+  .publication-topic-diamond {
+    inset: 0;
+    grid-template-rows: auto minmax(20px, 1fr) auto;
+  }
+  .publication-topic-panel button {
+    min-height: 20px;
+    padding: 0 3px;
+    font-size: 11px;
+  }
 }
 
 .research-diamond__canvas {

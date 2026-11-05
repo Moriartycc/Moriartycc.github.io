@@ -16,7 +16,9 @@ layout: default
 
 <div id="main" role="main"{% if page.key == "publications" %} class="publication-layout"{% endif %}>
   {% if page.key == "publications" %}
-    {% include publication-topic-panel.html %}
+    <aside class="sidebar sticky publication-topic-panel" aria-label="Publication topics" hidden>
+      {% include author-profile.html topic_filter=true %}
+    </aside>
   {% else %}
     {% include sidebar.html %}
   {% endif %}

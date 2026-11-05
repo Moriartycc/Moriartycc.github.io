@@ -4,9 +4,13 @@
   {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.author %}
 {% endif %}
 
+{% if include.topic_filter %}
+<div class="publication-profile-frame">
+{% else %}
 <div itemscope itemtype="http://schema.org/Person">
+{% endif %}
 
-  <div class="author__avatar">
+  <div class="author__avatar"{% if include.topic_filter %} inert aria-hidden="true"{% endif %}>
     {% if author.avatar contains "://" %}
 	<img src="{{ author.avatar }}" alt="{{ author.name | strip_html }}" fetchpriority="high" />
     {% else %}
@@ -14,13 +18,13 @@
     {% endif %}
   </div>
 
-  <div class="author__content">
+  <div class="author__content"{% if include.topic_filter %} inert aria-hidden="true"{% endif %}>
     <h3 class="author__name">{{ author.name }}</h3>
     {% if author.pronouns %}<p class="author__pronouns">{{ author.pronouns }}</p>{% endif %}
     {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
   </div>
 
-  <div class="author__urls-wrapper">
+  <div class="author__urls-wrapper"{% if include.topic_filter %} inert aria-hidden="true"{% endif %}>
     <button class="btn btn--inverse" type="button" aria-label="Show profile links">Profile links</button>
     <ul class="author__urls social-icons">
       <!-- Font Awesome icons / Biographic information  -->
@@ -170,4 +174,5 @@
       {% endif %}      
     </ul>
   </div>
+  {% if include.topic_filter %}{% include publication-topic-panel.html %}{% endif %}
 </div>
