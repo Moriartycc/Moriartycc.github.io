@@ -209,7 +209,7 @@ body {
 
 .page__inner-wrap,
 .sidebar > div[itemscope],
-.sidebar > .publication-profile-frame {
+.publication-sidebar-stack > div {
   background: var(--tech-surface);
   border: 1px solid var(--tech-border);
   box-shadow: var(--tech-shadow);
@@ -222,7 +222,7 @@ body {
 
 @media screen and (min-width: 1024px) {
   .sidebar > div[itemscope],
-  .sidebar > .publication-profile-frame {
+  .publication-sidebar-stack > div {
     width: min(100%, 190px);
     padding: 14px;
     border-radius: 18px;
@@ -252,7 +252,7 @@ body {
 /* Bridge the theme's 925px desktop breakpoint without an oversized oval avatar. */
 @media screen and (min-width: 925px) and (max-width: 1023px) {
   .sidebar > div[itemscope],
-  .sidebar > .publication-profile-frame {
+  .publication-sidebar-stack > div {
     width: 100%;
     padding: 10px;
     border-radius: 15px;
@@ -282,7 +282,7 @@ body {
 /* Keep the profile compact while the page uses its stacked tablet layout. */
 @media screen and (min-width: 521px) and (max-width: 924px) {
   .sidebar > div[itemscope],
-  .sidebar > .publication-profile-frame {
+  .publication-sidebar-stack > div {
     display: grid;
     grid-template-columns: 104px minmax(0, 1fr) auto;
     gap: 16px;
@@ -2297,9 +2297,19 @@ html[data-theme="dark"] .publication-layout {
 
 .publication-layout [hidden] { display: none !important; }
 
-/* Keep the profile's intrinsic dimensions as its contents wrap at each breakpoint. */
+/* The visible profile determines the height of both sidebar cards. */
+.publication-sidebar-stack {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 925px) {
+  .publication-sidebar {
+    max-height: calc(100vh - 5rem);
+    overflow-y: auto;
+  }
+}
 .publication-profile-frame { position: relative; }
-.publication-profile-frame > [inert] { visibility: hidden; }
 .publication-topic-diamond {
   position: absolute;
   inset: 1px;
