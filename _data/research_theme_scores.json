@@ -20,7 +20,7 @@
       "headings": 0.5,
       "body": 0.75
     },
-    "concept_config_sha256": "436f0ff17889a5479a5b6268a61f100de2926d857395b65a3c90917b7a624f7e",
+    "concept_config_sha256": "e5a6abba8c22a3d5fe0c6c4c334971305d1e8a59780fa7eddb42d8b93b0d3abe",
     "paper_order": [
       "P1",
       "P2",
@@ -37,7 +37,8 @@
       "P13",
       "P14",
       "P15",
-      "P16"
+      "P16",
+      "P17"
     ],
     "families": [
       "Random matrices & spectral methods",
@@ -56,10 +57,10 @@
       "pdf_url": "https://arxiv.org/pdf/1811.12804",
       "pdf_sha256": "f17027214e3ccb55370fe48c5480c0baa5fd7d6eb20aeb41826b1cf84f6d59e9",
       "pages": 37,
-      "extracted_characters": 110068,
+      "extracted_characters": 106965,
       "abstract_words": 255,
-      "heading_count": 49,
-      "body_words": 10510
+      "heading_count": 41,
+      "body_words": 10308
     },
     {
       "id": "P2",
@@ -68,10 +69,10 @@
       "pdf_url": "https://arxiv.org/pdf/2001.04620",
       "pdf_sha256": "14a6159e61d71a18c45e38f9463c14e75183a5e065510bcaf5a983ba39eeb078",
       "pages": 69,
-      "extracted_characters": 171490,
+      "extracted_characters": 164819,
       "abstract_words": 232,
-      "heading_count": 65,
-      "body_words": 29117
+      "heading_count": 53,
+      "body_words": 28254
     },
     {
       "id": "P3",
@@ -80,10 +81,10 @@
       "pdf_url": "https://arxiv.org/pdf/2007.06558",
       "pdf_sha256": "23fddbc3f493d02e27b6f7bcde2d592864a576c7e47858446d4744a37235bd90",
       "pages": 40,
-      "extracted_characters": 112516,
+      "extracted_characters": 107741,
       "abstract_words": 193,
-      "heading_count": 35,
-      "body_words": 10058
+      "heading_count": 33,
+      "body_words": 10019
     },
     {
       "id": "P4",
@@ -92,10 +93,10 @@
       "pdf_url": "https://arxiv.org/pdf/2112.07572",
       "pdf_sha256": "0b5cca02187d71ef52de5b02835b62b5a1154f5b2d0188a5c3ae90094e331514",
       "pages": 78,
-      "extracted_characters": 183018,
+      "extracted_characters": 179584,
       "abstract_words": 204,
       "heading_count": 39,
-      "body_words": 13801
+      "body_words": 13637
     },
     {
       "id": "P5",
@@ -104,22 +105,22 @@
       "pdf_url": "https://arxiv.org/pdf/2202.09889",
       "pdf_sha256": "5a2a8cd5b7e2fecbbaa8de759671a7c61789aa8c7440676b038d16993ffd1e0e",
       "pages": 32,
-      "extracted_characters": 71256,
+      "extracted_characters": 68561,
       "abstract_words": 136,
       "heading_count": 17,
-      "body_words": 5554
+      "body_words": 5503
     },
     {
       "id": "P6",
       "title": "How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels",
       "year": 2022,
       "pdf_url": "https://arxiv.org/pdf/2206.12041",
-      "pdf_sha256": "73bba3dd9118096752fbc2a5e3d72af2727acae85aef186dbb5aa4e66e803a46",
-      "pages": 63,
-      "extracted_characters": 152766,
-      "abstract_words": 156,
+      "pdf_sha256": "80b6b7cb822df81bd1c6015fe887c458510333449aa8e00be4a6fc9c9b53eaf0",
+      "pages": 64,
+      "extracted_characters": 149513,
+      "abstract_words": 153,
       "heading_count": 35,
-      "body_words": 12845
+      "body_words": 12653
     },
     {
       "id": "P7",
@@ -128,10 +129,10 @@
       "pdf_url": "https://arxiv.org/pdf/2210.08571",
       "pdf_sha256": "5fcce9d2aea751e76487104fb372647430cae702f666881efe642734e50c11df",
       "pages": 86,
-      "extracted_characters": 163609,
+      "extracted_characters": 161446,
       "abstract_words": 285,
-      "heading_count": 47,
-      "body_words": 13680
+      "heading_count": 43,
+      "body_words": 13499
     },
     {
       "id": "P8",
@@ -140,10 +141,10 @@
       "pdf_url": "https://arxiv.org/pdf/2307.11947",
       "pdf_sha256": "a9741ca646741a01bb66352c2f63c56014ffb2330e8e7e4dc24b7613885598a7",
       "pages": 22,
-      "extracted_characters": 62022,
+      "extracted_characters": 61162,
       "abstract_words": 123,
       "heading_count": 30,
-      "body_words": 5456
+      "body_words": 5362
     },
     {
       "id": "P9",
@@ -152,10 +153,10 @@
       "pdf_url": "https://proceedings.mlr.press/v247/areces24a/areces24a.pdf",
       "pdf_sha256": "1a98e77e1857638b81b906a44cb0407e80c854b6d0c7cabb5c46ed4fa44165ac",
       "pages": 33,
-      "extracted_characters": 71244,
+      "extracted_characters": 70820,
       "abstract_words": 180,
-      "heading_count": 35,
-      "body_words": 6446
+      "heading_count": 32,
+      "body_words": 6396
     },
     {
       "id": "P10",
@@ -164,10 +165,10 @@
       "pdf_url": "https://arxiv.org/pdf/1909.10455",
       "pdf_sha256": "31ae77f623e1007bf54bfa5142dbf86c23befbbb6793c38077d3b427f5dc4c0e",
       "pages": 47,
-      "extracted_characters": 108288,
+      "extracted_characters": 107288,
       "abstract_words": 121,
-      "heading_count": 30,
-      "body_words": 14054
+      "heading_count": 49,
+      "body_words": 13491
     },
     {
       "id": "P11",
@@ -176,10 +177,10 @@
       "pdf_url": "https://arxiv.org/pdf/2507.19611",
       "pdf_sha256": "7d3a99667cb0ca2932a6e5223900e097d6a20f09076cb7b2627540de4ae2a500",
       "pages": 55,
-      "extracted_characters": 161989,
+      "extracted_characters": 157945,
       "abstract_words": 202,
-      "heading_count": 58,
-      "body_words": 22507
+      "heading_count": 64,
+      "body_words": 20769
     },
     {
       "id": "P12",
@@ -188,10 +189,10 @@
       "pdf_url": "https://arxiv.org/pdf/2509.11379",
       "pdf_sha256": "09865036a41a29e68b73d282b77db1a2640369561f83cc3313968d5a5b6c37a9",
       "pages": 41,
-      "extracted_characters": 93052,
+      "extracted_characters": 92573,
       "abstract_words": 166,
-      "heading_count": 29,
-      "body_words": 15645
+      "heading_count": 27,
+      "body_words": 15389
     },
     {
       "id": "P13",
@@ -200,10 +201,10 @@
       "pdf_url": "https://arxiv.org/pdf/2601.20152",
       "pdf_sha256": "6093c08029728a9bb3c78578b326c32028b31683e89ada892ef9614f965c2268",
       "pages": 48,
-      "extracted_characters": 123219,
+      "extracted_characters": 122439,
       "abstract_words": 157,
-      "heading_count": 65,
-      "body_words": 11445
+      "heading_count": 42,
+      "body_words": 11418
     },
     {
       "id": "P14",
@@ -212,10 +213,10 @@
       "pdf_url": "https://arxiv.org/pdf/2602.09405",
       "pdf_sha256": "607a5bfca87d93e2dfa383864c22cbf5892da6f1d328881c66206997a146618c",
       "pages": 33,
-      "extracted_characters": 75921,
+      "extracted_characters": 76152,
       "abstract_words": 95,
-      "heading_count": 27,
-      "body_words": 5116
+      "heading_count": 26,
+      "body_words": 5106
     },
     {
       "id": "P15",
@@ -224,10 +225,10 @@
       "pdf_url": "https://moriartycc.github.io/files/papers/distributionally-robust-bidding-first-price-auctions.pdf",
       "pdf_sha256": "8f20153c89044014656d296c374b5947f25a6593621b9cdca1c7b349b8213429",
       "pages": 24,
-      "extracted_characters": 50309,
+      "extracted_characters": 50054,
       "abstract_words": 193,
-      "heading_count": 23,
-      "body_words": 7912
+      "heading_count": 21,
+      "body_words": 7784
     },
     {
       "id": "P16",
@@ -236,10 +237,22 @@
       "pdf_url": "https://arxiv.org/pdf/2609.26951",
       "pdf_sha256": "f34f25b01cdff64a004c524d51cd7efb343ef91a82faea80528096201373d210",
       "pages": 42,
-      "extracted_characters": 100358,
+      "extracted_characters": 99574,
       "abstract_words": 215,
-      "heading_count": 48,
-      "body_words": 9784
+      "heading_count": 45,
+      "body_words": 9617
+    },
+    {
+      "id": "P17",
+      "title": "Dimension-free spectral laws and the risk of spectral filters",
+      "year": 2026,
+      "pdf_url": "https://arxiv.org/pdf/2611.21254",
+      "pdf_sha256": "d582b8e787bef0ea759c9ed8e0f7f2ee1ad6b26492a8845b05f984440a4e209c",
+      "pages": 100,
+      "extracted_characters": 287308,
+      "abstract_words": 273,
+      "heading_count": 41,
+      "body_words": 13618
     }
   ],
   "concepts": [
@@ -259,7 +272,7 @@
       ],
       "paper_scores": {
         "P1": 1.0,
-        "P2": 0.563508,
+        "P2": 0.5839,
         "P3": 0.0,
         "P4": 0.0,
         "P5": 0.0,
@@ -268,14 +281,15 @@
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
-        "P11": 0.159164,
+        "P11": 0.169459,
         "P12": 0.0,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.107667,
+      "prevalence": 0.103139,
       "alias_document_frequency": {
         "eigenvector estimation": 2,
         "eigenvalue estimation": 2,
@@ -301,27 +315,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.495799,
-        "High dimensional statistics": 0.064609,
-        "Linear regression & linear methods": 0.062147,
+        "Random matrices & spectral methods": 0.517237,
+        "High dimensional statistics": 0.0667,
+        "Linear regression & linear methods": 0.047528,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.377445,
+        "Information theory & optimality": 0.368535,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
         "Spectral inference": 1.0,
-        "Matrix perturbation": 0.976179,
-        "Random matrix theory": 0.348431,
-        "State evolution": 0.104062,
+        "Matrix perturbation": 0.972765,
+        "Random matrix theory": 0.179767,
+        "State evolution": 0.110395,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.101673,
-        "Linear and nonlinear algorithms": 0.101782,
+        "Iterative algorithms": 0.043395,
+        "Linear and nonlinear algorithms": 0.074688,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.010433,
-        "Optimality and lower bounds": 0.578946,
+        "Stochastic optimization": 0.011618,
+        "Optimality and lower bounds": 0.578715,
         "Concentration inequalities": 0.0
       }
     },
@@ -341,7 +355,7 @@
       ],
       "paper_scores": {
         "P1": 1.0,
-        "P2": 0.35685,
+        "P2": 0.358843,
         "P3": 0.0,
         "P4": 0.0,
         "P5": 0.0,
@@ -355,9 +369,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.084803,
+      "prevalence": 0.079932,
       "alias_document_frequency": {
         "perturbation analysis": 1,
         "matrix perturbations": 0,
@@ -378,17 +393,17 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.556812,
+        "Random matrices & spectral methods": 0.583119,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.443188,
+        "Information theory & optimality": 0.416881,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.976179,
+        "Spectral inference": 0.972765,
         "Matrix perturbation": 1.0,
-        "Random matrix theory": 0.29015,
+        "Random matrix theory": 0.148261,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
         "Iterative algorithms": 0.0,
@@ -398,7 +413,7 @@
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.559381,
+        "Optimality and lower bounds": 0.558415,
         "Concentration inequalities": 0.0
       }
     },
@@ -415,43 +430,50 @@
         "random matrices",
         "random matrix",
         "random matrix theory",
-        "spectral distribution"
+        "spectral distribution",
+        "spectral law",
+        "spectral laws"
       ],
       "paper_scores": {
-        "P1": 0.379312,
-        "P2": 0.176217,
+        "P1": 0.15529,
+        "P2": 0.072646,
         "P3": 0.0,
-        "P4": 0.168825,
-        "P5": 1.0,
+        "P4": 0.069228,
+        "P5": 0.384559,
         "P6": 0.0,
-        "P7": 0.474925,
+        "P7": 0.191832,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
-        "P11": 0.634236,
+        "P11": 0.262719,
         "P12": 0.0,
-        "P13": 0.419163,
-        "P14": 0.230968,
+        "P13": 0.170759,
+        "P14": 0.092595,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 1.0
       },
-      "prevalence": 0.217728,
+      "prevalence": 0.141155,
       "alias_document_frequency": {
-        "random matrix theory": 4,
-        "spectral distribution": 1,
+        "random matrix theory": 5,
+        "spectral distribution": 2,
         "matrix resolvent": 0,
-        "random matrices": 5,
-        "random matrix": 6
+        "random matrices": 6,
+        "random matrix": 7,
+        "spectral laws": 1,
+        "spectral law": 1
       },
       "alias_papers": {
         "random matrix theory": [
           "P5",
           "P7",
           "P11",
-          "P14"
+          "P14",
+          "P17"
         ],
         "spectral distribution": [
-          "P5"
+          "P5",
+          "P17"
         ],
         "matrix resolvent": [],
         "random matrices": [
@@ -459,7 +481,8 @@
           "P2",
           "P7",
           "P11",
-          "P13"
+          "P13",
+          "P17"
         ],
         "random matrix": [
           "P1",
@@ -467,32 +490,39 @@
           "P4",
           "P5",
           "P11",
-          "P13"
+          "P13",
+          "P17"
+        ],
+        "spectral laws": [
+          "P17"
+        ],
+        "spectral law": [
+          "P17"
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.273086,
-        "High dimensional statistics": 0.187957,
-        "Linear regression & linear methods": 0.184849,
-        "Machine learning theory": 0.144045,
-        "Information theory & optimality": 0.125829,
-        "Probability & its applications": 0.084235
+        "Random matrices & spectral methods": 0.266834,
+        "High dimensional statistics": 0.15932,
+        "Linear regression & linear methods": 0.266502,
+        "Machine learning theory": 0.169785,
+        "Information theory & optimality": 0.08944,
+        "Probability & its applications": 0.048118
       },
       "theme_similarities": {
-        "Spectral inference": 0.348431,
-        "Matrix perturbation": 0.29015,
+        "Spectral inference": 0.179767,
+        "Matrix perturbation": 0.148261,
         "Random matrix theory": 1.0,
-        "State evolution": 0.411541,
-        "High-dimensional asymptotics": 0.4556,
-        "Iterative algorithms": 0.375671,
-        "Linear and nonlinear algorithms": 0.715429,
-        "Memorization": 0.699969,
-        "Benign overfitting": 0.623267,
+        "State evolution": 0.212877,
+        "High-dimensional asymptotics": 0.432463,
+        "Iterative algorithms": 0.770648,
+        "Linear and nonlinear algorithms": 0.87448,
+        "Memorization": 0.569958,
+        "Benign overfitting": 0.664098,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.026265,
-        "Stochastic optimization": 0.136808,
-        "Optimality and lower bounds": 0.46364,
-        "Concentration inequalities": 0.283857
+        "Conformal prediction": 0.013349,
+        "Stochastic optimization": 0.069039,
+        "Optimality and lower bounds": 0.294331,
+        "Concentration inequalities": 0.144085
       }
     },
     {
@@ -512,7 +542,7 @@
         "P1": 0.0,
         "P2": 0.0,
         "P3": 0.0,
-        "P4": 0.861434,
+        "P4": 0.84873,
         "P5": 0.0,
         "P6": 0.0,
         "P7": 0.0,
@@ -524,9 +554,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.11634,
+      "prevalence": 0.108749,
       "alias_document_frequency": {
         "dynamical mean field": 2,
         "gaussian recursion": 0,
@@ -548,27 +579,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.160982,
-        "High dimensional statistics": 0.446362,
-        "Linear regression & linear methods": 0.341522,
+        "Random matrices & spectral methods": 0.086138,
+        "High dimensional statistics": 0.522261,
+        "Linear regression & linear methods": 0.332522,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.051134,
+        "Information theory & optimality": 0.059079,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.104062,
+        "Spectral inference": 0.110395,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.411541,
+        "Random matrix theory": 0.212877,
         "State evolution": 1.0,
-        "High-dimensional asymptotics": 0.556661,
-        "Iterative algorithms": 0.830428,
-        "Linear and nonlinear algorithms": 0.697686,
+        "High-dimensional asymptotics": 0.552339,
+        "Iterative algorithms": 0.503596,
+        "Linear and nonlinear algorithms": 0.484914,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.120915,
-        "Optimality and lower bounds": 0.073201,
+        "Stochastic optimization": 0.125085,
+        "Optimality and lower bounds": 0.071543,
         "Concentration inequalities": 0.0
       }
     },
@@ -592,24 +623,25 @@
         "P2": 0.0,
         "P3": 0.0,
         "P4": 1.0,
-        "P5": 0.353018,
+        "P5": 0.302288,
         "P6": 0.0,
-        "P7": 0.335182,
+        "P7": 0.287196,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
         "P11": 0.0,
         "P12": 0.0,
         "P13": 0.0,
-        "P14": 0.371079,
+        "P14": 0.316876,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.313422
       },
-      "prevalence": 0.128705,
+      "prevalence": 0.130575,
       "alias_document_frequency": {
         "high dimensional asymptotics": 1,
         "high dimensional limit": 1,
-        "proportional asymptotics": 3,
+        "proportional asymptotics": 4,
         "asymptotic regime": 0,
         "large dimensional": 0
       },
@@ -623,33 +655,34 @@
         "proportional asymptotics": [
           "P5",
           "P7",
-          "P14"
+          "P14",
+          "P17"
         ],
         "asymptotic regime": [],
         "large dimensional": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.176832,
-        "High dimensional statistics": 0.368199,
-        "Linear regression & linear methods": 0.207781,
-        "Machine learning theory": 0.170428,
-        "Information theory & optimality": 0.07676,
+        "Random matrices & spectral methods": 0.1417,
+        "High dimensional statistics": 0.351507,
+        "Linear regression & linear methods": 0.258351,
+        "Machine learning theory": 0.172189,
+        "Information theory & optimality": 0.076254,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.4556,
-        "State evolution": 0.556661,
+        "Random matrix theory": 0.432463,
+        "State evolution": 0.552339,
         "High-dimensional asymptotics": 1.0,
-        "Iterative algorithms": 0.352284,
-        "Linear and nonlinear algorithms": 0.335102,
-        "Memorization": 0.465004,
-        "Benign overfitting": 0.491299,
+        "Iterative algorithms": 0.571327,
+        "Linear and nonlinear algorithms": 0.406024,
+        "Memorization": 0.456373,
+        "Benign overfitting": 0.496078,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.122488,
-        "Optimality and lower bounds": 0.119687,
+        "Stochastic optimization": 0.118911,
+        "Optimality and lower bounds": 0.12607,
         "Concentration inequalities": 0.0
       }
     },
@@ -663,6 +696,8 @@
       ],
       "aliases": [
         "first order method",
+        "gradient flow",
+        "iterated ridge",
         "iterative algorithm",
         "iterative method",
         "optimization iteration"
@@ -670,27 +705,30 @@
       "paper_scores": {
         "P1": 0.0,
         "P2": 0.0,
-        "P3": 0.453168,
-        "P4": 0.557971,
+        "P3": 0.398136,
+        "P4": 0.545661,
         "P5": 0.0,
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
-        "P11": 1.0,
+        "P11": 0.384662,
         "P12": 0.0,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.555164
+        "P16": 0.207684,
+        "P17": 1.0
       },
-      "prevalence": 0.160394,
+      "prevalence": 0.149185,
       "alias_document_frequency": {
         "first order method": 3,
         "optimization iteration": 0,
-        "iterative algorithm": 0,
-        "iterative method": 2
+        "iterative algorithm": 1,
+        "iterative method": 2,
+        "iterated ridge": 1,
+        "gradient flow": 3
       },
       "alias_papers": {
         "first order method": [
@@ -699,35 +737,45 @@
           "P11"
         ],
         "optimization iteration": [],
-        "iterative algorithm": [],
+        "iterative algorithm": [
+          "P17"
+        ],
         "iterative method": [
           "P11",
           "P16"
+        ],
+        "iterated ridge": [
+          "P17"
+        ],
+        "gradient flow": [
+          "P3",
+          "P4",
+          "P17"
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.125343,
-        "High dimensional statistics": 0.311343,
-        "Linear regression & linear methods": 0.350788,
-        "Machine learning theory": 0.06724,
-        "Information theory & optimality": 0.111751,
-        "Probability & its applications": 0.033534
+        "Random matrices & spectral methods": 0.206963,
+        "High dimensional statistics": 0.238303,
+        "Linear regression & linear methods": 0.340672,
+        "Machine learning theory": 0.119235,
+        "Information theory & optimality": 0.082685,
+        "Probability & its applications": 0.012142
       },
       "theme_similarities": {
-        "Spectral inference": 0.101673,
+        "Spectral inference": 0.043395,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.375671,
-        "State evolution": 0.830428,
-        "High-dimensional asymptotics": 0.352284,
+        "Random matrix theory": 0.770648,
+        "State evolution": 0.503596,
+        "High-dimensional asymptotics": 0.571327,
         "Iterative algorithms": 1.0,
-        "Linear and nonlinear algorithms": 0.634778,
-        "Memorization": 0.063536,
-        "Benign overfitting": 0.136482,
+        "Linear and nonlinear algorithms": 0.780505,
+        "Memorization": 0.241215,
+        "Benign overfitting": 0.399456,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.346183,
-        "Stochastic optimization": 0.247892,
-        "Optimality and lower bounds": 0.167494,
-        "Concentration inequalities": 0.08061
+        "Conformal prediction": 0.136211,
+        "Stochastic optimization": 0.126255,
+        "Optimality and lower bounds": 0.173179,
+        "Concentration inequalities": 0.032054
       }
     },
     {
@@ -746,27 +794,30 @@
         "linear method",
         "nonlinear algorithm",
         "nonlinear estimator",
-        "nonlinear method"
+        "nonlinear method",
+        "spectral filter",
+        "spectral filters"
       ],
       "paper_scores": {
         "P1": 0.0,
         "P2": 0.0,
         "P3": 0.0,
-        "P4": 0.281678,
-        "P5": 0.703963,
+        "P4": 0.195071,
+        "P5": 0.485087,
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
         "P9": 0.0,
-        "P10": 0.496081,
-        "P11": 1.0,
+        "P10": 0.344704,
+        "P11": 0.71041,
         "P12": 0.0,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 1.0
       },
-      "prevalence": 0.155108,
+      "prevalence": 0.160898,
       "alias_document_frequency": {
         "general first order method": 2,
         "nonlinear algorithm": 0,
@@ -774,6 +825,8 @@
         "linear algorithm": 0,
         "linear estimator": 1,
         "nonlinear method": 1,
+        "spectral filters": 1,
+        "spectral filter": 1,
         "linear method": 1,
         "gfom": 1
       },
@@ -791,6 +844,12 @@
         "nonlinear method": [
           "P10"
         ],
+        "spectral filters": [
+          "P17"
+        ],
+        "spectral filter": [
+          "P17"
+        ],
         "linear method": [
           "P11"
         ],
@@ -799,27 +858,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.209735,
-        "High dimensional statistics": 0.268968,
-        "Linear regression & linear methods": 0.321046,
-        "Machine learning theory": 0.074995,
-        "Information theory & optimality": 0.125256,
+        "Random matrices & spectral methods": 0.218205,
+        "High dimensional statistics": 0.226545,
+        "Linear regression & linear methods": 0.327026,
+        "Machine learning theory": 0.129586,
+        "Information theory & optimality": 0.098638,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.101782,
+        "Spectral inference": 0.074688,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.715429,
-        "State evolution": 0.697686,
-        "High-dimensional asymptotics": 0.335102,
-        "Iterative algorithms": 0.634778,
+        "Random matrix theory": 0.87448,
+        "State evolution": 0.484914,
+        "High-dimensional asymptotics": 0.406024,
+        "Iterative algorithms": 0.780505,
         "Linear and nonlinear algorithms": 1.0,
-        "Memorization": 0.378637,
-        "Benign overfitting": 0.258874,
+        "Memorization": 0.450243,
+        "Benign overfitting": 0.483398,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.35455,
-        "Optimality and lower bounds": 0.360828,
+        "Stochastic optimization": 0.245719,
+        "Optimality and lower bounds": 0.297459,
         "Concentration inequalities": 0.0
       }
     },
@@ -843,22 +902,23 @@
         "P4": 0.0,
         "P5": 1.0,
         "P6": 0.0,
-        "P7": 0.215858,
+        "P7": 0.209814,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
         "P11": 0.0,
         "P12": 0.0,
-        "P13": 0.188371,
-        "P14": 0.877923,
+        "P13": 0.185261,
+        "P14": 0.864772,
         "P15": 0.0,
-        "P16": 0.213005
+        "P16": 0.206948,
+        "P17": 0.397832
       },
-      "prevalence": 0.155947,
+      "prevalence": 0.168508,
       "alias_document_frequency": {
         "interpolating estimator": 0,
-        "interpolation": 5,
-        "memorization": 2,
+        "interpolation": 6,
+        "memorization": 3,
         "memorize": 2
       },
       "alias_papers": {
@@ -868,11 +928,13 @@
           "P7",
           "P13",
           "P14",
-          "P16"
+          "P16",
+          "P17"
         ],
         "memorization": [
           "P5",
-          "P14"
+          "P14",
+          "P17"
         ],
         "memorize": [
           "P5",
@@ -880,28 +942,28 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.234481,
-        "High dimensional statistics": 0.147771,
-        "Linear regression & linear methods": 0.155588,
-        "Machine learning theory": 0.278549,
-        "Information theory & optimality": 0.115436,
-        "Probability & its applications": 0.068175
+        "Random matrices & spectral methods": 0.174919,
+        "High dimensional statistics": 0.150254,
+        "Linear regression & linear methods": 0.183303,
+        "Machine learning theory": 0.300564,
+        "Information theory & optimality": 0.123778,
+        "Probability & its applications": 0.067181
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.699969,
+        "Random matrix theory": 0.569958,
         "State evolution": 0.0,
-        "High-dimensional asymptotics": 0.465004,
-        "Iterative algorithms": 0.063536,
-        "Linear and nonlinear algorithms": 0.378637,
+        "High-dimensional asymptotics": 0.456373,
+        "Iterative algorithms": 0.241215,
+        "Linear and nonlinear algorithms": 0.450243,
         "Memorization": 1.0,
-        "Benign overfitting": 0.865666,
+        "Benign overfitting": 0.865114,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.14253,
-        "Stochastic optimization": 0.152682,
-        "Optimality and lower bounds": 0.26827,
-        "Concentration inequalities": 0.163225
+        "Conformal prediction": 0.134062,
+        "Stochastic optimization": 0.148278,
+        "Optimality and lower bounds": 0.281537,
+        "Concentration inequalities": 0.1552
       }
     },
     {
@@ -922,9 +984,9 @@
         "P2": 0.0,
         "P3": 0.0,
         "P4": 0.0,
-        "P5": 0.862681,
+        "P5": 0.862793,
         "P6": 0.0,
-        "P7": 0.971896,
+        "P7": 0.974034,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
@@ -933,14 +995,15 @@
         "P13": 0.0,
         "P14": 1.0,
         "P15": 0.0,
-        "P16": 0.577336
+        "P16": 0.578285,
+        "P17": 0.879468
       },
-      "prevalence": 0.213245,
+      "prevalence": 0.252622,
       "alias_document_frequency": {
         "over parametrized regression": 0,
         "overparameterized regression": 0,
         "harmless interpolation": 0,
-        "benign overfitting": 4
+        "benign overfitting": 5
       },
       "alias_papers": {
         "over parametrized regression": [],
@@ -950,32 +1013,33 @@
           "P5",
           "P7",
           "P14",
-          "P16"
+          "P16",
+          "P17"
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.217617,
-        "High dimensional statistics": 0.162731,
-        "Linear regression & linear methods": 0.145029,
-        "Machine learning theory": 0.333352,
-        "Information theory & optimality": 0.112912,
-        "Probability & its applications": 0.028359
+        "Random matrices & spectral methods": 0.192769,
+        "High dimensional statistics": 0.154478,
+        "Linear regression & linear methods": 0.193923,
+        "Machine learning theory": 0.324909,
+        "Information theory & optimality": 0.109864,
+        "Probability & its applications": 0.024057
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.623267,
+        "Random matrix theory": 0.664098,
         "State evolution": 0.0,
-        "High-dimensional asymptotics": 0.491299,
-        "Iterative algorithms": 0.136482,
-        "Linear and nonlinear algorithms": 0.258874,
-        "Memorization": 0.865666,
+        "High-dimensional asymptotics": 0.496078,
+        "Iterative algorithms": 0.399456,
+        "Linear and nonlinear algorithms": 0.483398,
+        "Memorization": 0.865114,
         "Benign overfitting": 1.0,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.279754,
-        "Stochastic optimization": 0.187884,
-        "Optimality and lower bounds": 0.20455,
-        "Concentration inequalities": 0.065142
+        "Conformal prediction": 0.249685,
+        "Stochastic optimization": 0.169733,
+        "Optimality and lower bounds": 0.223349,
+        "Concentration inequalities": 0.058758
       }
     },
     {
@@ -999,9 +1063,9 @@
         "P3": 0.0,
         "P4": 0.0,
         "P5": 0.0,
-        "P6": 0.393742,
+        "P6": 0.395474,
         "P7": 0.0,
-        "P8": 0.965272,
+        "P8": 0.963282,
         "P9": 0.0,
         "P10": 0.0,
         "P11": 0.0,
@@ -1009,9 +1073,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.147438,
+      "prevalence": 0.13875,
       "alias_document_frequency": {
         "collaborative learning": 1,
         "distributed learning": 1,
@@ -1039,8 +1104,8 @@
         "Random matrices & spectral methods": 0.0,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.674876,
-        "Information theory & optimality": 0.325124,
+        "Machine learning theory": 0.653241,
+        "Information theory & optimality": 0.346759,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
@@ -1056,7 +1121,7 @@
         "Model and data aggregation": 1.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.304328,
+        "Optimality and lower bounds": 0.317325,
         "Concentration inequalities": 0.0
       }
     },
@@ -1083,16 +1148,17 @@
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
-        "P9": 0.630766,
+        "P9": 0.632294,
         "P10": 0.0,
         "P11": 0.0,
         "P12": 0.0,
-        "P13": 0.10677,
+        "P13": 0.106924,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 1.0
+        "P16": 1.0,
+        "P17": 0.0
       },
-      "prevalence": 0.108596,
+      "prevalence": 0.102307,
       "alias_document_frequency": {
         "conformal prediction": 3,
         "predictive inference": 2,
@@ -1118,28 +1184,28 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.014227,
+        "Random matrices & spectral methods": 0.007468,
         "High dimensional statistics": 0.0,
-        "Linear regression & linear methods": 0.197152,
-        "Machine learning theory": 0.317285,
-        "Information theory & optimality": 0.25435,
-        "Probability & its applications": 0.216986
+        "Linear regression & linear methods": 0.089827,
+        "Machine learning theory": 0.350407,
+        "Information theory & optimality": 0.29708,
+        "Probability & its applications": 0.255219
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.026265,
+        "Random matrix theory": 0.013349,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.346183,
+        "Iterative algorithms": 0.136211,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.14253,
-        "Benign overfitting": 0.279754,
+        "Memorization": 0.134062,
+        "Benign overfitting": 0.249685,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 1.0,
-        "Stochastic optimization": 0.310664,
-        "Optimality and lower bounds": 0.206094,
-        "Concentration inequalities": 0.321277
+        "Stochastic optimization": 0.313271,
+        "Optimality and lower bounds": 0.20485,
+        "Concentration inequalities": 0.32346
       }
     },
     {
@@ -1162,21 +1228,22 @@
         "P1": 0.0,
         "P2": 0.0,
         "P3": 0.0,
-        "P4": 0.136283,
-        "P5": 0.185019,
+        "P4": 0.139631,
+        "P5": 0.189584,
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
         "P9": 0.0,
-        "P10": 0.798983,
-        "P11": 0.106632,
+        "P10": 0.808349,
+        "P11": 0.113426,
         "P12": 0.0,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 1.0,
-        "P16": 0.517705
+        "P16": 0.526105,
+        "P17": 0.0
       },
-      "prevalence": 0.171539,
+      "prevalence": 0.163359,
       "alias_document_frequency": {
         "stochastic first order": 0,
         "distributionally robust": 1,
@@ -1207,28 +1274,28 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.068271,
-        "High dimensional statistics": 0.088657,
-        "Linear regression & linear methods": 0.275755,
-        "Machine learning theory": 0.122504,
-        "Information theory & optimality": 0.399803,
-        "Probability & its applications": 0.04501
+        "Random matrices & spectral methods": 0.035269,
+        "High dimensional statistics": 0.102702,
+        "Linear regression & linear methods": 0.211306,
+        "Machine learning theory": 0.135565,
+        "Information theory & optimality": 0.462037,
+        "Probability & its applications": 0.05312
       },
       "theme_similarities": {
-        "Spectral inference": 0.010433,
+        "Spectral inference": 0.011618,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.136808,
-        "State evolution": 0.120915,
-        "High-dimensional asymptotics": 0.122488,
-        "Iterative algorithms": 0.247892,
-        "Linear and nonlinear algorithms": 0.35455,
-        "Memorization": 0.152682,
-        "Benign overfitting": 0.187884,
+        "Random matrix theory": 0.069039,
+        "State evolution": 0.125085,
+        "High-dimensional asymptotics": 0.118911,
+        "Iterative algorithms": 0.126255,
+        "Linear and nonlinear algorithms": 0.245719,
+        "Memorization": 0.148278,
+        "Benign overfitting": 0.169733,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.310664,
+        "Conformal prediction": 0.313271,
         "Stochastic optimization": 1.0,
-        "Optimality and lower bounds": 0.462653,
-        "Concentration inequalities": 0.072339
+        "Optimality and lower bounds": 0.456952,
+        "Concentration inequalities": 0.073722
       }
     },
     {
@@ -1249,29 +1316,30 @@
       ],
       "paper_scores": {
         "P1": 1.0,
-        "P2": 0.611226,
-        "P3": 0.586766,
+        "P2": 0.624308,
+        "P3": 0.570451,
         "P4": 0.0,
-        "P5": 0.598896,
-        "P6": 0.469707,
-        "P7": 0.09915,
-        "P8": 0.484182,
-        "P9": 0.763468,
-        "P10": 0.763756,
-        "P11": 0.198155,
-        "P12": 0.24933,
-        "P13": 0.189304,
-        "P14": 0.116284,
-        "P15": 0.589836,
-        "P16": 0.0
+        "P5": 0.591448,
+        "P6": 0.473868,
+        "P7": 0.116514,
+        "P8": 0.519968,
+        "P9": 0.766106,
+        "P10": 0.765277,
+        "P11": 0.193601,
+        "P12": 0.256908,
+        "P13": 0.165241,
+        "P14": 0.136531,
+        "P15": 0.580075,
+        "P16": 0.0,
+        "P17": 0.157
       },
-      "prevalence": 0.420004,
+      "prevalence": 0.4069,
       "alias_document_frequency": {
         "information theoretic limit": 0,
         "fundamental limit": 1,
         "oracle complexity": 0,
         "lower bound": 13,
-        "optimality": 10,
+        "optimality": 11,
         "minimax": 9
       },
       "alias_papers": {
@@ -1305,7 +1373,8 @@
           "P11",
           "P12",
           "P13",
-          "P15"
+          "P15",
+          "P17"
         ],
         "minimax": [
           "P1",
@@ -1320,28 +1389,28 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.227062,
-        "High dimensional statistics": 0.057665,
-        "Linear regression & linear methods": 0.144335,
-        "Machine learning theory": 0.160407,
-        "Information theory & optimality": 0.358855,
-        "Probability & its applications": 0.051677
+        "Random matrices & spectral methods": 0.216135,
+        "High dimensional statistics": 0.06095,
+        "Linear regression & linear methods": 0.131557,
+        "Machine learning theory": 0.170815,
+        "Information theory & optimality": 0.371518,
+        "Probability & its applications": 0.049025
       },
       "theme_similarities": {
-        "Spectral inference": 0.578946,
-        "Matrix perturbation": 0.559381,
-        "Random matrix theory": 0.46364,
-        "State evolution": 0.073201,
-        "High-dimensional asymptotics": 0.119687,
-        "Iterative algorithms": 0.167494,
-        "Linear and nonlinear algorithms": 0.360828,
-        "Memorization": 0.26827,
-        "Benign overfitting": 0.20455,
-        "Model and data aggregation": 0.304328,
-        "Conformal prediction": 0.206094,
-        "Stochastic optimization": 0.462653,
+        "Spectral inference": 0.578715,
+        "Matrix perturbation": 0.558415,
+        "Random matrix theory": 0.294331,
+        "State evolution": 0.071543,
+        "High-dimensional asymptotics": 0.12607,
+        "Iterative algorithms": 0.173179,
+        "Linear and nonlinear algorithms": 0.297459,
+        "Memorization": 0.281537,
+        "Benign overfitting": 0.223349,
+        "Model and data aggregation": 0.317325,
+        "Conformal prediction": 0.20485,
+        "Stochastic optimization": 0.456952,
         "Optimality and lower bounds": 1.0,
-        "Concentration inequalities": 0.137795
+        "Concentration inequalities": 0.12613
       }
     },
     {
@@ -1368,16 +1437,17 @@
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
-        "P9": 0.132864,
+        "P9": 0.133946,
         "P10": 0.0,
         "P11": 0.0,
         "P12": 0.0,
         "P13": 1.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.201794
+        "P16": 0.203907,
+        "P17": 0.0
       },
-      "prevalence": 0.083416,
+      "prevalence": 0.078697,
       "alias_document_frequency": {
         "concentration inequality": 1,
         "bounded differences": 0,
@@ -1403,27 +1473,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.138372,
+        "Random matrices & spectral methods": 0.070038,
         "High dimensional statistics": 0.0,
-        "Linear regression & linear methods": 0.041313,
-        "Machine learning theory": 0.110132,
-        "Information theory & optimality": 0.10239,
-        "Probability & its applications": 0.607793
+        "Linear regression & linear methods": 0.018368,
+        "Machine learning theory": 0.117295,
+        "Information theory & optimality": 0.108697,
+        "Probability & its applications": 0.685602
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.283857,
+        "Random matrix theory": 0.144085,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.08061,
+        "Iterative algorithms": 0.032054,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.163225,
-        "Benign overfitting": 0.065142,
+        "Memorization": 0.1552,
+        "Benign overfitting": 0.058758,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.321277,
-        "Stochastic optimization": 0.072339,
-        "Optimality and lower bounds": 0.137795,
+        "Conformal prediction": 0.32346,
+        "Stochastic optimization": 0.073722,
+        "Optimality and lower bounds": 0.12613,
         "Concentration inequalities": 1.0
       }
     },
@@ -1441,8 +1511,8 @@
         "spiked matrix"
       ],
       "paper_scores": {
-        "P1": 0.762562,
-        "P2": 0.795074,
+        "P1": 0.768766,
+        "P2": 0.803275,
         "P3": 0.0,
         "P4": 0.0,
         "P5": 0.0,
@@ -1456,9 +1526,10 @@
         "P13": 0.0,
         "P14": 1.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.159852,
+      "prevalence": 0.151297,
       "alias_document_frequency": {
         "low rank structure": 1,
         "low rank matrix": 2,
@@ -1479,27 +1550,27 @@
         "spiked matrix": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.395216,
-        "High dimensional statistics": 0.118151,
+        "Random matrices & spectral methods": 0.40787,
+        "High dimensional statistics": 0.102423,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.192974,
-        "Information theory & optimality": 0.293658,
+        "Machine learning theory": 0.185022,
+        "Information theory & optimality": 0.304685,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.702144,
-        "Matrix perturbation": 0.66232,
-        "Random matrix theory": 0.309199,
+        "Spectral inference": 0.707268,
+        "Matrix perturbation": 0.665302,
+        "Random matrix theory": 0.15701,
         "State evolution": 0.0,
-        "High-dimensional asymptotics": 0.212722,
+        "High-dimensional asymptotics": 0.180872,
         "Iterative algorithms": 0.0,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.428284,
-        "Benign overfitting": 0.386625,
+        "Memorization": 0.406149,
+        "Benign overfitting": 0.342996,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.447267,
+        "Optimality and lower bounds": 0.45597,
         "Concentration inequalities": 0.0
       }
     },
@@ -1531,9 +1602,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.0625,
+      "prevalence": 0.058824,
       "alias_document_frequency": {
         "small eigen gap": 1,
         "small eigengap": 0,
@@ -1551,17 +1623,17 @@
         "eigengap": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.540169,
+        "Random matrices & spectral methods": 0.569692,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.459831,
+        "Information theory & optimality": 0.430308,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.486275,
-        "Matrix perturbation": 0.336092,
-        "Random matrix theory": 0.122768,
+        "Spectral inference": 0.498922,
+        "Matrix perturbation": 0.337755,
+        "Random matrix theory": 0.063096,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
         "Iterative algorithms": 0.0,
@@ -1571,7 +1643,7 @@
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.298022,
+        "Optimality and lower bounds": 0.302599,
         "Concentration inequalities": 0.0
       }
     },
@@ -1603,9 +1675,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.0625,
+      "prevalence": 0.058824,
       "alias_document_frequency": {
         "non symmetric perturbation": 0,
         "asymmetrically perturbed": 1,
@@ -1619,17 +1692,17 @@
         "asymmetric perturbation": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.560283,
+        "Random matrices & spectral methods": 0.586013,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.439717,
+        "Information theory & optimality": 0.413987,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.862944,
-        "Matrix perturbation": 0.941829,
-        "Random matrix theory": 0.264261,
+        "Spectral inference": 0.854465,
+        "Matrix perturbation": 0.941234,
+        "Random matrix theory": 0.134876,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
         "Iterative algorithms": 0.0,
@@ -1639,7 +1712,7 @@
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.487581,
+        "Optimality and lower bounds": 0.484695,
         "Concentration inequalities": 0.0
       }
     },
@@ -1657,7 +1730,7 @@
         "variance profile"
       ],
       "paper_scores": {
-        "P1": 0.554912,
+        "P1": 0.555014,
         "P2": 1.0,
         "P3": 0.0,
         "P4": 0.0,
@@ -1672,9 +1745,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.097182,
+      "prevalence": 0.091471,
       "alias_document_frequency": {
         "heteroscedastic noise": 2,
         "heteroskedastic noise": 0,
@@ -1691,17 +1765,17 @@
         "variance profile": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.549965,
+        "Random matrices & spectral methods": 0.57753,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.450035,
+        "Information theory & optimality": 0.42247,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.843908,
-        "Matrix perturbation": 0.750865,
-        "Random matrix theory": 0.235571,
+        "Spectral inference": 0.850893,
+        "Matrix perturbation": 0.752082,
+        "Random matrix theory": 0.120621,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
         "Iterative algorithms": 0.0,
@@ -1711,7 +1785,7 @@
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.49717,
+        "Optimality and lower bounds": 0.499793,
         "Concentration inequalities": 0.0
       }
     },
@@ -1728,13 +1802,13 @@
         "random design"
       ],
       "paper_scores": {
-        "P1": 0.908068,
+        "P1": 0.896758,
         "P2": 0.0,
         "P3": 0.0,
-        "P4": 0.860669,
+        "P4": 0.863755,
         "P5": 1.0,
         "P6": 0.0,
-        "P7": 0.531061,
+        "P7": 0.52962,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
@@ -1743,9 +1817,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.206237,
+      "prevalence": 0.193537,
       "alias_document_frequency": {
         "random data matrix": 1,
         "random covariates": 0,
@@ -1765,27 +1840,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.302255,
-        "High dimensional statistics": 0.211887,
-        "Linear regression & linear methods": 0.173424,
-        "Machine learning theory": 0.139903,
-        "Information theory & optimality": 0.172531,
+        "Random matrices & spectral methods": 0.24293,
+        "High dimensional statistics": 0.234008,
+        "Linear regression & linear methods": 0.170303,
+        "Machine learning theory": 0.154043,
+        "Information theory & optimality": 0.198716,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.464386,
-        "Matrix perturbation": 0.506838,
-        "Random matrix theory": 0.719205,
-        "State evolution": 0.332893,
-        "High-dimensional asymptotics": 0.703432,
-        "Iterative algorithms": 0.210672,
-        "Linear and nonlinear algorithms": 0.415619,
-        "Memorization": 0.479446,
-        "Benign overfitting": 0.470034,
+        "Spectral inference": 0.455427,
+        "Matrix perturbation": 0.501675,
+        "Random matrix theory": 0.353723,
+        "State evolution": 0.332202,
+        "High-dimensional asymptotics": 0.66874,
+        "Iterative algorithms": 0.218258,
+        "Linear and nonlinear algorithms": 0.282053,
+        "Memorization": 0.463826,
+        "Benign overfitting": 0.420297,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.127627,
-        "Optimality and lower bounds": 0.450655,
+        "Stochastic optimization": 0.130414,
+        "Optimality and lower bounds": 0.446504,
         "Concentration inequalities": 0.0
       }
     },
@@ -1819,9 +1894,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.0625,
+      "prevalence": 0.058824,
       "alias_document_frequency": {
         "partially observed data": 0,
         "structured missing data": 1,
@@ -1844,8 +1920,8 @@
         "Random matrices & spectral methods": 0.0,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.641323,
-        "Information theory & optimality": 0.358677,
+        "Machine learning theory": 0.612797,
+        "Information theory & optimality": 0.387203,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
@@ -1858,10 +1934,10 @@
         "Linear and nonlinear algorithms": 0.0,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
-        "Model and data aggregation": 0.668207,
+        "Model and data aggregation": 0.667225,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.236078,
+        "Optimality and lower bounds": 0.252026,
         "Concentration inequalities": 0.0
       }
     },
@@ -1896,12 +1972,13 @@
         "P10": 0.0,
         "P11": 0.0,
         "P12": 0.0,
-        "P13": 0.159223,
+        "P13": 0.158938,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.072451,
+      "prevalence": 0.068173,
       "alias_document_frequency": {
         "multiple data sources": 0,
         "data across agents": 0,
@@ -1932,28 +2009,28 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.046094,
+        "Random matrices & spectral methods": 0.02149,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.483829,
-        "Information theory & optimality": 0.278777,
-        "Probability & its applications": 0.1913
+        "Machine learning theory": 0.4744,
+        "Information theory & optimality": 0.305556,
+        "Probability & its applications": 0.198553
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.045919,
+        "Random matrix theory": 0.02328,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
         "Iterative algorithms": 0.0,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.021499,
+        "Memorization": 0.020424,
         "Benign overfitting": 0.0,
-        "Model and data aggregation": 0.659895,
-        "Conformal prediction": 0.014142,
+        "Model and data aggregation": 0.658954,
+        "Conformal prediction": 0.014128,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.247655,
-        "Concentration inequalities": 0.152845
+        "Optimality and lower bounds": 0.261473,
+        "Concentration inequalities": 0.152495
       }
     },
     {
@@ -1978,16 +2055,17 @@
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
-        "P9": 0.183157,
+        "P9": 0.181963,
         "P10": 0.0,
         "P11": 0.0,
         "P12": 0.0,
         "P13": 1.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.618057
+        "P16": 0.613659,
+        "P17": 0.0
       },
-      "prevalence": 0.112576,
+      "prevalence": 0.105625,
       "alias_document_frequency": {
         "exchangeable observations": 0,
         "exchangeable sequence": 1,
@@ -2012,28 +2090,28 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.105856,
+        "Random matrices & spectral methods": 0.054837,
         "High dimensional statistics": 0.0,
-        "Linear regression & linear methods": 0.096801,
-        "Machine learning theory": 0.163885,
-        "Information theory & optimality": 0.128652,
-        "Probability & its applications": 0.504806
+        "Linear regression & linear methods": 0.043281,
+        "Machine learning theory": 0.177135,
+        "Information theory & optimality": 0.142357,
+        "Probability & its applications": 0.58239
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.245447,
+        "Random matrix theory": 0.124914,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.213486,
+        "Iterative algorithms": 0.083633,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.195229,
-        "Benign overfitting": 0.17252,
+        "Memorization": 0.184712,
+        "Benign overfitting": 0.153305,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.594984,
-        "Stochastic optimization": 0.191582,
-        "Optimality and lower bounds": 0.134885,
-        "Concentration inequalities": 0.938772
+        "Conformal prediction": 0.592458,
+        "Stochastic optimization": 0.192346,
+        "Optimality and lower bounds": 0.124365,
+        "Concentration inequalities": 0.940576
       }
     },
     {
@@ -2070,9 +2148,10 @@
         "P13": 1.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.0625,
+      "prevalence": 0.058824,
       "alias_document_frequency": {
         "cartesian product sub sampling": 1,
         "multi factor response": 1,
@@ -2104,28 +2183,28 @@
         "nested sampling": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.171793,
+        "Random matrices & spectral methods": 0.086374,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.054342,
-        "Information theory & optimality": 0.06089,
-        "Probability & its applications": 0.712975
+        "Machine learning theory": 0.056554,
+        "Information theory & optimality": 0.059047,
+        "Probability & its applications": 0.798024
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.292024,
+        "Random matrix theory": 0.148311,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
         "Iterative algorithms": 0.0,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.136724,
+        "Memorization": 0.130115,
         "Benign overfitting": 0.0,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.08994,
+        "Conformal prediction": 0.090007,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.092301,
-        "Concentration inequalities": 0.972032
+        "Optimality and lower bounds": 0.080092,
+        "Concentration inequalities": 0.971506
       }
     },
     {
@@ -2158,9 +2237,10 @@
         "P13": 1.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.0625,
+      "prevalence": 0.058824,
       "alias_document_frequency": {
         "tensor valued data": 1,
         "exchangeable tensor": 1,
@@ -2184,28 +2264,28 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.171793,
+        "Random matrices & spectral methods": 0.086374,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.054342,
-        "Information theory & optimality": 0.06089,
-        "Probability & its applications": 0.712975
+        "Machine learning theory": 0.056554,
+        "Information theory & optimality": 0.059047,
+        "Probability & its applications": 0.798024
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.292024,
+        "Random matrix theory": 0.148311,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
         "Iterative algorithms": 0.0,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.136724,
+        "Memorization": 0.130115,
         "Benign overfitting": 0.0,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.08994,
+        "Conformal prediction": 0.090007,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.092301,
-        "Concentration inequalities": 0.972032
+        "Optimality and lower bounds": 0.080092,
+        "Concentration inequalities": 0.971506
       }
     },
     {
@@ -2226,36 +2306,40 @@
         "P2": 0.0,
         "P3": 0.0,
         "P4": 0.0,
-        "P5": 0.6033,
+        "P5": 0.648833,
         "P6": 0.0,
         "P7": 1.0,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
-        "P11": 0.176223,
+        "P11": 0.1666,
         "P12": 0.0,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.783286
       },
-      "prevalence": 0.11122,
+      "prevalence": 0.152866,
       "alias_document_frequency": {
-        "tikhonov regularization": 1,
-        "ridge regularization": 1,
-        "ridge regression": 2,
+        "tikhonov regularization": 2,
+        "ridge regularization": 2,
+        "ridge regression": 3,
         "ridge estimator": 2
       },
       "alias_papers": {
         "tikhonov regularization": [
-          "P11"
+          "P11",
+          "P17"
         ],
         "ridge regularization": [
-          "P7"
+          "P7",
+          "P17"
         ],
         "ridge regression": [
           "P5",
-          "P7"
+          "P7",
+          "P17"
         ],
         "ridge estimator": [
           "P5",
@@ -2263,27 +2347,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.283325,
-        "High dimensional statistics": 0.200299,
-        "Linear regression & linear methods": 0.159829,
-        "Machine learning theory": 0.263981,
-        "Information theory & optimality": 0.092565,
+        "Random matrices & spectral methods": 0.236775,
+        "High dimensional statistics": 0.176229,
+        "Linear regression & linear methods": 0.240119,
+        "Machine learning theory": 0.260435,
+        "Information theory & optimality": 0.086443,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.020493,
+        "Spectral inference": 0.016798,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.701923,
-        "State evolution": 0.113042,
-        "High-dimensional asymptotics": 0.395836,
-        "Iterative algorithms": 0.110447,
-        "Linear and nonlinear algorithms": 0.377028,
-        "Memorization": 0.503392,
-        "Benign overfitting": 0.726816,
+        "Random matrix theory": 0.767137,
+        "State evolution": 0.088449,
+        "High-dimensional asymptotics": 0.433208,
+        "Iterative algorithms": 0.459733,
+        "Linear and nonlinear algorithms": 0.615004,
+        "Memorization": 0.57234,
+        "Benign overfitting": 0.79389,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.078657,
-        "Optimality and lower bounds": 0.204502,
+        "Stochastic optimization": 0.069899,
+        "Optimality and lower bounds": 0.22124,
         "Concentration inequalities": 0.0
       }
     },
@@ -2305,7 +2389,7 @@
         "P2": 0.0,
         "P3": 0.0,
         "P4": 0.0,
-        "P5": 0.883698,
+        "P5": 0.881997,
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
@@ -2314,11 +2398,12 @@
         "P11": 0.0,
         "P12": 0.0,
         "P13": 0.0,
-        "P14": 0.900807,
+        "P14": 0.897671,
         "P15": 0.0,
-        "P16": 1.0
+        "P16": 1.0,
+        "P17": 0.0
       },
-      "prevalence": 0.174032,
+      "prevalence": 0.16351,
       "alias_document_frequency": {
         "interpolation transition": 0,
         "interpolation threshold": 3,
@@ -2336,28 +2421,28 @@
         "interpolation regime": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.17133,
-        "High dimensional statistics": 0.117778,
-        "Linear regression & linear methods": 0.206383,
-        "Machine learning theory": 0.307576,
-        "Information theory & optimality": 0.141844,
-        "Probability & its applications": 0.055089
+        "Random matrices & spectral methods": 0.093816,
+        "High dimensional statistics": 0.12907,
+        "Linear regression & linear methods": 0.149303,
+        "Machine learning theory": 0.372674,
+        "Information theory & optimality": 0.183671,
+        "Probability & its applications": 0.071467
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.472403,
+        "Random matrix theory": 0.228185,
         "State evolution": 0.0,
-        "High-dimensional asymptotics": 0.342327,
-        "Iterative algorithms": 0.255242,
-        "Linear and nonlinear algorithms": 0.286318,
-        "Memorization": 0.850897,
-        "Benign overfitting": 0.800459,
+        "High-dimensional asymptotics": 0.292633,
+        "Iterative algorithms": 0.100667,
+        "Linear and nonlinear algorithms": 0.193261,
+        "Memorization": 0.814989,
+        "Benign overfitting": 0.713804,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.523184,
-        "Stochastic optimization": 0.301394,
-        "Optimality and lower bounds": 0.191991,
-        "Concentration inequalities": 0.121826
+        "Conformal prediction": 0.523694,
+        "Stochastic optimization": 0.305109,
+        "Optimality and lower bounds": 0.194257,
+        "Concentration inequalities": 0.123241
       }
     },
     {
@@ -2373,8 +2458,8 @@
         "side information"
       ],
       "paper_scores": {
-        "P1": 0.851045,
-        "P2": 0.877412,
+        "P1": 0.85755,
+        "P2": 0.884572,
         "P3": 0.0,
         "P4": 0.0,
         "P5": 0.0,
@@ -2388,9 +2473,10 @@
         "P13": 0.0,
         "P14": 1.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.170529,
+      "prevalence": 0.161301,
       "alias_document_frequency": {
         "informative prior": 0,
         "prior information": 1,
@@ -2409,27 +2495,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.405115,
-        "High dimensional statistics": 0.110748,
+        "Random matrices & spectral methods": 0.419445,
+        "High dimensional statistics": 0.095544,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.180883,
-        "Information theory & optimality": 0.303254,
+        "Machine learning theory": 0.172596,
+        "Information theory & optimality": 0.312414,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.735187,
-        "Matrix perturbation": 0.694259,
-        "Random matrix theory": 0.312502,
+        "Spectral inference": 0.739915,
+        "Matrix perturbation": 0.696963,
+        "Random matrix theory": 0.158748,
         "State evolution": 0.0,
-        "High-dimensional asymptotics": 0.200405,
+        "High-dimensional asymptotics": 0.170458,
         "Iterative algorithms": 0.0,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.403484,
-        "Benign overfitting": 0.364237,
+        "Memorization": 0.382763,
+        "Benign overfitting": 0.323246,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.464224,
+        "Optimality and lower bounds": 0.472339,
         "Concentration inequalities": 0.0
       }
     },
@@ -2459,13 +2545,14 @@
         "P9": 0.0,
         "P10": 0.0,
         "P11": 0.0,
-        "P12": 0.467381,
+        "P12": 0.510314,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.091711,
+      "prevalence": 0.088842,
       "alias_document_frequency": {
         "gold standard labels": 2,
         "gold standard label": 0,
@@ -2487,8 +2574,8 @@
         "Random matrices & spectral methods": 0.0,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.568484,
-        "Information theory & optimality": 0.431516,
+        "Machine learning theory": 0.561224,
+        "Information theory & optimality": 0.438776,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
@@ -2501,10 +2588,10 @@
         "Linear and nonlinear algorithms": 0.0,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
-        "Model and data aggregation": 0.540037,
+        "Model and data aggregation": 0.55884,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.258952,
+        "Optimality and lower bounds": 0.261183,
         "Concentration inequalities": 0.0
       }
     },
@@ -2526,29 +2613,31 @@
         "P3": 0.0,
         "P4": 0.0,
         "P5": 0.0,
-        "P6": 0.805683,
+        "P6": 1.0,
         "P7": 0.0,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
         "P11": 0.0,
-        "P12": 1.0,
+        "P12": 0.719238,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.112855,
+      "prevalence": 0.101132,
       "alias_document_frequency": {
         "label correction": 0,
         "cleaning labels": 0,
-        "label cleaning": 1,
+        "label cleaning": 2,
         "clean labels": 1
       },
       "alias_papers": {
         "label correction": [],
         "cleaning labels": [],
         "label cleaning": [
+          "P6",
           "P12"
         ],
         "clean labels": [
@@ -2559,8 +2648,8 @@
         "Random matrices & spectral methods": 0.0,
         "High dimensional statistics": 0.0,
         "Linear regression & linear methods": 0.0,
-        "Machine learning theory": 0.653006,
-        "Information theory & optimality": 0.346994,
+        "Machine learning theory": 0.591138,
+        "Information theory & optimality": 0.408862,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
@@ -2573,10 +2662,10 @@
         "Linear and nonlinear algorithms": 0.0,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
-        "Model and data aggregation": 0.710062,
+        "Model and data aggregation": 0.626823,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.238351,
+        "Optimality and lower bounds": 0.259169,
         "Concentration inequalities": 0.0
       }
     },
@@ -2608,9 +2697,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.0625,
+      "prevalence": 0.058824,
       "alias_document_frequency": {
         "entropic regularization": 0,
         "entropy regularization": 1,
@@ -2628,9 +2718,9 @@
       "family_weights": {
         "Random matrices & spectral methods": 0.0,
         "High dimensional statistics": 0.0,
-        "Linear regression & linear methods": 0.523655,
+        "Linear regression & linear methods": 0.510942,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.476345,
+        "Information theory & optimality": 0.489058,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
@@ -2639,14 +2729,14 @@
         "Random matrix theory": 0.0,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.335459,
+        "Iterative algorithms": 0.310197,
         "Linear and nonlinear algorithms": 0.0,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.286096,
+        "Optimality and lower bounds": 0.276494,
         "Concentration inequalities": 0.0
       }
     },
@@ -2679,9 +2769,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.0625,
+      "prevalence": 0.058824,
       "alias_document_frequency": {
         "natural gradient policy": 0,
         "natural policy gradient": 1,
@@ -2701,9 +2792,9 @@
       "family_weights": {
         "Random matrices & spectral methods": 0.0,
         "High dimensional statistics": 0.0,
-        "Linear regression & linear methods": 0.523655,
+        "Linear regression & linear methods": 0.510942,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.476345,
+        "Information theory & optimality": 0.489058,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
@@ -2712,14 +2803,14 @@
         "Random matrix theory": 0.0,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.335459,
+        "Iterative algorithms": 0.310197,
         "Linear and nonlinear algorithms": 0.0,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
         "Stochastic optimization": 0.0,
-        "Optimality and lower bounds": 0.286096,
+        "Optimality and lower bounds": 0.276494,
         "Concentration inequalities": 0.0
       }
     },
@@ -2739,63 +2830,66 @@
       "paper_scores": {
         "P1": 0.0,
         "P2": 0.0,
-        "P3": 0.369551,
+        "P3": 0.361826,
         "P4": 0.0,
         "P5": 0.0,
         "P6": 0.0,
         "P7": 1.0,
         "P8": 0.0,
         "P9": 0.0,
-        "P10": 0.491555,
+        "P10": 0.49835,
         "P11": 0.0,
         "P12": 0.0,
         "P13": 0.0,
-        "P14": 0.552508,
+        "P14": 0.557943,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.976315
       },
-      "prevalence": 0.150851,
+      "prevalence": 0.199673,
       "alias_document_frequency": {
         "dimension independent": 0,
-        "effective dimension": 3,
+        "effective dimension": 4,
         "dimension agnostic": 0,
-        "dimension free": 2
+        "dimension free": 3
       },
       "alias_papers": {
         "dimension independent": [],
         "effective dimension": [
           "P7",
           "P10",
-          "P14"
+          "P14",
+          "P17"
         ],
         "dimension agnostic": [],
         "dimension free": [
           "P3",
-          "P7"
+          "P7",
+          "P17"
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.178845,
-        "High dimensional statistics": 0.186218,
-        "Linear regression & linear methods": 0.136386,
-        "Machine learning theory": 0.318486,
-        "Information theory & optimality": 0.180065,
+        "Random matrices & spectral methods": 0.221155,
+        "High dimensional statistics": 0.147183,
+        "Linear regression & linear methods": 0.247741,
+        "Machine learning theory": 0.261575,
+        "Information theory & optimality": 0.122345,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.323533,
+        "Random matrix theory": 0.651584,
         "State evolution": 0.0,
-        "High-dimensional asymptotics": 0.355107,
-        "Iterative algorithms": 0.095546,
-        "Linear and nonlinear algorithms": 0.139274,
-        "Memorization": 0.392098,
-        "Benign overfitting": 0.675839,
+        "High-dimensional asymptotics": 0.404221,
+        "Iterative algorithms": 0.536855,
+        "Linear and nonlinear algorithms": 0.512684,
+        "Memorization": 0.466815,
+        "Benign overfitting": 0.754133,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.215632,
-        "Optimality and lower bounds": 0.283972,
+        "Stochastic optimization": 0.175254,
+        "Optimality and lower bounds": 0.278348,
         "Concentration inequalities": 0.0
       }
     },
@@ -2819,7 +2913,7 @@
         "nonasymptotic guarantees"
       ],
       "paper_scores": {
-        "P1": 0.271147,
+        "P1": 0.270462,
         "P2": 0.0,
         "P3": 0.0,
         "P4": 0.0,
@@ -2834,9 +2928,10 @@
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.27836
+        "P16": 0.277422,
+        "P17": 0.0
       },
-      "prevalence": 0.096844,
+      "prevalence": 0.091052,
       "alias_document_frequency": {
         "high probability guarantees": 0,
         "high probability guarantee": 2,
@@ -2869,28 +2964,28 @@
         "nonasymptotic guarantee": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.219139,
-        "High dimensional statistics": 0.281097,
-        "Linear regression & linear methods": 0.312169,
-        "Machine learning theory": 0.047423,
-        "Information theory & optimality": 0.116521,
-        "Probability & its applications": 0.023651
+        "Random matrices & spectral methods": 0.172702,
+        "High dimensional statistics": 0.341499,
+        "Linear regression & linear methods": 0.263074,
+        "Machine learning theory": 0.054231,
+        "Information theory & optimality": 0.139587,
+        "Probability & its applications": 0.028908
       },
       "theme_similarities": {
-        "Spectral inference": 0.346119,
-        "Matrix perturbation": 0.238034,
-        "Random matrix theory": 0.478647,
-        "State evolution": 0.706202,
+        "Spectral inference": 0.350508,
+        "Matrix perturbation": 0.237374,
+        "Random matrix theory": 0.246785,
+        "State evolution": 0.710923,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.796616,
-        "Linear and nonlinear algorithms": 0.690727,
-        "Memorization": 0.040113,
-        "Benign overfitting": 0.086167,
+        "Iterative algorithms": 0.321316,
+        "Linear and nonlinear algorithms": 0.480973,
+        "Memorization": 0.037599,
+        "Benign overfitting": 0.076729,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.21856,
-        "Stochastic optimization": 0.166491,
-        "Optimality and lower bounds": 0.213285,
-        "Concentration inequalities": 0.050893
+        "Conformal prediction": 0.217757,
+        "Stochastic optimization": 0.171085,
+        "Optimality and lower bounds": 0.209737,
+        "Concentration inequalities": 0.051245
       }
     },
     {
@@ -2915,16 +3010,17 @@
         "P6": 0.0,
         "P7": 0.0,
         "P8": 0.0,
-        "P9": 0.571095,
+        "P9": 0.571146,
         "P10": 0.0,
         "P11": 0.0,
         "P12": 0.0,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 1.0
+        "P16": 1.0,
+        "P17": 0.0
       },
-      "prevalence": 0.098193,
+      "prevalence": 0.09242,
       "alias_document_frequency": {
         "conditional coverage": 2,
         "coverage probability": 0,
@@ -2950,10 +3046,10 @@
       "family_weights": {
         "Random matrices & spectral methods": 0.0,
         "High dimensional statistics": 0.0,
-        "Linear regression & linear methods": 0.220772,
-        "Machine learning theory": 0.340827,
-        "Information theory & optimality": 0.266448,
-        "Probability & its applications": 0.171953
+        "Linear regression & linear methods": 0.101479,
+        "Machine learning theory": 0.379555,
+        "Information theory & optimality": 0.314557,
+        "Probability & its applications": 0.20441
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
@@ -2961,15 +3057,15 @@
         "Random matrix theory": 0.0,
         "State evolution": 0.0,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.356866,
+        "Iterative algorithms": 0.140509,
         "Linear and nonlinear algorithms": 0.0,
-        "Memorization": 0.134252,
-        "Benign overfitting": 0.288388,
+        "Memorization": 0.126212,
+        "Benign overfitting": 0.257564,
         "Model and data aggregation": 0.0,
-        "Conformal prediction": 0.99499,
-        "Stochastic optimization": 0.320251,
-        "Optimality and lower bounds": 0.184608,
-        "Concentration inequalities": 0.234377
+        "Conformal prediction": 0.994938,
+        "Stochastic optimization": 0.323156,
+        "Optimality and lower bounds": 0.184161,
+        "Concentration inequalities": 0.236556
       }
     },
     {
@@ -2991,20 +3087,21 @@
         "P2": 0.0,
         "P3": 0.0,
         "P4": 0.0,
-        "P5": 0.739267,
+        "P5": 0.859041,
         "P6": 1.0,
         "P7": 0.0,
         "P8": 0.0,
         "P9": 0.0,
         "P10": 0.0,
         "P11": 0.0,
-        "P12": 0.46997,
+        "P12": 0.546158,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.138077,
+      "prevalence": 0.141482,
       "alias_document_frequency": {
         "robust to label": 0,
         "corrupted labels": 0,
@@ -3026,27 +3123,27 @@
         ]
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.207655,
-        "High dimensional statistics": 0.085135,
-        "Linear regression & linear methods": 0.1633,
-        "Machine learning theory": 0.316931,
-        "Information theory & optimality": 0.226979,
+        "Random matrices & spectral methods": 0.112967,
+        "High dimensional statistics": 0.093621,
+        "Linear regression & linear methods": 0.15069,
+        "Machine learning theory": 0.371611,
+        "Information theory & optimality": 0.27111,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
         "Spectral inference": 0.0,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.387411,
+        "Random matrix theory": 0.201072,
         "State evolution": 0.0,
-        "High-dimensional asymptotics": 0.16743,
+        "High-dimensional asymptotics": 0.155333,
         "Iterative algorithms": 0.0,
-        "Linear and nonlinear algorithms": 0.290088,
-        "Memorization": 0.403613,
-        "Benign overfitting": 0.27595,
-        "Model and data aggregation": 0.449743,
+        "Linear and nonlinear algorithms": 0.212032,
+        "Memorization": 0.422808,
+        "Benign overfitting": 0.266413,
+        "Model and data aggregation": 0.457073,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.073292,
-        "Optimality and lower bounds": 0.377626,
+        "Stochastic optimization": 0.080732,
+        "Optimality and lower bounds": 0.381194,
         "Concentration inequalities": 0.0
       }
     },
@@ -3074,15 +3171,16 @@
         "P7": 0.0,
         "P8": 0.0,
         "P9": 0.0,
-        "P10": 0.586482,
-        "P11": 0.285788,
+        "P10": 0.59681,
+        "P11": 0.299628,
         "P12": 0.0,
         "P13": 0.0,
         "P14": 0.0,
         "P15": 0.0,
-        "P16": 0.0
+        "P16": 0.0,
+        "P17": 0.0
       },
-      "prevalence": 0.117017,
+      "prevalence": 0.111555,
       "alias_document_frequency": {
         "computational lower bound": 0,
         "computational complexity": 2,
@@ -3103,27 +3201,27 @@
         "query complexity": []
       },
       "family_weights": {
-        "Random matrices & spectral methods": 0.071463,
-        "High dimensional statistics": 0.130858,
-        "Linear regression & linear methods": 0.453605,
+        "Random matrices & spectral methods": 0.038529,
+        "High dimensional statistics": 0.154619,
+        "Linear regression & linear methods": 0.422732,
         "Machine learning theory": 0.0,
-        "Information theory & optimality": 0.344074,
+        "Information theory & optimality": 0.384119,
         "Probability & its applications": 0.0
       },
       "theme_similarities": {
-        "Spectral inference": 0.032875,
+        "Spectral inference": 0.03608,
         "Matrix perturbation": 0.0,
-        "Random matrix theory": 0.105761,
-        "State evolution": 0.181345,
+        "Random matrix theory": 0.056857,
+        "State evolution": 0.189975,
         "High-dimensional asymptotics": 0.0,
-        "Iterative algorithms": 0.458136,
-        "Linear and nonlinear algorithms": 0.357943,
+        "Iterative algorithms": 0.332642,
+        "Linear and nonlinear algorithms": 0.252746,
         "Memorization": 0.0,
         "Benign overfitting": 0.0,
         "Model and data aggregation": 0.0,
         "Conformal prediction": 0.0,
-        "Stochastic optimization": 0.297753,
-        "Optimality and lower bounds": 0.445653,
+        "Stochastic optimization": 0.303786,
+        "Optimality and lower bounds": 0.437415,
         "Concentration inequalities": 0.0
       }
     }

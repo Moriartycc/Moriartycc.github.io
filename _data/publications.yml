@@ -1,6 +1,20 @@
 years:
   - year: 2026
     papers:
+      - title: "Dimension-free spectral laws and the risk of spectral filters"
+        type: preprints
+        topics: [models, generalization, procedures]
+        authors:
+          - name: Chen Cheng
+            self: true
+        venue: Preprint
+        abstract: >-
+          We develop dimension-free approximations to sample covariance spectra and prediction risk for observations in a Hilbert space with trace-class covariance. With explicit nonasymptotic error bounds, the theory extends beyond proportional asymptotics and ridge regression to analytic spectral filters, including negative ridge, iterated ridge, and gradient flow. A deterministic backward interpolation of the spectral parameter yields resolvent estimates and approximations to prediction variance and squared bias under an explicit spectral stability condition.
+        pdf_url: https://arxiv.org/pdf/2611.21254
+        links:
+          - label: arXiv
+            type: paper
+            url: https://arxiv.org/abs/2611.21254
       - title: "Rolling Conformal Prediction in Sequential Model Training"
         type: preprints
         topics: [uncertainty, procedures]
