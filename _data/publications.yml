@@ -1,3 +1,4 @@
+# Preserve title capitalization from the published record, or arXiv if unpublished.
 years:
   - year: 2026
     papers:
@@ -107,7 +108,7 @@ years:
           - label: TMLR
             type: published
             url: https://openreview.net/forum?id=O2ORErbcBy
-      - title: "State Evolution Beyond First-order Methods I: Rigorous Predictions and Finite-sample Guarantees"
+      - title: "State evolution beyond first-order methods I: Rigorous predictions and finite-sample guarantees"
         type: preprints
         topics: [models, procedures]
         authors:
@@ -143,7 +144,7 @@ years:
           - label: arXiv
             type: paper
             url: https://arxiv.org/abs/1909.10455
-      - title: "Two Fundamental Limits for Uncertainty Quantification in Predictive Inference"
+      - title: "Two fundamental limits for uncertainty quantification in predictive inference"
         type: conferences
         topics: [uncertainty]
         authors:
@@ -182,7 +183,7 @@ years:
           - label: NeurIPS
             type: published
             url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/17f158c25b08758cf650130f7f173e51-Abstract-Conference.html
-      - title: "Dimension Free Ridge Regression"
+      - title: "Dimension free ridge regression"
         type: journals
         topics: [models, generalization]
         authors:
@@ -203,7 +204,7 @@ years:
 
   - year: 2022
     papers:
-      - title: "How Many Labelers Do You Have? A Closer Look at Gold-Standard Labels"
+      - title: "How many labelers do you have? A closer look at gold-standard labels"
         type: journals
         topics: [uncertainty]
         authors:
@@ -211,7 +212,7 @@ years:
             self: true
           - name: H. Asi
           - name: J. Duchi
-        venue: "Journal of the American Statistical Association, published online October 9, 2026"
+        venue: "Journal of the American Statistical Association, 2026"
         abstract: >-
           We examine the common practice of aggregating multiple annotations into a single gold-standard label. A theoretical model shows when retaining the full, non-aggregated label information improves calibration and learning rates, and when aggregation instead offers slower but more robust behavior; experiments on real and synthetic data support these predictions.
         pdf_url: https://arxiv.org/pdf/2206.12041
@@ -225,7 +226,7 @@ years:
           - label: Code
             type: code
             url: https://github.com/Moriartycc/how-many-labelers-do-you-need
-      - title: "Memorize to Generalize: On the Necessity of Interpolation in High Dimensional Linear Regression"
+      - title: "Memorize to generalize: on the necessity of interpolation in high dimensional linear regression"
         type: conferences
         topics: [models, generalization]
         authors:
@@ -246,7 +247,7 @@ years:
             url: https://proceedings.mlr.press/v178/cheng22a.html
   - year: 2021
     papers:
-      - title: "The High-dimensional Asymptotics of First Order Methods with Random Data"
+      - title: "The high-dimensional asymptotics of first order methods with random data"
         type: journals
         topics: [models, procedures]
         authors:
@@ -286,7 +287,7 @@ years:
           - label: Operations Research
             type: published
             url: https://doi.org/10.1287/opre.2021.2151
-      - title: "Tackling Small Eigen-gaps: Fine-Grained Eigenvector Estimation and Inference under Heteroscedastic Noise"
+      - title: "Tackling Small Eigen-Gaps: Fine-Grained Eigenvector Estimation and Inference Under Heteroscedastic Noise"
         type: journals
         topics: [uncertainty]
         authors:
@@ -294,7 +295,7 @@ years:
             self: true
           - name: Y. Wei
           - name: Y. Chen
-        venue: "IEEE Transactions on Information Theory, Vol. 67, No. 12, pp. 8152–8194, 2021"
+        venue: "IEEE Transactions on Information Theory, Vol. 67, No. 11, pp. 7380–7419, 2021"
         abstract: >-
           We develop eigenvector estimation and inference methods for low-rank symmetric signals observed with independent, asymmetric, heteroscedastic noise. Eigen-decomposition of the asymmetric data yields distribution-free, noise-adaptive, and Gaussian-minimax-optimal procedures for eigenvectors, linear functionals, and eigenvalue confidence intervals, even when the relevant eigen-gaps are much smaller than classical perturbation theory permits.
         pdf_url: https://arxiv.org/pdf/2001.04620
@@ -304,11 +305,11 @@ years:
             url: https://arxiv.org/abs/2001.04620
           - label: IEEE TIT
             type: published
-            url: https://doi.org/10.1109/TIT.2021.3093869
+            url: https://doi.org/10.1109/TIT.2021.3111828
 
   - year: 2019
     papers:
-      - title: "Asymmetry Helps: Eigenvalue and Eigenvector Analyses of Asymmetrically Perturbed Low-Rank Matrices"
+      - title: "Asymmetry helps: Eigenvalue and eigenvector analyses of asymmetrically perturbed low-rank matrices"
         type: journals
         topics: [uncertainty]
         authors:
@@ -326,7 +327,7 @@ years:
             url: https://arxiv.org/abs/1811.12804
           - label: Annals of Statistics
             type: published
-            url: https://doi.org/10.1214/20-AOS1968
+            url: https://doi.org/10.1214/20-AOS1963
 
 thesis:
   title: "High dimensionality in modern machine learning: a random matrix theory perspective"
