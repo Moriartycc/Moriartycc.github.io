@@ -70,13 +70,13 @@ years:
             type: code
             url: https://github.com/Moriartycc/is-memorization-helpful-or-harmful
       - title: "Concentration Inequalities for Exchangeable Tensors and Matrix-valued Data"
-        type: preprints
+        type: journals
         topics: [uncertainty]
         authors:
           - name: Chen Cheng
             self: true
           - name: R. F. Barber
-        venue: Preprint
+        venue: "Accepted to SIAM Journal on Mathematics of Data Science (SIMODS), 2026"
         abstract: >-
           We develop Hoeffding- and Bernstein-type concentration inequalities for structured weighted sums under exchangeability, including tensor inner products and sequential matrix sums. The bounds recover optimal constants in classical scalar and random-matrix settings, sharpen results for combinatorial matrix sums, and support applications to multi-factor response models and fixed-design sketching in federated averaging.
         pdf_url: https://arxiv.org/pdf/2601.20152
